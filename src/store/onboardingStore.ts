@@ -11,25 +11,32 @@ type OnboardingAnswers = {
   startPreference: string | null;
 };
 
+const initialAnswers: OnboardingAnswers = {
+  journey: null,
+  goal: null,
+  studyTime: null,
+  preparationLevel: null,
+  acquisitionChannel: null,
+  dailyGoal: null,
+  notifications: null,
+  startPreference: null,
+};
+
 type OnboardingStore = {
   answers: OnboardingAnswers;
+
   setAnswer: <K extends keyof OnboardingAnswers>(
     key: K,
     value: OnboardingAnswers[K]
   ) => void;
+
+  setAnswers: (answers: Partial<OnboardingAnswers>) => void;
+
+  resetAnswers: () => void;
 };
 
 export const useOnboardingStore = create<OnboardingStore>((set) => ({
-  answers: {
-    journey: null,
-    goal: null,
-    studyTime: null,
-    preparationLevel: null,
-    acquisitionChannel: null,
-    dailyGoal: null,
-    notifications: null,
-    startPreference: null,
-  },
+  answers: initialAnswers,
 
   setAnswer: (key, value) =>
     set((state) => ({
@@ -37,5 +44,18 @@ export const useOnboardingStore = create<OnboardingStore>((set) => ({
         ...state.answers,
         [key]: value,
       },
+    })),
+
+  setAnswers: (answers) =>
+    set((state) => ({
+      answers: {
+        ...state.answers,
+        ...answers,
+      },
+    })),
+
+  resetAnswers: () =>
+    set(() => ({
+      answers: initialAnswers,
     })),
 }));

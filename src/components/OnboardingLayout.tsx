@@ -1,7 +1,9 @@
 import { ReactNode } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { colors } from '../constants/colors';
 
+import { colors } from '../constants/colors';
+import { spacing } from '../constants/spacing';
+import { typography } from '../constants/typography';
 
 type OnboardingLayoutProps = {
   progress: number;
@@ -50,9 +52,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
-    paddingHorizontal: 24,
-    paddingTop: 70,
-    paddingBottom: 40,
+    paddingHorizontal: spacing.screenHorizontal,
+    paddingTop: spacing.screenTop,
+    paddingBottom: spacing.screenBottom,
     justifyContent: 'space-between',
   },
   progressBackground: {
@@ -69,22 +71,20 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    marginTop: 40,
+    marginTop: spacing.xxl,
   },
   title: {
     color: colors.text.primary,
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginBottom: 10,
+    ...typography.title,
+    marginBottom: spacing.sm,
   },
   subtitle: {
     color: colors.text.secondary,
-    fontSize: 16,
-    marginBottom: 32,
-    lineHeight: 22,
+    ...typography.subtitle,
+    marginBottom: spacing.xl,
   },
   button: {
-    backgroundColor: '#38bdf8',
+    backgroundColor: colors.primary,
     paddingVertical: 18,
     borderRadius: 18,
     alignItems: 'center',
@@ -93,8 +93,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.button.disabled,
   },
   buttonText: {
-    color: '#0f172a',
-    fontSize: 16,
-    fontWeight: 'bold',
+    color: colors.background,
+    ...typography.button,
   },
 });
