@@ -1,4 +1,6 @@
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type OnboardingAnswers = {
   journey: string | null;
@@ -24,6 +26,7 @@ const initialAnswers: OnboardingAnswers = {
 
 type OnboardingStore = {
   answers: OnboardingAnswers;
+  hasCompletedOnboarding: boolean;
 
   setAnswer: <K extends keyof OnboardingAnswers>(
     key: K,
@@ -32,30 +35,48 @@ type OnboardingStore = {
 
   setAnswers: (answers: Partial<OnboardingAnswers>) => void;
 
+  completeOnboarding: () => void;
+
   resetAnswers: () => void;
 };
 
-export const useOnboardingStore = create<OnboardingStore>((set) => ({
-  answers: initialAnswers,
-
-  setAnswer: (key, value) =>
-    set((state) => ({
-      answers: {
-        ...state.answers,
-        [key]: value,
-      },
-    })),
-
-  setAnswers: (answers) =>
-    set((state) => ({
-      answers: {
-        ...state.answers,
-        ...answers,
-      },
-    })),
-
-  resetAnswers: () =>
-    set(() => ({
+export const useOnboardingStore = create<OnboardingStore>()(
+  persist(
+    (set) => ({
       answers: initialAnswers,
-    })),
-}));
+
+      hasCompletedOnboarding: false,
+
+      setAnswer: (key, value) =>
+        set((state) => ({
+          answers: {
+            ...state.answers,
+            [key]: value,
+          },
+        })),
+
+      setAnswers: (answers) =>
+        set((state) => ({
+          answers: {
+            ...state.answers,
+            ...answers,
+          },
+        })),
+
+      completeOnboarding: () =>
+        set(() => ({
+          hasCompletedOnboarding: true,
+        })),
+
+      resetAnswers: () =>
+        set(() => ({
+          answers: initialAnswers,
+          hasCompletedOnboarding: false,
+        })),
+    }),
+    {
+      name: 'studylazy-onboarding',
+      storage: createJSONStorage(() => AsyncStorage),
+    }
+  )
+);

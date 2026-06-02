@@ -5,12 +5,18 @@ import { useRouter } from 'expo-router';
 import { colors } from '../constants/colors';
 import { spacing } from '../constants/spacing';
 import { typography } from '../constants/typography';
+import { useOnboardingStore } from '../store/onboardingStore';
 
 export default function GeneratingPlanScreen() {
   const router = useRouter();
 
+  const completeOnboarding = useOnboardingStore(
+    (state) => state.completeOnboarding
+  );
+
   useEffect(() => {
     const timer = setTimeout(() => {
+      completeOnboarding();
       router.replace('/dashboard');
     }, 4000);
 
@@ -19,30 +25,14 @@ export default function GeneratingPlanScreen() {
 
   return (
     <View style={styles.container}>
-      <ActivityIndicator
-        size="large"
-        color={colors.primary}
-      />
+      <ActivityIndicator size="large" color={colors.primary} />
 
-      <Text style={styles.title}>
-        Montando seu plano...
-      </Text>
+      <Text style={styles.title}>Montando seu plano...</Text>
 
-      <Text style={styles.step}>
-        🔍 Analisando suas respostas
-      </Text>
-
-      <Text style={styles.step}>
-        📚 Organizando seus estudos
-      </Text>
-
-      <Text style={styles.step}>
-        🎯 Definindo metas personalizadas
-      </Text>
-
-      <Text style={styles.step}>
-        🚀 Preparando sua jornada
-      </Text>
+      <Text style={styles.step}>🔍 Analisando suas respostas</Text>
+      <Text style={styles.step}>📚 Organizando seus estudos</Text>
+      <Text style={styles.step}>🎯 Definindo metas personalizadas</Text>
+      <Text style={styles.step}>🚀 Preparando sua jornada</Text>
     </View>
   );
 }
