@@ -10,10 +10,11 @@ type DailyGoalCardProps = {
 };
 
 export default function DailyGoalCard({
-  studiedMinutes = 12,
+  studiedMinutes = 0,
   targetMinutes = 20,
 }: DailyGoalCardProps) {
-  const progress = (studiedMinutes / targetMinutes) * 100;
+  const rawProgress = (studiedMinutes / targetMinutes) * 100;
+  const progress = Math.min(rawProgress, 100);
 
   return (
     <View style={styles.card}>

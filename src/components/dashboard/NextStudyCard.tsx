@@ -13,18 +13,18 @@ type NextStudyCardProps = {
 
 export default function NextStudyCard({
   subject = 'Português',
-  duration = 15,
+  duration = 5,
   type = 'Teoria',
   onPress,
 }: NextStudyCardProps) {
   return (
     <View style={styles.card}>
-      <Text style={styles.label}>Próxima atividade</Text>
+      <Text style={styles.label}>Próxima lição</Text>
 
       <Text style={styles.subject}>{subject}</Text>
 
       <Text style={styles.description}>
-        {duration} minutos • {type}
+        {duration} questões • {type}
       </Text>
 
       <TouchableOpacity style={styles.button} onPress={onPress}>
