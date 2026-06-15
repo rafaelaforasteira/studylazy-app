@@ -9,6 +9,16 @@ type CompleteLessonParams = {
   subject: string;
 };
 
+export type LessonHistoryItem = {
+  id: string;
+  subject: string;
+  minutes: number;
+  totalQuestions: number;
+  correctAnswers: number;
+  earnedXp: number;
+  date: string;
+};
+
 type StudyProgressStore = {
   studiedMinutesToday: number;
   answeredQuestionsToday: number;
@@ -18,8 +28,10 @@ type StudyProgressStore = {
   sessionsCompleted: number;
   streak: number;
   lastStudyDate: string | null;
+  lessonHistory: LessonHistoryItem[];
 
   completeLesson: (params: CompleteLessonParams) => void;
+  ensureTodayProgress: () => void;
   resetProgress: () => void;
 };
 
@@ -32,6 +44,7 @@ const initialProgress = {
   sessionsCompleted: 0,
   streak: 0,
   lastStudyDate: null,
+  lessonHistory: [],
 };
 
 function getTodayDate() {
@@ -58,6 +71,16 @@ function calculateStreak(lastStudyDate: string | null, currentStreak: number) {
   }
 
   return 1;
+}
+
+function shouldResetDailyData(lastStudyDate: string | null) {
+  const today = getTodayDate();
+
+  if (!lastStudyDate) {
+    return false;
+  }
+
+  return lastStudyDate !== today;
 }
 
 function calculateXp(totalQuestions: number, correctAnswers: number) {
@@ -92,7 +115,7 @@ export const useStudyProgressStore = create<StudyProgressStore>()(
 
           const baseCompletedTasksToday = isNewDay
             ? []
-            : state.completedTasksToday;
+            : state.completedTasksToday || [];
 
           const earnedXp = calculateXp(totalQuestions, correctAnswers);
           const newStreak = calculateStreak(state.lastStudyDate, state.streak);
@@ -103,6 +126,16 @@ export const useStudyProgressStore = create<StudyProgressStore>()(
           const updatedCompletedTasksToday = alreadyCompletedTask
             ? baseCompletedTasksToday
             : [...baseCompletedTasksToday, subject];
+
+          const newHistoryItem: LessonHistoryItem = {
+            id: `${subject}-${Date.now()}`,
+            subject,
+            minutes,
+            totalQuestions,
+            correctAnswers,
+            earnedXp,
+            date: today,
+          };
 
           return {
             studiedMinutesToday: baseStudiedMinutesToday + minutes,
@@ -122,6 +155,29 @@ export const useStudyProgressStore = create<StudyProgressStore>()(
             streak: newStreak,
 
             lastStudyDate: today,
+
+            lessonHistory: [newHistoryItem, ...(state.lessonHistory || [])],
+          };
+        }),
+
+      ensureTodayProgress: () =>
+        set((state) => {
+          const needsDailyReset = shouldResetDailyData(state.lastStudyDate);
+
+          if (!needsDailyReset) {
+            return state;
+          }
+
+          return {
+            studiedMinutesToday: 0,
+            answeredQuestionsToday: 0,
+            correctAnswersToday: 0,
+            completedTasksToday: [],
+            xp: state.xp,
+            sessionsCompleted: state.sessionsCompleted,
+            streak: state.streak,
+            lastStudyDate: state.lastStudyDate,
+            lessonHistory: state.lessonHistory || [],
           };
         }),
 

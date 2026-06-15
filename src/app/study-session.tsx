@@ -23,6 +23,7 @@ export default function StudySessionScreen() {
 
   const lessonSubject = subject || 'Português';
   const lessonDuration = Number(duration) || 5;
+  const lessonType = type || 'Teoria';
 
   const questions = useMemo(() => {
     return getQuestionsForLesson({
@@ -41,6 +42,8 @@ export default function StudySessionScreen() {
   const currentQuestion = questions[currentQuestionIndex];
 
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+
+  const earnedXp = questions.length * 5 + correctAnswers * 5;
 
   function handleSelectOption(option: string) {
     if (hasAnswered) return;
@@ -94,9 +97,19 @@ export default function StudySessionScreen() {
 
           <Text style={styles.finishedTitle}>Meta concluída!</Text>
 
-          <Text style={styles.finishedSubtitle}>
-            Você acertou {correctAnswers} de {questions.length} questões.
-          </Text>
+          <View style={styles.resultBox}>
+            <Text style={styles.resultLabel}>Questões respondidas</Text>
+            <Text style={styles.resultValue}>{questions.length}</Text>
+          </View>
+
+          <View style={styles.resultBox}>
+            <Text style={styles.resultLabel}>Acertos</Text>
+            <Text style={styles.resultValue}>{correctAnswers}</Text>
+          </View>
+
+          <View style={styles.xpBox}>
+            <Text style={styles.xpText}>+{earnedXp} XP</Text>
+          </View>
 
           <Text style={styles.finishedDescription}>
             Cada questão respondida te deixa mais perto da aprovação.
@@ -116,7 +129,7 @@ export default function StudySessionScreen() {
         <Text style={styles.label}>{lessonSubject}</Text>
 
         <Text style={styles.description}>
-          {type} • {questions.length} questões
+          {lessonType} • {questions.length} questões
         </Text>
 
         <View style={styles.progressBackground}>
@@ -344,15 +357,42 @@ const styles = StyleSheet.create({
     color: colors.text.primary,
     ...typography.title,
     textAlign: 'center',
-    marginBottom: spacing.sm,
+    marginBottom: spacing.lg,
   },
 
-  finishedSubtitle: {
-    color: colors.text.primary,
-    fontSize: 18,
-    fontWeight: '700',
-    textAlign: 'center',
+  resultBox: {
+    width: '100%',
+    backgroundColor: colors.background,
+    padding: spacing.md,
+    borderRadius: 16,
     marginBottom: spacing.md,
+    alignItems: 'center',
+  },
+
+  resultLabel: {
+    color: colors.text.secondary,
+    fontSize: 14,
+    marginBottom: 4,
+  },
+
+  resultValue: {
+    color: colors.text.primary,
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+
+  xpBox: {
+    backgroundColor: colors.primary,
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.xl,
+    borderRadius: 999,
+    marginBottom: spacing.lg,
+  },
+
+  xpText: {
+    color: colors.background,
+    fontSize: 22,
+    fontWeight: 'bold',
   },
 
   finishedDescription: {

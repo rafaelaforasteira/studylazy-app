@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 
@@ -8,6 +9,7 @@ import StatsCard from '../components/dashboard/StatsCard';
 import ProfileSummaryCard from '../components/dashboard/ProfileSummaryCard';
 import TodayPlanCard from '../components/dashboard/TodayPlanCard';
 import DailyCompletedCard from '../components/dashboard/DailyCompletedCard';
+import LessonHistoryCard from '../components/dashboard/LessonHistoryCard';
 
 import { colors } from '../constants/colors';
 import { spacing } from '../constants/spacing';
@@ -25,6 +27,14 @@ import { generateTodayPlan, getNextTask } from '../utils/studyPlanGenerator';
 
 export default function DashboardScreen() {
   const router = useRouter();
+
+  const ensureTodayProgress = useStudyProgressStore(
+    (state) => state.ensureTodayProgress
+  );
+
+  useEffect(() => {
+    ensureTodayProgress();
+  }, [ensureTodayProgress]);
 
   const answers = useOnboardingStore((state) => state.answers);
 
@@ -50,6 +60,9 @@ export default function DashboardScreen() {
   );
 
   const streak = useStudyProgressStore((state) => state.streak);
+
+  const lessonHistory =
+    useStudyProgressStore((state) => state.lessonHistory) || [];
 
   const dailyGoalMinutes = getDailyGoalMinutes(answers.dailyGoal);
 
@@ -79,13 +92,21 @@ export default function DashboardScreen() {
     });
   }
 
+  function handleOpenSettings() {
+    router.push('/settings');
+  }
+
   return (
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}
     >
-      <DashboardHeader name="Estudante" streak={streak || 1} />
+      <DashboardHeader
+        name="Estudante"
+        streak={streak || 1}
+        onSettingsPress={handleOpenSettings}
+      />
 
       <ProfileSummaryCard
         goal={goalLabel}
@@ -115,6 +136,8 @@ export default function DashboardScreen() {
       <TodayPlanCard tasks={todayPlan} completedTasks={completedTasksToday} />
 
       <StatsCard streak={streak} xp={xp} sessions={sessionsCompleted} />
+
+      <LessonHistoryCard history={lessonHistory} />
     </ScrollView>
   );
 }
