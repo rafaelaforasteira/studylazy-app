@@ -24,7 +24,7 @@ export default function NextStudyCard({
       <Text style={styles.subject}>{subject}</Text>
 
       <Text style={styles.description}>
-        {duration} questões • {type}
+        {duration} minutos • {type}
       </Text>
 
       <TouchableOpacity style={styles.button} onPress={onPress}>

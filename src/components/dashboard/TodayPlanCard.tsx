@@ -8,28 +8,50 @@ import type { StudyTask } from '../../utils/studyPlanGenerator';
 
 type TodayPlanCardProps = {
   tasks: StudyTask[];
+  completedTasks: string[];
 };
 
-export default function TodayPlanCard({ tasks }: TodayPlanCardProps) {
+export default function TodayPlanCard({
+  tasks,
+  completedTasks,
+}: TodayPlanCardProps) {
   return (
     <View style={styles.card}>
       <Text style={styles.title}>Plano de hoje</Text>
 
-      {tasks.map((task, index) => (
-        <View key={`${task.subject}-${index}`} style={styles.taskItem}>
-          <View style={styles.taskNumber}>
-            <Text style={styles.taskNumberText}>{index + 1}</Text>
-          </View>
+      {tasks.map((task, index) => {
+        const isCompleted = completedTasks.includes(task.subject);
 
-          <View style={styles.taskContent}>
-            <Text style={styles.taskSubject}>{task.subject}</Text>
+        return (
+          <View key={`${task.subject}-${index}`} style={styles.taskItem}>
+            <View
+              style={[
+                styles.taskNumber,
+                isCompleted && styles.taskNumberCompleted,
+              ]}
+            >
+              <Text style={styles.taskNumberText}>
+                {isCompleted ? '✓' : index + 1}
+              </Text>
+            </View>
 
-            <Text style={styles.taskDescription}>
-              {task.duration} questões • {task.type}
-            </Text>
+            <View style={styles.taskContent}>
+              <Text
+                style={[
+                  styles.taskSubject,
+                  isCompleted && styles.taskSubjectCompleted,
+                ]}
+              >
+                {task.subject}
+              </Text>
+
+              <Text style={styles.taskDescription}>
+                {task.duration} minutos • {task.type}
+              </Text>
+            </View>
           </View>
-        </View>
-      ))}
+        );
+      })}
     </View>
   );
 }
@@ -65,6 +87,10 @@ const styles = StyleSheet.create({
     marginRight: spacing.md,
   },
 
+  taskNumberCompleted: {
+    backgroundColor: '#22c55e',
+  },
+
   taskNumberText: {
     color: colors.background,
     fontSize: 14,
@@ -80,6 +106,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
     marginBottom: 2,
+  },
+
+  taskSubjectCompleted: {
+    color: colors.text.secondary,
+    textDecorationLine: 'line-through',
   },
 
   taskDescription: {
