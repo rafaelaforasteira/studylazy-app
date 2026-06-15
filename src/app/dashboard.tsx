@@ -10,6 +10,7 @@ import ProfileSummaryCard from '../components/dashboard/ProfileSummaryCard';
 import TodayPlanCard from '../components/dashboard/TodayPlanCard';
 import DailyCompletedCard from '../components/dashboard/DailyCompletedCard';
 import LessonHistoryCard from '../components/dashboard/LessonHistoryCard';
+import LevelProgressCard from '../components/dashboard/LevelProgressCard';
 
 import { colors } from '../constants/colors';
 import { spacing } from '../constants/spacing';
@@ -96,6 +97,10 @@ export default function DashboardScreen() {
     router.push('/settings');
   }
 
+  function handleOpenHistory() {
+    router.push('/history');
+  }
+
   return (
     <ScrollView
       style={styles.container}
@@ -107,6 +112,8 @@ export default function DashboardScreen() {
         streak={streak || 1}
         onSettingsPress={handleOpenSettings}
       />
+
+      <LevelProgressCard xp={xp} />
 
       <ProfileSummaryCard
         goal={goalLabel}
@@ -137,7 +144,10 @@ export default function DashboardScreen() {
 
       <StatsCard streak={streak} xp={xp} sessions={sessionsCompleted} />
 
-      <LessonHistoryCard history={lessonHistory} />
+      <LessonHistoryCard
+        history={lessonHistory}
+        onSeeAllPress={handleOpenHistory}
+      />
     </ScrollView>
   );
 }

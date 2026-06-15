@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { colors } from '../../constants/colors';
 import { spacing } from '../../constants/spacing';
@@ -8,18 +8,30 @@ import type { LessonHistoryItem } from '../../store/studyProgressStore';
 
 type LessonHistoryCardProps = {
   history: LessonHistoryItem[];
+  onSeeAllPress?: () => void;
 };
 
 function formatDate(date: string) {
   return date.split('-').reverse().join('/');
 }
 
-export default function LessonHistoryCard({ history }: LessonHistoryCardProps) {
+export default function LessonHistoryCard({
+  history,
+  onSeeAllPress,
+}: LessonHistoryCardProps) {
   const recentHistory = history.slice(0, 3);
 
   return (
     <View style={styles.card}>
-      <Text style={styles.title}>Histórico recente</Text>
+      <View style={styles.header}>
+        <Text style={styles.title}>Histórico recente</Text>
+
+        {history.length > 0 && (
+          <TouchableOpacity onPress={onSeeAllPress}>
+            <Text style={styles.seeAllText}>Ver tudo</Text>
+          </TouchableOpacity>
+        )}
+      </View>
 
       {recentHistory.length === 0 ? (
         <Text style={styles.emptyText}>
@@ -54,11 +66,23 @@ const styles = StyleSheet.create({
     marginBottom: spacing.lg,
   },
 
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: spacing.md,
+  },
+
   title: {
     color: colors.text.primary,
     ...typography.body,
     fontWeight: '700',
-    marginBottom: spacing.md,
+  },
+
+  seeAllText: {
+    color: colors.primary,
+    fontSize: 14,
+    fontWeight: '700',
   },
 
   emptyText: {
