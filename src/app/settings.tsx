@@ -1,4 +1,10 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { useRouter } from 'expo-router';
 
 import { colors } from '../constants/colors';
@@ -7,12 +13,20 @@ import { typography } from '../constants/typography';
 
 import { useOnboardingStore } from '../store/onboardingStore';
 import { useStudyProgressStore } from '../store/studyProgressStore';
+import { useProfileStore } from '../store/profileStore';
 
 export default function SettingsScreen() {
   const router = useRouter();
 
   const resetAnswers = useOnboardingStore((state) => state.resetAnswers);
-  const resetProgress = useStudyProgressStore((state) => state.resetProgress);
+  const resetProgress = useStudyProgressStore(
+    (state) => state.resetProgress
+  );
+  const resetProfile = useProfileStore((state) => state.resetProfile);
+
+  function handleOpenProfile() {
+    router.push('/profile');
+  }
 
   function handleResetProgress() {
     resetProgress();
@@ -21,48 +35,90 @@ export default function SettingsScreen() {
 
   function handleResetOnboarding() {
     resetProgress();
+    resetProfile();
     resetAnswers();
+
     router.replace('/onboarding-1');
   }
 
   return (
-    <View style={styles.container}>
-      <View>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.content}
+      showsVerticalScrollIndicator={false}
+    >
+      <View style={styles.header}>
         <Text style={styles.title}>Configurações</Text>
 
         <Text style={styles.subtitle}>
-          Use esta tela para testar o app do zero ou limpar seu progresso.
+          Personalize sua experiência ou reinicie os dados do aplicativo.
         </Text>
       </View>
 
       <View style={styles.card}>
+        <Text style={styles.cardEmoji}>👤</Text>
+
+        <Text style={styles.cardTitle}>Meu perfil</Text>
+
+        <Text style={styles.cardDescription}>
+          Altere seu nome e acompanhe suas principais estatísticas.
+        </Text>
+
+        <TouchableOpacity
+          style={styles.profileButton}
+          onPress={handleOpenProfile}
+        >
+          <Text style={styles.profileButtonText}>Abrir perfil</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.card}>
+        <Text style={styles.cardEmoji}>📊</Text>
+
         <Text style={styles.cardTitle}>Progresso</Text>
 
         <Text style={styles.cardDescription}>
-          Apaga XP, streak, sessões, histórico e lições concluídas.
+          Apaga XP, sequência, sessões, histórico e lições concluídas.
+          Suas respostas do onboarding serão mantidas.
         </Text>
 
-        <TouchableOpacity style={styles.secondaryButton} onPress={handleResetProgress}>
-          <Text style={styles.secondaryButtonText}>Resetar progresso</Text>
+        <TouchableOpacity
+          style={styles.secondaryButton}
+          onPress={handleResetProgress}
+        >
+          <Text style={styles.secondaryButtonText}>
+            Resetar progresso
+          </Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.cardTitle}>Onboarding</Text>
+        <Text style={styles.cardEmoji}>🔄</Text>
+
+        <Text style={styles.cardTitle}>Recomeçar o aplicativo</Text>
 
         <Text style={styles.cardDescription}>
-          Apaga suas respostas e volta para o início do app.
+          Apaga o perfil, o progresso e todas as respostas do
+          onboarding.
         </Text>
 
-        <TouchableOpacity style={styles.dangerButton} onPress={handleResetOnboarding}>
-          <Text style={styles.dangerButtonText}>Refazer onboarding</Text>
+        <TouchableOpacity
+          style={styles.dangerButton}
+          onPress={handleResetOnboarding}
+        >
+          <Text style={styles.dangerButtonText}>
+            Refazer onboarding
+          </Text>
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.primaryButton} onPress={() => router.back()}>
-        <Text style={styles.primaryButtonText}>Voltar</Text>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => router.back()}
+      >
+        <Text style={styles.backButtonText}>Voltar ao dashboard</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -70,9 +126,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
+  },
+
+  content: {
     paddingHorizontal: spacing.screenHorizontal,
     paddingTop: spacing.screenTop,
     paddingBottom: spacing.screenBottom,
+  },
+
+  header: {
+    marginBottom: spacing.xl,
   },
 
   title: {
@@ -84,7 +147,6 @@ const styles = StyleSheet.create({
   subtitle: {
     color: colors.text.secondary,
     ...typography.body,
-    marginBottom: spacing.xl,
   },
 
   card: {
@@ -92,6 +154,11 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
     borderRadius: 20,
     marginBottom: spacing.lg,
+  },
+
+  cardEmoji: {
+    fontSize: 30,
+    marginBottom: spacing.sm,
   },
 
   cardTitle: {
@@ -104,18 +171,18 @@ const styles = StyleSheet.create({
   cardDescription: {
     color: colors.text.secondary,
     ...typography.body,
+    lineHeight: 22,
     marginBottom: spacing.lg,
   },
 
-  primaryButton: {
+  profileButton: {
     backgroundColor: colors.primary,
-    paddingVertical: 18,
-    borderRadius: 18,
+    paddingVertical: 16,
+    borderRadius: 16,
     alignItems: 'center',
-    marginTop: 'auto',
   },
 
-  primaryButtonText: {
+  profileButtonText: {
     color: colors.background,
     ...typography.button,
   },
@@ -142,5 +209,15 @@ const styles = StyleSheet.create({
   dangerButtonText: {
     color: '#ffffff',
     ...typography.button,
+  },
+
+  backButton: {
+    paddingVertical: 18,
+    alignItems: 'center',
+  },
+
+  backButtonText: {
+    color: colors.text.secondary,
+    ...typography.body,
   },
 });

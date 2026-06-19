@@ -17,6 +17,7 @@ import { spacing } from '../constants/spacing';
 
 import { useOnboardingStore } from '../store/onboardingStore';
 import { useStudyProgressStore } from '../store/studyProgressStore';
+import { useProfileStore } from '../store/profileStore';
 
 import {
   getDailyGoalMinutes,
@@ -24,7 +25,10 @@ import {
   getPreparationLabel,
 } from '../utils/onboardingFormatters';
 
-import { generateTodayPlan, getNextTask } from '../utils/studyPlanGenerator';
+import {
+  generateTodayPlan,
+  getNextTask,
+} from '../utils/studyPlanGenerator';
 
 export default function DashboardScreen() {
   const router = useRouter();
@@ -36,6 +40,8 @@ export default function DashboardScreen() {
   useEffect(() => {
     ensureTodayProgress();
   }, [ensureTodayProgress]);
+
+  const studentName = useProfileStore((state) => state.name);
 
   const answers = useOnboardingStore((state) => state.answers);
 
@@ -52,7 +58,9 @@ export default function DashboardScreen() {
   );
 
   const completedTasksToday =
-    useStudyProgressStore((state) => state.completedTasksToday) || [];
+    useStudyProgressStore(
+      (state) => state.completedTasksToday
+    ) || [];
 
   const xp = useStudyProgressStore((state) => state.xp);
 
@@ -68,7 +76,10 @@ export default function DashboardScreen() {
   const dailyGoalMinutes = getDailyGoalMinutes(answers.dailyGoal);
 
   const goalLabel = getGoalLabel(answers.goal);
-  const preparationLabel = getPreparationLabel(answers.preparationLevel);
+
+  const preparationLabel = getPreparationLabel(
+    answers.preparationLevel
+  );
 
   const todayPlan = generateTodayPlan({
     dailyGoal: answers.dailyGoal,
@@ -76,7 +87,10 @@ export default function DashboardScreen() {
     preparationLevel: answers.preparationLevel,
   });
 
-  const nextTask = getNextTask(todayPlan, completedTasksToday);
+  const nextTask = getNextTask(
+    todayPlan,
+    completedTasksToday
+  );
 
   const isDailyPlanCompleted = todayPlan.every((task) =>
     completedTasksToday.includes(task.subject)
@@ -108,7 +122,7 @@ export default function DashboardScreen() {
       showsVerticalScrollIndicator={false}
     >
       <DashboardHeader
-        name="Estudante"
+        name={studentName}
         streak={streak || 1}
         onSettingsPress={handleOpenSettings}
       />
@@ -140,9 +154,16 @@ export default function DashboardScreen() {
         />
       )}
 
-      <TodayPlanCard tasks={todayPlan} completedTasks={completedTasksToday} />
+      <TodayPlanCard
+        tasks={todayPlan}
+        completedTasks={completedTasksToday}
+      />
 
-      <StatsCard streak={streak} xp={xp} sessions={sessionsCompleted} />
+      <StatsCard
+        streak={streak}
+        xp={xp}
+        sessions={sessionsCompleted}
+      />
 
       <LessonHistoryCard
         history={lessonHistory}
