@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -46,70 +47,86 @@ export default function ProfileScreen() {
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
-      <View>
-        <Text style={styles.title}>Meu perfil</Text>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.content}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View>
+          <Text style={styles.title}>Meu perfil</Text>
 
-        <Text style={styles.subtitle}>
-          Personalize como seu nome aparece no StudyLazy.
-        </Text>
-
-        <View style={styles.avatar}>
-          <Text style={styles.avatarText}>
-            {(name.trim().charAt(0) || 'E').toUpperCase()}
+          <Text style={styles.subtitle}>
+            Personalize como seu nome aparece no StudyLazy.
           </Text>
-        </View>
 
-        <View style={styles.card}>
-          <Text style={styles.label}>Seu nome</Text>
-
-          <TextInput
-            style={styles.input}
-            value={name}
-            onChangeText={setLocalName}
-            placeholder="Digite seu nome"
-            placeholderTextColor={colors.text.secondary}
-            maxLength={30}
-          />
-
-          {saved && (
-            <Text style={styles.successText}>
-              Nome salvo com sucesso ✅
+          <View style={styles.avatar}>
+            <Text style={styles.avatarText}>
+              {(name.trim().charAt(0) || 'E').toUpperCase()}
             </Text>
-          )}
+          </View>
 
-          <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
-            <Text style={styles.saveButtonText}>Salvar nome</Text>
-          </TouchableOpacity>
-        </View>
+          <View style={styles.card}>
+            <Text style={styles.label}>Seu nome</Text>
 
-        <View style={styles.statsCard}>
-          <Text style={styles.statsTitle}>Seu progresso</Text>
+            <TextInput
+              style={styles.input}
+              value={name}
+              onChangeText={setLocalName}
+              placeholder="Digite seu nome"
+              placeholderTextColor={colors.text.secondary}
+              maxLength={30}
+              returnKeyType="done"
+            />
 
-          <View style={styles.statsRow}>
-            <View style={styles.statItem}>
-              <Text style={styles.statValue}>{xp}</Text>
-              <Text style={styles.statLabel}>XP</Text>
-            </View>
+            {saved && (
+              <Text style={styles.successText}>
+                Nome salvo com sucesso ✅
+              </Text>
+            )}
 
-            <View style={styles.statItem}>
-              <Text style={styles.statValue}>{streak}</Text>
-              <Text style={styles.statLabel}>dias</Text>
-            </View>
+            <TouchableOpacity
+              style={styles.saveButton}
+              onPress={handleSave}
+            >
+              <Text style={styles.saveButtonText}>
+                Salvar nome
+              </Text>
+            </TouchableOpacity>
+          </View>
 
-            <View style={styles.statItem}>
-              <Text style={styles.statValue}>{sessionsCompleted}</Text>
-              <Text style={styles.statLabel}>lições</Text>
+          <View style={styles.statsCard}>
+            <Text style={styles.statsTitle}>Seu progresso</Text>
+
+            <View style={styles.statsRow}>
+              <View style={styles.statItem}>
+                <Text style={styles.statValue}>{xp}</Text>
+                <Text style={styles.statLabel}>XP</Text>
+              </View>
+
+              <View style={styles.statItem}>
+                <Text style={styles.statValue}>{streak}</Text>
+                <Text style={styles.statLabel}>dias</Text>
+              </View>
+
+              <View style={styles.statItem}>
+                <Text style={styles.statValue}>
+                  {sessionsCompleted}
+                </Text>
+
+                <Text style={styles.statLabel}>lições</Text>
+              </View>
             </View>
           </View>
         </View>
-      </View>
 
-      <TouchableOpacity
-        style={styles.backButton}
-        onPress={() => router.back()}
-      >
-        <Text style={styles.backButtonText}>Voltar</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => router.back()}
+        >
+          <Text style={styles.backButtonText}>Voltar</Text>
+        </TouchableOpacity>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 }
@@ -118,6 +135,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
+  },
+
+  scrollView: {
+    flex: 1,
+  },
+
+  content: {
+    flexGrow: 1,
     paddingHorizontal: spacing.screenHorizontal,
     paddingTop: spacing.screenTop,
     paddingBottom: spacing.screenBottom,
@@ -201,6 +226,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.card.background,
     padding: spacing.lg,
     borderRadius: 20,
+    marginBottom: spacing.lg,
   },
 
   statsTitle: {
@@ -234,6 +260,7 @@ const styles = StyleSheet.create({
   backButton: {
     paddingVertical: 16,
     alignItems: 'center',
+    marginTop: spacing.lg,
   },
 
   backButtonText: {

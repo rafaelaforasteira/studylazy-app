@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
 type CompleteLessonParams = {
   minutes: number;
@@ -24,10 +24,14 @@ type StudyProgressStore = {
   answeredQuestionsToday: number;
   correctAnswersToday: number;
   completedTasksToday: string[];
+
   xp: number;
   sessionsCompleted: number;
   streak: number;
+
   lastStudyDate: string | null;
+  dailyProgressDate: string | null;
+
   lessonHistory: LessonHistoryItem[];
 
   completeLesson: (params: CompleteLessonParams) => void;
@@ -40,155 +44,215 @@ const initialProgress = {
   answeredQuestionsToday: 0,
   correctAnswersToday: 0,
   completedTasksToday: [],
+
   xp: 0,
   sessionsCompleted: 0,
   streak: 0,
+
   lastStudyDate: null,
+  dailyProgressDate: null,
+
   lessonHistory: [],
 };
 
-function getTodayDate() {
-  return new Date().toISOString().split('T')[0];
+function addZero(value: number) {
+  return String(value).padStart(2, '0');
 }
 
-function getYesterdayDate() {
-  const date = new Date();
-  date.setDate(date.getDate() - 1);
+/**
+ * Cria uma data no formato AAAA-MM-DD usando o horário local
+ * do aparelho, e não o horário UTC.
+ */
+function getLocalDateKey(date = new Date()) {
+  const year = date.getFullYear();
+  const month = addZero(date.getMonth() + 1);
+  const day = addZero(date.getDate());
 
-  return date.toISOString().split('T')[0];
+  return `${year}-${month}-${day}`;
 }
 
-function calculateStreak(lastStudyDate: string | null, currentStreak: number) {
-  const today = getTodayDate();
-  const yesterday = getYesterdayDate();
+function getYesterdayDateKey() {
+  const yesterday = new Date();
 
+  yesterday.setDate(yesterday.getDate() - 1);
+
+  return getLocalDateKey(yesterday);
+}
+
+function calculateStreak(
+  lastStudyDate: string | null,
+  currentStreak: number
+) {
+  const today = getLocalDateKey();
+  const yesterday = getYesterdayDateKey();
+
+  // Já estudou hoje: mantém a sequência atual.
   if (lastStudyDate === today) {
     return currentStreak;
   }
 
+  // Estudou ontem: aumenta a sequência.
   if (lastStudyDate === yesterday) {
     return currentStreak + 1;
   }
 
+  // Primeiro estudo ou sequência perdida.
   return 1;
 }
 
-function shouldResetDailyData(lastStudyDate: string | null) {
-  const today = getTodayDate();
-
-  if (!lastStudyDate) {
-    return false;
-  }
-
-  return lastStudyDate !== today;
-}
-
-function calculateXp(totalQuestions: number, correctAnswers: number) {
+function calculateXp(
+  totalQuestions: number,
+  correctAnswers: number
+) {
   const xpPerQuestion = 5;
   const bonusPerCorrectAnswer = 5;
 
-  return totalQuestions * xpPerQuestion + correctAnswers * bonusPerCorrectAnswer;
+  return (
+    totalQuestions * xpPerQuestion +
+    correctAnswers * bonusPerCorrectAnswer
+  );
 }
 
-export const useStudyProgressStore = create<StudyProgressStore>()(
-  persist(
-    (set) => ({
-      ...initialProgress,
+export const useStudyProgressStore =
+  create<StudyProgressStore>()(
+    persist(
+      (set) => ({
+        ...initialProgress,
 
-      completeLesson: ({ minutes, totalQuestions, correctAnswers, subject }) =>
-        set((state) => {
-          const today = getTodayDate();
+        completeLesson: ({
+          minutes,
+          totalQuestions,
+          correctAnswers,
+          subject,
+        }) =>
+          set((state) => {
+            const today = getLocalDateKey();
 
-          const isNewDay = state.lastStudyDate !== today;
+            const isNewDailyCycle =
+              state.dailyProgressDate !== today;
 
-          const baseStudiedMinutesToday = isNewDay
-            ? 0
-            : state.studiedMinutesToday;
+            const baseStudiedMinutesToday = isNewDailyCycle
+              ? 0
+              : state.studiedMinutesToday;
 
-          const baseAnsweredQuestionsToday = isNewDay
-            ? 0
-            : state.answeredQuestionsToday;
+            const baseAnsweredQuestionsToday = isNewDailyCycle
+              ? 0
+              : state.answeredQuestionsToday;
 
-          const baseCorrectAnswersToday = isNewDay
-            ? 0
-            : state.correctAnswersToday;
+            const baseCorrectAnswersToday = isNewDailyCycle
+              ? 0
+              : state.correctAnswersToday;
 
-          const baseCompletedTasksToday = isNewDay
-            ? []
-            : state.completedTasksToday || [];
+            const baseCompletedTasksToday = isNewDailyCycle
+              ? []
+              : state.completedTasksToday || [];
 
-          const earnedXp = calculateXp(totalQuestions, correctAnswers);
-          const newStreak = calculateStreak(state.lastStudyDate, state.streak);
+            const earnedXp = calculateXp(
+              totalQuestions,
+              correctAnswers
+            );
 
-          const alreadyCompletedTask =
-            baseCompletedTasksToday.includes(subject);
+            const newStreak = calculateStreak(
+              state.lastStudyDate,
+              state.streak
+            );
 
-          const updatedCompletedTasksToday = alreadyCompletedTask
-            ? baseCompletedTasksToday
-            : [...baseCompletedTasksToday, subject];
+            const taskWasAlreadyCompleted =
+              baseCompletedTasksToday.includes(subject);
 
-          const newHistoryItem: LessonHistoryItem = {
-            id: `${subject}-${Date.now()}`,
-            subject,
-            minutes,
-            totalQuestions,
-            correctAnswers,
-            earnedXp,
-            date: today,
-          };
+            const updatedCompletedTasks = taskWasAlreadyCompleted
+              ? baseCompletedTasksToday
+              : [...baseCompletedTasksToday, subject];
 
-          return {
-            studiedMinutesToday: baseStudiedMinutesToday + minutes,
+            const newHistoryItem: LessonHistoryItem = {
+              id: `${subject}-${Date.now()}`,
+              subject,
+              minutes,
+              totalQuestions,
+              correctAnswers,
+              earnedXp,
+              date: today,
+            };
 
-            answeredQuestionsToday:
-              baseAnsweredQuestionsToday + totalQuestions,
+            return {
+              studiedMinutesToday:
+                baseStudiedMinutesToday + minutes,
 
-            correctAnswersToday:
-              baseCorrectAnswersToday + correctAnswers,
+              answeredQuestionsToday:
+                baseAnsweredQuestionsToday + totalQuestions,
 
-            completedTasksToday: updatedCompletedTasksToday,
+              correctAnswersToday:
+                baseCorrectAnswersToday + correctAnswers,
 
-            xp: state.xp + earnedXp,
+              completedTasksToday: updatedCompletedTasks,
 
-            sessionsCompleted: state.sessionsCompleted + 1,
+              xp: state.xp + earnedXp,
 
-            streak: newStreak,
+              sessionsCompleted:
+                state.sessionsCompleted + 1,
 
-            lastStudyDate: today,
+              streak: newStreak,
 
-            lessonHistory: [newHistoryItem, ...(state.lessonHistory || [])],
-          };
-        }),
+              lastStudyDate: today,
 
-      ensureTodayProgress: () =>
-        set((state) => {
-          const needsDailyReset = shouldResetDailyData(state.lastStudyDate);
+              dailyProgressDate: today,
 
-          if (!needsDailyReset) {
-            return state;
-          }
+              lessonHistory: [
+                newHistoryItem,
+                ...(state.lessonHistory || []),
+              ],
+            };
+          }),
 
-          return {
-            studiedMinutesToday: 0,
-            answeredQuestionsToday: 0,
-            correctAnswersToday: 0,
-            completedTasksToday: [],
-            xp: state.xp,
-            sessionsCompleted: state.sessionsCompleted,
-            streak: state.streak,
-            lastStudyDate: state.lastStudyDate,
-            lessonHistory: state.lessonHistory || [],
-          };
-        }),
+        ensureTodayProgress: () =>
+          set((state) => {
+            const today = getLocalDateKey();
 
-      resetProgress: () =>
-        set(() => ({
-          ...initialProgress,
-        })),
-    }),
-    {
-      name: 'studylazy-progress',
-      storage: createJSONStorage(() => AsyncStorage),
-    }
-  )
-);
+            /*
+             * Compatibilidade com dados antigos:
+             * caso dailyProgressDate ainda não exista, usamos
+             * lastStudyDate como referência temporária.
+             */
+            const savedDailyDate =
+              state.dailyProgressDate ??
+              state.lastStudyDate;
+
+            if (savedDailyDate === today) {
+              return {
+                ...state,
+                dailyProgressDate: today,
+              };
+            }
+
+            return {
+              ...state,
+
+              studiedMinutesToday: 0,
+              answeredQuestionsToday: 0,
+              correctAnswersToday: 0,
+              completedTasksToday: [],
+
+              dailyProgressDate: today,
+
+              /*
+               * Esses dados não são apagados diariamente.
+               */
+              xp: state.xp,
+              sessionsCompleted: state.sessionsCompleted,
+              streak: state.streak,
+              lastStudyDate: state.lastStudyDate,
+              lessonHistory: state.lessonHistory || [],
+            };
+          }),
+
+        resetProgress: () =>
+          set(() => ({
+            ...initialProgress,
+          })),
+      }),
+      {
+        name: 'studylazy-progress',
+        storage: createJSONStorage(() => AsyncStorage),
+      }
+    )
+  );

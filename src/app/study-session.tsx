@@ -1,5 +1,11 @@
-import { useMemo, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useMemo, useRef, useState } from 'react';
+import {
+  Alert,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
 import { colors } from '../constants/colors';
@@ -7,7 +13,6 @@ import { spacing } from '../constants/spacing';
 import { typography } from '../constants/typography';
 
 import { useStudyProgressStore } from '../store/studyProgressStore';
-
 import { getQuestionsForLesson } from '../data/questionBank';
 
 export default function StudySessionScreen() {
@@ -19,7 +24,9 @@ export default function StudySessionScreen() {
     type: string;
   }>();
 
-  const completeLesson = useStudyProgressStore((state) => state.completeLesson);
+  const completeLesson = useStudyProgressStore(
+    (state) => state.completeLesson
+  );
 
   const lessonSubject = subject || 'Português';
   const lessonDuration = Number(duration) || 5;
@@ -37,13 +44,22 @@ export default function StudySessionScreen() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
-  const [hasSavedProgress, setHasSavedProgress] = useState(false);
+
+  // Evita que a mesma lição seja salva duas vezes
+  const hasSavedProgress = useRef(false);
 
   const currentQuestion = questions[currentQuestionIndex];
 
-  const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+  const progress =
+    ((currentQuestionIndex + 1) / questions.length) * 100;
 
-  const earnedXp = questions.length * 5 + correctAnswers * 5;
+  const earnedXp =
+    questions.length * 5 + correctAnswers * 5;
+
+  const accuracy =
+    questions.length > 0
+      ? Math.round((correctAnswers / questions.length) * 100)
+      : 0;
 
   function handleSelectOption(option: string) {
     if (hasAnswered) return;
@@ -54,17 +70,36 @@ export default function StudySessionScreen() {
   function handleConfirmAnswer() {
     if (!selectedOption) return;
 
-    if (selectedOption === currentQuestion.correctAnswer) {
+    const isCorrect =
+      selectedOption === currentQuestion.correctAnswer;
+
+    if (isCorrect) {
       setCorrectAnswers((current) => current + 1);
     }
 
     setHasAnswered(true);
   }
 
+  function saveLessonProgress() {
+    if (hasSavedProgress.current) return;
+
+    completeLesson({
+      minutes: lessonDuration,
+      totalQuestions: questions.length,
+      correctAnswers,
+      subject: lessonSubject,
+    });
+
+    hasSavedProgress.current = true;
+  }
+
   function handleNextQuestion() {
-    const isLastQuestion = currentQuestionIndex === questions.length - 1;
+    const isLastQuestion =
+      currentQuestionIndex === questions.length - 1;
 
     if (isLastQuestion) {
+      // O progresso é salvo assim que a lição termina
+      saveLessonProgress();
       setIsFinished(true);
       return;
     }
@@ -75,18 +110,25 @@ export default function StudySessionScreen() {
   }
 
   function handleFinishLesson() {
-    if (!hasSavedProgress) {
-      completeLesson({
-        minutes: lessonDuration,
-        totalQuestions: questions.length,
-        correctAnswers,
-        subject: lessonSubject,
-      });
-
-      setHasSavedProgress(true);
-    }
-
     router.replace('/dashboard');
+  }
+
+  function handleExitLesson() {
+    Alert.alert(
+      'Sair da lição?',
+      'O progresso desta lição não será salvo.',
+      [
+        {
+          text: 'Continuar estudando',
+          style: 'cancel',
+        },
+        {
+          text: 'Sair',
+          style: 'destructive',
+          onPress: () => router.back(),
+        },
+      ]
+    );
   }
 
   if (isFinished) {
@@ -95,29 +137,60 @@ export default function StudySessionScreen() {
         <View style={styles.finishedCard}>
           <Text style={styles.finishedEmoji}>🎉</Text>
 
-          <Text style={styles.finishedTitle}>Meta concluída!</Text>
+          <Text style={styles.finishedTitle}>
+            Lição concluída!
+          </Text>
 
-          <View style={styles.resultBox}>
-            <Text style={styles.resultLabel}>Questões respondidas</Text>
-            <Text style={styles.resultValue}>{questions.length}</Text>
+          <View style={styles.resultRow}>
+            <View style={styles.resultBox}>
+              <Text style={styles.resultLabel}>
+                Questões
+              </Text>
+
+              <Text style={styles.resultValue}>
+                {questions.length}
+              </Text>
+            </View>
+
+            <View style={styles.resultBox}>
+              <Text style={styles.resultLabel}>
+                Acertos
+              </Text>
+
+              <Text style={styles.resultValue}>
+                {correctAnswers}
+              </Text>
+            </View>
           </View>
 
-          <View style={styles.resultBox}>
-            <Text style={styles.resultLabel}>Acertos</Text>
-            <Text style={styles.resultValue}>{correctAnswers}</Text>
+          <View style={styles.accuracyBox}>
+            <Text style={styles.accuracyLabel}>
+              Aproveitamento
+            </Text>
+
+            <Text style={styles.accuracyValue}>
+              {accuracy}%
+            </Text>
           </View>
 
           <View style={styles.xpBox}>
-            <Text style={styles.xpText}>+{earnedXp} XP</Text>
+            <Text style={styles.xpText}>
+              +{earnedXp} XP
+            </Text>
           </View>
 
           <Text style={styles.finishedDescription}>
-            Cada questão respondida te deixa mais perto da aprovação.
+            Seu progresso já foi salvo.
           </Text>
         </View>
 
-        <TouchableOpacity style={styles.primaryButton} onPress={handleFinishLesson}>
-          <Text style={styles.primaryButtonText}>Voltar para o dashboard</Text>
+        <TouchableOpacity
+          style={styles.primaryButton}
+          onPress={handleFinishLesson}
+        >
+          <Text style={styles.primaryButtonText}>
+            Voltar para o dashboard
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -126,29 +199,47 @@ export default function StudySessionScreen() {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.label}>{lessonSubject}</Text>
+        <Text style={styles.label}>
+          {lessonSubject}
+        </Text>
 
         <Text style={styles.description}>
           {lessonType} • {questions.length} questões
         </Text>
 
         <View style={styles.progressBackground}>
-          <View style={[styles.progressFill, { width: `${progress}%` }]} />
+          <View
+            style={[
+              styles.progressFill,
+              {
+                width: `${progress}%`,
+              },
+            ]}
+          />
         </View>
 
         <Text style={styles.progressText}>
-          Questão {currentQuestionIndex + 1} de {questions.length}
+          Questão {currentQuestionIndex + 1} de{' '}
+          {questions.length}
         </Text>
       </View>
 
       <View style={styles.questionCard}>
-        <Text style={styles.question}>{currentQuestion.question}</Text>
+        <Text style={styles.question}>
+          {currentQuestion.question}
+        </Text>
 
         {currentQuestion.options.map((option) => {
           const isSelected = selectedOption === option;
-          const isCorrect = option === currentQuestion.correctAnswer;
-          const isWrongSelected = hasAnswered && isSelected && !isCorrect;
-          const shouldShowCorrect = hasAnswered && isCorrect;
+
+          const isCorrect =
+            option === currentQuestion.correctAnswer;
+
+          const isWrongSelected =
+            hasAnswered && isSelected && !isCorrect;
+
+          const shouldShowCorrect =
+            hasAnswered && isCorrect;
 
           return (
             <TouchableOpacity
@@ -166,8 +257,10 @@ export default function StudySessionScreen() {
                 style={[
                   styles.optionText,
                   isSelected && styles.optionTextSelected,
-                  shouldShowCorrect && styles.feedbackOptionText,
-                  isWrongSelected && styles.feedbackOptionText,
+                  shouldShowCorrect &&
+                    styles.feedbackOptionText,
+                  isWrongSelected &&
+                    styles.feedbackOptionText,
                 ]}
               >
                 {option}
@@ -179,32 +272,59 @@ export default function StudySessionScreen() {
 
       <View>
         {hasAnswered && (
-          <Text style={styles.feedbackText}>
-            {selectedOption === currentQuestion.correctAnswer
-              ? 'Boa! Você acertou ✅'
-              : `Quase! A resposta certa é: ${currentQuestion.correctAnswer}`}
-          </Text>
+          <View
+            style={[
+              styles.feedbackBox,
+              selectedOption ===
+              currentQuestion.correctAnswer
+                ? styles.feedbackCorrect
+                : styles.feedbackWrong,
+            ]}
+          >
+            <Text style={styles.feedbackText}>
+              {selectedOption ===
+              currentQuestion.correctAnswer
+                ? 'Boa! Você acertou ✅'
+                : `A resposta correta é: ${currentQuestion.correctAnswer}`}
+            </Text>
+          </View>
         )}
 
         {!hasAnswered ? (
           <TouchableOpacity
             style={[
               styles.primaryButton,
-              !selectedOption && styles.primaryButtonDisabled,
+              !selectedOption &&
+                styles.primaryButtonDisabled,
             ]}
             onPress={handleConfirmAnswer}
             disabled={!selectedOption}
           >
-            <Text style={styles.primaryButtonText}>Responder</Text>
+            <Text style={styles.primaryButtonText}>
+              Responder
+            </Text>
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity style={styles.primaryButton} onPress={handleNextQuestion}>
-            <Text style={styles.primaryButtonText}>Continuar</Text>
+          <TouchableOpacity
+            style={styles.primaryButton}
+            onPress={handleNextQuestion}
+          >
+            <Text style={styles.primaryButtonText}>
+              {currentQuestionIndex ===
+              questions.length - 1
+                ? 'Concluir lição'
+                : 'Continuar'}
+            </Text>
           </TouchableOpacity>
         )}
 
-        <TouchableOpacity style={styles.secondaryButton} onPress={() => router.back()}>
-          <Text style={styles.secondaryButtonText}>Sair da lição</Text>
+        <TouchableOpacity
+          style={styles.secondaryButton}
+          onPress={handleExitLesson}
+        >
+          <Text style={styles.secondaryButtonText}>
+            Sair da lição
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -306,11 +426,25 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
 
-  feedbackText: {
-    color: colors.text.primary,
-    textAlign: 'center',
+  feedbackBox: {
+    padding: spacing.md,
+    borderRadius: 16,
     marginBottom: spacing.md,
+  },
+
+  feedbackCorrect: {
+    backgroundColor: '#14532d',
+  },
+
+  feedbackWrong: {
+    backgroundColor: '#7f1d1d',
+  },
+
+  feedbackText: {
+    color: '#ffffff',
+    textAlign: 'center',
     ...typography.body,
+    fontWeight: '700',
   },
 
   primaryButton: {
@@ -345,7 +479,7 @@ const styles = StyleSheet.create({
     padding: spacing.xl,
     borderRadius: 24,
     alignItems: 'center',
-    marginTop: spacing.xxl,
+    marginTop: spacing.xl,
   },
 
   finishedEmoji: {
@@ -360,12 +494,18 @@ const styles = StyleSheet.create({
     marginBottom: spacing.lg,
   },
 
-  resultBox: {
+  resultRow: {
     width: '100%',
+    flexDirection: 'row',
+    gap: spacing.md,
+    marginBottom: spacing.md,
+  },
+
+  resultBox: {
+    flex: 1,
     backgroundColor: colors.background,
     padding: spacing.md,
     borderRadius: 16,
-    marginBottom: spacing.md,
     alignItems: 'center',
   },
 
@@ -376,6 +516,27 @@ const styles = StyleSheet.create({
   },
 
   resultValue: {
+    color: colors.text.primary,
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+
+  accuracyBox: {
+    width: '100%',
+    backgroundColor: colors.background,
+    padding: spacing.md,
+    borderRadius: 16,
+    alignItems: 'center',
+    marginBottom: spacing.md,
+  },
+
+  accuracyLabel: {
+    color: colors.text.secondary,
+    fontSize: 14,
+    marginBottom: 4,
+  },
+
+  accuracyValue: {
     color: colors.text.primary,
     fontSize: 24,
     fontWeight: 'bold',
