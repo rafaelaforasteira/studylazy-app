@@ -13,6 +13,11 @@ import { spacing } from '../constants/spacing';
 import { typography } from '../constants/typography';
 
 import { useStudyProgressStore } from '../store/studyProgressStore';
+import {
+  LessonMistakeInput,
+  useMistakeStore,
+} from '../store/mistakeStore';
+
 import { getQuestionsForLesson } from '../data/questionBank';
 
 export default function StudySessionScreen() {
@@ -28,6 +33,10 @@ export default function StudySessionScreen() {
     (state) => state.completeLesson
   );
 
+  const addLessonMistakes = useMistakeStore(
+    (state) => state.addLessonMistakes
+  );
+
   const lessonSubject = subject || 'Português';
   const lessonDuration = Number(duration) || 5;
   const lessonType = type || 'Teoria';
@@ -39,13 +48,22 @@ export default function StudySessionScreen() {
     });
   }, [lessonSubject, lessonDuration]);
 
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [currentQuestionIndex, setCurrentQuestionIndex] =
+    useState(0);
+
+  const [selectedOption, setSelectedOption] =
+    useState<string | null>(null);
+
   const [hasAnswered, setHasAnswered] = useState(false);
+
   const [correctAnswers, setCorrectAnswers] = useState(0);
+
   const [isFinished, setIsFinished] = useState(false);
 
-  // Evita que a mesma lição seja salva duas vezes
+  const [lessonMistakes, setLessonMistakes] = useState<
+    LessonMistakeInput[]
+  >([]);
+
   const hasSavedProgress = useRef(false);
 
   const currentQuestion = questions[currentQuestionIndex];
@@ -58,7 +76,9 @@ export default function StudySessionScreen() {
 
   const accuracy =
     questions.length > 0
-      ? Math.round((correctAnswers / questions.length) * 100)
+      ? Math.round(
+          (correctAnswers / questions.length) * 100
+        )
       : 0;
 
   function handleSelectOption(option: string) {
@@ -75,6 +95,18 @@ export default function StudySessionScreen() {
 
     if (isCorrect) {
       setCorrectAnswers((current) => current + 1);
+    } else {
+      const newMistake: LessonMistakeInput = {
+        question: currentQuestion.question,
+        options: currentQuestion.options,
+        selectedAnswer: selectedOption,
+        correctAnswer: currentQuestion.correctAnswer,
+      };
+
+      setLessonMistakes((currentMistakes) => [
+        ...currentMistakes,
+        newMistake,
+      ]);
     }
 
     setHasAnswered(true);
@@ -90,6 +122,11 @@ export default function StudySessionScreen() {
       subject: lessonSubject,
     });
 
+    addLessonMistakes(
+      lessonSubject,
+      lessonMistakes
+    );
+
     hasSavedProgress.current = true;
   }
 
@@ -98,13 +135,15 @@ export default function StudySessionScreen() {
       currentQuestionIndex === questions.length - 1;
 
     if (isLastQuestion) {
-      // O progresso é salvo assim que a lição termina
       saveLessonProgress();
       setIsFinished(true);
       return;
     }
 
-    setCurrentQuestionIndex((current) => current + 1);
+    setCurrentQuestionIndex(
+      (current) => current + 1
+    );
+
     setSelectedOption(null);
     setHasAnswered(false);
   }
@@ -179,6 +218,19 @@ export default function StudySessionScreen() {
             </Text>
           </View>
 
+          {lessonMistakes.length > 0 ? (
+            <Text style={styles.reviewMessage}>
+              Você tem {lessonMistakes.length}{' '}
+              {lessonMistakes.length === 1
+                ? 'questão para revisar.'
+                : 'questões para revisar.'}
+            </Text>
+          ) : (
+            <Text style={styles.perfectMessage}>
+              Lição perfeita! Nenhum erro para revisar ✅
+            </Text>
+          )}
+
           <Text style={styles.finishedDescription}>
             Seu progresso já foi salvo.
           </Text>
@@ -230,7 +282,8 @@ export default function StudySessionScreen() {
         </Text>
 
         {currentQuestion.options.map((option) => {
-          const isSelected = selectedOption === option;
+          const isSelected =
+            selectedOption === option;
 
           const isCorrect =
             option === currentQuestion.correctAnswer;
@@ -247,16 +300,21 @@ export default function StudySessionScreen() {
               style={[
                 styles.optionButton,
                 isSelected && styles.optionSelected,
-                shouldShowCorrect && styles.optionCorrect,
-                isWrongSelected && styles.optionWrong,
+                shouldShowCorrect &&
+                  styles.optionCorrect,
+                isWrongSelected &&
+                  styles.optionWrong,
               ]}
-              onPress={() => handleSelectOption(option)}
+              onPress={() =>
+                handleSelectOption(option)
+              }
               disabled={hasAnswered}
             >
               <Text
                 style={[
                   styles.optionText,
-                  isSelected && styles.optionTextSelected,
+                  isSelected &&
+                    styles.optionTextSelected,
                   shouldShowCorrect &&
                     styles.feedbackOptionText,
                   isWrongSelected &&
@@ -547,13 +605,29 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.xl,
     borderRadius: 999,
-    marginBottom: spacing.lg,
+    marginBottom: spacing.md,
   },
 
   xpText: {
     color: colors.background,
     fontSize: 22,
     fontWeight: 'bold',
+  },
+
+  reviewMessage: {
+    color: '#f59e0b',
+    fontSize: 15,
+    fontWeight: '700',
+    textAlign: 'center',
+    marginBottom: spacing.md,
+  },
+
+  perfectMessage: {
+    color: '#22c55e',
+    fontSize: 15,
+    fontWeight: '700',
+    textAlign: 'center',
+    marginBottom: spacing.md,
   },
 
   finishedDescription: {
