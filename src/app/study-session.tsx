@@ -1,14 +1,20 @@
 import { useMemo, useRef, useState } from 'react';
 import {
   Alert,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { SymbolView } from 'expo-symbols';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
+import AppScreen from '../components/ui/AppScreen';
+import PrimaryButton from '../components/ui/PrimaryButton';
+
 import { colors } from '../constants/colors';
+import { radii } from '../constants/radii';
 import { spacing } from '../constants/spacing';
 import { typography } from '../constants/typography';
 
@@ -32,7 +38,6 @@ export default function StudySessionScreen() {
   const completeLesson = useStudyProgressStore(
     (state) => state.completeLesson
   );
-
   const addLessonMistakes = useMistakeStore(
     (state) => state.addLessonMistakes
   );
@@ -50,19 +55,18 @@ export default function StudySessionScreen() {
 
   const [currentQuestionIndex, setCurrentQuestionIndex] =
     useState(0);
-
   const [selectedOption, setSelectedOption] =
     useState<string | null>(null);
-
   const [hasAnswered, setHasAnswered] = useState(false);
-
   const [correctAnswers, setCorrectAnswers] = useState(0);
-
   const [isFinished, setIsFinished] = useState(false);
-
   const [lessonMistakes, setLessonMistakes] = useState<
     LessonMistakeInput[]
   >([]);
+  const [lessonResult, setLessonResult] = useState({
+    earnedXp: 0,
+    isRepeat: false,
+  });
 
   const hasSavedProgress = useRef(false);
 
@@ -70,9 +74,6 @@ export default function StudySessionScreen() {
 
   const progress =
     ((currentQuestionIndex + 1) / questions.length) * 100;
-
-  const earnedXp =
-    questions.length * 5 + correctAnswers * 5;
 
   const accuracy =
     questions.length > 0
@@ -83,7 +84,6 @@ export default function StudySessionScreen() {
 
   function handleSelectOption(option: string) {
     if (hasAnswered) return;
-
     setSelectedOption(option);
   }
 
@@ -115,18 +115,16 @@ export default function StudySessionScreen() {
   function saveLessonProgress() {
     if (hasSavedProgress.current) return;
 
-    completeLesson({
+    const result = completeLesson({
       minutes: lessonDuration,
       totalQuestions: questions.length,
       correctAnswers,
       subject: lessonSubject,
     });
 
-    addLessonMistakes(
-      lessonSubject,
-      lessonMistakes
-    );
+    addLessonMistakes(lessonSubject, lessonMistakes);
 
+    setLessonResult(result);
     hasSavedProgress.current = true;
   }
 
@@ -140,10 +138,7 @@ export default function StudySessionScreen() {
       return;
     }
 
-    setCurrentQuestionIndex(
-      (current) => current + 1
-    );
-
+    setCurrentQuestionIndex((current) => current + 1);
     setSelectedOption(null);
     setHasAnswered(false);
   }
@@ -157,10 +152,7 @@ export default function StudySessionScreen() {
       'Sair da lição?',
       'O progresso desta lição não será salvo.',
       [
-        {
-          text: 'Continuar estudando',
-          style: 'cancel',
-        },
+        { text: 'Continuar estudando', style: 'cancel' },
         {
           text: 'Sair',
           style: 'destructive',
@@ -172,30 +164,26 @@ export default function StudySessionScreen() {
 
   if (isFinished) {
     return (
-      <View style={styles.container}>
+      <AppScreen>
         <View style={styles.finishedCard}>
-          <Text style={styles.finishedEmoji}>🎉</Text>
+          <SymbolView
+            name={{ ios: 'trophy.fill', android: 'emoji_events', web: 'emoji_events' }}
+            tintColor={colors.xp}
+            size={56}
+          />
 
-          <Text style={styles.finishedTitle}>
-            Lição concluída!
-          </Text>
+          <Text style={styles.finishedTitle}>Lição concluída!</Text>
 
           <View style={styles.resultRow}>
             <View style={styles.resultBox}>
-              <Text style={styles.resultLabel}>
-                Questões
-              </Text>
-
+              <Text style={styles.resultLabel}>Questões</Text>
               <Text style={styles.resultValue}>
                 {questions.length}
               </Text>
             </View>
 
             <View style={styles.resultBox}>
-              <Text style={styles.resultLabel}>
-                Acertos
-              </Text>
-
+              <Text style={styles.resultLabel}>Acertos</Text>
               <Text style={styles.resultValue}>
                 {correctAnswers}
               </Text>
@@ -206,17 +194,22 @@ export default function StudySessionScreen() {
             <Text style={styles.accuracyLabel}>
               Aproveitamento
             </Text>
-
-            <Text style={styles.accuracyValue}>
-              {accuracy}%
-            </Text>
+            <Text style={styles.accuracyValue}>{accuracy}%</Text>
           </View>
 
-          <View style={styles.xpBox}>
-            <Text style={styles.xpText}>
-              +{earnedXp} XP
-            </Text>
-          </View>
+          {lessonResult.isRepeat ? (
+            <View style={styles.repeatBox}>
+              <Text style={styles.repeatText}>
+                Repetição do dia • sem XP adicional
+              </Text>
+            </View>
+          ) : (
+            <View style={styles.xpBox}>
+              <Text style={styles.xpText}>
+                +{lessonResult.earnedXp} XP
+              </Text>
+            </View>
+          )}
 
           {lessonMistakes.length > 0 ? (
             <Text style={styles.reviewMessage}>
@@ -227,7 +220,7 @@ export default function StudySessionScreen() {
             </Text>
           ) : (
             <Text style={styles.perfectMessage}>
-              Lição perfeita! Nenhum erro para revisar ✅
+              Lição perfeita! Nenhum erro para revisar.
             </Text>
           )}
 
@@ -236,167 +229,153 @@ export default function StudySessionScreen() {
           </Text>
         </View>
 
-        <TouchableOpacity
-          style={styles.primaryButton}
+        <PrimaryButton
+          label="Voltar para o dashboard"
           onPress={handleFinishLesson}
-        >
-          <Text style={styles.primaryButtonText}>
-            Voltar para o dashboard
-          </Text>
-        </TouchableOpacity>
-      </View>
+        />
+
+        {lessonMistakes.length > 0 && (
+          <PrimaryButton
+            label="Revisar erros agora"
+            variant="secondary"
+            onPress={() => router.replace('/review-mistakes')}
+            style={styles.secondaryFinishButton}
+          />
+        )}
+      </AppScreen>
     );
   }
 
   return (
-    <View style={styles.container}>
-      <View>
-        <Text style={styles.label}>
-          {lessonSubject}
-        </Text>
+    <AppScreen scroll={false}>
+      <View style={styles.container}>
+        <ScrollView
+          style={styles.scroll}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+        >
+          <View>
+            <Text style={styles.label}>{lessonSubject}</Text>
+            <Text style={styles.description}>
+              {lessonType} • {questions.length} questões
+            </Text>
 
-        <Text style={styles.description}>
-          {lessonType} • {questions.length} questões
-        </Text>
-
-        <View style={styles.progressBackground}>
-          <View
-            style={[
-              styles.progressFill,
-              {
-                width: `${progress}%`,
-              },
-            ]}
-          />
-        </View>
-
-        <Text style={styles.progressText}>
-          Questão {currentQuestionIndex + 1} de{' '}
-          {questions.length}
-        </Text>
-      </View>
-
-      <View style={styles.questionCard}>
-        <Text style={styles.question}>
-          {currentQuestion.question}
-        </Text>
-
-        {currentQuestion.options.map((option) => {
-          const isSelected =
-            selectedOption === option;
-
-          const isCorrect =
-            option === currentQuestion.correctAnswer;
-
-          const isWrongSelected =
-            hasAnswered && isSelected && !isCorrect;
-
-          const shouldShowCorrect =
-            hasAnswered && isCorrect;
-
-          return (
-            <TouchableOpacity
-              key={option}
-              style={[
-                styles.optionButton,
-                isSelected && styles.optionSelected,
-                shouldShowCorrect &&
-                  styles.optionCorrect,
-                isWrongSelected &&
-                  styles.optionWrong,
-              ]}
-              onPress={() =>
-                handleSelectOption(option)
-              }
-              disabled={hasAnswered}
-            >
-              <Text
+            <View style={styles.progressBackground}>
+              <View
                 style={[
-                  styles.optionText,
-                  isSelected &&
-                    styles.optionTextSelected,
-                  shouldShowCorrect &&
-                    styles.feedbackOptionText,
-                  isWrongSelected &&
-                    styles.feedbackOptionText,
+                  styles.progressFill,
+                  { width: `${progress}%` },
                 ]}
-              >
-                {option}
-              </Text>
-            </TouchableOpacity>
-          );
-        })}
-      </View>
+              />
+            </View>
 
-      <View>
-        {hasAnswered && (
-          <View
-            style={[
-              styles.feedbackBox,
-              selectedOption ===
-              currentQuestion.correctAnswer
-                ? styles.feedbackCorrect
-                : styles.feedbackWrong,
-            ]}
-          >
-            <Text style={styles.feedbackText}>
-              {selectedOption ===
-              currentQuestion.correctAnswer
-                ? 'Boa! Você acertou ✅'
-                : `A resposta correta é: ${currentQuestion.correctAnswer}`}
+            <Text style={styles.progressText}>
+              Questão {currentQuestionIndex + 1} de{' '}
+              {questions.length}
             </Text>
           </View>
-        )}
 
-        {!hasAnswered ? (
-          <TouchableOpacity
-            style={[
-              styles.primaryButton,
-              !selectedOption &&
-                styles.primaryButtonDisabled,
-            ]}
-            onPress={handleConfirmAnswer}
-            disabled={!selectedOption}
-          >
-            <Text style={styles.primaryButtonText}>
-              Responder
+          <View style={styles.questionCard}>
+            <Text style={styles.question}>
+              {currentQuestion.question}
             </Text>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            style={styles.primaryButton}
-            onPress={handleNextQuestion}
-          >
-            <Text style={styles.primaryButtonText}>
-              {currentQuestionIndex ===
-              questions.length - 1
-                ? 'Concluir lição'
-                : 'Continuar'}
-            </Text>
-          </TouchableOpacity>
-        )}
 
-        <TouchableOpacity
-          style={styles.secondaryButton}
-          onPress={handleExitLesson}
-        >
-          <Text style={styles.secondaryButtonText}>
-            Sair da lição
-          </Text>
-        </TouchableOpacity>
+            {currentQuestion.options.map((option) => {
+              const isSelected = selectedOption === option;
+              const isCorrect =
+                option === currentQuestion.correctAnswer;
+              const isWrongSelected =
+                hasAnswered && isSelected && !isCorrect;
+              const shouldShowCorrect =
+                hasAnswered && isCorrect;
+
+              return (
+                <TouchableOpacity
+                  key={option}
+                  style={[
+                    styles.optionButton,
+                    isSelected && styles.optionSelected,
+                    shouldShowCorrect && styles.optionCorrect,
+                    isWrongSelected && styles.optionWrong,
+                  ]}
+                  onPress={() => handleSelectOption(option)}
+                  disabled={hasAnswered}
+                >
+                  <Text
+                    style={[
+                      styles.optionText,
+                      isSelected && styles.optionTextSelected,
+                      (shouldShowCorrect || isWrongSelected) &&
+                        styles.feedbackOptionText,
+                    ]}
+                  >
+                    {option}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        </ScrollView>
+
+        <View style={styles.footer}>
+          {hasAnswered && (
+            <View
+              style={[
+                styles.feedbackBox,
+                selectedOption === currentQuestion.correctAnswer
+                  ? styles.feedbackCorrect
+                  : styles.feedbackWrong,
+              ]}
+            >
+              <Text style={styles.feedbackText}>
+                {selectedOption ===
+                currentQuestion.correctAnswer
+                  ? 'Boa! Você acertou.'
+                  : `A resposta correta é: ${currentQuestion.correctAnswer}`}
+              </Text>
+            </View>
+          )}
+
+          {!hasAnswered ? (
+            <PrimaryButton
+              label="Responder"
+              onPress={handleConfirmAnswer}
+              disabled={!selectedOption}
+            />
+          ) : (
+            <PrimaryButton
+              label={
+                currentQuestionIndex === questions.length - 1
+                  ? 'Concluir lição'
+                  : 'Continuar'
+              }
+              onPress={handleNextQuestion}
+            />
+          )}
+
+          <PrimaryButton
+            label="Sair da lição"
+            variant="secondary"
+            onPress={handleExitLesson}
+          />
+        </View>
       </View>
-    </View>
+    </AppScreen>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
-    paddingHorizontal: spacing.screenHorizontal,
-    paddingTop: spacing.screenTop,
-    paddingBottom: spacing.screenBottom,
-    justifyContent: 'space-between',
+  },
+
+  scroll: {
+    flex: 1,
+  },
+
+  scrollContent: {
+    paddingBottom: spacing.lg,
   },
 
   label: {
@@ -414,45 +393,50 @@ const styles = StyleSheet.create({
   progressBackground: {
     width: '100%',
     height: 10,
-    backgroundColor: colors.card.background,
-    borderRadius: 999,
+    backgroundColor: colors.card.elevated,
+    borderRadius: radii.pill,
     overflow: 'hidden',
   },
 
   progressFill: {
     height: '100%',
     backgroundColor: colors.primary,
-    borderRadius: 999,
+    borderRadius: radii.pill,
   },
 
   progressText: {
     color: colors.text.secondary,
     marginTop: spacing.sm,
-    ...typography.body,
+    ...typography.bodySmall,
   },
 
   questionCard: {
     backgroundColor: colors.card.background,
     padding: spacing.lg,
-    borderRadius: 24,
+    borderRadius: radii.xl,
+    marginTop: spacing.lg,
+    borderWidth: 1,
+    borderColor: colors.border.default,
   },
 
   question: {
     color: colors.text.primary,
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
-    lineHeight: 32,
+    lineHeight: 30,
     marginBottom: spacing.lg,
   },
 
   optionButton: {
-    backgroundColor: '#334155',
+    backgroundColor: colors.card.elevated,
     borderWidth: 2,
-    borderColor: '#334155',
-    borderRadius: 16,
-    paddingVertical: 16,
+    borderColor: colors.border.default,
+    borderRadius: radii.md,
+    paddingVertical: spacing.md,
     paddingHorizontal: spacing.md,
     marginBottom: spacing.md,
+    minHeight: spacing.touchTarget,
+    justifyContent: 'center',
   },
 
   optionSelected: {
@@ -461,19 +445,18 @@ const styles = StyleSheet.create({
   },
 
   optionCorrect: {
-    borderColor: '#22c55e',
-    backgroundColor: '#14532d',
+    borderColor: colors.success.border,
+    backgroundColor: colors.success.background,
   },
 
   optionWrong: {
-    borderColor: '#ef4444',
-    backgroundColor: '#7f1d1d',
+    borderColor: colors.error.border,
+    backgroundColor: colors.error.background,
   },
 
   optionText: {
     color: colors.text.primary,
-    fontSize: 16,
-    fontWeight: '700',
+    ...typography.option,
   },
 
   optionTextSelected: {
@@ -481,131 +464,104 @@ const styles = StyleSheet.create({
   },
 
   feedbackOptionText: {
-    color: '#ffffff',
+    color: colors.text.primary,
+  },
+
+  footer: {
+    paddingTop: spacing.md,
+    gap: spacing.sm,
   },
 
   feedbackBox: {
     padding: spacing.md,
-    borderRadius: 16,
-    marginBottom: spacing.md,
+    borderRadius: radii.md,
+    marginBottom: spacing.sm,
+    borderWidth: 1,
   },
 
   feedbackCorrect: {
-    backgroundColor: '#14532d',
+    backgroundColor: colors.success.background,
+    borderColor: colors.success.border,
   },
 
   feedbackWrong: {
-    backgroundColor: '#7f1d1d',
+    backgroundColor: colors.error.background,
+    borderColor: colors.error.border,
   },
 
   feedbackText: {
-    color: '#ffffff',
+    color: colors.text.primary,
     textAlign: 'center',
     ...typography.body,
     fontWeight: '700',
   },
 
-  primaryButton: {
-    backgroundColor: colors.primary,
-    paddingVertical: 18,
-    borderRadius: 18,
-    alignItems: 'center',
-    marginBottom: spacing.md,
-  },
-
-  primaryButtonDisabled: {
-    backgroundColor: colors.button.disabled,
-  },
-
-  primaryButtonText: {
-    color: colors.background,
-    ...typography.button,
-  },
-
-  secondaryButton: {
-    paddingVertical: 16,
-    alignItems: 'center',
-  },
-
-  secondaryButtonText: {
-    color: colors.text.secondary,
-    ...typography.body,
-  },
-
   finishedCard: {
     backgroundColor: colors.card.background,
     padding: spacing.xl,
-    borderRadius: 24,
+    borderRadius: radii.xl,
     alignItems: 'center',
-    marginTop: spacing.xl,
-  },
-
-  finishedEmoji: {
-    fontSize: 56,
-    marginBottom: spacing.md,
+    marginBottom: spacing.lg,
+    borderWidth: 1,
+    borderColor: colors.border.default,
+    gap: spacing.md,
   },
 
   finishedTitle: {
     color: colors.text.primary,
     ...typography.title,
     textAlign: 'center',
-    marginBottom: spacing.lg,
   },
 
   resultRow: {
     width: '100%',
     flexDirection: 'row',
     gap: spacing.md,
-    marginBottom: spacing.md,
   },
 
   resultBox: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.backgroundElevated,
     padding: spacing.md,
-    borderRadius: 16,
+    borderRadius: radii.md,
     alignItems: 'center',
   },
 
   resultLabel: {
     color: colors.text.secondary,
-    fontSize: 14,
+    ...typography.bodySmall,
     marginBottom: 4,
   },
 
   resultValue: {
     color: colors.text.primary,
-    fontSize: 24,
-    fontWeight: 'bold',
+    ...typography.stat,
   },
 
   accuracyBox: {
     width: '100%',
-    backgroundColor: colors.background,
+    backgroundColor: colors.backgroundElevated,
     padding: spacing.md,
-    borderRadius: 16,
+    borderRadius: radii.md,
     alignItems: 'center',
-    marginBottom: spacing.md,
   },
 
   accuracyLabel: {
     color: colors.text.secondary,
-    fontSize: 14,
+    ...typography.bodySmall,
     marginBottom: 4,
   },
 
   accuracyValue: {
     color: colors.text.primary,
-    fontSize: 24,
-    fontWeight: 'bold',
+    ...typography.stat,
   },
 
   xpBox: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.xp,
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.xl,
-    borderRadius: 999,
-    marginBottom: spacing.md,
+    borderRadius: radii.pill,
   },
 
   xpText: {
@@ -614,25 +570,42 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
+  repeatBox: {
+    backgroundColor: colors.card.elevated,
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.lg,
+    borderRadius: radii.pill,
+    borderWidth: 1,
+    borderColor: colors.border.default,
+  },
+
+  repeatText: {
+    color: colors.text.secondary,
+    ...typography.body,
+    fontWeight: '700',
+  },
+
   reviewMessage: {
-    color: '#f59e0b',
-    fontSize: 15,
+    color: colors.warning.main,
+    ...typography.body,
     fontWeight: '700',
     textAlign: 'center',
-    marginBottom: spacing.md,
   },
 
   perfectMessage: {
-    color: '#22c55e',
-    fontSize: 15,
+    color: colors.success.main,
+    ...typography.body,
     fontWeight: '700',
     textAlign: 'center',
-    marginBottom: spacing.md,
   },
 
   finishedDescription: {
     color: colors.text.secondary,
-    ...typography.body,
+    ...typography.bodySmall,
     textAlign: 'center',
+  },
+
+  secondaryFinishButton: {
+    marginTop: spacing.sm,
   },
 });

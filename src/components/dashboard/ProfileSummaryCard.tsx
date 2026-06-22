@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { colors } from '../../constants/colors';
+import { radii } from '../../constants/radii';
 import { spacing } from '../../constants/spacing';
 import { typography } from '../../constants/typography';
 
@@ -25,7 +26,7 @@ export default function ProfileSummaryCard({
       </View>
 
       <View style={styles.item}>
-        <Text style={styles.label}>Nível atual</Text>
+        <Text style={styles.label}>Preparação</Text>
         <Text style={styles.value}>{preparation}</Text>
       </View>
 
@@ -41,8 +42,10 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.card.background,
     padding: spacing.lg,
-    borderRadius: 20,
+    borderRadius: radii.lg,
     marginBottom: spacing.lg,
+    borderWidth: 1,
+    borderColor: colors.border.default,
   },
 
   title: {
@@ -58,7 +61,8 @@ const styles = StyleSheet.create({
 
   label: {
     color: colors.text.secondary,
-    fontSize: 14,
+    ...typography.label,
+    textTransform: 'uppercase',
     marginBottom: 4,
   },
 

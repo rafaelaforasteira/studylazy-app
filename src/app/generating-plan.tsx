@@ -21,7 +21,7 @@ export default function GeneratingPlanScreen() {
     }, 4000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [completeOnboarding, router]);
 
   return (
     <View style={styles.container}>

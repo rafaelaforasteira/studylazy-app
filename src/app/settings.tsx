@@ -1,139 +1,162 @@
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
+import { SymbolView } from 'expo-symbols';
 import { useRouter } from 'expo-router';
 
+import AppScreen from '../components/ui/AppScreen';
+import PrimaryButton from '../components/ui/PrimaryButton';
+
 import { colors } from '../constants/colors';
+import { radii } from '../constants/radii';
 import { spacing } from '../constants/spacing';
 import { typography } from '../constants/typography';
 
 import { useOnboardingStore } from '../store/onboardingStore';
 import { useStudyProgressStore } from '../store/studyProgressStore';
 import { useProfileStore } from '../store/profileStore';
+import { useMistakeStore } from '../store/mistakeStore';
 
 export default function SettingsScreen() {
   const router = useRouter();
 
-  const resetAnswers = useOnboardingStore((state) => state.resetAnswers);
+  const resetAnswers = useOnboardingStore(
+    (state) => state.resetAnswers
+  );
   const resetProgress = useStudyProgressStore(
     (state) => state.resetProgress
   );
-  const resetProfile = useProfileStore((state) => state.resetProfile);
+  const resetProfile = useProfileStore(
+    (state) => state.resetProfile
+  );
+  const clearMistakes = useMistakeStore(
+    (state) => state.clearMistakes
+  );
 
   function handleOpenProfile() {
     router.push('/profile');
   }
 
-  function handleResetProgress() {
-    resetProgress();
-    router.replace('/dashboard');
+  function confirmResetProgress() {
+    Alert.alert(
+      'Resetar progresso?',
+      'Isso apaga XP, sequência, histórico, tarefas concluídas e erros salvos. Suas respostas do onboarding serão mantidas.',
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        {
+          text: 'Confirmar reset',
+          style: 'destructive',
+          onPress: () => {
+            resetProgress();
+            clearMistakes();
+            router.replace('/dashboard');
+          },
+        },
+      ]
+    );
   }
 
-  function handleResetOnboarding() {
-    resetProgress();
-    resetProfile();
-    resetAnswers();
-
-    router.replace('/onboarding-1');
+  function confirmResetOnboarding() {
+    Alert.alert(
+      'Refazer onboarding?',
+      'Isso apaga perfil, progresso, histórico, erros e todas as respostas do onboarding.',
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        {
+          text: 'Confirmar reset',
+          style: 'destructive',
+          onPress: () => {
+            resetProgress();
+            resetProfile();
+            resetAnswers();
+            clearMistakes();
+            router.replace('/onboarding-1');
+          },
+        },
+      ]
+    );
   }
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={styles.content}
-      showsVerticalScrollIndicator={false}
-    >
+    <AppScreen>
       <View style={styles.header}>
         <Text style={styles.title}>Configurações</Text>
-
         <Text style={styles.subtitle}>
-          Personalize sua experiência ou reinicie os dados do aplicativo.
+          Personalize sua experiência ou reinicie os dados do
+          aplicativo.
         </Text>
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.cardEmoji}>👤</Text>
+        <SymbolView
+          name={{ ios: 'person.fill', android: 'person', web: 'person' }}
+          tintColor={colors.primary}
+          size={28}
+        />
 
         <Text style={styles.cardTitle}>Meu perfil</Text>
-
         <Text style={styles.cardDescription}>
-          Altere seu nome e acompanhe suas principais estatísticas.
+          Altere seu nome e acompanhe suas principais
+          estatísticas.
         </Text>
 
-        <TouchableOpacity
-          style={styles.profileButton}
+        <PrimaryButton
+          label="Abrir perfil"
           onPress={handleOpenProfile}
-        >
-          <Text style={styles.profileButtonText}>Abrir perfil</Text>
-        </TouchableOpacity>
+        />
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.cardEmoji}>📊</Text>
+        <SymbolView
+          name={{ ios: 'chart.bar.fill', android: 'bar_chart', web: 'bar_chart' }}
+          tintColor={colors.primary}
+          size={28}
+        />
 
         <Text style={styles.cardTitle}>Progresso</Text>
-
         <Text style={styles.cardDescription}>
-          Apaga XP, sequência, sessões, histórico e lições concluídas.
-          Suas respostas do onboarding serão mantidas.
+          Apaga XP, sequência, sessões, histórico, tarefas
+          concluídas e erros salvos.
         </Text>
 
-        <TouchableOpacity
-          style={styles.secondaryButton}
-          onPress={handleResetProgress}
-        >
-          <Text style={styles.secondaryButtonText}>
-            Resetar progresso
-          </Text>
-        </TouchableOpacity>
+        <PrimaryButton
+          label="Resetar progresso"
+          variant="secondary"
+          onPress={confirmResetProgress}
+        />
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.cardEmoji}>🔄</Text>
+        <SymbolView
+          name={{ ios: 'arrow.counterclockwise', android: 'refresh', web: 'refresh' }}
+          tintColor={colors.error.main}
+          size={28}
+        />
 
-        <Text style={styles.cardTitle}>Recomeçar o aplicativo</Text>
-
+        <Text style={styles.cardTitle}>
+          Recomeçar o aplicativo
+        </Text>
         <Text style={styles.cardDescription}>
-          Apaga o perfil, o progresso e todas as respostas do
-          onboarding.
+          Apaga o perfil, o progresso, os erros e todas as
+          respostas do onboarding.
         </Text>
 
-        <TouchableOpacity
-          style={styles.dangerButton}
-          onPress={handleResetOnboarding}
-        >
-          <Text style={styles.dangerButtonText}>
-            Refazer onboarding
-          </Text>
-        </TouchableOpacity>
+        <PrimaryButton
+          label="Refazer onboarding"
+          variant="danger"
+          onPress={confirmResetOnboarding}
+        />
       </View>
 
-      <TouchableOpacity
-        style={styles.backButton}
+      <PrimaryButton
+        label="Voltar ao dashboard"
+        variant="secondary"
         onPress={() => router.back()}
-      >
-        <Text style={styles.backButtonText}>Voltar ao dashboard</Text>
-      </TouchableOpacity>
-    </ScrollView>
+        style={styles.backButton}
+      />
+    </AppScreen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-
-  content: {
-    paddingHorizontal: spacing.screenHorizontal,
-    paddingTop: spacing.screenTop,
-    paddingBottom: spacing.screenBottom,
-  },
-
   header: {
     marginBottom: spacing.xl,
   },
@@ -152,72 +175,27 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.card.background,
     padding: spacing.lg,
-    borderRadius: 20,
+    borderRadius: radii.lg,
     marginBottom: spacing.lg,
-  },
-
-  cardEmoji: {
-    fontSize: 30,
-    marginBottom: spacing.sm,
+    borderWidth: 1,
+    borderColor: colors.border.default,
+    gap: spacing.sm,
   },
 
   cardTitle: {
     color: colors.text.primary,
     fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: spacing.sm,
   },
 
   cardDescription: {
     color: colors.text.secondary,
     ...typography.body,
     lineHeight: 22,
-    marginBottom: spacing.lg,
-  },
-
-  profileButton: {
-    backgroundColor: colors.primary,
-    paddingVertical: 16,
-    borderRadius: 16,
-    alignItems: 'center',
-  },
-
-  profileButtonText: {
-    color: colors.background,
-    ...typography.button,
-  },
-
-  secondaryButton: {
-    backgroundColor: colors.background,
-    paddingVertical: 16,
-    borderRadius: 16,
-    alignItems: 'center',
-  },
-
-  secondaryButtonText: {
-    color: colors.primary,
-    ...typography.button,
-  },
-
-  dangerButton: {
-    backgroundColor: '#7f1d1d',
-    paddingVertical: 16,
-    borderRadius: 16,
-    alignItems: 'center',
-  },
-
-  dangerButtonText: {
-    color: '#ffffff',
-    ...typography.button,
+    marginBottom: spacing.sm,
   },
 
   backButton: {
-    paddingVertical: 18,
-    alignItems: 'center',
-  },
-
-  backButtonText: {
-    color: colors.text.secondary,
-    ...typography.body,
+    marginTop: spacing.sm,
   },
 });

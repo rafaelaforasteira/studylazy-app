@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { colors } from '../../constants/colors';
+import { radii } from '../../constants/radii';
 import { spacing } from '../../constants/spacing';
 import { typography } from '../../constants/typography';
 
@@ -28,9 +29,7 @@ export default function DailyGoalCard({
         <View
           style={[
             styles.progressFill,
-            {
-              width: `${progress}%`,
-            },
+            { width: `${progress}%` },
           ]}
         />
       </View>
@@ -46,8 +45,10 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.card.background,
     padding: spacing.lg,
-    borderRadius: 20,
+    borderRadius: radii.lg,
     marginBottom: spacing.lg,
+    borderWidth: 1,
+    borderColor: colors.border.default,
   },
 
   title: {
@@ -58,28 +59,27 @@ const styles = StyleSheet.create({
 
   minutes: {
     color: colors.text.primary,
-    fontSize: 24,
-    fontWeight: 'bold',
+    ...typography.stat,
     marginTop: spacing.sm,
     marginBottom: spacing.md,
   },
 
   progressBackground: {
     height: 10,
-    backgroundColor: '#334155',
-    borderRadius: 999,
+    backgroundColor: colors.card.elevated,
+    borderRadius: radii.pill,
     overflow: 'hidden',
   },
 
   progressFill: {
     height: '100%',
     backgroundColor: colors.primary,
-    borderRadius: 999,
+    borderRadius: radii.pill,
   },
 
   percentage: {
     color: colors.text.secondary,
     marginTop: spacing.sm,
-    ...typography.body,
+    ...typography.bodySmall,
   },
 });

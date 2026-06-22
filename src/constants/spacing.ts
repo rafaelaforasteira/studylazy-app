@@ -5,7 +5,8 @@ export const spacing = {
   lg: 24,
   xl: 32,
   xxl: 40,
-  screenHorizontal: 24,
-  screenTop: 70,
-  screenBottom: 40,
+  screenHorizontal: 20,
+  screenTop: 16,
+  screenBottom: 32,
+  touchTarget: 48,
 };

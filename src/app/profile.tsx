@@ -1,22 +1,19 @@
 import { useState } from 'react';
-import {
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { SymbolView } from 'expo-symbols';
 import { useRouter } from 'expo-router';
 
+import AppScreen from '../components/ui/AppScreen';
+import PrimaryButton from '../components/ui/PrimaryButton';
+
 import { colors } from '../constants/colors';
+import { radii } from '../constants/radii';
 import { spacing } from '../constants/spacing';
 import { typography } from '../constants/typography';
 
 import { useProfileStore } from '../store/profileStore';
 import { useStudyProgressStore } from '../store/studyProgressStore';
+import { getDisplayStreak } from '../utils/streak';
 
 export default function ProfileScreen() {
   const router = useRouter();
@@ -25,9 +22,19 @@ export default function ProfileScreen() {
   const setName = useProfileStore((state) => state.setName);
 
   const xp = useStudyProgressStore((state) => state.xp);
-  const streak = useStudyProgressStore((state) => state.streak);
+  const storedStreak = useStudyProgressStore(
+    (state) => state.streak
+  );
+  const lastStudyDate = useStudyProgressStore(
+    (state) => state.lastStudyDate
+  );
   const sessionsCompleted = useStudyProgressStore(
     (state) => state.sessionsCompleted
+  );
+
+  const displayStreak = getDisplayStreak(
+    lastStudyDate,
+    storedStreak
   );
 
   const [name, setLocalName] = useState(savedName);
@@ -43,112 +50,94 @@ export default function ProfileScreen() {
   }
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-    >
-      <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={styles.content}
-        showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps="handled"
-      >
-        <View>
-          <Text style={styles.title}>Meu perfil</Text>
+    <AppScreen keyboard>
+      <View>
+        <Text style={styles.title}>Meu perfil</Text>
 
-          <Text style={styles.subtitle}>
-            Personalize como seu nome aparece no StudyLazy.
+        <Text style={styles.subtitle}>
+          Personalize como seu nome aparece no StudyLazy.
+        </Text>
+
+        <View style={styles.avatar}>
+          <Text style={styles.avatarText}>
+            {(name.trim().charAt(0) || 'E').toUpperCase()}
           </Text>
+        </View>
 
-          <View style={styles.avatar}>
-            <Text style={styles.avatarText}>
-              {(name.trim().charAt(0) || 'E').toUpperCase()}
+        <View style={styles.card}>
+          <Text style={styles.label}>Seu nome</Text>
+
+          <TextInput
+            style={styles.input}
+            value={name}
+            onChangeText={setLocalName}
+            placeholder="Digite seu nome"
+            placeholderTextColor={colors.text.muted}
+            maxLength={30}
+            returnKeyType="done"
+          />
+
+          {saved && (
+            <Text style={styles.successText}>
+              Nome salvo com sucesso
             </Text>
-          </View>
+          )}
 
-          <View style={styles.card}>
-            <Text style={styles.label}>Seu nome</Text>
+          <PrimaryButton label="Salvar nome" onPress={handleSave} />
+        </View>
 
-            <TextInput
-              style={styles.input}
-              value={name}
-              onChangeText={setLocalName}
-              placeholder="Digite seu nome"
-              placeholderTextColor={colors.text.secondary}
-              maxLength={30}
-              returnKeyType="done"
-            />
+        <View style={styles.statsCard}>
+          <Text style={styles.statsTitle}>Seu progresso</Text>
 
-            {saved && (
-              <Text style={styles.successText}>
-                Nome salvo com sucesso ✅
+          <View style={styles.statsRow}>
+            <View style={styles.statItem}>
+              <SymbolView
+                name={{ ios: 'star.fill', android: 'star', web: 'star' }}
+                tintColor={colors.xp}
+                size={22}
+              />
+              <Text style={styles.statValue}>{xp}</Text>
+              <Text style={styles.statLabel}>XP</Text>
+            </View>
+
+            <View style={styles.statItem}>
+              <SymbolView
+                name={{ ios: 'flame.fill', android: 'local_fire_department', web: 'local_fire_department' }}
+                tintColor={colors.warning.main}
+                size={22}
+              />
+              <Text style={styles.statValue}>
+                {displayStreak}
               </Text>
-            )}
+              <Text style={styles.statLabel}>dias</Text>
+            </View>
 
-            <TouchableOpacity
-              style={styles.saveButton}
-              onPress={handleSave}
-            >
-              <Text style={styles.saveButtonText}>
-                Salvar nome
+            <View style={styles.statItem}>
+              <SymbolView
+                name={{ ios: 'book.fill', android: 'menu_book', web: 'menu_book' }}
+                tintColor={colors.primary}
+                size={22}
+              />
+              <Text style={styles.statValue}>
+                {sessionsCompleted}
               </Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.statsCard}>
-            <Text style={styles.statsTitle}>Seu progresso</Text>
-
-            <View style={styles.statsRow}>
-              <View style={styles.statItem}>
-                <Text style={styles.statValue}>{xp}</Text>
-                <Text style={styles.statLabel}>XP</Text>
-              </View>
-
-              <View style={styles.statItem}>
-                <Text style={styles.statValue}>{streak}</Text>
-                <Text style={styles.statLabel}>dias</Text>
-              </View>
-
-              <View style={styles.statItem}>
-                <Text style={styles.statValue}>
-                  {sessionsCompleted}
-                </Text>
-
-                <Text style={styles.statLabel}>lições</Text>
-              </View>
+              <Text style={styles.statLabel}>lições</Text>
             </View>
           </View>
         </View>
+      </View>
 
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => router.back()}
-        >
-          <Text style={styles.backButtonText}>Voltar</Text>
-        </TouchableOpacity>
-      </ScrollView>
-    </KeyboardAvoidingView>
+      <PrimaryButton
+        label="Voltar"
+        variant="secondary"
+        onPress={() => router.back()}
+        style={styles.backButton}
+      />
+    </AppScreen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-
-  scrollView: {
-    flex: 1,
-  },
-
-  content: {
-    flexGrow: 1,
-    paddingHorizontal: spacing.screenHorizontal,
-    paddingTop: spacing.screenTop,
-    paddingBottom: spacing.screenBottom,
-    justifyContent: 'space-between',
-  },
-
   title: {
     color: colors.text.primary,
     ...typography.title,
@@ -181,52 +170,42 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.card.background,
     padding: spacing.lg,
-    borderRadius: 20,
+    borderRadius: radii.lg,
     marginBottom: spacing.lg,
+    borderWidth: 1,
+    borderColor: colors.border.default,
+    gap: spacing.sm,
   },
 
   label: {
     color: colors.text.primary,
     fontSize: 16,
     fontWeight: '700',
-    marginBottom: spacing.sm,
   },
 
   input: {
-    backgroundColor: colors.background,
+    backgroundColor: colors.backgroundElevated,
     color: colors.text.primary,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: colors.border.default,
-    borderRadius: 16,
+    borderRadius: radii.md,
     paddingVertical: 14,
     paddingHorizontal: spacing.md,
     fontSize: 16,
-    marginBottom: spacing.md,
   },
 
   successText: {
-    color: '#22c55e',
+    color: colors.success.main,
     fontSize: 14,
-    marginBottom: spacing.md,
-  },
-
-  saveButton: {
-    backgroundColor: colors.primary,
-    paddingVertical: 16,
-    borderRadius: 16,
-    alignItems: 'center',
-  },
-
-  saveButtonText: {
-    color: colors.background,
-    ...typography.button,
   },
 
   statsCard: {
     backgroundColor: colors.card.background,
     padding: spacing.lg,
-    borderRadius: 20,
+    borderRadius: radii.lg,
     marginBottom: spacing.lg,
+    borderWidth: 1,
+    borderColor: colors.border.default,
   },
 
   statsTitle: {
@@ -243,28 +222,20 @@ const styles = StyleSheet.create({
   statItem: {
     flex: 1,
     alignItems: 'center',
+    gap: spacing.xs,
   },
 
   statValue: {
     color: colors.text.primary,
-    fontSize: 24,
-    fontWeight: 'bold',
+    ...typography.stat,
   },
 
   statLabel: {
     color: colors.text.secondary,
-    fontSize: 13,
-    marginTop: 4,
+    ...typography.bodySmall,
   },
 
   backButton: {
-    paddingVertical: 16,
-    alignItems: 'center',
     marginTop: spacing.lg,
-  },
-
-  backButtonText: {
-    color: colors.text.secondary,
-    ...typography.body,
   },
 });

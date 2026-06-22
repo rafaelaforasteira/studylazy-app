@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { colors } from '../../constants/colors';
+import { radii } from '../../constants/radii';
 import { spacing } from '../../constants/spacing';
 import { typography } from '../../constants/typography';
 
@@ -60,8 +61,10 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.card.background,
     padding: spacing.lg,
-    borderRadius: 20,
+    borderRadius: radii.lg,
     marginBottom: spacing.lg,
+    borderWidth: 1,
+    borderColor: colors.border.default,
   },
 
   title: {
@@ -80,7 +83,7 @@ const styles = StyleSheet.create({
   taskNumber: {
     width: 34,
     height: 34,
-    borderRadius: 17,
+    borderRadius: radii.pill,
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
@@ -88,7 +91,7 @@ const styles = StyleSheet.create({
   },
 
   taskNumberCompleted: {
-    backgroundColor: '#22c55e',
+    backgroundColor: colors.success.main,
   },
 
   taskNumberText: {

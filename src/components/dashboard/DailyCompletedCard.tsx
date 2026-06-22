@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native';
+import { SymbolView } from 'expo-symbols';
 
 import { colors } from '../../constants/colors';
+import { radii } from '../../constants/radii';
 import { spacing } from '../../constants/spacing';
 import { typography } from '../../constants/typography';
 
@@ -15,7 +17,11 @@ export default function DailyCompletedCard({
 }: DailyCompletedCardProps) {
   return (
     <View style={styles.card}>
-      <Text style={styles.emoji}>🎉</Text>
+      <SymbolView
+        name={{ ios: 'checkmark.seal.fill', android: 'check', web: 'check' }}
+        tintColor={colors.success.main}
+        size={52}
+      />
 
       <Text style={styles.title}>Meta do dia concluída!</Text>
 
@@ -30,7 +36,7 @@ export default function DailyCompletedCard({
       </View>
 
       <Text style={styles.footer}>
-        Volte amanhã para manter sua sequência 🔥
+        Volte amanhã para manter sua sequência.
       </Text>
     </View>
   );
@@ -40,20 +46,18 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.card.background,
     padding: spacing.xl,
-    borderRadius: 24,
+    borderRadius: radii.xl,
     marginBottom: spacing.lg,
     alignItems: 'center',
-  },
-
-  emoji: {
-    fontSize: 52,
-    marginBottom: spacing.md,
+    borderWidth: 1,
+    borderColor: colors.success.border,
   },
 
   title: {
     color: colors.text.primary,
     ...typography.title,
     textAlign: 'center',
+    marginTop: spacing.md,
     marginBottom: spacing.sm,
   },
 
@@ -65,15 +69,15 @@ const styles = StyleSheet.create({
   },
 
   resultBox: {
-    backgroundColor: colors.background,
+    backgroundColor: colors.backgroundElevated,
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.lg,
-    borderRadius: 16,
+    borderRadius: radii.md,
     marginBottom: spacing.lg,
   },
 
   resultText: {
-    color: colors.primary,
+    color: colors.success.main,
     fontSize: 16,
     fontWeight: '700',
     textAlign: 'center',
@@ -81,7 +85,7 @@ const styles = StyleSheet.create({
 
   footer: {
     color: colors.text.secondary,
-    ...typography.body,
+    ...typography.bodySmall,
     textAlign: 'center',
   },
 });

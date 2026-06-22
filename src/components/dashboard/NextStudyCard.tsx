@@ -1,6 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+
+import PrimaryButton from '../ui/PrimaryButton';
 
 import { colors } from '../../constants/colors';
+import { radii } from '../../constants/radii';
 import { spacing } from '../../constants/spacing';
 import { typography } from '../../constants/typography';
 
@@ -27,9 +30,7 @@ export default function NextStudyCard({
         {duration} minutos • {type}
       </Text>
 
-      <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Text style={styles.buttonText}>Começar</Text>
-      </TouchableOpacity>
+      <PrimaryButton label="Começar" onPress={onPress} />
     </View>
   );
 }
@@ -38,13 +39,16 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.card.background,
     padding: spacing.lg,
-    borderRadius: 20,
+    borderRadius: radii.lg,
     marginBottom: spacing.lg,
+    borderWidth: 1,
+    borderColor: colors.primary,
   },
 
   label: {
     color: colors.text.secondary,
-    ...typography.body,
+    ...typography.label,
+    textTransform: 'uppercase',
     marginBottom: spacing.sm,
   },
 
@@ -59,17 +63,5 @@ const styles = StyleSheet.create({
     color: colors.text.secondary,
     ...typography.body,
     marginBottom: spacing.lg,
-  },
-
-  button: {
-    backgroundColor: colors.primary,
-    paddingVertical: 14,
-    borderRadius: 14,
-    alignItems: 'center',
-  },
-
-  buttonText: {
-    color: colors.background,
-    ...typography.button,
   },
 });

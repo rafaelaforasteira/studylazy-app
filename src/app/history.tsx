@@ -1,15 +1,17 @@
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { SymbolView } from 'expo-symbols';
 import { useRouter } from 'expo-router';
 
+import AppScreen from '../components/ui/AppScreen';
+import PrimaryButton from '../components/ui/PrimaryButton';
+
 import { colors } from '../constants/colors';
+import { radii } from '../constants/radii';
 import { spacing } from '../constants/spacing';
 import { typography } from '../constants/typography';
+import { formatDisplayDate } from '../utils/date';
 
 import { useStudyProgressStore } from '../store/studyProgressStore';
-
-function formatDate(date: string) {
-  return date.split('-').reverse().join('/');
-}
 
 export default function HistoryScreen() {
   const router = useRouter();
@@ -18,14 +20,9 @@ export default function HistoryScreen() {
     useStudyProgressStore((state) => state.lessonHistory) || [];
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={styles.content}
-      showsVerticalScrollIndicator={false}
-    >
+    <AppScreen>
       <View style={styles.header}>
         <Text style={styles.title}>Histórico</Text>
-
         <Text style={styles.subtitle}>
           Veja todas as lições que você já concluiu.
         </Text>
@@ -33,12 +30,19 @@ export default function HistoryScreen() {
 
       {lessonHistory.length === 0 ? (
         <View style={styles.emptyCard}>
-          <Text style={styles.emptyEmoji}>📚</Text>
+          <SymbolView
+            name={{ ios: 'book.closed.fill', android: 'menu_book', web: 'menu_book' }}
+            tintColor={colors.primary}
+            size={48}
+          />
 
-          <Text style={styles.emptyTitle}>Nenhuma lição concluída ainda</Text>
+          <Text style={styles.emptyTitle}>
+            Nenhuma lição concluída ainda
+          </Text>
 
           <Text style={styles.emptyDescription}>
-            Quando você finalizar sua primeira lição, ela vai aparecer aqui.
+            Quando você finalizar sua primeira lição, ela
+            vai aparecer aqui.
           </Text>
         </View>
       ) : (
@@ -46,40 +50,41 @@ export default function HistoryScreen() {
           <View key={lesson.id} style={styles.lessonCard}>
             <View style={styles.lessonHeader}>
               <Text style={styles.subject}>{lesson.subject}</Text>
-
-              <Text style={styles.date}>{formatDate(lesson.date)}</Text>
+              <Text style={styles.date}>
+                {formatDisplayDate(lesson.date)}
+              </Text>
             </View>
 
             <Text style={styles.description}>
-              {lesson.minutes} min • {lesson.totalQuestions} questões
+              {lesson.minutes} min • {lesson.totalQuestions}{' '}
+              questões
             </Text>
 
-            <Text style={styles.result}>
-              {lesson.correctAnswers} acertos • +{lesson.earnedXp} XP
+            <Text
+              style={[
+                styles.result,
+                lesson.earnedXp === 0 && styles.resultRepeat,
+              ]}
+            >
+              {lesson.correctAnswers} acertos •{' '}
+              {lesson.earnedXp > 0
+                ? `+${lesson.earnedXp} XP`
+                : 'Repetição • sem XP'}
             </Text>
           </View>
         ))
       )}
 
-      <TouchableOpacity style={styles.button} onPress={() => router.back()}>
-        <Text style={styles.buttonText}>Voltar</Text>
-      </TouchableOpacity>
-    </ScrollView>
+      <PrimaryButton
+        label="Voltar"
+        onPress={() => router.back()}
+        style={styles.button}
+      />
+    </AppScreen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-
-  content: {
-    paddingHorizontal: spacing.screenHorizontal,
-    paddingTop: spacing.screenTop,
-    paddingBottom: spacing.screenBottom,
-  },
-
   header: {
     marginBottom: spacing.xl,
   },
@@ -98,14 +103,12 @@ const styles = StyleSheet.create({
   emptyCard: {
     backgroundColor: colors.card.background,
     padding: spacing.xl,
-    borderRadius: 24,
+    borderRadius: radii.xl,
     alignItems: 'center',
     marginBottom: spacing.lg,
-  },
-
-  emptyEmoji: {
-    fontSize: 48,
-    marginBottom: spacing.md,
+    borderWidth: 1,
+    borderColor: colors.border.default,
+    gap: spacing.md,
   },
 
   emptyTitle: {
@@ -113,7 +116,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: spacing.sm,
   },
 
   emptyDescription: {
@@ -125,8 +127,10 @@ const styles = StyleSheet.create({
   lessonCard: {
     backgroundColor: colors.card.background,
     padding: spacing.lg,
-    borderRadius: 20,
+    borderRadius: radii.lg,
     marginBottom: spacing.md,
+    borderWidth: 1,
+    borderColor: colors.border.default,
   },
 
   lessonHeader: {
@@ -154,21 +158,16 @@ const styles = StyleSheet.create({
   },
 
   result: {
-    color: colors.primary,
+    color: colors.xp,
     fontSize: 16,
     fontWeight: '700',
   },
 
-  button: {
-    backgroundColor: colors.primary,
-    paddingVertical: 18,
-    borderRadius: 18,
-    alignItems: 'center',
-    marginTop: spacing.lg,
+  resultRepeat: {
+    color: colors.text.muted,
   },
 
-  buttonText: {
-    color: colors.background,
-    ...typography.button,
+  button: {
+    marginTop: spacing.lg,
   },
 });

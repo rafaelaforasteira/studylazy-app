@@ -1,8 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { colors } from '../../constants/colors';
+import { radii } from '../../constants/radii';
 import { spacing } from '../../constants/spacing';
 import { typography } from '../../constants/typography';
+import { formatDisplayDate } from '../../utils/date';
 
 import type { LessonHistoryItem } from '../../store/studyProgressStore';
 
@@ -10,10 +12,6 @@ type LessonHistoryCardProps = {
   history: LessonHistoryItem[];
   onSeeAllPress?: () => void;
 };
-
-function formatDate(date: string) {
-  return date.split('-').reverse().join('/');
-}
 
 export default function LessonHistoryCard({
   history,
@@ -42,15 +40,26 @@ export default function LessonHistoryCard({
           <View key={lesson.id} style={styles.lessonItem}>
             <View style={styles.lessonHeader}>
               <Text style={styles.subject}>{lesson.subject}</Text>
-
-              <Text style={styles.date}>{formatDate(lesson.date)}</Text>
+              <Text style={styles.date}>
+                {formatDisplayDate(lesson.date)}
+              </Text>
             </View>
 
             <Text style={styles.description}>
-              {lesson.minutes} min • {lesson.correctAnswers}/{lesson.totalQuestions} acertos
+              {lesson.minutes} min • {lesson.correctAnswers}/
+              {lesson.totalQuestions} acertos
             </Text>
 
-            <Text style={styles.xp}>+{lesson.earnedXp} XP</Text>
+            <Text
+              style={[
+                styles.xp,
+                lesson.earnedXp === 0 && styles.xpRepeat,
+              ]}
+            >
+              {lesson.earnedXp > 0
+                ? `+${lesson.earnedXp} XP`
+                : 'Repetição • sem XP'}
+            </Text>
           </View>
         ))
       )}
@@ -62,8 +71,10 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.card.background,
     padding: spacing.lg,
-    borderRadius: 20,
+    borderRadius: radii.lg,
     marginBottom: spacing.lg,
+    borderWidth: 1,
+    borderColor: colors.border.default,
   },
 
   header: {
@@ -91,9 +102,9 @@ const styles = StyleSheet.create({
   },
 
   lessonItem: {
-    backgroundColor: colors.background,
+    backgroundColor: colors.backgroundElevated,
     padding: spacing.md,
-    borderRadius: 16,
+    borderRadius: radii.md,
     marginBottom: spacing.md,
   },
 
@@ -122,8 +133,12 @@ const styles = StyleSheet.create({
   },
 
   xp: {
-    color: colors.primary,
+    color: colors.xp,
     fontSize: 15,
     fontWeight: '700',
+  },
+
+  xpRepeat: {
+    color: colors.text.muted,
   },
 });

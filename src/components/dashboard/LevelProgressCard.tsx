@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { colors } from '../../constants/colors';
+import { radii } from '../../constants/radii';
 import { spacing } from '../../constants/spacing';
 import { typography } from '../../constants/typography';
 
@@ -18,7 +19,6 @@ export default function LevelProgressCard({ xp }: LevelProgressCardProps) {
       <View style={styles.header}>
         <View>
           <Text style={styles.label}>Seu nível</Text>
-
           <Text style={styles.level}>Nível {levelInfo.level}</Text>
         </View>
 
@@ -31,9 +31,7 @@ export default function LevelProgressCard({ xp }: LevelProgressCardProps) {
         <View
           style={[
             styles.progressFill,
-            {
-              width: `${levelInfo.progress}%`,
-            },
+            { width: `${levelInfo.progress}%` },
           ]}
         />
       </View>
@@ -49,8 +47,10 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.card.background,
     padding: spacing.lg,
-    borderRadius: 20,
+    borderRadius: radii.lg,
     marginBottom: spacing.lg,
+    borderWidth: 1,
+    borderColor: colors.border.default,
   },
 
   header: {
@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
 
   label: {
     color: colors.text.secondary,
-    ...typography.body,
+    ...typography.label,
+    textTransform: 'uppercase',
     marginBottom: 4,
   },
 
@@ -73,10 +74,10 @@ const styles = StyleSheet.create({
   },
 
   xpBadge: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.xp,
     paddingVertical: spacing.sm,
     paddingHorizontal: spacing.md,
-    borderRadius: 999,
+    borderRadius: radii.pill,
   },
 
   xpBadgeText: {
@@ -87,8 +88,8 @@ const styles = StyleSheet.create({
 
   progressBackground: {
     height: 10,
-    backgroundColor: '#334155',
-    borderRadius: 999,
+    backgroundColor: colors.card.elevated,
+    borderRadius: radii.pill,
     overflow: 'hidden',
     marginBottom: spacing.sm,
   },
@@ -96,11 +97,11 @@ const styles = StyleSheet.create({
   progressFill: {
     height: '100%',
     backgroundColor: colors.primary,
-    borderRadius: 999,
+    borderRadius: radii.pill,
   },
 
   description: {
     color: colors.text.secondary,
-    ...typography.body,
+    ...typography.bodySmall,
   },
 });
