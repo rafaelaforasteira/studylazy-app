@@ -9,4 +9,6 @@ export const spacing = {
   screenTop: 16,
   screenBottom: 32,
   touchTarget: 48,
+  tabBarHeight: 64,
+  tabBarInset: 80,
 };

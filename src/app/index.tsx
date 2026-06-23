@@ -1,6 +1,7 @@
 import { Redirect } from 'expo-router';
 
 import LoadingScreen from '../components/LoadingScreen';
+import { ROUTES } from '../constants/routes';
 import { useAppHydration } from '../hooks/use-app-hydration';
 import { useOnboardingStore } from '../store/onboardingStore';
 
@@ -16,8 +17,8 @@ export default function Index() {
   }
 
   if (hasCompletedOnboarding) {
-    return <Redirect href="/dashboard" />;
+    return <Redirect href={ROUTES.tabsAtividade} />;
   }
 
-  return <Redirect href="/onboarding-1" />;
+  return <Redirect href={ROUTES.onboardingStart} />;
 }

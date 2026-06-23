@@ -6,6 +6,7 @@ import AppScreen from '../components/ui/AppScreen';
 import PrimaryButton from '../components/ui/PrimaryButton';
 
 import { colors } from '../constants/colors';
+import { ROUTES } from '../constants/routes';
 import { radii } from '../constants/radii';
 import { spacing } from '../constants/spacing';
 import { typography } from '../constants/typography';
@@ -32,7 +33,7 @@ export default function SettingsScreen() {
   );
 
   function handleOpenProfile() {
-    router.push('/profile');
+    router.push(ROUTES.profile);
   }
 
   function confirmResetProgress() {
@@ -47,7 +48,7 @@ export default function SettingsScreen() {
           onPress: () => {
             resetProgress();
             clearMistakes();
-            router.replace('/dashboard');
+            router.replace(ROUTES.tabsVoce);
           },
         },
       ]
@@ -68,7 +69,7 @@ export default function SettingsScreen() {
             resetProfile();
             resetAnswers();
             clearMistakes();
-            router.replace('/onboarding-1');
+            router.replace(ROUTES.onboardingStart);
           },
         },
       ]
@@ -127,7 +128,7 @@ export default function SettingsScreen() {
       <View style={styles.card}>
         <SymbolView
           name={{ ios: 'arrow.counterclockwise', android: 'refresh', web: 'refresh' }}
-          tintColor={colors.error.main}
+          tintColor={colors.danger}
           size={28}
         />
 

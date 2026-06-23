@@ -21,6 +21,7 @@ type AppScreenProps = {
   keyboard?: boolean;
   contentStyle?: ViewStyle;
   bottomPadding?: boolean;
+  hasTabBar?: boolean;
 };
 
 export default function AppScreen({
@@ -29,14 +30,19 @@ export default function AppScreen({
   keyboard = false,
   contentStyle,
   bottomPadding = true,
+  hasTabBar = false,
 }: AppScreenProps) {
   const insets = useSafeAreaInsets();
 
+  const bottomSpace = hasTabBar
+    ? spacing.tabBarInset + insets.bottom
+    : bottomPadding
+      ? Math.max(insets.bottom, spacing.screenBottom)
+      : insets.bottom;
+
   const paddingStyle = {
     paddingTop: Math.max(insets.top, spacing.screenTop),
-    paddingBottom: bottomPadding
-      ? Math.max(insets.bottom, spacing.screenBottom)
-      : insets.bottom,
+    paddingBottom: bottomSpace,
     paddingHorizontal: spacing.screenHorizontal,
   };
 

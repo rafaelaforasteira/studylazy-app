@@ -24,6 +24,8 @@ import {
   useMistakeStore,
 } from '../store/mistakeStore';
 
+import { ROUTES } from '../constants/routes';
+
 import { getQuestionsForLesson } from '../data/questionBank';
 
 export default function StudySessionScreen() {
@@ -144,7 +146,7 @@ export default function StudySessionScreen() {
   }
 
   function handleFinishLesson() {
-    router.replace('/dashboard');
+    router.replace(ROUTES.tabsAtividade);
   }
 
   function handleExitLesson() {
@@ -238,7 +240,7 @@ export default function StudySessionScreen() {
           <PrimaryButton
             label="Revisar erros agora"
             variant="secondary"
-            onPress={() => router.replace('/review-mistakes')}
+            onPress={() => router.replace(ROUTES.reviewMistakes)}
             style={styles.secondaryFinishButton}
           />
         )}
@@ -445,8 +447,8 @@ const styles = StyleSheet.create({
   },
 
   optionCorrect: {
-    borderColor: colors.success.border,
-    backgroundColor: colors.success.background,
+    borderColor: colors.successTone.border,
+    backgroundColor: colors.successTone.background,
   },
 
   optionWrong: {
@@ -480,8 +482,8 @@ const styles = StyleSheet.create({
   },
 
   feedbackCorrect: {
-    backgroundColor: colors.success.background,
-    borderColor: colors.success.border,
+    backgroundColor: colors.successTone.background,
+    borderColor: colors.successTone.border,
   },
 
   feedbackWrong: {
@@ -586,14 +588,14 @@ const styles = StyleSheet.create({
   },
 
   reviewMessage: {
-    color: colors.warning.main,
+    color: colors.warning,
     ...typography.body,
     fontWeight: '700',
     textAlign: 'center',
   },
 
   perfectMessage: {
-    color: colors.success.main,
+    color: colors.success,
     ...typography.body,
     fontWeight: '700',
     textAlign: 'center',

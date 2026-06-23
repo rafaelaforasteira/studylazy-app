@@ -3,6 +3,7 @@ import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 
 import { colors } from '../constants/colors';
+import { ROUTES } from '../constants/routes';
 import { spacing } from '../constants/spacing';
 import { typography } from '../constants/typography';
 import { useOnboardingStore } from '../store/onboardingStore';
@@ -17,7 +18,7 @@ export default function GeneratingPlanScreen() {
   useEffect(() => {
     const timer = setTimeout(() => {
       completeOnboarding();
-      router.replace('/dashboard');
+      router.replace(ROUTES.tabsAtividade);
     }, 4000);
 
     return () => clearTimeout(timer);

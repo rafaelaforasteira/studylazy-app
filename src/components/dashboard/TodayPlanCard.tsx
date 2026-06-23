@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
 
   taskNumberCompleted: {
-    backgroundColor: colors.success.main,
+    backgroundColor: colors.success,
   },
 
   taskNumberText: {

@@ -1,51 +1,75 @@
+/**
+ * Semantic color tokens for StudyLazy.
+ * Legacy aliases (card, error, xp, etc.) keep older screens working.
+ */
 export const colors = {
-  background: '#0B1120',
-  backgroundElevated: '#111827',
+  background: '#07080D',
+  backgroundElevated: '#11131B',
 
-  primary: '#38BDF8',
-  primaryMuted: '#0EA5E9',
+  surface: '#11131B',
+  surfaceSecondary: '#171A24',
+  surfaceTertiary: '#1D2130',
+
+  primary: '#8B5CF6',
+  primarySoft: '#D3C6FF',
+  primaryMuted: '#6D28D9',
+
+  progress: '#2DD4FF',
+  success: '#B6FF4A',
+  streak: '#FF5D3B',
+  warning: '#FFB84D',
+  danger: '#FF5678',
 
   text: {
-    primary: '#F8FAFC',
-    secondary: '#94A3B8',
-    muted: '#64748B',
-  },
-
-  card: {
-    background: '#1E293B',
-    elevated: '#253347',
-    selected: '#172554',
+    primary: '#F7F8FC',
+    secondary: '#9297A8',
+    muted: '#6B7080',
   },
 
   border: {
-    default: '#334155',
-    selected: '#38BDF8',
+    default: 'rgba(255,255,255,0.08)',
+    selected: '#8B5CF6',
+    subtle: 'rgba(255,255,255,0.05)',
   },
 
-  success: {
-    main: '#22C55E',
-    background: '#14532D',
-    border: '#22C55E',
+  card: {
+    background: '#11131B',
+    elevated: '#171A24',
+    selected: '#1D2130',
+  },
+
+  successTone: {
+    main: '#B6FF4A',
+    background: 'rgba(182, 255, 74, 0.12)',
+    border: 'rgba(182, 255, 74, 0.35)',
   },
 
   error: {
-    main: '#EF4444',
-    background: '#7F1D1D',
-    border: '#EF4444',
+    main: '#FF5678',
+    background: 'rgba(255, 86, 120, 0.12)',
+    border: 'rgba(255, 86, 120, 0.35)',
   },
 
-  warning: {
-    main: '#F59E0B',
-    background: '#78350F',
+  warningTone: {
+    main: '#FFB84D',
+    background: 'rgba(255, 184, 77, 0.12)',
+    border: 'rgba(255, 184, 77, 0.35)',
   },
 
-  xp: '#FBBF24',
+  xp: '#FFB84D',
 
   button: {
-    disabled: '#334155',
-    danger: '#7F1D1D',
+    disabled: '#1D2130',
+    danger: '#FF5678',
     dangerText: '#FFFFFF',
   },
 
-  overlay: 'rgba(15, 23, 42, 0.6)',
+  overlay: 'rgba(7, 8, 13, 0.72)',
+
+  tabBar: {
+    background: '#11131B',
+    active: '#8B5CF6',
+    inactive: '#9297A8',
+    centerGlow: 'rgba(139, 92, 246, 0.45)',
+  },
 };

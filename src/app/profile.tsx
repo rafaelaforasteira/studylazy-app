@@ -103,7 +103,7 @@ export default function ProfileScreen() {
             <View style={styles.statItem}>
               <SymbolView
                 name={{ ios: 'flame.fill', android: 'local_fire_department', web: 'local_fire_department' }}
-                tintColor={colors.warning.main}
+                tintColor={colors.warning}
                 size={22}
               />
               <Text style={styles.statValue}>
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
   },
 
   successText: {
-    color: colors.success.main,
+    color: colors.success,
     fontSize: 14,
   },
 

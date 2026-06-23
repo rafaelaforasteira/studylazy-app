@@ -13,6 +13,7 @@ import AppScreen from '../components/ui/AppScreen';
 import PrimaryButton from '../components/ui/PrimaryButton';
 
 import { colors } from '../constants/colors';
+import { ROUTES } from '../constants/routes';
 import { radii } from '../constants/radii';
 import { spacing } from '../constants/spacing';
 import { typography } from '../constants/typography';
@@ -85,7 +86,7 @@ export default function ReviewMistakesScreen() {
   }
 
   function handleFinish() {
-    router.replace('/dashboard');
+    router.replace(ROUTES.tabsRevisar);
   }
 
   if (reviewQueue.length === 0) {
@@ -94,7 +95,7 @@ export default function ReviewMistakesScreen() {
         <View style={styles.emptyState}>
           <SymbolView
             name={{ ios: 'checkmark.circle.fill', android: 'check', web: 'check' }}
-            tintColor={colors.success.main}
+            tintColor={colors.success}
             size={64}
           />
 
@@ -327,7 +328,7 @@ const styles = StyleSheet.create({
 
   progressFill: {
     height: '100%',
-    backgroundColor: colors.warning.main,
+    backgroundColor: colors.warning,
     borderRadius: radii.pill,
   },
 
@@ -366,8 +367,8 @@ const styles = StyleSheet.create({
   },
 
   optionCorrect: {
-    borderColor: colors.success.border,
-    backgroundColor: colors.success.background,
+    borderColor: colors.successTone.border,
+    backgroundColor: colors.successTone.background,
   },
 
   optionWrong: {
@@ -400,9 +401,9 @@ const styles = StyleSheet.create({
   },
 
   feedbackCorrect: {
-    backgroundColor: colors.success.background,
+    backgroundColor: colors.successTone.background,
     borderWidth: 1,
-    borderColor: colors.success.border,
+    borderColor: colors.successTone.border,
   },
 
   feedbackWrong: {

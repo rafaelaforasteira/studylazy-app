@@ -28,7 +28,7 @@ export default function MistakeReviewCard({
       <View style={styles.iconBadge}>
         <SymbolView
           name={{ ios: 'exclamationmark.circle.fill', android: 'warning', web: 'warning' }}
-          tintColor={colors.warning.main}
+          tintColor={colors.warning}
           size={28}
         />
       </View>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
     marginBottom: spacing.lg,
     borderWidth: 1,
-    borderColor: colors.warning.main,
+    borderColor: colors.warning,
     gap: spacing.md,
   },
 
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: radii.md,
-    backgroundColor: colors.warning.background,
+    backgroundColor: colors.warningTone.background,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     minWidth: 36,
     height: 36,
     borderRadius: radii.pill,
-    backgroundColor: colors.warning.main,
+    backgroundColor: colors.warning,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: spacing.sm,

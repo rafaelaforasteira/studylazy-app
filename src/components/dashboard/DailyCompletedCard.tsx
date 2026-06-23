@@ -19,7 +19,7 @@ export default function DailyCompletedCard({
     <View style={styles.card}>
       <SymbolView
         name={{ ios: 'checkmark.seal.fill', android: 'check', web: 'check' }}
-        tintColor={colors.success.main}
+        tintColor={colors.success}
         size={52}
       />
 
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing.lg,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: colors.success.border,
+    borderColor: colors.successTone.border,
   },
 
   title: {
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
 
   resultText: {
-    color: colors.success.main,
+    color: colors.success,
     fontSize: 16,
     fontWeight: '700',
     textAlign: 'center',

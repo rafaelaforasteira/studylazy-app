@@ -34,6 +34,8 @@ export default function PrimaryButton({
   return (
     <Pressable
       accessibilityRole="button"
+      accessibilityLabel={label}
+      accessibilityState={{ disabled: isDisabled }}
       disabled={isDisabled}
       onPress={onPress}
       style={({ pressed }) => {
@@ -87,7 +89,7 @@ const styles = StyleSheet.create({
   },
 
   secondary: {
-    backgroundColor: colors.card.background,
+    backgroundColor: colors.surfaceSecondary,
     borderWidth: 1,
     borderColor: colors.border.default,
   },
@@ -98,20 +100,20 @@ const styles = StyleSheet.create({
 
   disabled: {
     backgroundColor: colors.button.disabled,
-    borderColor: colors.button.disabled,
+    borderColor: colors.border.subtle,
   },
 
   pressed: {
-    opacity: 0.88,
+    opacity: 0.9,
   },
 
   label: {
-    color: colors.background,
+    color: colors.text.primary,
     ...typography.button,
   },
 
   secondaryLabel: {
-    color: colors.primary,
+    color: colors.primarySoft,
   },
 
   dangerLabel: {

@@ -29,7 +29,7 @@ export default function AppCard({ children, title, action }: AppCardProps) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.card.background,
+    backgroundColor: colors.surface,
     borderRadius: radii.lg,
     padding: spacing.lg,
     marginBottom: spacing.lg,
