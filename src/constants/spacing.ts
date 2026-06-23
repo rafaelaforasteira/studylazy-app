@@ -12,3 +12,8 @@ export const spacing = {
   tabBarHeight: 64,
   tabBarInset: 80,
 };
+
+/** Max content width on web — keeps tabs readable without a phone frame. */
+export const layout = {
+  webMaxWidth: 480,
+};

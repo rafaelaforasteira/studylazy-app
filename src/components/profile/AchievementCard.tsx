@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import { colors } from '../../constants/colors';
 import { radii } from '../../constants/radii';
 import { spacing } from '../../constants/spacing';
-import { typography } from '../../constants/typography';
 
 import type { AchievementDefinition } from '../../utils/profileAnalytics';
 
@@ -26,64 +25,73 @@ export default function AchievementCard({
         achievement.unlocked ? styles.unlocked : styles.locked,
       ]}
     >
-      <Text style={styles.title}>{achievement.title}</Text>
-      <Text style={styles.description}>{achievement.description}</Text>
+      <View style={styles.iconBox}>
+        <Text style={styles.icon}>
+          {achievement.unlocked ? '✓' : '○'}
+        </Text>
+      </View>
+      <Text style={styles.title} numberOfLines={2}>
+        {achievement.title}
+      </Text>
 
       {showProgress ? (
         <Text style={styles.progress}>
           {achievement.progress}/{achievement.target}
         </Text>
       ) : null}
-
-      <Text style={styles.status}>
-        {achievement.unlocked ? 'Desbloqueada' : 'Bloqueada'}
-      </Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    width: 220,
-    backgroundColor: colors.surfaceSecondary,
-    borderRadius: radii.md,
-    padding: spacing.md,
-    marginRight: spacing.md,
+    width: 110,
+    minHeight: 116,
+    backgroundColor: colors.surface,
+    borderRadius: radii.xl,
+    padding: spacing.sm,
+    marginRight: spacing.sm,
     borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   unlocked: {
-    borderColor: colors.successTone.border,
+    borderColor: colors.border.default,
   },
 
   locked: {
     borderColor: colors.border.default,
-    opacity: 0.75,
+    opacity: 0.38,
+  },
+
+  iconBox: {
+    width: 46,
+    height: 46,
+    borderRadius: radii.md,
+    backgroundColor: 'rgba(139, 92, 246, 0.1)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: spacing.sm,
+  },
+
+  icon: {
+    color: colors.primarySoft,
+    fontSize: 20,
+    fontWeight: '700',
   },
 
   title: {
     color: colors.text.primary,
-    ...typography.body,
+    fontSize: 10,
     fontWeight: '700',
-    marginBottom: spacing.xs,
-  },
-
-  description: {
-    color: colors.text.secondary,
-    ...typography.bodySmall,
-    marginBottom: spacing.sm,
+    textAlign: 'center',
   },
 
   progress: {
     color: colors.progress,
-    ...typography.bodySmall,
+    fontSize: 10,
     fontWeight: '700',
-    marginBottom: spacing.xs,
-  },
-
-  status: {
-    color: colors.text.muted,
-    ...typography.label,
-    textTransform: 'uppercase',
+    marginTop: spacing.xs,
   },
 });

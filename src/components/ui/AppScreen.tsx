@@ -13,7 +13,7 @@ import {
 } from 'react-native-safe-area-context';
 
 import { colors } from '../../constants/colors';
-import { spacing } from '../../constants/spacing';
+import { layout, spacing } from '../../constants/spacing';
 
 type AppScreenProps = {
   children: ReactNode;
@@ -46,7 +46,7 @@ export default function AppScreen({
     paddingHorizontal: spacing.screenHorizontal,
   };
 
-  const content = scroll ? (
+  const innerContent = scroll ? (
     <ScrollView
       style={styles.scroll}
       contentContainerStyle={[styles.scrollContent, paddingStyle, contentStyle]}
@@ -59,6 +59,10 @@ export default function AppScreen({
     <View style={[styles.staticContent, paddingStyle, contentStyle]}>
       {children}
     </View>
+  );
+
+  const content = (
+    <View style={styles.webContainer}>{innerContent}</View>
   );
 
   if (keyboard) {
@@ -85,6 +89,17 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: colors.background,
+  },
+
+  webContainer: {
+    flex: 1,
+    width: '100%',
+    ...(Platform.OS === 'web'
+      ? {
+          maxWidth: layout.webMaxWidth,
+          alignSelf: 'center',
+        }
+      : {}),
   },
 
   flex: {

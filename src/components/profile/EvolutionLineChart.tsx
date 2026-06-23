@@ -1,5 +1,11 @@
 import { useMemo } from 'react';
-import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import Svg, {
   Circle,
   Defs,
@@ -9,31 +15,31 @@ import Svg, {
 } from 'react-native-svg';
 
 import { colors } from '../../constants/colors';
-import { radii } from '../../constants/radii';
-import { spacing } from '../../constants/spacing';
-import { typography } from '../../constants/typography';
+import { layout, spacing } from '../../constants/spacing';
 
 import type { EvolutionPoint } from '../../utils/profileAnalytics';
 
 type EvolutionLineChartProps = {
   points: EvolutionPoint[];
-  comparisonLabel: string;
-  comparisonValue: string;
-  totalLabel: string;
-  bestLabel: string;
+  bestMinutes: number;
+  growthLabel: string;
+  growthPositive?: boolean;
 };
 
 export default function EvolutionLineChart({
   points,
-  comparisonLabel,
-  comparisonValue,
-  totalLabel,
-  bestLabel,
+  bestMinutes,
+  growthLabel,
+  growthPositive = false,
 }: EvolutionLineChartProps) {
   const { width } = useWindowDimensions();
-  const chartWidth = Math.min(width - spacing.screenHorizontal * 2, 420);
-  const chartHeight = 180;
-  const padding = 20;
+  const maxChartWidth =
+    Platform.OS === 'web'
+      ? layout.webMaxWidth - spacing.screenHorizontal * 2
+      : width - spacing.screenHorizontal * 2;
+  const chartWidth = Math.min(maxChartWidth, 420);
+  const chartHeight = 190;
+  const padding = 22;
 
   const { linePath, areaPath, plottedPoints } = useMemo(() => {
     if (points.length === 0) {
@@ -83,11 +89,13 @@ export default function EvolutionLineChart({
 
   return (
     <View style={styles.container}>
+      <Text style={styles.chartTitle}>Minutos estudados ao longo do período</Text>
+
       <Svg width={chartWidth} height={chartHeight}>
         <Defs>
           <LinearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
-            <Stop offset="0%" stopColor={colors.progress} stopOpacity="0.35" />
-            <Stop offset="100%" stopColor={colors.progress} stopOpacity="0" />
+            <Stop offset="0%" stopColor={colors.primary} stopOpacity="0.12" />
+            <Stop offset="100%" stopColor={colors.primary} stopOpacity="0" />
           </LinearGradient>
         </Defs>
 
@@ -95,8 +103,10 @@ export default function EvolutionLineChart({
         <Path
           d={linePath}
           stroke={colors.progress}
-          strokeWidth={3}
+          strokeWidth={4}
           fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
 
         {plottedPoints.map((item) => (
@@ -104,8 +114,10 @@ export default function EvolutionLineChart({
             key={item.point.key}
             cx={item.x}
             cy={item.y}
-            r={4}
-            fill={colors.progress}
+            r={6}
+            fill={colors.background}
+            stroke={colors.progress}
+            strokeWidth={3}
           />
         ))}
       </Svg>
@@ -118,68 +130,98 @@ export default function EvolutionLineChart({
         ))}
       </View>
 
-      <View style={styles.metaRow}>
-        <Text style={styles.meta}>{totalLabel}</Text>
-        <Text style={styles.meta}>{bestLabel}</Text>
+      <View style={styles.summaryRow}>
+        <View style={styles.summaryCol}>
+          <Text style={styles.summaryLabel}>MELHOR RESULTADO</Text>
+          <Text style={styles.summaryValue}>{bestMinutes} min</Text>
+        </View>
+        <View style={styles.divider} />
+        <View style={styles.summaryCol}>
+          <Text style={styles.summaryLabel}>CRESCIMENTO</Text>
+          <Text
+            style={[
+              styles.summaryValue,
+              growthPositive && styles.summaryPositive,
+            ]}
+          >
+            {growthLabel}
+          </Text>
+        </View>
       </View>
-
-      <Text style={styles.comparison}>
-        {comparisonLabel}: {comparisonValue}
-      </Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.surfaceSecondary,
-    borderRadius: radii.lg,
-    padding: spacing.md,
-    borderWidth: 1,
-    borderColor: colors.border.default,
+    marginTop: spacing.sm,
+  },
+
+  chartTitle: {
+    color: colors.text.secondary,
+    fontSize: 11,
+    marginBottom: spacing.sm,
   },
 
   labelsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: spacing.sm,
+    marginTop: spacing.xs,
   },
 
   axisLabel: {
     flex: 1,
-    color: colors.text.muted,
-    fontSize: 11,
+    color: colors.text.secondary,
+    fontSize: 10,
     textAlign: 'center',
   },
 
-  metaRow: {
+  summaryRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginTop: spacing.md,
-    gap: spacing.xs,
+    paddingTop: spacing.md,
+    borderTopWidth: 1,
+    borderTopColor: colors.border.default,
   },
 
-  meta: {
+  summaryCol: {
+    flex: 1,
+    alignItems: 'center',
+  },
+
+  summaryLabel: {
     color: colors.text.secondary,
-    ...typography.bodySmall,
+    fontSize: 9,
+    fontWeight: '800',
+    letterSpacing: 0.8,
   },
 
-  comparison: {
-    color: colors.primarySoft,
-    ...typography.bodySmall,
-    fontWeight: '700',
-    marginTop: spacing.sm,
+  summaryValue: {
+    color: colors.text.primary,
+    fontSize: 18,
+    fontWeight: '900',
+    marginTop: 4,
+  },
+
+  summaryPositive: {
+    color: colors.success,
+  },
+
+  divider: {
+    width: 1,
+    height: 42,
+    backgroundColor: colors.border.default,
   },
 
   empty: {
-    backgroundColor: colors.surfaceSecondary,
-    borderRadius: radii.lg,
-    padding: spacing.lg,
-    borderWidth: 1,
-    borderColor: colors.border.default,
+    paddingVertical: spacing.lg,
   },
 
   emptyText: {
     color: colors.text.secondary,
-    ...typography.body,
+    fontSize: 14,
     textAlign: 'center',
+    lineHeight: 20,
   },
 });

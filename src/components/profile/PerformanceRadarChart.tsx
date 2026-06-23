@@ -1,11 +1,15 @@
 import { useMemo } from 'react';
-import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import Svg, { Line, Polygon, Text as SvgText } from 'react-native-svg';
 
 import { colors } from '../../constants/colors';
-import { radii } from '../../constants/radii';
-import { spacing } from '../../constants/spacing';
-import { typography } from '../../constants/typography';
+import { layout, spacing } from '../../constants/spacing';
 
 import type { SubjectPerformance } from '../../utils/profileAnalytics';
 
@@ -17,7 +21,11 @@ export default function PerformanceRadarChart({
   performance,
 }: PerformanceRadarChartProps) {
   const { width } = useWindowDimensions();
-  const size = Math.min(width - spacing.screenHorizontal * 2, 320);
+  const maxSize =
+    Platform.OS === 'web'
+      ? layout.webMaxWidth - spacing.screenHorizontal * 2
+      : width - spacing.screenHorizontal * 2;
+  const size = Math.min(maxSize, 320);
   const center = size / 2;
   const radius = size * 0.3;
   const levels = 4;
@@ -139,11 +147,6 @@ export default function PerformanceRadarChart({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.surfaceSecondary,
-    borderRadius: radii.lg,
-    padding: spacing.md,
-    borderWidth: 1,
-    borderColor: colors.border.default,
     alignItems: 'center',
   },
 
@@ -161,27 +164,25 @@ const styles = StyleSheet.create({
 
   legendSubject: {
     color: colors.text.secondary,
-    ...typography.bodySmall,
+    fontSize: 11,
+    fontWeight: '700',
     flex: 1,
   },
 
   legendValue: {
-    color: colors.text.primary,
-    ...typography.bodySmall,
-    fontWeight: '700',
+    color: colors.text.secondary,
+    fontSize: 11,
+    fontWeight: '800',
   },
 
   empty: {
-    backgroundColor: colors.surfaceSecondary,
-    borderRadius: radii.lg,
-    padding: spacing.lg,
-    borderWidth: 1,
-    borderColor: colors.border.default,
+    paddingVertical: spacing.lg,
   },
 
   emptyText: {
     color: colors.text.secondary,
-    ...typography.body,
+    fontSize: 14,
     textAlign: 'center',
+    lineHeight: 20,
   },
 });

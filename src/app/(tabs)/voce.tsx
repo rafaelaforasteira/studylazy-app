@@ -1,18 +1,7 @@
-import { useMemo, useState } from 'react';
-import {
-  Alert,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
+import { SymbolView } from 'expo-symbols';
 import { useRouter } from 'expo-router';
 
-import AchievementCard from '../../components/profile/AchievementCard';
-import EvolutionLineChart from '../../components/profile/EvolutionLineChart';
-import PerformanceRadarChart from '../../components/profile/PerformanceRadarChart';
-import ProfileStatCard from '../../components/profile/ProfileStatCard';
-import AppCard from '../../components/ui/AppCard';
 import AppScreen from '../../components/ui/AppScreen';
 import PrimaryButton from '../../components/ui/PrimaryButton';
 
@@ -24,289 +13,176 @@ import { typography } from '../../constants/typography';
 
 import { useDashboardData } from '../../hooks/use-dashboard-data';
 import {
-  calculateAccuracy,
-  calculateAchievements,
-  calculateAverageSessionMinutes,
-  calculatePeriodComparison,
-  calculateSubjectPerformance,
-  calculateTotalMinutes,
-  calculateTotalQuestions,
-  getAverageSessionMessage,
-  getBestEvolutionPoint,
-  getEvolutionSeries,
-  getStrongestSubject,
-  getWeakestSubject,
-  getWeeklyStudyProgress,
-  type EvolutionPeriod,
-} from '../../utils/profileAnalytics';
-import { getPreparationLabel, getGoalLabel } from '../../utils/onboardingFormatters';
+  getGoalLabel,
+  getPreparationLabel,
+} from '../../utils/onboardingFormatters';
 
-const PERIOD_OPTIONS: { key: EvolutionPeriod; label: string; days: number }[] =
-  [
-    { key: '7d', label: '7 dias', days: 7 },
-    { key: '30d', label: '30 dias', days: 30 },
-    { key: '90d', label: '3 meses', days: 90 },
-  ];
+type MenuItem = {
+  label: string;
+  onPress: () => void;
+  accessibilityLabel: string;
+  isLast?: boolean;
+};
+
+function MenuRow({
+  label,
+  onPress,
+  accessibilityLabel,
+  isLast = false,
+}: MenuItem) {
+  return (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
+      onPress={onPress}
+      style={({ pressed }) => [
+        styles.menuRow,
+        isLast && styles.menuRowLast,
+        pressed && styles.menuRowPressed,
+      ]}
+    >
+      <Text style={styles.menuLabel}>{label}</Text>
+      <Text style={styles.menuArrow}>›</Text>
+    </Pressable>
+  );
+}
+
+function SectionTitle({ title }: { title: string }) {
+  return <Text style={styles.sectionTitle}>{title}</Text>;
+}
 
 export default function VoceScreen() {
   const router = useRouter();
   const data = useDashboardData();
-  const [period, setPeriod] = useState<EvolutionPeriod>('7d');
 
-  const accuracy = calculateAccuracy(data.lessonHistory);
-  const totalMinutes = calculateTotalMinutes(data.lessonHistory);
-  const averageMinutes = calculateAverageSessionMinutes(data.lessonHistory);
-  const totalQuestions = calculateTotalQuestions(data.lessonHistory);
-  const weeklyProgress = getWeeklyStudyProgress(data.lessonHistory);
-  const evolutionPoints = getEvolutionSeries(data.lessonHistory, period);
-  const periodDays =
-    PERIOD_OPTIONS.find((item) => item.key === period)?.days ?? 7;
-  const comparison = calculatePeriodComparison(
-    data.lessonHistory,
-    periodDays
-  );
-  const bestPoint = getBestEvolutionPoint(evolutionPoints);
-  const subjectPerformance = useMemo(
-    () => calculateSubjectPerformance(data.lessonHistory),
-    [data.lessonHistory]
-  );
-  const strongest = getStrongestSubject(subjectPerformance);
-  const weakest = getWeakestSubject(subjectPerformance);
-  const achievements = calculateAchievements({
-    history: data.lessonHistory,
-    sessionsCompleted: data.sessionsCompleted,
-    streak: data.displayStreak,
-    xp: data.xp,
-  });
+  const avatarInitial = (
+    data.studentName.trim().charAt(0) || 'E'
+  ).toUpperCase();
 
-  const comparisonValue = comparison.hasComparison
-    ? `${comparison.changePercent}%`
-    : 'Sem comparação anterior';
-
-  function handleHelp() {
+  function showComingSoon(feature: string) {
     Alert.alert(
-      'Ajuda StudyLazy',
-      'Use as abas para acompanhar sua atividade, seguir o plano diário, estudar, revisar erros e acompanhar sua evolução aqui em Você.'
+      feature,
+      'Este recurso ainda está em desenvolvimento e estará disponível em breve.'
     );
   }
 
-  function handleNotifyPro() {
+  function showHelp() {
     Alert.alert(
-      'Em breve',
-      'Obrigado pelo interesse! Avisaremos quando o StudyLazy Pro estiver disponível.'
+      'Ajuda StudyLazy',
+      'Use as abas para acompanhar sua evolução em Atividade, seguir o plano diário, estudar e revisar erros. Aqui em Você você gerencia sua conta e preferências.'
+    );
+  }
+
+  function showGoalsInfo() {
+    Alert.alert(
+      'Meta e preferências',
+      `Objetivo: ${getGoalLabel(data.answers.goal)}\nMeta diária: ${data.dailyGoalMinutes} min\nPreparação: ${getPreparationLabel(data.answers.preparationLevel)}${
+        data.answers.startPreference
+          ? `\nPreferência inicial: ${data.answers.startPreference}`
+          : ''
+      }\n\nPara alterar, acesse Configurações ou refaça o onboarding nas configurações.`
     );
   }
 
   return (
     <AppScreen hasTabBar contentStyle={styles.content}>
+      <View style={styles.topBar}>
+        <Text style={styles.pageTitle}>Você</Text>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Abrir configurações"
+          onPress={() => router.push(ROUTES.settings)}
+          style={({ pressed }) => [
+            styles.settingsButton,
+            pressed && styles.settingsButtonPressed,
+          ]}
+          hitSlop={8}
+        >
+          <SymbolView
+            name={{ ios: 'gearshape.fill', android: 'settings', web: 'settings' }}
+            tintColor={colors.text.primary}
+            size={20}
+          />
+        </Pressable>
+      </View>
+
       <View style={styles.header}>
-        <View style={styles.avatar}>
-          <Text style={styles.avatarText}>
-            {(data.studentName.trim().charAt(0) || 'E').toUpperCase()}
-          </Text>
+        <View style={styles.avatarGlow}>
+          <View style={styles.avatar}>
+            <Text style={styles.avatarText}>{avatarInitial}</Text>
+          </View>
         </View>
 
-        <View style={styles.headerText}>
-          <Text style={styles.name}>{data.studentName}</Text>
-          <Text style={styles.level}>
-            Nível {data.levelData.level} • {data.levelData.title}
-          </Text>
-          <Text style={styles.streak}>
+        <Text style={styles.name}>{data.studentName}</Text>
+        <Text style={styles.level}>
+          Nível {data.levelData.level} • {data.levelData.title}
+        </Text>
+        <View style={styles.streakBadge}>
+          <Text style={styles.streakText}>
             {data.displayStreak} dias de sequência
           </Text>
         </View>
       </View>
 
-      <View style={styles.statsGrid}>
-        <ProfileStatCard
-          label="XP total"
-          value={String(data.xp)}
+      <SectionTitle title="Minha conta" />
+      <View style={styles.menuCard}>
+        <MenuRow
+          label="Editar perfil"
+          accessibilityLabel="Editar perfil"
+          onPress={() => router.push(ROUTES.profile)}
         />
-        <ProfileStatCard
-          label="Sessões"
-          value={String(data.sessionsCompleted)}
+        <MenuRow
+          label="Configurações"
+          accessibilityLabel="Abrir configurações"
+          onPress={() => router.push(ROUTES.settings)}
         />
-        <ProfileStatCard
-          label="Aproveitamento"
-          value={
-            totalQuestions > 0 ? `${accuracy}%` : 'Sem dados suficientes'
-          }
-        />
-        <ProfileStatCard
-          label="Tempo registrado"
-          value={
-            totalMinutes > 0 ? `${totalMinutes} min` : 'Sem dados suficientes'
-          }
+        <MenuRow
+          label="Histórico completo"
+          accessibilityLabel="Ver histórico completo"
+          onPress={() => router.push(ROUTES.history)}
+          isLast
         />
       </View>
 
-      <AppCard title="Progresso semanal">
-        <Text style={styles.cardText}>
-          {weeklyProgress.activeDays} de {weeklyProgress.goal} dias ativos
-        </Text>
-        <View style={styles.progressBackground}>
-          <View
-            style={[
-              styles.progressFill,
-              { width: `${weeklyProgress.percent}%` },
-            ]}
-          />
-        </View>
-        <Text style={styles.cardText}>{weeklyProgress.message}</Text>
-      </AppCard>
-
-      <AppCard title="Evolução por período">
-        <View style={styles.periodRow}>
-          {PERIOD_OPTIONS.map((option) => (
-            <PrimaryButton
-              key={option.key}
-              label={option.label}
-              variant={period === option.key ? 'primary' : 'secondary'}
-              onPress={() => setPeriod(option.key)}
-              style={styles.periodButton}
-            />
-          ))}
-        </View>
-
-        <EvolutionLineChart
-          points={evolutionPoints}
-          totalLabel={`Total do período: ${comparison.currentTotal} min`}
-          bestLabel={
-            bestPoint
-              ? `Melhor resultado: ${bestPoint.minutes} min`
-              : 'Melhor resultado: 0 min'
-          }
-          comparisonLabel="Comparação com período anterior"
-          comparisonValue={comparisonValue}
+      <SectionTitle title="Minha experiência" />
+      <View style={styles.menuCard}>
+        <MenuRow
+          label="Meta e preferências"
+          accessibilityLabel="Ver meta e preferências"
+          onPress={showGoalsInfo}
         />
-      </AppCard>
-
-      <AppCard title="Tempo médio por sessão">
-        <Text style={styles.metric}>
-          {averageMinutes > 0
-            ? `${averageMinutes} min por sessão`
-            : 'Ainda não há sessões suficientes para calcular sua média.'}
-        </Text>
-        {averageMinutes > 0 ? (
-          <>
-            <Text style={styles.cardText}>
-              Meta diária: {data.dailyGoalMinutes} min
-            </Text>
-            <View style={styles.progressBackground}>
-              <View
-                style={[
-                  styles.progressFill,
-                  {
-                    width: `${Math.min(
-                      Math.round(
-                        (averageMinutes / data.dailyGoalMinutes) * 100
-                      ),
-                      100
-                    )}%`,
-                  },
-                ]}
-              />
-            </View>
-            <Text style={styles.cardText}>
-              {getAverageSessionMessage(
-                averageMinutes,
-                data.dailyGoalMinutes
-              )}
-            </Text>
-          </>
-        ) : null}
-      </AppCard>
-
-      <AppCard title="Desempenho por matéria">
-        <PerformanceRadarChart performance={subjectPerformance} />
-      </AppCard>
-
-      <AppCard title="Pontos fortes e de atenção">
-        {strongest && weakest ? (
-          <>
-            <Text style={styles.cardText}>
-              Ponto forte: {strongest.subject} ({strongest.accuracy}%)
-            </Text>
-            <Text style={styles.cardText}>
-              Ponto de atenção: {weakest.subject} ({weakest.accuracy}%)
-            </Text>
-          </>
-        ) : (
-          <Text style={styles.cardText}>
-            Continue estudando. Precisamos de mais respostas para identificar
-            seus pontos fortes e conteúdos que precisam de atenção.
-          </Text>
-        )}
-      </AppCard>
-
-      <AppCard title="Conquistas">
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {achievements.map((achievement) => (
-            <AchievementCard
-              key={achievement.id}
-              achievement={achievement}
-            />
-          ))}
-        </ScrollView>
-      </AppCard>
-
-      <AppCard title="Objetivo e preferências">
-        <Text style={styles.cardText}>
-          Objetivo: {getGoalLabel(data.answers.goal)}
-        </Text>
-        <Text style={styles.cardText}>
-          Meta diária: {data.dailyGoalMinutes} min
-        </Text>
-        <Text style={styles.cardText}>
-          Preparação: {getPreparationLabel(data.answers.preparationLevel)}
-        </Text>
-        <Text style={styles.cardText}>
-          Preferência inicial:{' '}
-          {data.answers.startPreference ?? 'Não informada'}
-        </Text>
-      </AppCard>
-
-      <AppCard title="Atalhos">
-        <PrimaryButton
-          label="Editar perfil"
-          variant="secondary"
-          onPress={() => router.push(ROUTES.profile)}
-          style={styles.shortcut}
+        <MenuRow
+          label="Notificações"
+          accessibilityLabel="Configurar notificações"
+          onPress={() => showComingSoon('Notificações')}
         />
-        <PrimaryButton
-          label="Configurações"
-          variant="secondary"
-          onPress={() => router.push(ROUTES.settings)}
-          style={styles.shortcut}
+        <MenuRow
+          label="Personalização"
+          accessibilityLabel="Personalizar experiência"
+          onPress={() => showComingSoon('Personalização')}
         />
-        <PrimaryButton
-          label="Histórico completo"
-          variant="secondary"
-          onPress={() => router.push(ROUTES.history)}
-          style={styles.shortcut}
-        />
-        <PrimaryButton
-          label="Planos e upgrade"
-          variant="secondary"
-          onPress={() => router.push(ROUTES.plans)}
-          style={styles.shortcut}
-        />
-        <PrimaryButton
+        <MenuRow
           label="Ajuda"
-          variant="secondary"
-          onPress={handleHelp}
+          accessibilityLabel="Abrir ajuda"
+          onPress={showHelp}
+          isLast
         />
-      </AppCard>
+      </View>
 
-      <AppCard title="StudyLazy Pro">
-        <Text style={styles.cardText}>
-          Recursos avançados estão em desenvolvimento.
+      <SectionTitle title="Planos e upgrade" />
+      <View style={styles.proCard}>
+        <Text style={styles.proEyebrow}>StudyLazy Pro</Text>
+        <Text style={styles.proTitle}>Evolua com recursos avançados</Text>
+        <Text style={styles.proDescription}>
+          Estatísticas avançadas, plano adaptativo, sincronização em nuvem e
+          muito mais — em desenvolvimento.
         </Text>
         <PrimaryButton
-          label="Avise-me quando estiver disponível"
-          onPress={handleNotifyPro}
+          label="Conhecer planos"
+          onPress={() => router.push(ROUTES.plans)}
+          style={styles.proButton}
         />
-      </AppCard>
+      </View>
     </AppScreen>
   );
 }
@@ -316,17 +192,54 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
 
-  header: {
+  topBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.md,
+    justifyContent: 'space-between',
     marginBottom: spacing.lg,
   },
 
+  pageTitle: {
+    color: colors.text.primary,
+    fontSize: 24,
+    fontWeight: '900',
+    letterSpacing: -0.6,
+  },
+
+  settingsButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: colors.surfaceSecondary,
+    borderWidth: 1,
+    borderColor: colors.border.default,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  settingsButtonPressed: {
+    opacity: 0.85,
+  },
+
+  header: {
+    alignItems: 'center',
+    marginBottom: spacing.xl,
+  },
+
+  avatarGlow: {
+    width: 96,
+    height: 96,
+    borderRadius: 48,
+    backgroundColor: 'rgba(139, 92, 246, 0.18)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: spacing.sm,
+  },
+
   avatar: {
-    width: 72,
-    height: 72,
-    borderRadius: 36,
+    width: 78,
+    height: 78,
+    borderRadius: 39,
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
@@ -335,76 +248,116 @@ const styles = StyleSheet.create({
   avatarText: {
     color: colors.text.primary,
     fontSize: 30,
-    fontWeight: '700',
-  },
-
-  headerText: {
-    flex: 1,
+    fontWeight: '900',
   },
 
   name: {
     color: colors.text.primary,
-    ...typography.title,
+    fontSize: 24,
+    fontWeight: '900',
+    letterSpacing: -0.6,
   },
 
   level: {
-    color: colors.primarySoft,
-    ...typography.body,
-    marginTop: 2,
+    color: colors.text.secondary,
+    fontSize: 14,
+    marginTop: 3,
   },
 
-  streak: {
-    color: colors.streak,
-    ...typography.bodySmall,
-    marginTop: 2,
+  streakBadge: {
+    marginTop: spacing.sm,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    borderRadius: radii.pill,
+    backgroundColor: 'rgba(255, 93, 59, 0.1)',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 93, 59, 0.22)',
   },
 
-  statsGrid: {
+  streakText: {
+    color: '#FFBEAF',
+    fontSize: 12,
+    fontWeight: '800',
+  },
+
+  sectionTitle: {
+    color: colors.text.primary,
+    fontSize: 17,
+    fontWeight: '700',
+    marginBottom: spacing.sm,
+    marginTop: spacing.md,
+  },
+
+  menuRow: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.sm,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    minHeight: 56,
+    paddingHorizontal: spacing.md,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border.default,
+  },
+
+  menuCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radii.xl,
+    borderWidth: 1,
+    borderColor: colors.border.default,
+    marginBottom: spacing.lg,
+    overflow: 'hidden',
+  },
+
+  menuRowLast: {
+    borderBottomWidth: 0,
+  },
+
+  menuRowPressed: {
+    backgroundColor: colors.surfaceSecondary,
+  },
+
+  menuLabel: {
+    color: colors.text.primary,
+    ...typography.body,
+    fontWeight: '600',
+  },
+
+  menuArrow: {
+    color: colors.text.secondary,
+    fontSize: 20,
+  },
+
+  proCard: {
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border.default,
+    borderRadius: radii.xl,
+    padding: spacing.lg,
     marginBottom: spacing.md,
   },
 
-  cardText: {
-    color: colors.text.secondary,
-    ...typography.body,
+  proEyebrow: {
+    color: colors.primarySoft,
+    fontSize: 12,
+    fontWeight: '800',
+    letterSpacing: 0.8,
+    textTransform: 'uppercase',
     marginBottom: spacing.xs,
   },
 
-  metric: {
+  proTitle: {
     color: colors.text.primary,
-    ...typography.stat,
+    fontSize: 20,
+    fontWeight: '900',
     marginBottom: spacing.sm,
   },
 
-  progressBackground: {
-    height: 8,
-    backgroundColor: colors.surfaceTertiary,
-    borderRadius: radii.pill,
-    overflow: 'hidden',
-    marginVertical: spacing.sm,
+  proDescription: {
+    color: colors.text.secondary,
+    ...typography.body,
+    marginBottom: spacing.lg,
   },
 
-  progressFill: {
-    height: '100%',
-    backgroundColor: colors.primary,
-  },
-
-  periodRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.sm,
-    marginBottom: spacing.md,
-  },
-
-  periodButton: {
-    minHeight: 40,
-    paddingVertical: spacing.sm,
-    paddingHorizontal: spacing.md,
-  },
-
-  shortcut: {
-    marginBottom: spacing.sm,
+  proButton: {
+    alignSelf: 'flex-start',
   },
 });

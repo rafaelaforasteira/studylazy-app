@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, Platform, StyleSheet, Text, View } from 'react-native';
 import { SymbolView } from 'expo-symbols';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -8,7 +8,7 @@ import {
   type TabRouteName,
   tabBarMetrics,
 } from '../../constants/tabBar';
-import { spacing } from '../../constants/spacing';
+import { spacing, layout } from '../../constants/spacing';
 import { useMistakeStore } from '../../store/mistakeStore';
 
 import TabBarCenterButton from './TabBarCenterButton';
@@ -71,11 +71,12 @@ export default function CustomTabBar({
   return (
     <View
       style={[
-        styles.container,
+        styles.outer,
         { paddingBottom: Math.max(insets.bottom, tabBarMetrics.bottomPadding) },
       ]}
     >
-      <View style={styles.row}>
+      <View style={styles.container}>
+        <View style={styles.row}>
         {state.routes.map((route, index) => {
           const routeName = route.name as TabRouteName;
           const config = TAB_CONFIG[routeName];
@@ -159,17 +160,29 @@ export default function CustomTabBar({
             </Pressable>
           );
         })}
+        </View>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  outer: {
+    width: '100%',
     backgroundColor: colors.tabBar.background,
     borderTopWidth: 1,
     borderTopColor: colors.border.default,
     paddingTop: spacing.sm,
+    ...(Platform.OS === 'web'
+      ? {
+          maxWidth: layout.webMaxWidth,
+          alignSelf: 'center',
+        }
+      : {}),
+  },
+
+  container: {
+    width: '100%',
   },
 
   row: {
