@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -11,6 +11,8 @@ import { useRouter } from 'expo-router';
 
 import AppScreen from '../components/ui/AppScreen';
 import PrimaryButton from '../components/ui/PrimaryButton';
+import QuestionSourceBadges from '../components/questions/QuestionSourceBadges';
+import ReportProblemButton from '../components/questions/ReportProblemButton';
 
 import { colors } from '../constants/colors';
 import { ROUTES } from '../constants/routes';
@@ -22,6 +24,8 @@ import {
   MistakeItem,
   useMistakeStore,
 } from '../store/mistakeStore';
+import { findQuestionByStatement } from '../data/questionBank';
+import { toReportableFromMistake } from '../utils/questionReports';
 
 export default function ReviewMistakesScreen() {
   const router = useRouter();
@@ -51,6 +55,22 @@ export default function ReviewMistakesScreen() {
     reviewQueue.length > 0
       ? ((currentIndex + 1) / reviewQueue.length) * 100
       : 0;
+
+  const matchedQuestion = useMemo(
+    () =>
+      currentMistake
+        ? findQuestionByStatement(currentMistake.question)
+        : null,
+    [currentMistake]
+  );
+
+  const reportableQuestion = useMemo(
+    () =>
+      currentMistake
+        ? toReportableFromMistake(currentMistake, matchedQuestion)
+        : null,
+    [currentMistake, matchedQuestion]
+  );
 
   function handleSelectOption(option: string) {
     if (hasAnswered) return;
@@ -205,6 +225,10 @@ export default function ReviewMistakesScreen() {
           </View>
 
           <View style={styles.questionCard}>
+            <QuestionSourceBadges
+              source={matchedQuestion?.source}
+              area={matchedQuestion?.area}
+            />
             <Text style={styles.question}>
               {currentMistake.question}
             </Text>
@@ -243,6 +267,11 @@ export default function ReviewMistakesScreen() {
                 </TouchableOpacity>
               );
             })}
+
+            <ReportProblemButton
+              question={reportableQuestion}
+              context="review"
+            />
           </View>
         </ScrollView>
 

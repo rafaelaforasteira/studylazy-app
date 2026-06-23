@@ -1,0 +1,458 @@
+{
+  "metadata": {
+    "title": "Questões ENEM 2024 filtradas e validadas para o StudyLazy",
+    "sourceFile": "enem2024_d1_caderno1_azul_questoes.json",
+    "officialAnswerKey": "INEP — ENEM 2024 — 1º dia — Caderno 1 Azul",
+    "selectionCriteria": [
+      "múltipla escolha",
+      "sem imagem obrigatória",
+      "enunciado completo",
+      "sem trechos longos em excesso",
+      "gabarito oficial conferido",
+      "texto limpo de rodapés e resíduos da extração do PDF"
+    ],
+    "count": 10,
+    "uiRules": {
+      "showSourceBadge": true,
+      "showAreaBadge": true,
+      "showOriginalQuestionNumber": false,
+      "sourceBadgeExample": "ENEM 2024",
+      "areaBadgeExamples": [
+        "Linguagens",
+        "Ciências Humanas"
+      ]
+    }
+  },
+  "questions": [
+    {
+      "id": "ENEM2024_D1_C1_AZ_Q02",
+      "source": "ENEM 2024",
+      "year": 2024,
+      "examDay": 1,
+      "booklet": "Caderno 1 — Azul",
+      "originalQuestionNumber": 2,
+      "displayQuestionNumber": false,
+      "area": "Linguagens",
+      "topic": "Interpretação de texto em língua inglesa",
+      "difficulty": "basic",
+      "requiresImage": false,
+      "statement": "Holy War\nOh, so we can hate each other and fear each other\nWe can build these walls between each other\nBaby, blow by blow and brick by brick\nKeep yourself locked in, yourself locked in\n[…]\nOh, maybe we should love somebody\nOh, maybe we could care a little more\nSo maybe we should love somebody\nInstead of polishing the bombs of holy war\nKEYS, A. Here. Estados Unidos: RCA Records, 2016.\nNessa letra de canção, que aborda um contexto de ódio\ne intolerância, o marcador “instead of ” introduz a ideia de",
+      "options": [
+        {
+          "id": "A",
+          "text": "mudança de comportamento."
+        },
+        {
+          "id": "B",
+          "text": "panorama de conflitos."
+        },
+        {
+          "id": "C",
+          "text": "rotina de isolamento."
+        },
+        {
+          "id": "D",
+          "text": "perspectiva bélica."
+        },
+        {
+          "id": "E",
+          "text": "cenário religioso."
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "A expressão “instead of” introduz uma substituição: o eu lírico propõe amar e cuidar mais das pessoas em vez de alimentar a guerra, indicando mudança de comportamento.",
+      "validation": {
+        "textReviewed": true,
+        "answerCheckedAgainstOfficialInepKey": true,
+        "status": "approved_for_initial_import"
+      }
+    },
+    {
+      "id": "ENEM2024_D1_C1_AZ_Q38",
+      "source": "ENEM 2024",
+      "year": 2024,
+      "examDay": 1,
+      "booklet": "Caderno 1 — Azul",
+      "originalQuestionNumber": 38,
+      "displayQuestionNumber": false,
+      "area": "Linguagens",
+      "topic": "Interpretação de poema e identidade",
+      "difficulty": "basic",
+      "requiresImage": false,
+      "statement": "pessoas com suas malas\nmochilas e valises\nchegam e se vão\nse encontram\nse despedem\ne se despem\nde seus pertences\ncomo se pudessem chegar\na algum lugar\nonde elas mesmas\nnão estivessem\nRUIZ, A. In: SANT’ANNA, A. poemas. Rua Aribau: coletânea de\nPorto Alegre: TAG, 2018.\nEsse poema, por meio da ideia de deslocamento, metaforiza\na tentativa de pessoas",
+      "options": [
+        {
+          "id": "A",
+          "text": "buscarem novos encontros."
+        },
+        {
+          "id": "B",
+          "text": "fugirem da própria identidade."
+        },
+        {
+          "id": "C",
+          "text": "procurarem lugares inexplorados."
+        },
+        {
+          "id": "D",
+          "text": "partirem em experiências inusitadas."
+        },
+        {
+          "id": "E",
+          "text": "desaparecerem da vida em sociedade."
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "O poema sugere que as pessoas podem abandonar malas e pertences, mas não conseguem chegar a um lugar onde deixem de ser elas mesmas. O deslocamento metaforiza a tentativa de fugir da própria identidade.",
+      "validation": {
+        "textReviewed": true,
+        "answerCheckedAgainstOfficialInepKey": true,
+        "status": "approved_for_initial_import"
+      }
+    },
+    {
+      "id": "ENEM2024_D1_C1_AZ_Q48",
+      "source": "ENEM 2024",
+      "year": 2024,
+      "examDay": 1,
+      "booklet": "Caderno 1 — Azul",
+      "originalQuestionNumber": 48,
+      "displayQuestionNumber": false,
+      "area": "Ciências Humanas",
+      "topic": "Espaço vivido e vínculos afetivos",
+      "difficulty": "basic",
+      "requiresImage": false,
+      "statement": "O rompimento da barragem de Fundão levou muito\nconsigo. A lama soterrou sonhos e modificou de forma\npermanente centenas de vidas nascidas e criadas em\nBento Rodrigues e Paracatu, em Mariana (MG). Mas não\nsomente. Ao se estender ao longo do rio, outras famílias e\nhistórias foram atingidas de formas diferentes. Ao fugirem\ndos rejeitos que rapidamente tomaram as localidades,\ndeixaram para trás os resquícios da vida que tiveram até\no 5 de novembro de 2015. Nada jamais seria igual.\nSANTOS, P. Histórias soterradas. Curinga,\nn. 19, nov. 2016 (adaptado).\nConforme o texto, o evento gerou o seguinte impacto na\nrelação entre as pessoas e o seu espaço vivido:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Flexibilização de parâmetros ambientais."
+        },
+        {
+          "id": "B",
+          "text": "Consolidação de identidades regionais."
+        },
+        {
+          "id": "C",
+          "text": "Fragilização de vínculos afetivos."
+        },
+        {
+          "id": "D",
+          "text": "Supressão de práticas exploratórias."
+        },
+        {
+          "id": "E",
+          "text": "Recuperação de tradições ancestrais."
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "A destruição e o deslocamento forçado romperam a relação cotidiana das famílias com os lugares onde viviam, fragilizando vínculos afetivos construídos naquele espaço.",
+      "validation": {
+        "textReviewed": true,
+        "answerCheckedAgainstOfficialInepKey": true,
+        "status": "approved_for_initial_import"
+      }
+    },
+    {
+      "id": "ENEM2024_D1_C1_AZ_Q54",
+      "source": "ENEM 2024",
+      "year": 2024,
+      "examDay": 1,
+      "booklet": "Caderno 1 — Azul",
+      "originalQuestionNumber": 54,
+      "displayQuestionNumber": false,
+      "area": "Ciências Humanas",
+      "topic": "Injustiça epistêmica",
+      "difficulty": "intermediate",
+      "requiresImage": false,
+      "statement": "Os grupos dominantes são beneficiados em termos de\ncredibilidade e podem, com isso, controlar falas de membros\nde outros grupos, descredibilizando seus testemunhos com\nbase em concepções compartilhadas de preconceito de\nidentidade (gênero e raça). Algumas formas de preconceito\ntornam as declarações das pessoas menos importantes\ndevido ao seu pertencimento a determinado grupo social.\nAssim, um falante recebe menos credibilidade devido ao\npreconceito do ouvinte.\nKUHNEN, T. Resenha de The Power and Ethics of Knowing,\nde Miranda Fricker. Princípios, n. 33, 2013. Revista\nCom base na reflexão suscitada no texto, o preconceito\nde identidade é responsável por um tipo de injustiça",
+      "options": [
+        {
+          "id": "A",
+          "text": "estética, que normatiza os padrões corporais."
+        },
+        {
+          "id": "B",
+          "text": "sensorial, que privilegia as habilidades visuais."
+        },
+        {
+          "id": "C",
+          "text": "afetiva, que impede as expressões emocionais."
+        },
+        {
+          "id": "D",
+          "text": "epistêmica, que prejudica as trocas informacionais."
+        },
+        {
+          "id": "E",
+          "text": "econômica, que perpetua as desigualdades materiais."
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "Quando o preconceito reduz injustamente a credibilidade de alguém como fonte de conhecimento, ocorre uma injustiça epistêmica, pois a troca de informações é prejudicada.",
+      "validation": {
+        "textReviewed": true,
+        "answerCheckedAgainstOfficialInepKey": true,
+        "status": "approved_for_initial_import"
+      }
+    },
+    {
+      "id": "ENEM2024_D1_C1_AZ_Q55",
+      "source": "ENEM 2024",
+      "year": 2024,
+      "examDay": 1,
+      "booklet": "Caderno 1 — Azul",
+      "originalQuestionNumber": 55,
+      "displayQuestionNumber": false,
+      "area": "Ciências Humanas",
+      "topic": "Dualismo entre corpo e alma",
+      "difficulty": "intermediate",
+      "requiresImage": false,
+      "statement": "A alma funciona no meu corpo de maneira maravilhosa.\nNele se aloja, certamente, mas sabe bem dele escapar:\nescapa para ver as coisas através da janela dos meus\nolhos, escapa para sonhar quando durmo, para sobreviver\nquando morro. Minha alma durará muito tempo e mais\nque muito tempo, quando meu corpo vier a apodrecer.\nViva minha alma! É meu corpo luminoso, purificado,\nvirtuoso, ágil, móvel, tépido, viçoso; é meu corpo liso,\ncastrado, arredondado como uma bolha de sabão.\nFOUCAULT, M. heterotopias. O corpo utópico, as\nSão Paulo: Edições N-1, 2013.\nEsse texto reforça uma concepção metafísica clássica que\nremete a um(a)",
+      "options": [
+        {
+          "id": "A",
+          "text": "pressuposto lógico."
+        },
+        {
+          "id": "B",
+          "text": "pensamento dicotômico."
+        },
+        {
+          "id": "C",
+          "text": "contemplação da natureza."
+        },
+        {
+          "id": "D",
+          "text": "raciocínio argumentativo."
+        },
+        {
+          "id": "E",
+          "text": "crítica à individualidade."
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "O texto apresenta alma e corpo como realidades distintas, com a alma capaz de existir além do corpo. Essa separação corresponde a um pensamento dicotômico.",
+      "validation": {
+        "textReviewed": true,
+        "answerCheckedAgainstOfficialInepKey": true,
+        "status": "approved_for_initial_import"
+      }
+    },
+    {
+      "id": "ENEM2024_D1_C1_AZ_Q57",
+      "source": "ENEM 2024",
+      "year": 2024,
+      "examDay": 1,
+      "booklet": "Caderno 1 — Azul",
+      "originalQuestionNumber": 57,
+      "displayQuestionNumber": false,
+      "area": "Ciências Humanas",
+      "topic": "Espaço público e democracia",
+      "difficulty": "basic",
+      "requiresImage": false,
+      "statement": "Espaços públicos não são produtos dados e acabados,\numa instituição que, uma vez estabelecida, traria a paz da\nconsensualidade e a perfeita igualdade. São os lugares em\nque os problemas aparecem e se transformam em debates,\nem diálogo e em possibilidade de ajuste e compromissos.\nPor isso, não anulam os conflitos, ao contrário, são canais\nde comunicação e de visibilidade de oposições.\nGOMES, P. C. C. Espaço público, espaços públicos.\nGeographia, n. 44, set.-dez. 2018 (adaptado).\nAs características descritas no texto exibem a importância\ndos espaços públicos para a",
+      "options": [
+        {
+          "id": "A",
+          "text": "prática do lazer."
+        },
+        {
+          "id": "B",
+          "text": "vigilância da sociedade."
+        },
+        {
+          "id": "C",
+          "text": "erradicação da violência."
+        },
+        {
+          "id": "D",
+          "text": "construção da democracia."
+        },
+        {
+          "id": "E",
+          "text": "diversificação do trabalho."
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "Os espaços públicos permitem debate, visibilidade de conflitos, diálogo e construção de compromissos, elementos fundamentais para a construção da democracia.",
+      "validation": {
+        "textReviewed": true,
+        "answerCheckedAgainstOfficialInepKey": true,
+        "status": "approved_for_initial_import"
+      }
+    },
+    {
+      "id": "ENEM2024_D1_C1_AZ_Q63",
+      "source": "ENEM 2024",
+      "year": 2024,
+      "examDay": 1,
+      "booklet": "Caderno 1 — Azul",
+      "originalQuestionNumber": 63,
+      "displayQuestionNumber": false,
+      "area": "Ciências Humanas",
+      "topic": "Indústria cultural",
+      "difficulty": "basic",
+      "requiresImage": false,
+      "statement": "Uma das principais atividades provocadas pela arte,\na reflexão, é abandonada pela indústria cultural. A indústria\ncultural seria como uma isca que ilude os indivíduos,\ncom o sonho de que eles são livres, originais, únicos e\nespeciais quando, na verdade, os trata como servos\ne partes de uma massa homogênea.\nFONTES, B.; MAGALHÃES, R. O que é indústria cultural? In:\nBODART, C. N. (Org.). Conceitos e categorias do ensino de\nsociologia. Maceió: Café com Sociologia, 2021 (adaptado).\nAo analisar as consequências da dinâmica apresentada no\ntexto, as autoras destacam a importância do conceito como:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ferramenta de luta coletiva."
+        },
+        {
+          "id": "B",
+          "text": "Mecanismo de controle social."
+        },
+        {
+          "id": "C",
+          "text": "Instituição de interesse público."
+        },
+        {
+          "id": "D",
+          "text": "Organização da iniciativa privada."
+        },
+        {
+          "id": "E",
+          "text": "Instrumento de manipulação estatal."
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "A indústria cultural padroniza os indivíduos e cria uma sensação ilusória de liberdade e originalidade, funcionando como mecanismo de controle social.",
+      "validation": {
+        "textReviewed": true,
+        "answerCheckedAgainstOfficialInepKey": true,
+        "status": "approved_for_initial_import"
+      }
+    },
+    {
+      "id": "ENEM2024_D1_C1_AZ_Q65",
+      "source": "ENEM 2024",
+      "year": 2024,
+      "examDay": 1,
+      "booklet": "Caderno 1 — Azul",
+      "originalQuestionNumber": 65,
+      "displayQuestionNumber": false,
+      "area": "Ciências Humanas",
+      "topic": "Globalização e identidades",
+      "difficulty": "basic",
+      "requiresImage": false,
+      "statement": "Como conclusão provisória, parece então que a\nglobalização tem, sim, o efeito de contestar e deslocar\nas identidades centradas e “fechadas” de uma cultura\nnacional. Ela tem um efeito pluralizante sobre as identidades,\nproduzindo uma variedade de possibilidades e novas posições\nde identificação, e tornando as identidades mais posicionais,\nmais políticas, mais plurais e diversas; menos fixas, unificadas\nou trans-históricas.\nHALL, S. pós-modernidade. A identidade cultural na\nRio de Janeiro: DP&A, 2011.\nDe acordo com o texto, o processo apresentado contribuiu\npara",
+      "options": [
+        {
+          "id": "A",
+          "text": "elevar a renda da população."
+        },
+        {
+          "id": "B",
+          "text": "abandonar os valores morais."
+        },
+        {
+          "id": "C",
+          "text": "estabelecer a igualdade racial."
+        },
+        {
+          "id": "D",
+          "text": "fortalecer as pautas das minorias."
+        },
+        {
+          "id": "E",
+          "text": "inverter os fluxos das migrações."
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "Ao tornar as identidades mais plurais, políticas e diversas, a globalização amplia posições de identificação e favorece o fortalecimento de pautas de grupos minoritários.",
+      "validation": {
+        "textReviewed": true,
+        "answerCheckedAgainstOfficialInepKey": true,
+        "status": "approved_for_initial_import"
+      }
+    },
+    {
+      "id": "ENEM2024_D1_C1_AZ_Q81",
+      "source": "ENEM 2024",
+      "year": 2024,
+      "examDay": 1,
+      "booklet": "Caderno 1 — Azul",
+      "originalQuestionNumber": 81,
+      "displayQuestionNumber": false,
+      "area": "Ciências Humanas",
+      "topic": "Comunidades quilombolas e Constituição de 1988",
+      "difficulty": "basic",
+      "requiresImage": false,
+      "statement": "No Brasil, os remanescentes de antigos quilombos,\n“mocambos”, “comunidades negras rurais”, “quilombos\ncontemporâneos”, “comunidades quilombolas” ou “terras\nde preto” referem-se a um mesmo patrimônio territorial\ne cultural inestimável, que só recentemente passaram\na ter atenção do Estado e ser do interesse de algumas\nautoridades e organismos oficiais.\nANJOS, R. S. A. Cartografia e quilombos: territórios étnicos\nafricanos no Brasil. Studia, n. 9, 2007. Africana\nNa esfera de ação do Estado, com a Constituição de 1988,\nos espaços mencionados tornaram-se objeto de",
+      "options": [
+        {
+          "id": "A",
+          "text": "iniciativas de planejamento familiar."
+        },
+        {
+          "id": "B",
+          "text": "projetos de reorientação religiosa."
+        },
+        {
+          "id": "C",
+          "text": "programas de moradias sustentáveis."
+        },
+        {
+          "id": "D",
+          "text": "políticas de inserção social."
+        },
+        {
+          "id": "E",
+          "text": "medidas de homogeneização educacional."
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "Com a Constituição de 1988, comunidades quilombolas passaram a receber reconhecimento estatal e proteção por meio de políticas voltadas à sua inserção social e aos seus direitos territoriais e culturais.",
+      "validation": {
+        "textReviewed": true,
+        "answerCheckedAgainstOfficialInepKey": true,
+        "status": "approved_for_initial_import"
+      }
+    },
+    {
+      "id": "ENEM2024_D1_C1_AZ_Q88",
+      "source": "ENEM 2024",
+      "year": 2024,
+      "examDay": 1,
+      "booklet": "Caderno 1 — Azul",
+      "originalQuestionNumber": 88,
+      "displayQuestionNumber": false,
+      "area": "Ciências Humanas",
+      "topic": "Adaptação climática e soluções baseadas na natureza",
+      "difficulty": "basic",
+      "requiresImage": false,
+      "statement": "A mudança do clima nas cidades brasileiras é um desafio\nde adaptação e equidade. Inundações, alagamentos e\nondas de calor são cada vez mais frequentes e intensas.\nCidades precisam se adaptar com urgência, a começar pelas\náreas e populações mais vulneráveis. Implementar soluções\nbaseadas na natureza de forma sistêmica pode contribuir\npara a redução de desastres relacionados às mudanças do\nclima e ainda gerar múltiplos benefícios para a economia,\no ambiente e as pessoas.\nEVERS, H. et al. Soluções baseadas na natureza para adaptação\ncidades. Disponível em: www.wribrasil.org.br. em\nAcesso em: 19 out. 2023 (adaptado).\nQual medida atenua os problemas abordados no texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Criação de faixas sinalizadoras."
+        },
+        {
+          "id": "B",
+          "text": "Incineração de resíduos sólidos."
+        },
+        {
+          "id": "C",
+          "text": "Implantação de parques públicos."
+        },
+        {
+          "id": "D",
+          "text": "Verticalização de espaços centrais."
+        },
+        {
+          "id": "E",
+          "text": "Construção de estacionamentos privados."
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Parques públicos ampliam áreas verdes e permeáveis, ajudam a reduzir ilhas de calor e alagamentos e são exemplos de soluções baseadas na natureza para adaptação climática.",
+      "validation": {
+        "textReviewed": true,
+        "answerCheckedAgainstOfficialInepKey": true,
+        "status": "approved_for_initial_import"
+      }
+    }
+  ]
+}

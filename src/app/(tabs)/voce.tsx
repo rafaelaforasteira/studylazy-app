@@ -162,6 +162,11 @@ export default function VoceScreen() {
           onPress={() => showComingSoon('Personalização')}
         />
         <MenuRow
+          label="Meus relatos de questões"
+          accessibilityLabel="Ver meus relatos de questões"
+          onPress={() => router.push(ROUTES.questionReports)}
+        />
+        <MenuRow
           label="Ajuda"
           accessibilityLabel="Abrir ajuda"
           onPress={showHelp}

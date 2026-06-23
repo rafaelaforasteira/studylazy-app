@@ -1,9 +1,10 @@
-export type Question = {
-  id: number;
-  question: string;
-  options: string[];
-  correctAnswer: string;
-};
+import {
+  enem2024HumanasQuestions,
+  enem2024LinguagensQuestions,
+} from './enem2024Questions';
+import type { Question } from './questionTypes';
+
+export type { Question } from './questionTypes';
 
 type GetQuestionsForLessonParams = {
   subject: string;
@@ -60,7 +61,6 @@ const portugueseQuestions: Question[] = [
     correctAnswer: 'Artigo',
   },
 ];
-
 const mathQuestions: Question[] = [
   {
     id: 1,
@@ -165,22 +165,68 @@ const writingQuestions: Question[] = [
   },
 ];
 
-const generalQuestions: Question[] = [
+const humanSciencesQuestions: Question[] = [...enem2024HumanasQuestions];
+
+const portugueseQuestionsWithEnem: Question[] = [
   ...portugueseQuestions,
+  ...enem2024LinguagensQuestions,
+];
+
+const generalQuestions: Question[] = [
+  ...portugueseQuestionsWithEnem,
   ...mathQuestions,
   ...writingQuestions,
+  ...humanSciencesQuestions,
 ];
+
+const ALL_QUESTION_BANKS: Question[][] = [
+  portugueseQuestions,
+  portugueseQuestionsWithEnem,
+  mathQuestions,
+  writingQuestions,
+  humanSciencesQuestions,
+  generalQuestions,
+];
+
+export function getAllQuestions() {
+  const seen = new Set<string>();
+  const all: Question[] = [];
+
+  ALL_QUESTION_BANKS.flat().forEach((question) => {
+    const key = `${String(question.externalId ?? question.id)}::${question.question}`;
+
+    if (seen.has(key)) {
+      return;
+    }
+
+    seen.add(key);
+    all.push(question);
+  });
+
+  return all;
+}
+
+export function findQuestionByStatement(statement: string) {
+  return getAllQuestions().find((question) => question.question === statement);
+}
+
+export function hasQuestionSourceBadges(question: Question) {
+  return Boolean(question.source && question.area);
+}
 
 function getQuestionBankBySubject(subject: string) {
   switch (subject) {
     case 'Português':
-      return portugueseQuestions;
+      return portugueseQuestionsWithEnem;
 
     case 'Matemática':
       return mathQuestions;
 
     case 'Redação':
       return writingQuestions;
+
+    case 'Ciências Humanas':
+      return humanSciencesQuestions;
 
     case 'Questões':
       return generalQuestions;

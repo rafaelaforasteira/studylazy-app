@@ -12,6 +12,8 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 
 import AppScreen from '../components/ui/AppScreen';
 import PrimaryButton from '../components/ui/PrimaryButton';
+import QuestionSourceBadges from '../components/questions/QuestionSourceBadges';
+import ReportProblemButton from '../components/questions/ReportProblemButton';
 
 import { colors } from '../constants/colors';
 import { radii } from '../constants/radii';
@@ -27,6 +29,7 @@ import {
 import { ROUTES } from '../constants/routes';
 
 import { getQuestionsForLesson } from '../data/questionBank';
+import { toReportableQuestion } from '../utils/questionReports';
 
 export default function StudySessionScreen() {
   const router = useRouter();
@@ -279,6 +282,10 @@ export default function StudySessionScreen() {
           </View>
 
           <View style={styles.questionCard}>
+            <QuestionSourceBadges
+              source={currentQuestion.source}
+              area={currentQuestion.area}
+            />
             <Text style={styles.question}>
               {currentQuestion.question}
             </Text>
@@ -317,6 +324,14 @@ export default function StudySessionScreen() {
                 </TouchableOpacity>
               );
             })}
+
+            <ReportProblemButton
+              question={toReportableQuestion(
+                currentQuestion,
+                lessonSubject
+              )}
+              context="study"
+            />
           </View>
         </ScrollView>
 

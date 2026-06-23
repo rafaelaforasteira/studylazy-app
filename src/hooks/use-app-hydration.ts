@@ -3,6 +3,7 @@ import { useSyncExternalStore } from 'react';
 import { useMistakeStore } from '../store/mistakeStore';
 import { useOnboardingStore } from '../store/onboardingStore';
 import { useProfileStore } from '../store/profileStore';
+import { useQuestionReportStore } from '../store/questionReportStore';
 import { useStudyProgressStore } from '../store/studyProgressStore';
 
 const persistedStores = [
@@ -10,6 +11,7 @@ const persistedStores = [
   useProfileStore,
   useStudyProgressStore,
   useMistakeStore,
+  useQuestionReportStore,
 ] as const;
 
 function areStoresHydrated() {
