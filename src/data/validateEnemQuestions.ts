@@ -1,4 +1,5 @@
 import type { Question } from './questionTypes';
+import { isOfficialVerifiedQuestion } from './questionTypes';
 
 export function validateEnemQuestionBank(questions: Question[]) {
   const ids = new Set<string>();
@@ -12,7 +13,11 @@ export function validateEnemQuestionBank(questions: Question[]) {
 
     ids.add(idKey);
 
-    if (!question.question.trim()) {
+    if (!isOfficialVerifiedQuestion(question)) {
+      throw new Error(`Questão não oficial validada: ${idKey}`);
+    }
+
+    if (!question.prompt?.trim() && !question.question.trim()) {
       throw new Error(`Enunciado vazio: ${idKey}`);
     }
 

@@ -7,7 +7,10 @@ import { spacing } from '../../constants/spacing';
 import type { Question } from '../../data/questionTypes';
 
 type QuestionMetaBadgesProps = {
-  question?: Pick<Question, 'source' | 'year' | 'area'>;
+  question?: Pick<
+    Question,
+    'originType' | 'verified' | 'source' | 'year' | 'area'
+  >;
   source?: string;
   year?: number;
   area?: string;
@@ -40,6 +43,13 @@ export default function QuestionMetaBadges({
   const resolvedSource = question?.source ?? source;
   const resolvedYear = question?.year ?? year;
   const resolvedArea = question?.area ?? area;
+
+  const isOfficial =
+    question?.originType === 'official_exam' && question?.verified === true;
+
+  if (!isOfficial && question?.originType) {
+    return null;
+  }
 
   const sourceLabel = getSourceBadgeLabel(resolvedSource, resolvedYear);
   const areaLabel = resolvedArea?.trim();

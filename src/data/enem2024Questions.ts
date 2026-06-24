@@ -1,4 +1,4 @@
-import type { Question } from './questionTypes';
+import type { Question, QuestionContentFormat } from './questionTypes';
 import { validateEnemQuestionBank } from './validateEnemQuestions';
 
 /** Maps ENEM area labels to the session subject values used by the app. */
@@ -15,13 +15,17 @@ function formatOption(id: string, text: string) {
   return `${id}) ${text}`;
 }
 
-function buildEnemQuestion(params: {
+function buildOfficialEnemQuestion(params: {
   externalId: string;
   source: string;
   year: number;
   area: string;
   topic: string;
-  statement: string;
+  prompt: string;
+  supportTitle?: string;
+  supportText?: string;
+  sourceCitation?: string;
+  contentFormat?: QuestionContentFormat;
   options: { id: string; text: string }[];
   correctAnswerId: string;
   explanation: string;
@@ -41,7 +45,14 @@ function buildEnemQuestion(params: {
   return {
     id: params.externalId,
     externalId: params.externalId,
-    question: params.statement,
+    originType: 'official_exam',
+    verified: true,
+    question: params.prompt,
+    prompt: params.prompt,
+    supportTitle: params.supportTitle,
+    supportText: params.supportText,
+    sourceCitation: params.sourceCitation,
+    contentFormat: params.contentFormat ?? 'prose',
     options,
     correctAnswer: formatOption(
       correctOption.id,
@@ -58,14 +69,19 @@ function buildEnemQuestion(params: {
 }
 
 export const enem2024LinguagensQuestions: Question[] = [
-  buildEnemQuestion({
+  buildOfficialEnemQuestion({
     externalId: 'ENEM2024_D1_C1_AZ_Q02',
     source: 'ENEM 2024',
     year: 2024,
     area: 'Linguagens',
     topic: 'Interpretação de texto em língua inglesa',
-    statement:
-      'Holy War\nOh, so we can hate each other and fear each other\nWe can build these walls between each other\nBaby, blow by blow and brick by brick\nKeep yourself locked in, yourself locked in\n[…]\nOh, maybe we should love somebody\nOh, maybe we could care a little more\nSo maybe we should love somebody\nInstead of polishing the bombs of holy war\nKEYS, A. Here. Estados Unidos: RCA Records, 2016.\nNessa letra de canção, que aborda um contexto de ódio\ne intolerância, o marcador “instead of ” introduz a ideia de',
+    supportTitle: 'Holy War',
+    supportText:
+      'Oh, so we can hate each other and fear each other\nWe can build these walls between each other\nBaby, blow by blow and brick by brick\nKeep yourself locked in, yourself locked in\n[…]\nOh, maybe we should love somebody\nOh, maybe we could care a little more\nSo maybe we should love somebody\nInstead of polishing the bombs of holy war',
+    sourceCitation: 'KEYS, A. Here. Estados Unidos: RCA Records, 2016.',
+    contentFormat: 'verse',
+    prompt:
+      'Nessa letra de canção, que aborda um contexto de ódio e intolerância, o marcador “instead of ” introduz a ideia de',
     options: [
       { id: 'A', text: 'mudança de comportamento.' },
       { id: 'B', text: 'panorama de conflitos.' },
@@ -77,14 +93,19 @@ export const enem2024LinguagensQuestions: Question[] = [
     explanation:
       'A expressão “instead of” introduz uma substituição: o eu lírico propõe amar e cuidar mais das pessoas em vez de alimentar a guerra, indicando mudança de comportamento.',
   }),
-  buildEnemQuestion({
+  buildOfficialEnemQuestion({
     externalId: 'ENEM2024_D1_C1_AZ_Q38',
     source: 'ENEM 2024',
     year: 2024,
     area: 'Linguagens',
     topic: 'Interpretação de poema e identidade',
-    statement:
-      'pessoas com suas malas\nmochilas e valises\nchegam e se vão\nse encontram\nse despedem\ne se despem\nde seus pertences\ncomo se pudessem chegar\na algum lugar\nonde elas mesmas\nnão estivessem\nRUIZ, A. In: SANT’ANNA, A. poemas. Rua Aribau: coletânea de\nPorto Alegre: TAG, 2018.\nEsse poema, por meio da ideia de deslocamento, metaforiza\na tentativa de pessoas',
+    contentFormat: 'verse',
+    supportText:
+      'pessoas com suas malas\nmochilas e valises\nchegam e se vão\nse encontram\nse despedem\ne se despem\nde seus pertences\ncomo se pudessem chegar\na algum lugar\nonde elas mesmas\nnão estivessem',
+    sourceCitation:
+      'RUIZ, A. In: SANT’ANNA, A. poemas. Rua Aribau: coletânea de Porto Alegre: TAG, 2018.',
+    prompt:
+      'Esse poema, por meio da ideia de deslocamento, metaforiza a tentativa de pessoas',
     options: [
       { id: 'A', text: 'buscarem novos encontros.' },
       { id: 'B', text: 'fugirem da própria identidade.' },
@@ -99,14 +120,19 @@ export const enem2024LinguagensQuestions: Question[] = [
 ];
 
 export const enem2024HumanasQuestions: Question[] = [
-  buildEnemQuestion({
+  buildOfficialEnemQuestion({
     externalId: 'ENEM2024_D1_C1_AZ_Q48',
     source: 'ENEM 2024',
     year: 2024,
     area: 'Ciências Humanas',
     topic: 'Espaço vivido e vínculos afetivos',
-    statement:
-      'O rompimento da barragem de Fundão levou muito\nconsigo. A lama soterrou sonhos e modificou de forma\npermanente centenas de vidas nascidas e criadas em\nBento Rodrigues e Paracatu, em Mariana (MG). Mas não\nsomente. Ao se estender ao longo do rio, outras famílias e\nhistórias foram atingidas de formas diferentes. Ao fugirem\ndos rejeitos que rapidamente tomaram as localidades,\ndeixaram para trás os resquícios da vida que tiveram até\no 5 de novembro de 2015. Nada jamais seria igual.\nSANTOS, P. Histórias soterradas. Curinga,\nn. 19, nov. 2016 (adaptado).\nConforme o texto, o evento gerou o seguinte impacto na\nrelação entre as pessoas e o seu espaço vivido:',
+    contentFormat: 'prose',
+    supportText:
+      'O rompimento da barragem de Fundão levou muito consigo. A lama soterrou sonhos e modificou de forma permanente centenas de vidas nascidas e criadas em Bento Rodrigues e Paracatu, em Mariana (MG). Mas não somente. Ao se estender ao longo do rio, outras famílias e histórias foram atingidas de formas diferentes. Ao fugirem dos rejeitos que rapidamente tomaram as localidades, deixaram para trás os resquícios da vida que tiveram até o 5 de novembro de 2015. Nada jamais seria igual.',
+    sourceCitation:
+      'SANTOS, P. Histórias soterradas. Curinga, n. 19, nov. 2016 (adaptado).',
+    prompt:
+      'Conforme o texto, o evento gerou o seguinte impacto na relação entre as pessoas e o seu espaço vivido:',
     options: [
       { id: 'A', text: 'Flexibilização de parâmetros ambientais.' },
       { id: 'B', text: 'Consolidação de identidades regionais.' },
@@ -118,14 +144,19 @@ export const enem2024HumanasQuestions: Question[] = [
     explanation:
       'A destruição e o deslocamento forçado romperam a relação cotidiana das famílias com os lugares onde viviam, fragilizando vínculos afetivos construídos naquele espaço.',
   }),
-  buildEnemQuestion({
+  buildOfficialEnemQuestion({
     externalId: 'ENEM2024_D1_C1_AZ_Q54',
     source: 'ENEM 2024',
     year: 2024,
     area: 'Ciências Humanas',
     topic: 'Injustiça epistêmica',
-    statement:
-      'Os grupos dominantes são beneficiados em termos de\ncredibilidade e podem, com isso, controlar falas de membros\nde outros grupos, descredibilizando seus testemunhos com\nbase em concepções compartilhadas de preconceito de\nidentidade (gênero e raça). Algumas formas de preconceito\ntornam as declarações das pessoas menos importantes\ndevido ao seu pertencimento a determinado grupo social.\nAssim, um falante recebe menos credibilidade devido ao\npreconceito do ouvinte.\nKUHNEN, T. Resenha de The Power and Ethics of Knowing,\nde Miranda Fricker. Princípios, n. 33, 2013. Revista\nCom base na reflexão suscitada no texto, o preconceito\nde identidade é responsável por um tipo de injustiça',
+    contentFormat: 'prose',
+    supportText:
+      'Os grupos dominantes são beneficiados em termos de credibilidade e podem, com isso, controlar falas de membros de outros grupos, descredibilizando seus testemunhos com base em concepções compartilhadas de preconceito de identidade (gênero e raça). Algumas formas de preconceito tornam as declarações das pessoas menos importantes devido ao seu pertencimento a determinado grupo social. Assim, um falante recebe menos credibilidade devido ao preconceito do ouvinte.',
+    sourceCitation:
+      'KUHNEN, T. Resenha de The Power and Ethics of Knowing, de Miranda Fricker. Princípios, n. 33, 2013. Revista',
+    prompt:
+      'Com base na reflexão suscitada no texto, o preconceito de identidade é responsável por um tipo de injustiça',
     options: [
       { id: 'A', text: 'estética, que normatiza os padrões corporais.' },
       { id: 'B', text: 'sensorial, que privilegia as habilidades visuais.' },
@@ -137,14 +168,19 @@ export const enem2024HumanasQuestions: Question[] = [
     explanation:
       'Quando o preconceito reduz injustamente a credibilidade de alguém como fonte de conhecimento, ocorre uma injustiça epistêmica, pois a troca de informações é prejudicada.',
   }),
-  buildEnemQuestion({
+  buildOfficialEnemQuestion({
     externalId: 'ENEM2024_D1_C1_AZ_Q55',
     source: 'ENEM 2024',
     year: 2024,
     area: 'Ciências Humanas',
     topic: 'Dualismo entre corpo e alma',
-    statement:
-      'A alma funciona no meu corpo de maneira maravilhosa.\nNele se aloja, certamente, mas sabe bem dele escapar:\nescapa para ver as coisas através da janela dos meus\nolhos, escapa para sonhar quando durmo, para sobreviver\nquando morro. Minha alma durará muito tempo e mais\nque muito tempo, quando meu corpo vier a apodrecer.\nViva minha alma! É meu corpo luminoso, purificado,\nvirtuoso, ágil, móvel, tépido, viçoso; é meu corpo liso,\ncastrado, arredondado como uma bolha de sabão.\nFOUCAULT, M. heterotopias. O corpo utópico, as\nSão Paulo: Edições N-1, 2013.\nEsse texto reforça uma concepção metafísica clássica que\nremete a um(a)',
+    contentFormat: 'prose',
+    supportText:
+      'A alma funciona no meu corpo de maneira maravilhosa. Nele se aloja, certamente, mas sabe bem dele escapar: escapa para ver as coisas através da janela dos meus olhos, escapa para sonhar quando durmo, para sobreviver quando morro. Minha alma durará muito tempo e mais que muito tempo, quando meu corpo vier a apodrecer. Viva minha alma! É meu corpo luminoso, purificado, virtuoso, ágil, móvel, tépido, viçoso; é meu corpo liso, castrado, arredondado como uma bolha de sabão.',
+    sourceCitation:
+      'FOUCAULT, M. heterotopias. O corpo utópico, as São Paulo: Edições N-1, 2013.',
+    prompt:
+      'Esse texto reforça uma concepção metafísica clássica que remete a um(a)',
     options: [
       { id: 'A', text: 'pressuposto lógico.' },
       { id: 'B', text: 'pensamento dicotômico.' },
@@ -156,14 +192,19 @@ export const enem2024HumanasQuestions: Question[] = [
     explanation:
       'O texto apresenta alma e corpo como realidades distintas, com a alma capaz de existir além do corpo. Essa separação corresponde a um pensamento dicotômico.',
   }),
-  buildEnemQuestion({
+  buildOfficialEnemQuestion({
     externalId: 'ENEM2024_D1_C1_AZ_Q57',
     source: 'ENEM 2024',
     year: 2024,
     area: 'Ciências Humanas',
     topic: 'Espaço público e democracia',
-    statement:
-      'Espaços públicos não são produtos dados e acabados,\numa instituição que, uma vez estabelecida, traria a paz da\nconsensualidade e a perfeita igualdade. São os lugares em\nque os problemas aparecem e se transformam em debates,\nem diálogo e em possibilidade de ajuste e compromissos.\nPor isso, não anulam os conflitos, ao contrário, são canais\nde comunicação e de visibilidade de oposições.\nGOMES, P. C. C. Espaço público, espaços públicos.\nGeographia, n. 44, set.-dez. 2018 (adaptado).\nAs características descritas no texto exibem a importância\ndos espaços públicos para a',
+    contentFormat: 'prose',
+    supportText:
+      'Espaços públicos não são produtos dados e acabados, uma instituição que, uma vez estabelecida, traria a paz da consensualidade e a perfeita igualdade. São os lugares em que os problemas aparecem e se transformam em debates, em diálogo e em possibilidade de ajuste e compromissos. Por isso, não anulam os conflitos, ao contrário, são canais de comunicação e de visibilidade de oposições.',
+    sourceCitation:
+      'GOMES, P. C. C. Espaço público, espaços públicos. Geographia, n. 44, set.-dez. 2018 (adaptado).',
+    prompt:
+      'As características descritas no texto exibem a importância dos espaços públicos para a',
     options: [
       { id: 'A', text: 'prática do lazer.' },
       { id: 'B', text: 'vigilância da sociedade.' },
@@ -175,14 +216,19 @@ export const enem2024HumanasQuestions: Question[] = [
     explanation:
       'Os espaços públicos permitem debate, visibilidade de conflitos, diálogo e construção de compromissos, elementos fundamentais para a construção da democracia.',
   }),
-  buildEnemQuestion({
+  buildOfficialEnemQuestion({
     externalId: 'ENEM2024_D1_C1_AZ_Q63',
     source: 'ENEM 2024',
     year: 2024,
     area: 'Ciências Humanas',
     topic: 'Indústria cultural',
-    statement:
-      'Uma das principais atividades provocadas pela arte,\na reflexão, é abandonada pela indústria cultural. A indústria\ncultural seria como uma isca que ilude os indivíduos,\ncom o sonho de que eles são livres, originais, únicos e\nespeciais quando, na verdade, os trata como servos\ne partes de uma massa homogênea.\nFONTES, B.; MAGALHÃES, R. O que é indústria cultural? In:\nBODART, C. N. (Org.). Conceitos e categorias do ensino de\nsociologia. Maceió: Café com Sociologia, 2021 (adaptado).\nAo analisar as consequências da dinâmica apresentada no\ntexto, as autoras destacam a importância do conceito como:',
+    contentFormat: 'prose',
+    supportText:
+      'Uma das principais atividades provocadas pela arte, a reflexão, é abandonada pela indústria cultural. A indústria cultural seria como uma isca que ilude os indivíduos, com o sonho de que eles são livres, originais, únicos e especiais quando, na verdade, os trata como servos e partes de uma massa homogênea.',
+    sourceCitation:
+      'FONTES, B.; MAGALHÃES, R. O que é indústria cultural? In: BODART, C. N. (Org.). Conceitos e categorias do ensino de sociologia. Maceió: Café com Sociologia, 2021 (adaptado).',
+    prompt:
+      'Ao analisar as consequências da dinâmica apresentada no texto, as autoras destacam a importância do conceito como:',
     options: [
       { id: 'A', text: 'Ferramenta de luta coletiva.' },
       { id: 'B', text: 'Mecanismo de controle social.' },
@@ -194,14 +240,19 @@ export const enem2024HumanasQuestions: Question[] = [
     explanation:
       'A indústria cultural padroniza os indivíduos e cria uma sensação ilusória de liberdade e originalidade, funcionando como mecanismo de controle social.',
   }),
-  buildEnemQuestion({
+  buildOfficialEnemQuestion({
     externalId: 'ENEM2024_D1_C1_AZ_Q65',
     source: 'ENEM 2024',
     year: 2024,
     area: 'Ciências Humanas',
     topic: 'Globalização e identidades',
-    statement:
-      'Como conclusão provisória, parece então que a\nglobalização tem, sim, o efeito de contestar e deslocar\nas identidades centradas e “fechadas” de uma cultura\nnacional. Ela tem um efeito pluralizante sobre as identidades,\nproduzindo uma variedade de possibilidades e novas posições\nde identificação, e tornando as identidades mais posicionais,\nmais políticas, mais plurais e diversas; menos fixas, unificadas\nou trans-históricas.\nHALL, S. pós-modernidade. A identidade cultural na\nRio de Janeiro: DP&A, 2011.\nDe acordo com o texto, o processo apresentado contribuiu\npara',
+    contentFormat: 'prose',
+    supportText:
+      'Como conclusão provisória, parece então que a globalização tem, sim, o efeito de contestar e deslocar as identidades centradas e “fechadas” de uma cultura nacional. Ela tem um efeito pluralizante sobre as identidades, produzindo uma variedade de possibilidades e novas posições de identificação, e tornando as identidades mais posicionais, mais políticas, mais plurais e diversas; menos fixas, unificadas ou trans-históricas.',
+    sourceCitation:
+      'HALL, S. pós-modernidade. A identidade cultural na Rio de Janeiro: DP&A, 2011.',
+    prompt:
+      'De acordo com o texto, o processo apresentado contribuiu para',
     options: [
       { id: 'A', text: 'elevar a renda da população.' },
       { id: 'B', text: 'abandonar os valores morais.' },
@@ -213,14 +264,19 @@ export const enem2024HumanasQuestions: Question[] = [
     explanation:
       'Ao tornar as identidades mais plurais, políticas e diversas, a globalização amplia posições de identificação e favorece o fortalecimento de pautas de grupos minoritários.',
   }),
-  buildEnemQuestion({
+  buildOfficialEnemQuestion({
     externalId: 'ENEM2024_D1_C1_AZ_Q81',
     source: 'ENEM 2024',
     year: 2024,
     area: 'Ciências Humanas',
     topic: 'Comunidades quilombolas e Constituição de 1988',
-    statement:
-      'No Brasil, os remanescentes de antigos quilombos,\n“mocambos”, “comunidades negras rurais”, “quilombos\ncontemporâneos”, “comunidades quilombolas” ou “terras\nde preto” referem-se a um mesmo patrimônio territorial\ne cultural inestimável, que só recentemente passaram\na ter atenção do Estado e ser do interesse de algumas\nautoridades e organismos oficiais.\nANJOS, R. S. A. Cartografia e quilombos: territórios étnicos\nafricanos no Brasil. Studia, n. 9, 2007. Africana\nNa esfera de ação do Estado, com a Constituição de 1988,\nos espaços mencionados tornaram-se objeto de',
+    contentFormat: 'prose',
+    supportText:
+      'No Brasil, os remanescentes de antigos quilombos, “mocambos”, “comunidades negras rurais”, “quilombos contemporâneos”, “comunidades quilombolas” ou “terras de preto” referem-se a um mesmo patrimônio territorial e cultural inestimável, que só recentemente passaram a ter atenção do Estado e ser do interesse de algumas autoridades e organismos oficiais.',
+    sourceCitation:
+      'ANJOS, R. S. A. Cartografia e quilombos: territórios étnicos africanos no Brasil. Studia, n. 9, 2007. Africana',
+    prompt:
+      'Na esfera de ação do Estado, com a Constituição de 1988, os espaços mencionados tornaram-se objeto de',
     options: [
       { id: 'A', text: 'iniciativas de planejamento familiar.' },
       { id: 'B', text: 'projetos de reorientação religiosa.' },
@@ -232,14 +288,19 @@ export const enem2024HumanasQuestions: Question[] = [
     explanation:
       'Com a Constituição de 1988, comunidades quilombolas passaram a receber reconhecimento estatal e proteção por meio de políticas voltadas à sua inserção social e aos seus direitos territoriais e culturais.',
   }),
-  buildEnemQuestion({
+  buildOfficialEnemQuestion({
     externalId: 'ENEM2024_D1_C1_AZ_Q88',
     source: 'ENEM 2024',
     year: 2024,
     area: 'Ciências Humanas',
     topic: 'Adaptação climática e soluções baseadas na natureza',
-    statement:
-      'A mudança do clima nas cidades brasileiras é um desafio\nde adaptação e equidade. Inundações, alagamentos e\nondas de calor são cada vez mais frequentes e intensas.\nCidades precisam se adaptar com urgência, a começar pelas\náreas e populações mais vulneráveis. Implementar soluções\nbaseadas na natureza de forma sistêmica pode contribuir\npara a redução de desastres relacionados às mudanças do\nclima e ainda gerar múltiplos benefícios para a economia,\no ambiente e as pessoas.\nEVERS, H. et al. Soluções baseadas na natureza para adaptação\ncidades. Disponível em: www.wribrasil.org.br. em\nAcesso em: 19 out. 2023 (adaptado).\nQual medida atenua os problemas abordados no texto?',
+    contentFormat: 'prose',
+    supportText:
+      'A mudança do clima nas cidades brasileiras é um desafio de adaptação e equidade. Inundações, alagamentos e ondas de calor são cada vez mais frequentes e intensas. Cidades precisam se adaptar com urgência, a começar pelas áreas e populações mais vulneráveis. Implementar soluções baseadas na natureza de forma sistêmica pode contribuir para a redução de desastres relacionados às mudanças do clima e ainda gerar múltiplos benefícios para a economia, o ambiente e as pessoas.',
+    sourceCitation:
+      'EVERS, H. et al. Soluções baseadas na natureza para adaptação cidades. Disponível em: www.wribrasil.org.br. em Acesso em: 19 out. 2023 (adaptado).',
+    prompt:
+      'Qual medida atenua os problemas abordados no texto?',
     options: [
       { id: 'A', text: 'Criação de faixas sinalizadoras.' },
       { id: 'B', text: 'Incineração de resíduos sólidos.' },

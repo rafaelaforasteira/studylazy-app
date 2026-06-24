@@ -14,6 +14,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import AppScreen from '../components/ui/AppScreen';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import QuestionMetaBadges from '../components/questions/QuestionMetaBadges';
+import QuestionContent from '../components/questions/QuestionContent';
 import ReportProblemButton from '../components/questions/ReportProblemButton';
 
 import { colors } from '../constants/colors';
@@ -31,6 +32,7 @@ import { ROUTES } from '../constants/routes';
 
 import { getQuestionsForLesson } from '../data/questionBank';
 import { toReportableQuestion } from '../utils/questionReports';
+import { questionToLessonMistake } from '../utils/questionMistake';
 
 export default function StudySessionScreen() {
   const router = useRouter();
@@ -85,7 +87,9 @@ export default function StudySessionScreen() {
   const currentQuestion = questions[currentQuestionIndex];
 
   const progress =
-    ((currentQuestionIndex + 1) / questions.length) * 100;
+    questions.length > 0
+      ? ((currentQuestionIndex + 1) / questions.length) * 100
+      : 0;
 
   const accuracy =
     questions.length > 0
@@ -100,7 +104,7 @@ export default function StudySessionScreen() {
   }
 
   function handleConfirmAnswer() {
-    if (!selectedOption) return;
+    if (!selectedOption || !currentQuestion) return;
 
     const isCorrect =
       selectedOption === currentQuestion.correctAnswer;
@@ -108,23 +112,9 @@ export default function StudySessionScreen() {
     if (isCorrect) {
       setCorrectAnswers((current) => current + 1);
     } else {
-      const newMistake: LessonMistakeInput = {
-        question: currentQuestion.question,
-        options: currentQuestion.options,
-        selectedAnswer: selectedOption,
-        correctAnswer: currentQuestion.correctAnswer,
-        externalId: currentQuestion.externalId
-          ? String(currentQuestion.externalId)
-          : String(currentQuestion.id),
-        source: currentQuestion.source,
-        year: currentQuestion.year,
-        area: currentQuestion.area,
-        topic: currentQuestion.topic,
-      };
-
       setLessonMistakes((currentMistakes) => [
         ...currentMistakes,
-        newMistake,
+        questionToLessonMistake(currentQuestion, selectedOption),
       ]);
     }
 
@@ -183,6 +173,26 @@ export default function StudySessionScreen() {
     }
 
     router.replace(ROUTES.tabsEstudar);
+  }
+
+  if (questions.length === 0) {
+    return (
+      <AppScreen>
+        <View style={styles.unavailableCard}>
+          <Text style={styles.unavailableTitle}>
+            Questões oficiais em preparação
+          </Text>
+          <Text style={styles.unavailableMessage}>
+            Ainda não há questões oficiais validadas suficientes para esta
+            matéria. Novos conteúdos serão adicionados em breve.
+          </Text>
+          <PrimaryButton
+            label="Voltar para Estudar"
+            onPress={() => router.replace(ROUTES.tabsEstudar)}
+          />
+        </View>
+      </AppScreen>
+    );
   }
 
   if (isFinished) {
@@ -317,9 +327,7 @@ export default function StudySessionScreen() {
 
           <View style={styles.questionCard}>
             <QuestionMetaBadges question={currentQuestion} />
-            <Text style={styles.question}>
-              {currentQuestion.question}
-            </Text>
+            <QuestionContent question={currentQuestion} />
 
             {currentQuestion.options.map((option) => {
               const isSelected = selectedOption === option;
@@ -506,23 +514,20 @@ const styles = StyleSheet.create({
   },
 
   questionCard: {
+    width: '100%',
+    minWidth: 0,
+    flexShrink: 1,
     backgroundColor: colors.card.background,
-    padding: spacing.lg,
+    padding: 22,
     borderRadius: radii.xl,
     marginTop: spacing.lg,
     borderWidth: 1,
     borderColor: colors.border.default,
   },
 
-  question: {
-    color: colors.text.primary,
-    fontSize: 22,
-    fontWeight: 'bold',
-    lineHeight: 30,
-    marginBottom: spacing.lg,
-  },
-
   optionButton: {
+    width: '100%',
+    minWidth: 0,
     backgroundColor: colors.card.elevated,
     borderWidth: 2,
     borderColor: colors.border.default,
@@ -551,7 +556,9 @@ const styles = StyleSheet.create({
 
   optionText: {
     color: colors.text.primary,
-    ...typography.option,
+    fontSize: 16,
+    fontWeight: '600',
+    lineHeight: 24,
   },
 
   optionTextSelected: {
@@ -737,5 +744,26 @@ const styles = StyleSheet.create({
 
   modalSecondaryButton: {
     marginTop: spacing.sm,
+  },
+
+  unavailableCard: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: spacing.lg,
+    gap: spacing.md,
+  },
+
+  unavailableTitle: {
+    color: colors.text.primary,
+    ...typography.title,
+    textAlign: 'center',
+  },
+
+  unavailableMessage: {
+    color: colors.text.secondary,
+    ...typography.body,
+    lineHeight: 24,
+    textAlign: 'center',
+    marginBottom: spacing.md,
   },
 });

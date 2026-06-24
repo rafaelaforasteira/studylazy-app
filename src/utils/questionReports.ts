@@ -4,6 +4,8 @@ import type {
   QuestionReportContext,
 } from '../store/questionReportStore';
 import type { Question } from '../data/questionTypes';
+import { getQuestionPrompt } from '../data/questionTypes';
+import type { LessonMistakeInput } from '../store/mistakeStore';
 
 export type ReportableQuestion = {
   id: string;
@@ -11,10 +13,17 @@ export type ReportableQuestion = {
   question: string;
   options: string[];
   correctAnswer: string;
+  originType?: Question['originType'];
+  verified?: boolean;
   source?: string;
   year?: number;
   area?: string;
   topic?: string;
+  supportTitle?: string;
+  supportText?: string;
+  sourceCitation?: string;
+  prompt?: string;
+  contentFormat?: Question['contentFormat'];
 };
 
 export const REPORT_CATEGORIES: {
@@ -88,28 +97,25 @@ export function toReportableQuestion(
   return {
     id: String(question.externalId ?? question.id),
     subject,
-    question: question.question,
+    question: getQuestionPrompt(question),
     options: [...question.options],
     correctAnswer: question.correctAnswer,
+    originType: question.originType,
+    verified: question.verified,
     source: question.source,
     year: question.year,
     area: question.area,
     topic: question.topic,
+    supportTitle: question.supportTitle,
+    supportText: question.supportText,
+    sourceCitation: question.sourceCitation,
+    prompt: question.prompt,
+    contentFormat: question.contentFormat,
   };
 }
 
 export function toReportableFromMistake(
-  mistake: {
-    subject: string;
-    question: string;
-    options: string[];
-    correctAnswer: string;
-    externalId?: string;
-    source?: string;
-    year?: number;
-    area?: string;
-    topic?: string;
-  },
+  mistake: LessonMistakeInput & { subject: string },
   matchedQuestion?: Question | null
 ): ReportableQuestion {
   if (matchedQuestion) {
@@ -119,12 +125,19 @@ export function toReportableFromMistake(
   return {
     id: mistake.externalId ?? mistake.question.slice(0, 48),
     subject: mistake.subject,
-    question: mistake.question,
+    question: mistake.prompt ?? mistake.question,
     options: [...mistake.options],
     correctAnswer: mistake.correctAnswer,
+    originType: mistake.originType,
+    verified: mistake.verified,
     source: mistake.source,
     year: mistake.year,
     area: mistake.area,
     topic: mistake.topic,
+    supportTitle: mistake.supportTitle,
+    supportText: mistake.supportText,
+    sourceCitation: mistake.sourceCitation,
+    prompt: mistake.prompt,
+    contentFormat: mistake.contentFormat,
   };
 }

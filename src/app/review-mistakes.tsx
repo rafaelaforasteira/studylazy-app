@@ -12,6 +12,7 @@ import { useRouter } from 'expo-router';
 import AppScreen from '../components/ui/AppScreen';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import QuestionMetaBadges from '../components/questions/QuestionMetaBadges';
+import QuestionContent from '../components/questions/QuestionContent';
 import ReportProblemButton from '../components/questions/ReportProblemButton';
 
 import { colors } from '../constants/colors';
@@ -26,6 +27,7 @@ import {
 } from '../store/mistakeStore';
 import { findQuestionReference } from '../data/questionBank';
 import { toReportableFromMistake } from '../utils/questionReports';
+import { mistakeToQuestion } from '../utils/questionMistake';
 
 export default function ReviewMistakesScreen() {
   const router = useRouter();
@@ -67,15 +69,15 @@ export default function ReviewMistakesScreen() {
     [currentMistake]
   );
 
-  const questionForBadges = useMemo(
-    () =>
-      matchedQuestion ?? {
-        source: currentMistake?.source,
-        year: currentMistake?.year,
-        area: currentMistake?.area,
-      },
-    [currentMistake, matchedQuestion]
-  );
+  const displayQuestion = useMemo(() => {
+    if (!currentMistake) {
+      return null;
+    }
+
+    return matchedQuestion ?? mistakeToQuestion(currentMistake);
+  }, [currentMistake, matchedQuestion]);
+
+  const questionForBadges = displayQuestion;
 
   const reportableQuestion = useMemo(
     () =>
@@ -238,10 +240,12 @@ export default function ReviewMistakesScreen() {
           </View>
 
           <View style={styles.questionCard}>
-            <QuestionMetaBadges question={questionForBadges} />
-            <Text style={styles.question}>
-              {currentMistake.question}
-            </Text>
+            {displayQuestion ? (
+              <>
+                <QuestionMetaBadges question={questionForBadges ?? undefined} />
+                <QuestionContent question={displayQuestion} />
+              </>
+            ) : null}
 
             {currentMistake.options.map((option) => {
               const isSelected = selectedOption === option;
@@ -372,23 +376,20 @@ const styles = StyleSheet.create({
   },
 
   questionCard: {
+    width: '100%',
+    minWidth: 0,
+    flexShrink: 1,
     backgroundColor: colors.card.background,
-    padding: spacing.lg,
+    padding: 22,
     borderRadius: radii.xl,
     marginTop: spacing.lg,
     borderWidth: 1,
     borderColor: colors.border.default,
   },
 
-  question: {
-    color: colors.text.primary,
-    fontSize: 22,
-    fontWeight: 'bold',
-    lineHeight: 30,
-    marginBottom: spacing.lg,
-  },
-
   optionButton: {
+    width: '100%',
+    minWidth: 0,
     backgroundColor: colors.card.elevated,
     borderWidth: 2,
     borderColor: colors.border.default,
@@ -417,7 +418,9 @@ const styles = StyleSheet.create({
 
   optionText: {
     color: colors.text.primary,
-    ...typography.option,
+    fontSize: 16,
+    fontWeight: '600',
+    lineHeight: 24,
   },
 
   optionTextSelected: {
