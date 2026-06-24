@@ -18,7 +18,6 @@ import { radii } from '../../constants/radii';
 import { spacing } from '../../constants/spacing';
 
 import { useDashboardData } from '../../hooks/use-dashboard-data';
-import { getDateKeysForLastDays, formatShortWeekday } from '../../utils/date';
 import {
   getGoalLabel,
   getPreparationLabel,
@@ -35,6 +34,7 @@ import {
   getBestEvolutionPoint,
   getEvolutionSeries,
   getStrongestSubject,
+  getWeekCalendarDays,
   getWeakestSubject,
   getWeeklyStudyProgress,
   type EvolutionPeriod,
@@ -122,12 +122,7 @@ export default function AtividadeScreen() {
   const averageMinutes = calculateAverageSessionMinutes(data.lessonHistory);
   const weeklyProgress = getWeeklyStudyProgress(data.lessonHistory);
   const evolutionPoints = getEvolutionSeries(data.lessonHistory, period);
-  const periodDays =
-    PERIOD_OPTIONS.find((item) => item.key === period)?.days ?? 7;
-  const comparison = calculatePeriodComparison(
-    data.lessonHistory,
-    periodDays
-  );
+  const comparison = calculatePeriodComparison(data.lessonHistory, period);
   const bestPoint = getBestEvolutionPoint(evolutionPoints);
   const subjectPerformance = useMemo(
     () => calculateSubjectPerformance(data.lessonHistory),
@@ -151,17 +146,10 @@ export default function AtividadeScreen() {
     comparison.changePercent !== null &&
     comparison.changePercent > 0;
 
-  const weekDays = useMemo(() => {
-    const keys = getDateKeysForLastDays(7);
-    const activeDates = new Set(data.lessonHistory.map((item) => item.date));
-
-    return keys.map((key, index) => ({
-      key,
-      label: formatShortWeekday(key).charAt(0).toUpperCase(),
-      isActive: activeDates.has(key),
-      dayNumber: index + 1,
-    }));
-  }, [data.lessonHistory]);
+  const weekDays = useMemo(
+    () => getWeekCalendarDays(data.lessonHistory),
+    [data.lessonHistory]
+  );
 
   const averagePercent =
     averageMinutes > 0 && data.dailyGoalMinutes > 0
@@ -229,17 +217,30 @@ export default function AtividadeScreen() {
         <View style={styles.weekRow}>
           {weekDays.map((day) => (
             <View key={day.key} style={styles.dayCol}>
-              <Text style={styles.dayLabel}>{day.label}</Text>
+              <Text
+                style={[
+                  styles.dayLabel,
+                  day.isFuture && styles.dayLabelFuture,
+                ]}
+              >
+                {day.weekdayLabel}
+              </Text>
               <View
-                style={[styles.dayDot, day.isActive && styles.dayDotActive]}
+                style={[
+                  styles.dayDot,
+                  day.isActive && styles.dayDotActive,
+                  day.isToday && styles.dayDotToday,
+                  day.isFuture && styles.dayDotFuture,
+                ]}
               >
                 <Text
                   style={[
                     styles.dayDotText,
                     day.isActive && styles.dayDotTextActive,
+                    day.isFuture && styles.dayDotTextFuture,
                   ]}
                 >
-                  {day.isActive ? '✓' : String(day.dayNumber)}
+                  {String(day.dayOfMonth)}
                 </Text>
               </View>
             </View>
@@ -541,6 +542,7 @@ const styles = StyleSheet.create({
     borderColor: colors.border.default,
     borderRadius: radii.xl,
     padding: spacing.md,
+    overflow: 'hidden',
   },
 
   weekRow: {
@@ -560,6 +562,10 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
 
+  dayLabelFuture: {
+    opacity: 0.45,
+  },
+
   dayDot: {
     width: 34,
     height: 34,
@@ -576,6 +582,15 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
   },
 
+  dayDotToday: {
+    borderColor: colors.progress,
+    borderWidth: 2,
+  },
+
+  dayDotFuture: {
+    opacity: 0.45,
+  },
+
   dayDotText: {
     color: colors.text.secondary,
     fontSize: 11,
@@ -584,6 +599,10 @@ const styles = StyleSheet.create({
 
   dayDotTextActive: {
     color: '#111111',
+  },
+
+  dayDotTextFuture: {
+    color: colors.text.secondary,
   },
 
   weeklyGoal: {

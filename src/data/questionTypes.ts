@@ -9,5 +9,6 @@ export type Question = {
   year?: number;
   area?: string;
   topic?: string;
+  subject?: string;
   requiresImage?: boolean;
 };

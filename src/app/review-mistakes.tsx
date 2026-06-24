@@ -11,7 +11,7 @@ import { useRouter } from 'expo-router';
 
 import AppScreen from '../components/ui/AppScreen';
 import PrimaryButton from '../components/ui/PrimaryButton';
-import QuestionSourceBadges from '../components/questions/QuestionSourceBadges';
+import QuestionMetaBadges from '../components/questions/QuestionMetaBadges';
 import ReportProblemButton from '../components/questions/ReportProblemButton';
 
 import { colors } from '../constants/colors';
@@ -24,7 +24,7 @@ import {
   MistakeItem,
   useMistakeStore,
 } from '../store/mistakeStore';
-import { findQuestionByStatement } from '../data/questionBank';
+import { findQuestionReference } from '../data/questionBank';
 import { toReportableFromMistake } from '../utils/questionReports';
 
 export default function ReviewMistakesScreen() {
@@ -59,9 +59,22 @@ export default function ReviewMistakesScreen() {
   const matchedQuestion = useMemo(
     () =>
       currentMistake
-        ? findQuestionByStatement(currentMistake.question)
+        ? findQuestionReference({
+            externalId: currentMistake.externalId,
+            statement: currentMistake.question,
+          })
         : null,
     [currentMistake]
+  );
+
+  const questionForBadges = useMemo(
+    () =>
+      matchedQuestion ?? {
+        source: currentMistake?.source,
+        year: currentMistake?.year,
+        area: currentMistake?.area,
+      },
+    [currentMistake, matchedQuestion]
   );
 
   const reportableQuestion = useMemo(
@@ -225,10 +238,7 @@ export default function ReviewMistakesScreen() {
           </View>
 
           <View style={styles.questionCard}>
-            <QuestionSourceBadges
-              source={matchedQuestion?.source}
-              area={matchedQuestion?.area}
-            />
+            <QuestionMetaBadges question={questionForBadges} />
             <Text style={styles.question}>
               {currentMistake.question}
             </Text>

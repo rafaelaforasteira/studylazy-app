@@ -1,6 +1,16 @@
 import type { Question } from './questionTypes';
 import { validateEnemQuestionBank } from './validateEnemQuestions';
 
+/** Maps ENEM area labels to the session subject values used by the app. */
+export const ENEM_AREA_TO_SUBJECT: Record<string, string> = {
+  Linguagens: 'Português',
+  'Ciências Humanas': 'Ciências Humanas',
+};
+
+function resolveEnemSubject(area: string) {
+  return ENEM_AREA_TO_SUBJECT[area] ?? area;
+}
+
 function formatOption(id: string, text: string) {
   return `${id}) ${text}`;
 }
@@ -42,6 +52,7 @@ function buildEnemQuestion(params: {
     year: params.year,
     area: params.area,
     topic: params.topic,
+    subject: resolveEnemSubject(params.area),
     requiresImage: false,
   };
 }

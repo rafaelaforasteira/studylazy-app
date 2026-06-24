@@ -2,14 +2,31 @@ import {
   enem2024HumanasQuestions,
   enem2024LinguagensQuestions,
 } from './enem2024Questions';
+import {
+  composeLessonQuestions,
+  isEnemSourceQuestion,
+} from './questionSelection';
 import type { Question } from './questionTypes';
 
 export type { Question } from './questionTypes';
+export { allEnem2024Questions } from './enem2024Questions';
+export {
+  calculateEnemCount,
+  composeLessonQuestions,
+  getQuestionKey,
+  isEnemSourceQuestion,
+} from './questionSelection';
 
 type GetQuestionsForLessonParams = {
   subject: string;
   amount: number;
+  seenQuestionIds?: string[];
+  shuffleSeed?: number;
 };
+
+function isEnemQuestion(question: Question) {
+  return isEnemSourceQuestion(question);
+}
 
 const portugueseQuestions: Question[] = [
   {
@@ -206,8 +223,59 @@ export function getAllQuestions() {
   return all;
 }
 
+export function findQuestionByExternalId(externalId: string) {
+  return getAllQuestions().find(
+    (question) =>
+      question.externalId === externalId ||
+      String(question.id) === externalId
+  );
+}
+
 export function findQuestionByStatement(statement: string) {
   return getAllQuestions().find((question) => question.question === statement);
+}
+
+export function findQuestionReference({
+  externalId,
+  statement,
+}: {
+  externalId?: string;
+  statement: string;
+}) {
+  if (externalId) {
+    return (
+      findQuestionByExternalId(externalId) ??
+      findQuestionByStatement(statement)
+    );
+  }
+
+  return findQuestionByStatement(statement);
+}
+
+export function getQuestionBankStats() {
+  const all = getAllQuestions();
+  const enem = all.filter(isEnemQuestion);
+
+  const enemBySubject = {
+    'Português': enem.filter((question) => question.subject === 'Português')
+      .length,
+    'Ciências Humanas': enem.filter(
+      (question) => question.subject === 'Ciências Humanas'
+    ).length,
+  };
+
+  return {
+    totalQuestions: all.length,
+    totalEnemQuestions: enem.length,
+    enemEligibleBySubject: enemBySubject,
+    enemExternalIds: enem.map((question) =>
+      String(question.externalId ?? question.id)
+    ),
+  };
+}
+
+export function getEnemQuestionsForSubject(subject: string) {
+  return getQuestionBankBySubject(subject).filter(isEnemQuestion);
 }
 
 export function hasQuestionSourceBadges(question: Question) {
@@ -242,14 +310,108 @@ function getQuestionBankBySubject(subject: string) {
 export function getQuestionsForLesson({
   subject,
   amount,
+  seenQuestionIds,
+  shuffleSeed,
 }: GetQuestionsForLessonParams) {
-  const questionBank = getQuestionBankBySubject(subject);
+  const eligibleQuestions = getQuestionBankBySubject(subject).map(
+    (question) => ({
+      ...question,
+      subject: question.subject ?? subject,
+    })
+  );
 
-  const questions: Question[] = [];
+  return composeLessonQuestions(eligibleQuestions, {
+    amount,
+    seenQuestionIds,
+    shuffleSeed,
+  });
+}
 
-  for (let i = 0; i < amount; i++) {
-    questions.push(questionBank[i % questionBank.length]);
+function assertEnemQuestionBankIntegration() {
+  const stats = getQuestionBankStats();
+  const requiredIds = [
+    'ENEM2024_D1_C1_AZ_Q02',
+    'ENEM2024_D1_C1_AZ_Q38',
+    'ENEM2024_D1_C1_AZ_Q48',
+  ];
+
+  if (stats.totalEnemQuestions !== 10) {
+    throw new Error(
+      `Banco ENEM inválido: esperado 10 questões, encontrado ${stats.totalEnemQuestions}`
+    );
   }
 
-  return questions;
+  requiredIds.forEach((externalId) => {
+    if (!stats.enemExternalIds.includes(externalId)) {
+      throw new Error(`Questão ENEM ausente no banco final: ${externalId}`);
+    }
+  });
+
+  if (stats.enemEligibleBySubject['Português'] !== 2) {
+    throw new Error(
+      `ENEM elegível para Português inválido: ${stats.enemEligibleBySubject['Português']}`
+    );
+  }
+
+  if (stats.enemEligibleBySubject['Ciências Humanas'] !== 8) {
+    throw new Error(
+      `ENEM elegível para Ciências Humanas inválido: ${stats.enemEligibleBySubject['Ciências Humanas']}`
+    );
+  }
+
+  const portugueseSession = getQuestionsForLesson({
+    subject: 'Português',
+    amount: 5,
+  });
+  const humanasSession = getQuestionsForLesson({
+    subject: 'Ciências Humanas',
+    amount: 5,
+  });
+
+  const portugueseEnemCount = portugueseSession.filter(isEnemQuestion).length;
+  const humanasEnemCount = humanasSession.filter(isEnemQuestion).length;
+
+  if (portugueseEnemCount < 1) {
+    throw new Error(
+      `Seleção real de Português (amount=5) sem ENEM: ${portugueseEnemCount}`
+    );
+  }
+
+  if (humanasEnemCount < 1) {
+    throw new Error(
+      `Seleção real de Ciências Humanas (amount=5) sem ENEM: ${humanasEnemCount}`
+    );
+  }
+
+  const hasPortugueseEnem = portugueseSession.some(isEnemQuestion);
+  const hasHumanasEnem = humanasSession.some(isEnemQuestion);
+
+  if (!hasPortugueseEnem) {
+    throw new Error(
+      'Seleção de sessão não retorna questão ENEM para Português'
+    );
+  }
+
+  if (!hasHumanasEnem) {
+    throw new Error(
+      'Seleção de sessão não retorna questão ENEM para Ciências Humanas'
+    );
+  }
+
+  const sample = portugueseSession.find(isEnemQuestion) ?? humanasSession[0];
+
+  if (
+    !sample?.externalId ||
+    !sample.source ||
+    !sample.year ||
+    !sample.area ||
+    !sample.subject ||
+    !sample.question
+  ) {
+    throw new Error('Questão ENEM selecionada sem metadados completos');
+  }
+}
+
+if (typeof __DEV__ !== 'undefined' && __DEV__) {
+  assertEnemQuestionBankIntegration();
 }

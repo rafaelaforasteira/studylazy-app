@@ -24,6 +24,7 @@ export function useStartStudy() {
           subject,
           duration: String(duration),
           type: type || 'Teoria',
+          startedAt: String(Date.now()),
         },
       });
     },

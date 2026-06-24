@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import {
-  Alert,
+  Modal,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -12,7 +13,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 
 import AppScreen from '../components/ui/AppScreen';
 import PrimaryButton from '../components/ui/PrimaryButton';
-import QuestionSourceBadges from '../components/questions/QuestionSourceBadges';
+import QuestionMetaBadges from '../components/questions/QuestionMetaBadges';
 import ReportProblemButton from '../components/questions/ReportProblemButton';
 
 import { colors } from '../constants/colors';
@@ -34,10 +35,11 @@ import { toReportableQuestion } from '../utils/questionReports';
 export default function StudySessionScreen() {
   const router = useRouter();
 
-  const { subject, duration, type } = useLocalSearchParams<{
+  const { subject, duration, type, startedAt } = useLocalSearchParams<{
     subject: string;
     duration: string;
     type: string;
+    startedAt?: string;
   }>();
 
   const completeLesson = useStudyProgressStore(
@@ -50,13 +52,17 @@ export default function StudySessionScreen() {
   const lessonSubject = subject || 'Português';
   const lessonDuration = Number(duration) || 5;
   const lessonType = type || 'Teoria';
+  const sessionShuffleSeed = startedAt
+    ? Number(startedAt) % 2147483647
+    : undefined;
 
   const questions = useMemo(() => {
     return getQuestionsForLesson({
       subject: lessonSubject,
       amount: lessonDuration,
+      shuffleSeed: sessionShuffleSeed,
     });
-  }, [lessonSubject, lessonDuration]);
+  }, [lessonSubject, lessonDuration, sessionShuffleSeed]);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] =
     useState(0);
@@ -72,6 +78,7 @@ export default function StudySessionScreen() {
     earnedXp: 0,
     isRepeat: false,
   });
+  const [showExitModal, setShowExitModal] = useState(false);
 
   const hasSavedProgress = useRef(false);
 
@@ -106,6 +113,13 @@ export default function StudySessionScreen() {
         options: currentQuestion.options,
         selectedAnswer: selectedOption,
         correctAnswer: currentQuestion.correctAnswer,
+        externalId: currentQuestion.externalId
+          ? String(currentQuestion.externalId)
+          : String(currentQuestion.id),
+        source: currentQuestion.source,
+        year: currentQuestion.year,
+        area: currentQuestion.area,
+        topic: currentQuestion.topic,
       };
 
       setLessonMistakes((currentMistakes) => [
@@ -153,18 +167,22 @@ export default function StudySessionScreen() {
   }
 
   function handleExitLesson() {
-    Alert.alert(
-      'Sair da lição?',
-      'O progresso desta lição não será salvo.',
-      [
-        { text: 'Continuar estudando', style: 'cancel' },
-        {
-          text: 'Sair',
-          style: 'destructive',
-          onPress: () => router.back(),
-        },
-      ]
-    );
+    setShowExitModal(true);
+  }
+
+  function handleDismissExit() {
+    setShowExitModal(false);
+  }
+
+  function handleConfirmExit() {
+    setShowExitModal(false);
+
+    if (router.canGoBack()) {
+      router.back();
+      return;
+    }
+
+    router.replace(ROUTES.tabsEstudar);
   }
 
   if (isFinished) {
@@ -254,6 +272,22 @@ export default function StudySessionScreen() {
   return (
     <AppScreen scroll={false}>
       <View style={styles.container}>
+        <View style={styles.header}>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Sair da lição"
+            hitSlop={12}
+            onPress={handleExitLesson}
+            style={styles.closeButton}
+          >
+            <SymbolView
+              name={{ ios: 'xmark', android: 'close', web: 'close' }}
+              tintColor={colors.text.primary}
+              size={20}
+            />
+          </Pressable>
+        </View>
+
         <ScrollView
           style={styles.scroll}
           contentContainerStyle={styles.scrollContent}
@@ -282,10 +316,7 @@ export default function StudySessionScreen() {
           </View>
 
           <View style={styles.questionCard}>
-            <QuestionSourceBadges
-              source={currentQuestion.source}
-              area={currentQuestion.area}
-            />
+            <QuestionMetaBadges question={currentQuestion} />
             <Text style={styles.question}>
               {currentQuestion.question}
             </Text>
@@ -377,6 +408,35 @@ export default function StudySessionScreen() {
             onPress={handleExitLesson}
           />
         </View>
+
+        <Modal
+          visible={showExitModal}
+          transparent
+          animationType="fade"
+          onRequestClose={handleDismissExit}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalCard}>
+              <Text style={styles.modalTitle}>Sair da lição?</Text>
+              <Text style={styles.modalMessage}>
+                O progresso da sessão atual não será concluído. Nenhum XP,
+                histórico ou sequência será alterado.
+              </Text>
+
+              <PrimaryButton
+                label="Continuar estudando"
+                onPress={handleDismissExit}
+              />
+
+              <PrimaryButton
+                label="Sair da lição"
+                variant="secondary"
+                onPress={handleConfirmExit}
+                style={styles.modalSecondaryButton}
+              />
+            </View>
+          </View>
+        </Modal>
       </View>
     </AppScreen>
   );
@@ -385,6 +445,24 @@ export default function StudySessionScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginBottom: spacing.sm,
+    zIndex: 2,
+  },
+
+  closeButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.surfaceSecondary,
+    borderWidth: 1,
+    borderColor: colors.border.default,
   },
 
   scroll: {
@@ -623,6 +701,41 @@ const styles = StyleSheet.create({
   },
 
   secondaryFinishButton: {
+    marginTop: spacing.sm,
+  },
+
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.65)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: spacing.lg,
+  },
+
+  modalCard: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: colors.surface,
+    borderRadius: radii.xl,
+    borderWidth: 1,
+    borderColor: colors.border.default,
+    padding: spacing.lg,
+  },
+
+  modalTitle: {
+    color: colors.text.primary,
+    ...typography.title,
+    marginBottom: spacing.sm,
+  },
+
+  modalMessage: {
+    color: colors.text.secondary,
+    ...typography.body,
+    lineHeight: 22,
+    marginBottom: spacing.lg,
+  },
+
+  modalSecondaryButton: {
     marginTop: spacing.sm,
   },
 });

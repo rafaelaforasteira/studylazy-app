@@ -54,6 +54,44 @@ export function getWeekStartKey(date = new Date()) {
   return getLocalDateKey(local);
 }
 
+/** Monday → Sunday keys for the week containing `date`. */
+export function getCurrentWeekDateKeys(date = new Date()) {
+  const weekStart = parseLocalDateKey(getWeekStartKey(date));
+  const keys: string[] = [];
+
+  for (let index = 0; index < 7; index += 1) {
+    const day = new Date(weekStart);
+    day.setDate(weekStart.getDate() + index);
+    keys.push(getLocalDateKey(day));
+  }
+
+  return keys;
+}
+
+export const WEEKDAY_SHORT_LABELS = ['S', 'T', 'Q', 'Q', 'S', 'S', 'D'] as const;
+
+export const WEEKDAY_CHART_LABELS = [
+  'Seg',
+  'Ter',
+  'Qua',
+  'Qui',
+  'Sex',
+  'Sáb',
+  'Dom',
+] as const;
+
+export function isTodayKey(dateKey: string, today = new Date()) {
+  return dateKey === getLocalDateKey(today);
+}
+
+export function isFutureDateKey(dateKey: string, today = new Date()) {
+  const target = parseLocalDateKey(dateKey);
+  const now = new Date(today);
+  now.setHours(0, 0, 0, 0);
+  target.setHours(0, 0, 0, 0);
+  return target.getTime() > now.getTime();
+}
+
 export function formatShortWeekday(dateKey: string) {
   const date = parseLocalDateKey(dateKey);
   return date.toLocaleDateString('pt-BR', { weekday: 'short' });

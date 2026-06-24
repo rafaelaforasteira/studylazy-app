@@ -7,6 +7,11 @@ export type LessonMistakeInput = {
   options: string[];
   selectedAnswer: string;
   correctAnswer: string;
+  externalId?: string;
+  source?: string;
+  year?: number;
+  area?: string;
+  topic?: string;
 };
 
 export type MistakeItem = {
@@ -16,6 +21,11 @@ export type MistakeItem = {
   options: string[];
   selectedAnswer: string;
   correctAnswer: string;
+  externalId?: string;
+  source?: string;
+  year?: number;
+  area?: string;
+  topic?: string;
   errorCount: number;
   lastAnsweredAt: string;
 };
@@ -62,6 +72,11 @@ export const useMistakeStore = create<MistakeStore>()(
                 options: mistake.options,
                 selectedAnswer: mistake.selectedAnswer,
                 correctAnswer: mistake.correctAnswer,
+                externalId: mistake.externalId ?? existingMistake.externalId,
+                source: mistake.source ?? existingMistake.source,
+                year: mistake.year ?? existingMistake.year,
+                area: mistake.area ?? existingMistake.area,
+                topic: mistake.topic ?? existingMistake.topic,
                 errorCount: existingMistake.errorCount + 1,
                 lastAnsweredAt: new Date().toISOString(),
               };
@@ -76,6 +91,11 @@ export const useMistakeStore = create<MistakeStore>()(
               options: mistake.options,
               selectedAnswer: mistake.selectedAnswer,
               correctAnswer: mistake.correctAnswer,
+              externalId: mistake.externalId,
+              source: mistake.source,
+              year: mistake.year,
+              area: mistake.area,
+              topic: mistake.topic,
               errorCount: 1,
               lastAnsweredAt: new Date().toISOString(),
             });

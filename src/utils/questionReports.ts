@@ -104,6 +104,11 @@ export function toReportableFromMistake(
     question: string;
     options: string[];
     correctAnswer: string;
+    externalId?: string;
+    source?: string;
+    year?: number;
+    area?: string;
+    topic?: string;
   },
   matchedQuestion?: Question | null
 ): ReportableQuestion {
@@ -112,10 +117,14 @@ export function toReportableFromMistake(
   }
 
   return {
-    id: mistake.question.slice(0, 48),
+    id: mistake.externalId ?? mistake.question.slice(0, 48),
     subject: mistake.subject,
     question: mistake.question,
     options: [...mistake.options],
     correctAnswer: mistake.correctAnswer,
+    source: mistake.source,
+    year: mistake.year,
+    area: mistake.area,
+    topic: mistake.topic,
   };
 }

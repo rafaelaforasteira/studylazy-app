@@ -1,9 +1,15 @@
 import type { LessonHistoryItem } from '../store/studyProgressStore';
+import { colors } from '../constants/colors';
 import {
+  getCurrentWeekDateKeys,
   getDateKeysForLastDays,
   getLocalDateKey,
   getWeekStartKey,
+  isFutureDateKey,
+  isTodayKey,
   parseLocalDateKey,
+  WEEKDAY_CHART_LABELS,
+  WEEKDAY_SHORT_LABELS,
 } from './date';
 import { getLevelInfo } from './gamification';
 
@@ -19,6 +25,14 @@ export const RADAR_SUBJECTS = [
 ] as const;
 
 export type RadarSubject = (typeof RADAR_SUBJECTS)[number];
+
+export const RADAR_SUBJECT_COLORS: Record<RadarSubject, string> = {
+  Português: colors.primary,
+  Matemática: colors.progress,
+  Redação: colors.warning,
+  'Ciências Humanas': colors.success,
+  'Ciências da Natureza': colors.danger,
+};
 
 export type SubjectPerformance = {
   subject: RadarSubject;
@@ -87,9 +101,10 @@ export function calculateAverageSessionMinutes(history: LessonHistoryItem[]) {
 
 export function aggregateStudyByDay(
   history: LessonHistoryItem[],
-  days: number
+  days: number,
+  fromDate = new Date()
 ) {
-  const keys = getDateKeysForLastDays(days);
+  const keys = getDateKeysForLastDays(days, fromDate);
   const totals = new Map(keys.map((key) => [key, 0]));
 
   history.forEach((item) => {
@@ -101,6 +116,23 @@ export function aggregateStudyByDay(
   return keys.map((key) => ({
     key,
     minutes: totals.get(key) ?? 0,
+  }));
+}
+
+export function aggregateStudyByCurrentWeek(history: LessonHistoryItem[]) {
+  const keys = getCurrentWeekDateKeys();
+  const totals = new Map(keys.map((key) => [key, 0]));
+
+  history.forEach((item) => {
+    if (totals.has(item.date)) {
+      totals.set(item.date, (totals.get(item.date) ?? 0) + item.minutes);
+    }
+  });
+
+  return keys.map((key, index) => ({
+    key,
+    minutes: totals.get(key) ?? 0,
+    label: WEEKDAY_CHART_LABELS[index],
   }));
 }
 
@@ -177,29 +209,45 @@ export function getEvolutionSeries(
   period: EvolutionPeriod
 ) {
   if (period === '7d') {
-    const daily = aggregateStudyByDay(history, 7);
-    return daily.map((item) => ({
-      ...item,
-      label: formatShortDayLabel(item.key),
-    }));
+    return aggregateStudyByCurrentWeek(history);
   }
 
   if (period === '30d') {
-    return aggregateStudyByWeek(history, 4);
+    const daily = aggregateStudyByDay(history, 30);
+    return daily.map((item) => ({
+      ...item,
+      label: formatShortDayMonthLabel(item.key),
+    }));
   }
 
-  return aggregateStudyByMonth(history, 3);
+  return aggregateStudyByWeek(history, 13);
 }
 
-function formatShortDayLabel(dateKey: string) {
+function formatShortDayMonthLabel(dateKey: string) {
   const date = parseLocalDateKey(dateKey);
-  return date.toLocaleDateString('pt-BR', { weekday: 'short' });
+  return date.toLocaleDateString('pt-BR', {
+    day: '2-digit',
+    month: 'short',
+  });
 }
 
 export function calculatePeriodComparison(
   history: LessonHistoryItem[],
-  periodDays: number
+  period: EvolutionPeriod
 ) {
+  if (period === '7d') {
+    const currentKeys = new Set(getCurrentWeekDateKeys());
+    const previousWeekStart = parseLocalDateKey(getWeekStartKey());
+    previousWeekStart.setDate(previousWeekStart.getDate() - 7);
+    const previousKeys = new Set(getCurrentWeekDateKeys(previousWeekStart));
+
+    const currentTotal = sumMinutesForKeys(history, currentKeys);
+    const previousTotal = sumMinutesForKeys(history, previousKeys);
+
+    return buildPeriodComparison(currentTotal, previousTotal);
+  }
+
+  const periodDays = period === '30d' ? 30 : 90;
   const currentKeys = new Set(getDateKeysForLastDays(periodDays));
   const previousAnchor = new Date();
   previousAnchor.setDate(previousAnchor.getDate() - periodDays);
@@ -207,21 +255,32 @@ export function calculatePeriodComparison(
     getDateKeysForLastDays(periodDays, previousAnchor)
   );
 
-  const currentTotal = history
-    .filter((item) => currentKeys.has(item.date))
-    .reduce((sum, item) => sum + item.minutes, 0);
+  const currentTotal = sumMinutesForKeys(history, currentKeys);
+  const previousTotal = sumMinutesForKeys(history, previousKeys);
 
-  const previousTotal = history
-    .filter((item) => previousKeys.has(item.date))
-    .reduce((sum, item) => sum + item.minutes, 0);
+  return buildPeriodComparison(currentTotal, previousTotal);
+}
 
+function sumMinutesForKeys(
+  history: LessonHistoryItem[],
+  keys: Set<string>
+) {
+  return history
+    .filter((item) => keys.has(item.date))
+    .reduce((sum, item) => sum + item.minutes, 0);
+}
+
+function buildPeriodComparison(
+  currentTotal: number,
+  previousTotal: number
+): PeriodComparison {
   if (previousTotal <= 0) {
     return {
       currentTotal,
       previousTotal,
       changePercent: null,
       hasComparison: false,
-    } satisfies PeriodComparison;
+    };
   }
 
   const changePercent = roundPercent(
@@ -233,7 +292,7 @@ export function calculatePeriodComparison(
     previousTotal,
     changePercent,
     hasComparison: true,
-  } satisfies PeriodComparison;
+  };
 }
 
 export function calculateSubjectPerformance(
@@ -348,8 +407,39 @@ export function calculateAchievements(params: {
   return definitions;
 }
 
-export function getActiveDaysInLastWeek(history: LessonHistoryItem[]) {
-  const keys = getDateKeysForLastDays(7);
+export type WeekCalendarDay = {
+  key: string;
+  weekdayLabel: string;
+  dayOfMonth: number;
+  isActive: boolean;
+  isToday: boolean;
+  isFuture: boolean;
+};
+
+export function getWeekCalendarDays(history: LessonHistoryItem[]) {
+  const keys = getCurrentWeekDateKeys();
+  const activeDates = new Set(
+    history
+      .filter((item) => keys.includes(item.date))
+      .map((item) => item.date)
+  );
+
+  return keys.map((key, index) => {
+    const date = parseLocalDateKey(key);
+
+    return {
+      key,
+      weekdayLabel: WEEKDAY_SHORT_LABELS[index],
+      dayOfMonth: date.getDate(),
+      isActive: activeDates.has(key),
+      isToday: isTodayKey(key),
+      isFuture: isFutureDateKey(key),
+    } satisfies WeekCalendarDay;
+  });
+}
+
+export function getActiveDaysInCurrentWeek(history: LessonHistoryItem[]) {
+  const keys = getCurrentWeekDateKeys();
   const active = new Set(
     history.filter((item) => keys.includes(item.date)).map((item) => item.date)
   );
@@ -359,6 +449,10 @@ export function getActiveDaysInLastWeek(history: LessonHistoryItem[]) {
     totalDays: keys.length,
     activeDateKeys: keys.filter((key) => active.has(key)),
   };
+}
+
+export function getActiveDaysInLastWeek(history: LessonHistoryItem[]) {
+  return getActiveDaysInCurrentWeek(history);
 }
 
 export function getWeeklyStudyProgress(history: LessonHistoryItem[]) {

@@ -1,17 +1,13 @@
-import { useMemo } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  useWindowDimensions,
-  View,
-} from 'react-native';
-import Svg, { Line, Polygon, Text as SvgText } from 'react-native-svg';
+import { useMemo, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import Svg, { Circle, Line, Polygon, Text as SvgText } from 'react-native-svg';
 
 import { colors } from '../../constants/colors';
-import { layout, spacing } from '../../constants/spacing';
-
-import type { SubjectPerformance } from '../../utils/profileAnalytics';
+import { spacing } from '../../constants/spacing';
+import {
+  RADAR_SUBJECT_COLORS,
+  type SubjectPerformance,
+} from '../../utils/profileAnalytics';
 
 type PerformanceRadarChartProps = {
   performance: SubjectPerformance[];
@@ -20,17 +16,14 @@ type PerformanceRadarChartProps = {
 export default function PerformanceRadarChart({
   performance,
 }: PerformanceRadarChartProps) {
-  const { width } = useWindowDimensions();
-  const maxSize =
-    Platform.OS === 'web'
-      ? layout.webMaxWidth - spacing.screenHorizontal * 2
-      : width - spacing.screenHorizontal * 2;
-  const size = Math.min(maxSize, 320);
+  const [chartSize, setChartSize] = useState(0);
+  const size = Math.max(chartSize, 0);
   const center = size / 2;
-  const radius = size * 0.3;
+  const radius = size * 0.28;
+  const labelRadius = size * 0.38;
   const levels = 4;
 
-  const { polygonPoints, labelPositions } = useMemo(() => {
+  const { polygonPoints, vertexPoints } = useMemo(() => {
     const count = performance.length;
     const angleStep = (Math.PI * 2) / count;
 
@@ -42,17 +35,18 @@ export default function PerformanceRadarChart({
       return {
         x: center + Math.cos(angle) * distance,
         y: center + Math.sin(angle) * distance,
-        labelX: center + Math.cos(angle) * (radius + 28),
-        labelY: center + Math.sin(angle) * (radius + 28),
+        labelX: center + Math.cos(angle) * labelRadius,
+        labelY: center + Math.sin(angle) * labelRadius,
+        angle,
         item,
       };
     });
 
     return {
       polygonPoints: dataPoints.map((point) => `${point.x},${point.y}`).join(' '),
-      labelPositions: dataPoints,
+      vertexPoints: dataPoints,
     };
-  }, [center, performance, radius]);
+  }, [center, labelRadius, performance, radius]);
 
   const gridPolygons = useMemo(() => {
     const count = performance.length;
@@ -61,85 +55,111 @@ export default function PerformanceRadarChart({
     return Array.from({ length: levels }, (_, levelIndex) => {
       const levelRadius = (radius / levels) * (levelIndex + 1);
 
-      const points = Array.from({ length: count }, (_, index) => {
+      return Array.from({ length: count }, (_, index) => {
         const angle = -Math.PI / 2 + angleStep * index;
         const x = center + Math.cos(angle) * levelRadius;
         const y = center + Math.sin(angle) * levelRadius;
         return `${x},${y}`;
       }).join(' ');
-
-      return points;
     });
   }, [center, levels, performance.length, radius]);
 
-  const hasAnyData = performance.some((item) => item.hasData);
-
-  if (!hasAnyData) {
-    return (
-      <View style={styles.empty}>
-        <Text style={styles.emptyText}>
-          Continue estudando para visualizar seu desempenho por matéria.
-        </Text>
-      </View>
-    );
-  }
-
   return (
     <View style={styles.container}>
-      <Svg width={size} height={size}>
-        {gridPolygons.map((points, index) => (
-          <Polygon
-            key={`grid-${index}`}
-            points={points}
-            fill="none"
-            stroke={colors.border.default}
-            strokeWidth={1}
-          />
-        ))}
+      <View
+        style={styles.chartWrap}
+        onLayout={(event) => {
+          const nextSize = Math.floor(event.nativeEvent.layout.width);
 
-        {labelPositions.map((point, index) => (
-          <Line
-            key={`axis-${index}`}
-            x1={center}
-            y1={center}
-            x2={center + Math.cos(-Math.PI / 2 + ((Math.PI * 2) / performance.length) * index) * radius}
-            y2={center + Math.sin(-Math.PI / 2 + ((Math.PI * 2) / performance.length) * index) * radius}
-            stroke={colors.border.subtle}
-            strokeWidth={1}
-          />
-        ))}
+          if (nextSize > 0 && nextSize !== chartSize) {
+            setChartSize(nextSize);
+          }
+        }}
+      >
+        {size > 0 ? (
+          <Svg width={size} height={size}>
+            {gridPolygons.map((points, index) => (
+              <Polygon
+                key={`grid-${index}`}
+                points={points}
+                fill="none"
+                stroke={colors.border.default}
+                strokeWidth={1}
+              />
+            ))}
 
-        <Polygon
-          points={polygonPoints}
-          fill="rgba(139, 92, 246, 0.25)"
-          stroke={colors.primary}
-          strokeWidth={2}
-        />
+            {vertexPoints.map((point, index) => (
+              <Line
+                key={`axis-${index}`}
+                x1={center}
+                y1={center}
+                x2={center + Math.cos(point.angle) * radius}
+                y2={center + Math.sin(point.angle) * radius}
+                stroke={colors.border.subtle}
+                strokeWidth={1}
+              />
+            ))}
 
-        {labelPositions.map((point) => (
-          <SvgText
-            key={point.item.subject}
-            x={point.labelX}
-            y={point.labelY}
-            fill={colors.text.secondary}
-            fontSize="10"
-            fontWeight="600"
-            textAnchor="middle"
-          >
-            {point.item.subject.split(' ')[0]}
-          </SvgText>
-        ))}
-      </Svg>
+            <Polygon
+              points={polygonPoints}
+              fill="rgba(139, 92, 246, 0.25)"
+              stroke={colors.primary}
+              strokeWidth={2}
+            />
+
+            {vertexPoints.map((point) => {
+              const subjectColor =
+                RADAR_SUBJECT_COLORS[point.item.subject] ?? colors.primary;
+
+              return (
+                <Circle
+                  key={`vertex-${point.item.subject}`}
+                  cx={point.x}
+                  cy={point.y}
+                  r={5}
+                  fill={subjectColor}
+                  stroke={colors.background}
+                  strokeWidth={2}
+                />
+              );
+            })}
+
+            {vertexPoints.map((point) => (
+              <SvgText
+                key={`label-${point.item.subject}`}
+                x={point.labelX}
+                y={point.labelY}
+                fill={colors.text.secondary}
+                fontSize="10"
+                fontWeight="600"
+                textAnchor="middle"
+              >
+                {point.item.subject}
+              </SvgText>
+            ))}
+          </Svg>
+        ) : null}
+      </View>
 
       <View style={styles.legend}>
-        {performance.map((item) => (
-          <View key={item.subject} style={styles.legendItem}>
-            <Text style={styles.legendSubject}>{item.subject}</Text>
-            <Text style={styles.legendValue}>
-              {item.hasData ? `${item.accuracy}%` : 'Sem dados'}
-            </Text>
-          </View>
-        ))}
+        {performance.map((item) => {
+          const subjectColor =
+            RADAR_SUBJECT_COLORS[item.subject] ?? colors.primary;
+
+          return (
+            <View key={item.subject} style={styles.legendItem}>
+              <View style={styles.legendLeft}>
+                <View
+                  style={[styles.legendDot, { backgroundColor: subjectColor }]}
+                />
+                <Text style={styles.legendSubject}>{item.subject}</Text>
+              </View>
+              <Text style={styles.legendValue}>
+                {item.hasData ? `${item.accuracy}%` : 'Sem dados'}
+              </Text>
+            </View>
+          );
+        })}
       </View>
     </View>
   );
@@ -148,41 +168,57 @@ export default function PerformanceRadarChart({
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    width: '100%',
+    overflow: 'hidden',
+  },
+
+  chartWrap: {
+    width: '100%',
+    minHeight: 280,
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
   },
 
   legend: {
     width: '100%',
     marginTop: spacing.md,
     gap: spacing.xs,
+    paddingBottom: spacing.xs,
   },
 
   legendItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     gap: spacing.sm,
+  },
+
+  legendLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    flex: 1,
+    paddingRight: spacing.sm,
+  },
+
+  legendDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
   },
 
   legendSubject: {
     color: colors.text.secondary,
     fontSize: 11,
     fontWeight: '700',
-    flex: 1,
+    flexShrink: 1,
   },
 
   legendValue: {
     color: colors.text.secondary,
     fontSize: 11,
     fontWeight: '800',
-  },
-
-  empty: {
-    paddingVertical: spacing.lg,
-  },
-
-  emptyText: {
-    color: colors.text.secondary,
-    fontSize: 14,
-    textAlign: 'center',
-    lineHeight: 20,
+    textAlign: 'right',
   },
 });
