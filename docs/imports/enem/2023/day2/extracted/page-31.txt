@@ -1,0 +1,48 @@
+31	MT • 2º DIA • CADERNO 5 • AMARELO
+QUESTÃO 179
+Uma pessoa comprou um ingresso para o cinema em cuja entrada está afixado um mapa com a representação
+bidimensional do posicionamento das poltronas, conforme a figura. Essa pessoa, após consultar o mapa, começou
+a subir uma das escadas e parou na posição indicada pela estrela, direcionada para o norte. Ela conferiu seu bilhete
+e observou que, para encontrar sua poltrona, deveria partir do ponto onde estava, continuar subindo a escada na
+direção norte por mais quatro fileiras e olhar à sua direita, e sua poltrona será a terceira.
+Fileiras
+Escada
+	Escada
+Poltrona
+Posições
+Tela
+Entrada
+ 	A
+B
+C
+D
+E
+F
+G
+H
+I
+J
+2	1 	3 	4 	5 	6 	7 	8 	9 	10 11 12
+S
+N
+L	O
+Nesse cinema, as poltronas são identificadas por uma letra, que indica a fileira, e um número, que fornece a
+posição da poltrona na fileira, respectivamente.
+A poltrona dessa pessoa é a identificada por
+A	A A6.
+B	B H1.
+C	C H6.
+D	D I1.
+E	E I6.
+QUESTÃO 180
+O metrô de um município oferece dois tipos de tíquetes com colorações diferentes, azul e vermelha, sendo vendidos
+em cartelas, cada qual com nove tíquetes da mesma cor e mesmo valor unitário. Duas cartelas de tíquetes azuis e
+uma cartela de tíquetes vermelhos são vendidas por R$ 32,40. Sabe-se que o preço de um tíquete azul menos o preço
+de um tíquete vermelho é igual ao preço de um tíquete vermelho mais cinco centavos.
+Qual o preço, em real, de uma cartela de tíquetes vermelhos?
+A	A 4,68
+B	B 6,30
+C	C 9,30
+D	D 10,50
+E	E 10,65
+*020125AM31*

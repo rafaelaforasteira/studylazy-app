@@ -1,0 +1,36 @@
+17	MT • 2º DIA • CADERNO 5 • AMARELO
+QUESTÃO 139
+Uma pessoa pratica quatro atividades físicas — caminhar, correr, andar de bicicleta e jogar futebol — como parte
+de seu programa de emagrecimento. Essas atividades são praticadas semanalmente de acordo com o quadro, que
+apresenta o número de horas diárias por atividade.
+Dias da semana 	Caminhar 	Correr 	Andar de bicicleta 	Jogar futebol
+Segunda-feira 	1,0 	0,5 	0,0 	2,0
+Terça-feira 	0,5 	1,0 	0,5 	1,0
+Quarta-feira 	0,0 	1,5 	1,0 	0,5
+Quinta-feira 	0,0 	2,0 	0,0 	0,0
+Sexta-feira 	0,0 	0,5 	0,0 	2,5
+Ela deseja comemorar seu aniversário e escolhe o dia da semana em que o gasto calórico com as atividades
+físicas praticadas for o maior. Para tanto, considera que os valores dos gastos calóricos das atividades por hora (cal/h)
+são os seguintes:
+Atividade física 	Caminhar 	Correr 	Andar de bicicleta 	Jogar futebol
+Gasto calórico (cal/h) 	248 	764 	356 	492
+O dia da semana em que será comemorado o aniversário é
+A	A segunda-feira.
+B	B terça-feira.
+C	C quarta-feira.
+D	D quinta-feira.
+E	E sexta-feira.
+QUESTÃO 140
+A cada bimestre, a diretora de uma escola compra uma quantidade de folhas de papel ofício proporcional ao número
+de alunos matriculados. No bimestre passado, ela comprou 6 000 folhas para serem utilizadas pelos 1 200 alunos
+matriculados. Neste bimestre, alguns alunos cancelaram suas matrículas e a escola tem, agora, 1 150 alunos.
+A diretora só pode gastar R$ 220,00 nessa compra, e sabe que o fornecedor da escola vende as folhas de papel
+ofício em embalagens de 100 unidades a R$ 4,00 a embalagem. Assim, será preciso convencer o fornecedor a dar um
+desconto à escola, de modo que seja possível comprar a quantidade total de papel ofício necessária para o bimestre.
+O desconto necessário no preço final da compra, em porcentagem, pertence ao intervalo
+A	A (5,0 ; 5,5).
+B	B (8,0 ; 8,5).
+C	C (11,5 ; 12,5).
+D	D (19,5 ; 20,5).
+E	E (3,5 ; 4,0).
+*020125AM17*

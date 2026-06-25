@@ -1,0 +1,2935 @@
+{
+  "expected": 84,
+  "parsed": 84,
+  "missing": [],
+  "questions": [
+    {
+      "externalId": "ENEM-2023-D1-C1-ING-01",
+      "questionNumber": 1,
+      "languageTrack": "english",
+      "area": "languages",
+      "answerKey": "B",
+      "supportTitle": "The average american tosses 300 pounds of food",
+      "supportText": "each year, making food the number one contributor to\nAmerica’s landfills. Eat your leftovers and keep your\nperishables in the fridge – the Earth is counting on it.",
+      "sourceCitation": "Disponível em: https://mir-s3-cdn-cf.behance.net. Acesso em: 29 out. 2021 (adaptado).",
+      "prompt": "Esse cartaz de campanha sugere que",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "os lixões precisam de ampliação."
+        },
+        {
+          "id": "B",
+          "text": "o desperdício degrada o ambiente."
+        },
+        {
+          "id": "C",
+          "text": "os mercados doam alimentos perecíveis."
+        },
+        {
+          "id": "D",
+          "text": "a desnutrição compromete o raciocínio."
+        },
+        {
+          "id": "E",
+          "text": "as residências carecem de refrigeradores."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-ING-02",
+      "questionNumber": 2,
+      "languageTrack": "english",
+      "area": "languages",
+      "answerKey": "B",
+      "supportTitle": "No man is an island,",
+      "supportText": "Entire of itself;\nEvery man is a piece of the continent,\nA part of the main.\n[...]\nAny man’s death diminishes me,\nBecause I am involved in mankind.",
+      "sourceCitation": "DONNE, J. The Works of John Donne. Londres: John W. Parker, 1839 (fragmento).",
+      "prompt": "Nesse poema, a expressão “No man is an island ” ressalta o(a)",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "medo da morte."
+        },
+        {
+          "id": "B",
+          "text": "ideia de conexão."
+        },
+        {
+          "id": "C",
+          "text": "conceito de solidão."
+        },
+        {
+          "id": "D",
+          "text": "risco de devastação."
+        },
+        {
+          "id": "E",
+          "text": "necessidade de empatia."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-ING-03",
+      "questionNumber": 3,
+      "languageTrack": "english",
+      "area": "languages",
+      "answerKey": "D",
+      "supportTitle": "Things We Carry on the Sea",
+      "supportText": "We carry tears in our eyes: good-bye father, good-bye\n[mother\nWe carry soil in small bags: may home never fade in our\n[hearts\nWe carry carnage of mining, droughts, floods, genocides\nWe carry dust of our families and neighbors incinerated\n[in mushroom clouds\nWe carry our islands sinking under the sea\nWe carry our hands, feet, bones, hearts and best minds\n[for a new life\nWe carry diplomas: medicine, engineer, nurse,\n[education, math, poetry, even if they mean\n[nothing to the other shore\nWe carry railroads, plantations, laundromats,\n[bodegas, taco trucks, farms, factories, nursing\n[homes, hospitals, schools, temples... built on\n[our ancestors’ backs\nWe carry old homes along the spine, new dreams in our\n[chests\nWe carry yesterday, today and tomorrow\nWe’re orphans of the wars forced upon us\nWe’re refugees of the sea rising from industrial wastes\nAnd we carry our mother tongues\n[...]\nAs we drift... in our rubber boats... from shore... to shore...\n[to shore...",
+      "sourceCitation": "PING, W. Disponível em: https://poets.org. Acesso em: 1 jun. 2023 (fragmento).",
+      "prompt": "Ao retratar a trajetória de refugiados, o poema recorre à imagem de viagem marítima para destacar o(a)",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "risco de choques culturais."
+        },
+        {
+          "id": "B",
+          "text": "impacto do ensino de história."
+        },
+        {
+          "id": "C",
+          "text": "importância da luta ambiental."
+        },
+        {
+          "id": "D",
+          "text": "existência de experiências plurais."
+        },
+        {
+          "id": "E",
+          "text": "necessidade de capacitação profissional."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-ING-04",
+      "questionNumber": 4,
+      "languageTrack": "english",
+      "area": "languages",
+      "answerKey": "A",
+      "supportTitle": "Spanglish",
+      "supportText": "pues estoy creando Spanglish\nbi-cultural systems\nscientific lexicographical\ninter-textual integrations\ntwo expressions\nexistentially wired\ntwo dominant languages\ncontinentally abrazándose\nin colloquial combate\nimperio spanglish emerges\nsobre territorio bi-lingual\nlas novelas mexicanas\nmixing with radiorocknroll\nimmigrant/migrant\nnasal mispronouncements\nhip-hop, street salsa, spanish pop\nstandard english classroom\nwith computer technicalities\nspanglish is literally perfect",
+      "sourceCitation": "LAVIERA, T. Benedición: The Complete Poetry of Tato Laviera. Houston: Arte Público Press, 2014 (fragmento).",
+      "prompt": "Nesse poema de Tato Laviera, o eu lírico destaca uma",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "convergência linguístico-cultural."
+        },
+        {
+          "id": "B",
+          "text": "característica histórico-cultural."
+        },
+        {
+          "id": "C",
+          "text": "tendência estilístico-literária."
+        },
+        {
+          "id": "D",
+          "text": "discriminação cultural."
+        },
+        {
+          "id": "E",
+          "text": "censura musical."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-ESP-02",
+      "questionNumber": 2,
+      "languageTrack": "spanish",
+      "area": "languages",
+      "answerKey": "A",
+      "supportTitle": "Me niego rotundamente",
+      "supportText": "A negar mi voz,\nMi sangre y mi piel.\nY me niego rotundamente\nA dejar de ser yo,\nA dejar de sentirme bien\nCuando miro mi rostro en el espejo\nCon mi boca\nRotundamente grande,\nY mi nariz\nRotundamente hermosa,\nY mis dientes\nRotundamente blancos,\nY mi piel valientemente negra.\nY me niego categóricamente\nA dejar de hablar\nMi lengua, mi acento y mi historia.\nY me niego absolutamente\nA ser parte de los que callan,\nDe los que temen,\nDe los que lloran.\nPorque me acepto\nRotundamente libre,\nRotundamente negra,\nRotundamente hermosa.",
+      "sourceCitation": "CAMPBELL BARR, S. Disponível em: https://negracubanateniaqueser.com.",
+      "prompt": "Acesso em: 25 out. 2021. Para enfatizar características e atitudes que reforçam a identidade da mulher negra, o poema da escritora costarriquenha apresenta",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "advérbios como “rotundamente” e “categóricamente”."
+        },
+        {
+          "id": "B",
+          "text": "verbos reflexivos como “me niego” e “me acepto”."
+        },
+        {
+          "id": "C",
+          "text": "adjetivos como “grande” e “hermosa”."
+        },
+        {
+          "id": "D",
+          "text": "substantivos como “sangre” e “piel”."
+        },
+        {
+          "id": "E",
+          "text": "adjetivos possessivos como “mi” e “mis”."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-ESP-03",
+      "questionNumber": 3,
+      "languageTrack": "spanish",
+      "area": "languages",
+      "answerKey": "E",
+      "supportTitle": "“Caramelos” en sus suelos",
+      "supportText": "Las tierras de España, tu vista enamoran;\nsus gentes; te amistan; ¿“cocinas”?, ¡“te molan”!\n¿El plato común?, ¡pues «tortilla/patatas»!;\nen bares, figones, o tascas, ¡las «tapas»!;\n“sabor nacional”, ¡el «gazpacho», sus «vinos»,\n«sangría», y «jamón» de sabrosos cochinos!\n(Cual “sellos”, te grabas sus «Típicos Platos»;\n¡sabrás por dó pasas, por sólo tu olfato!,\n¡si en cada lugar, un sabor peculiar,\n“al paso” cautiva tu buen paladar!).\n¡Son más que “recetas”!, ¡será “alegoría”!,\n¡será “identidad”! (¡hay “reserva” en su «Guía»!);\nson platos allende un “timón conductor”,\n¡son mar, ríos, sierras!, ¡son valles, son flor!,\n¡y aportan “Conventos” a gastronomía,\nsus «dulces»! (sabor “celestial”, ¡de ambrosía!).",
+      "sourceCitation": "QUIROZ Y LÓPEZ, M. Disponível em: https://pt.calameo.com. Acesso em: 25 out. 2021.",
+      "prompt": "Nesse poema, o eu poético enaltece a",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "característica amistosa do povo espanhol."
+        },
+        {
+          "id": "B",
+          "text": "beleza das paisagens naturais da Espanha."
+        },
+        {
+          "id": "C",
+          "text": "variedade de pratos na gastronomia espanhola."
+        },
+        {
+          "id": "D",
+          "text": "relação entre os sentidos do paladar e do olfato na gastronomia."
+        },
+        {
+          "id": "E",
+          "text": "gastronomia como representação da identidade cultural de um povo."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-ESP-04",
+      "questionNumber": 4,
+      "languageTrack": "spanish",
+      "area": "languages",
+      "answerKey": "B",
+      "supportTitle": "Técnicas de manipulación y el resultado",
+      "supportText": "Manipular es sembrar en la conciencia y en la mente\nde la gente ideas, actitudes, conceptos y aspiraciones\n— incluso falsas e inmorales — que sirvan a los objetivos\nde sus manipuladores.\nManipular es una de las primeras cosas que\naprendemos en la vida. A muy temprana edad, los bebés\ndescubren el poder del llanto, el berrinche, los pataleos,\nla risa o alguna “gracia” como recursos para demandar\natención, exigir comida, pedir ayuda o simplemente\nmantener ocupada a la gente. Nuestras actitudes de\nadultos reflejan lo mucho o poco que algunos maduraron,\nprocesaron y rebasaron ese periodo.\nPara que exista un manipulador, debe haber una\nbase de ciudadanos indefensos, dóciles, desinformados.\nEl manipulador es celoso, a veces casi paranoico;\nno admite cuestionamientos ni quiere que nadie ocupe\nsu espacio, sabe que su vigencia depende de presencia\ncontroladora. Todos los días, hay que marcar la línea de\ndiscurso, incidir en el debate. El ridículo vale la pena si\ncon ello se logra una cortina de humo.",
+      "sourceCitation": "Disponível em: www.forbes.com.mx. Acesso em: 7 out. 2021 (adaptado).",
+      "prompt": "Nesse texto, a expressão “cortina de humo” revela que o manipulador",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "amadurece tardiamente."
+        },
+        {
+          "id": "B",
+          "text": "busca mascarar a verdade."
+        },
+        {
+          "id": "C",
+          "text": "rejeita questionamentos alheios."
+        },
+        {
+          "id": "D",
+          "text": "aproxima-se de pessoas indefesas."
+        },
+        {
+          "id": "E",
+          "text": "faz-se presente de forma controladora."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-ESP-05",
+      "questionNumber": 5,
+      "languageTrack": "spanish",
+      "area": "languages",
+      "answerKey": "A",
+      "supportTitle": "Que quede claro",
+      "supportText": "Cómo es posible que se cierren\ntantas bocas, tantos ojos,\ntantas puertas, muchas mentes ante un\nacto xenofóbico sin precedentes.\nPresidentes, ministros, cancilleres,\nautoridades, responsables.\n¿Quién pagará el daño causado a familiares?\nPor un loco del estrada sin modales. [...]\nSe alejó de aquel lugar donde su color era\nmucho más que su color, era su raza.\nPersiguiendo un sueño que desapareció,\nque se fusionó y terminó en una pesadilla. [...]\nDéjame que te cuente esta historia\nque sucedió en el metro de Barcelona,\ncuando aquella mañana la injusticia\ny xenofobia se juntaron de la mano,\nprotagonizando una de las más feas escenas de racismo.\nEn aquel vagón viajaba un ángel de color diferente,\nen su camino se interpuso aquel inconsciente,\nque aún sabiendo lo que hacía,\nseguía hablando con su gente.\nLe dio al ángel dos patadas en su cara,\nse rió de ella sin cambiar la mirada.\nY aún anda suelto, aún anda suelto...",
+      "sourceCitation": "ORISHAS. In: Cosita buena. Delaware: Suerte Publishing LLC, 2008 (fragmento).",
+      "prompt": "A letra da canção Que quede claro, da banda cubana Orishas, revela o(a)",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "indignação diante do desrespeito à diversidade."
+        },
+        {
+          "id": "B",
+          "text": "violência característica das grandes metrópoles."
+        },
+        {
+          "id": "C",
+          "text": "preconceito da sociedade com relação ao misticismo."
+        },
+        {
+          "id": "D",
+          "text": "descuido da população com os sonhos dos imigrantes."
+        },
+        {
+          "id": "E",
+          "text": "falta de segurança existente no transporte público urbano."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q06",
+      "questionNumber": 6,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "D",
+      "supportTitle": "A sessão do Comitê Olímpico Internacional (COI)",
+      "supportText": "aprovou uma mudança histórica e inédita no lema\nolímpico, criado em 1894 pelo Barão Pierre de Coubertin\npara expressar os valores e a excelência do esporte. Mais\nde 120 anos depois, o lema tem sua primeira alteração\npara ressaltar a solidariedade e incluir a palavra “juntos”:\nmais rápido, mais alto, mais forte — juntos. A mudança\nfoi aprovada por unanimidade pelos membros do COI\ne celebrada pelo presidente da entidade.",
+      "sourceCitation": "Disponível em: https://ge.globo.com. Acesso em: 10 nov. 2021 (adaptado).",
+      "prompt": "De acordo com o texto, a alteração do lema olímpico teve como objetivo a",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "unificação do lema anterior ao atual."
+        },
+        {
+          "id": "B",
+          "text": "aproximação entre o lema olímpico e o COI."
+        },
+        {
+          "id": "C",
+          "text": "junção do lema olímpico com os princípios esportivos."
+        },
+        {
+          "id": "D",
+          "text": "associação entre o lema olímpico e a cooperatividade."
+        },
+        {
+          "id": "E",
+          "text": "vinculação entre o lema olímpico e os eventos atléticos."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q07",
+      "questionNumber": 7,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "A",
+      "supportTitle": "Mais iluminada que outras",
+      "supportText": "Tenho dois seios, estas duas coxas, duas mãos que me\nsão muito úteis, olhos escuros, estas duas sobrancelhas que\npreencho com maquiagem comprada por dezenove e noventa\ne orelhas que não aceitam bijuterias. Este corpo é um corpo\nfaminto, dentado, cruel, capaz e violento. Movo os braços\ne multidões correm desesperadas. Caminho no escuro com\no rosto para baixo, pois cada parte isolada de mim tem sua\nprópria vida e não quero domá-las. Animal da caatinga. Forte\ndemais. Engolidora de espadas e espinhos.\nDizem e eu ouvi, mas depois também li, que o estado\ndo Ceará aboliu a escravidão quatro anos antes do restante\ndo país. Todos aqueles corpos que eram trazidos com\nseus dedos contados, seus calcanhares prontos e seus\numbigos em fogo, todos eles foram interrompidos no\nporto. Um homem — dizem e eu ouvi e depois também\nli — liderou o levante. E todos esses corpos foram buscar\noutros incômodos. Foram ser incomodados.",
+      "sourceCitation": "ARRAES, J. Redemoinho em dia quente. São Paulo: Alfaguara, 2019.",
+      "prompt": "Nesse texto, os recursos expressivos usados pela narradora",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "revelam as marcas da violência de raça e de gênero na construção da identidade."
+        },
+        {
+          "id": "B",
+          "text": "questionam o pioneirismo do estado do Ceará no enfrentamento à escravidão."
+        },
+        {
+          "id": "C",
+          "text": "reproduzem padrões estéticos em busca da valorização da autoestima feminina."
+        },
+        {
+          "id": "D",
+          "text": "sugerem uma atmosfera onírica alinhada ao desejo de resgate da espiritualidade."
+        },
+        {
+          "id": "E",
+          "text": "mimetizam, na paisagem, os corpos transformados pela violência da escravidão."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q08",
+      "questionNumber": 8,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "C",
+      "supportTitle": "De quem é esta língua?",
+      "supportText": "Uma pequena editora brasileira, a Urutau, acaba de\nlançar em Lisboa uma “antologia antirracista de poetas\nestrangeiros em Portugal”, com o título Volta para a tua terra.\nO livro denuncia as diversas formas de racismo a que\nos imigrantes estão sujeitos. Alguns dos poetas brasileiros\nantologiados queixam-se do desdém com que um grande\nnúmero de portugueses acolhe o português brasileiro.\nÉ uma queixa frequente.\n“Aqui em Portugal eles dizem / — eles dizem — / que\nnosso português é errado, que nós não falamos português”,\nescreve a poetisa paulista Maria Giulia Pinheiro, para\nconcluir: “Se a sua linguagem, a lusitana, / ainda conserva\na palavra da opressão / ela não é a mais bonita do mundo./\nEla é uma das mais violentas”.",
+      "sourceCitation": "AGUALUSA, J. E. Disponível em: https://oglobo.globo.com.",
+      "prompt": "Acesso em: 22 nov. 2021 (adaptado). O texto de Agualusa tematiza o preconceito em relação ao português brasileiro. Com base no trecho citado pelo autor, infere-se que esse preconceito se deve",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "à dificuldade de consolidação da literatura brasileira em outros países."
+        },
+        {
+          "id": "B",
+          "text": "aos diferentes graus de instrução formal entre os falantes de língua portuguesa."
+        },
+        {
+          "id": "C",
+          "text": "à existência de uma língua ideal que alguns falantes lusitanos creem ser a falada em Portugal."
+        },
+        {
+          "id": "D",
+          "text": "ao intercâmbio cultural que ocorre entre os povos dos diferentes países de língua portuguesa."
+        },
+        {
+          "id": "E",
+          "text": "à distância territorial entre os falantes do português que vivem em Portugal e no Brasil."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q09",
+      "questionNumber": 9,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "E",
+      "supportTitle": "Na Idade Média, as notícias se propagavam com",
+      "supportText": "surpreendente eficácia. Segundo uma emérita professora de\nSorbonne, um cavalo era capaz de percorrer 30 quilômetros\npor dia, mas o tempo podia se acelerar dependendo do\ninteresse da notícia. As ordens mendicantes tinham um papel\nimportante na disseminação de informações, assim como\nos jograis, os peregrinos e os vagabundos, porque todos\neles percorriam grandes distâncias. As cidades também\ntinham correios organizados e selos para lacrar mensagens\ne tentar certificar a veracidade das correspondências.\nGraças a tudo isso, a circulação de boatos era intensa\ne politicamente relevante. Um exemplo clássico de fake\nnews da era medieval é a história do rei que desaparece\nna batalha e reaparece muito depois, idoso e transformado.",
+      "sourceCitation": "Disponível em: www.elpais.com.br. Acesso em: 18 jun. 2018 (adaptado).",
+      "prompt": "A propagação sistemática de informações é um fenômeno recorrente na história e no desenvolvimento das sociedades. No texto, a eficácia dessa propagação está diretamente relacionada ao(à)",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "velocidade de circulação das notícias."
+        },
+        {
+          "id": "B",
+          "text": "nível de letramento da população marginalizada."
+        },
+        {
+          "id": "C",
+          "text": "poder de censura por parte dos serviços públicos."
+        },
+        {
+          "id": "D",
+          "text": "legitimidade da voz dos representantes da nobreza."
+        },
+        {
+          "id": "E",
+          "text": "diversidade dos meios disponíveis em uma época histórica."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q10",
+      "questionNumber": 10,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "E",
+      "supportTitle": "Se a interferência de contas falsas em discussões",
+      "supportText": "políticas nas redes sociais já representava um perigo\npara os sistemas democráticos, sua sofisticação e maior\nsemelhança com pessoas reais têm agravado o problema\npelo mundo.\nO perigo cresceu porque a tecnologia e os métodos\nevoluíram dos robôs, os “bots” — softwares com tarefas\non-line automatizadas —, para os “ciborgues” ou “trolls”,\ncontas controladas diretamente por humanos com ajuda\nde um pouco de automação.\nMas pesquisadores começam agora a observar outros\npadrões de comportamento: quando mensagens não são\nprogramadas, sua publicação se concentra só em horários\nde trabalho, já que é controlada por pessoas cuja profissão\né exatamente essa, administrar um perfil falso durante o dia.\nOutra pista: a pobreza vocabular das mensagens\npublicadas por esses perfis. Um funcionário de uma\nempresa que supostamente produzia e vendia perfis\nfalsos explica que às vezes “faltava criatividade” para criar\nmensagens distintas controlando tantos perfis falsos ao\nmesmo tempo.",
+      "sourceCitation": "GRAGNANI, J. Disponível em: www.bbc.com. Acesso em: 16 dez. 2017.",
+      "prompt": "De acordo com o texto, a análise de características da linguagem empregada por perfis automatizados contribui para o(a)",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "controle da atuação dos profissionais de TI."
+        },
+        {
+          "id": "B",
+          "text": "desenvolvimento de tecnologias como os “trolls”."
+        },
+        {
+          "id": "C",
+          "text": "flexibilização dos turnos de trabalho dos controladores."
+        },
+        {
+          "id": "D",
+          "text": "necessidade de regulamentação do funcionamento dos “bots”."
+        },
+        {
+          "id": "E",
+          "text": "identificação de padrões de disseminação de informações inverídicas."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q11",
+      "questionNumber": 11,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "D",
+      "supportTitle": "Maio foi colorido de amarelo, e o foi porque",
+      "supportText": "mundialmente amarelo é a cor convencionada para as\nadvertências. No trânsito, essas advertências têm sido\nfatais. A estimativa, caso nada seja feito, é a de que se\natinjam assustadoras 2,4 milhões de mortes no trânsito\nem 2030 em todo o mundo.\nA pressa constante, o sentimento de invencibilidade,\na certeza de invulnerabilidade, a necessidade de poder,\na falta de civilidade, a certeza de impunidade, a ausência\nde solidariedade, a inexistência de compaixão e o\ndesrespeito por si próprio são circunstâncias reais que,\nnão raro, concorrem para o comportamento violento no\ntrânsito.\nO Maio Amarelo, que preconiza a atenção pela vida,\né uma das iniciativas nesse sentido. E é precisamente\na atenção pela vida que está esquecida. Essa atenção,\npor certo, requer menos pressa, mais civilidade,\nlimites assegurados, consciência de vulnerabilidade,\nsolidariedade, compaixão e respeito por si e pelo outro.\nReafirmar e praticar esses princípios e valores talvez seja\num caminho mais seguro e menos violento, que garanta\na vida e não celebre a morte.",
+      "sourceCitation": "Disponível em: http://portaldotransito.com.br. Acesso em: 11 dez. 2018 (adaptado).",
+      "prompt": "Considerando os procedimentos argumentativos utilizados, infere-se que o objetivo desse texto é",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "enumerar as causas determinantes da violência no trânsito."
+        },
+        {
+          "id": "B",
+          "text": "contextualizar a campanha de advertência no cenário mundial."
+        },
+        {
+          "id": "C",
+          "text": "divulgar dados numéricos alarmantes sobre acidentes de trânsito."
+        },
+        {
+          "id": "D",
+          "text": "sensibilizar o público para a importância de uma direção responsável."
+        },
+        {
+          "id": "E",
+          "text": "restringir os problemas da violência no trânsito a aspectos emocionais."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q12",
+      "questionNumber": 12,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "C",
+      "supportTitle": "Ainda daquela vez pude constatar a bizarrice dos",
+      "supportText": "costumes que constituíam as leis mais ou menos constantes\ndo seu mundo: ao me aproximar, verifiquei que o\nSr. Timóteo, gordo e suado, trajava um vestido de franjas\ne lantejoulas que pertencera a sua mãe. O corpete\ndescia-lhe excessivamente justo na cintura, e aqui\ne ali rebentava através da costura um pouco da carne\naprisionada, esgarçando a fazenda e tornando o prazer de\nvestir-se daquele modo uma autêntica espécie de suplício.\nMovia-se ele com lentidão, meneando todas as suas franjas\ne abanando-se vigorosamente com um desses leques de\nmadeira de sândalo, o que o envolvia numa enjoativa onda\nde perfume. Não sei direito o que colocara sobre a cabeça,\nassemelhava-se mais a um turbante ou a um chapéu\nsem abas de onde saíam vigorosas mechas de cabelos\nalourados. Como era costume seu também, trazia o rosto\npintado — e para isto, bem como para suas vestimentas,\napoderara-se de todo o guarda-roupa deixado por sua mãe,\ntambém em sua época famosa pela extravagância com que\nse vestia — o que sem dúvida fazia sobressair-lhe o nariz\nenorme, tão característico da família Meneses.",
+      "sourceCitation": "CARDOSO, L. Crônica da casa assassinada. São Paulo: Círculo do Livro, s.d.",
+      "prompt": "Pela voz de uma empregada da casa, a descrição de um dos membros da família exemplifica a renovação da ficção urbana nos anos 1950, aqui observada na",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "opção por termos e expressões de sentido ambíguo."
+        },
+        {
+          "id": "B",
+          "text": "crítica social inspirada pelo convívio com os patrões."
+        },
+        {
+          "id": "C",
+          "text": "descrição impressionista do fetiche do personagem."
+        },
+        {
+          "id": "D",
+          "text": "presença de um foco narrativo de caráter impreciso."
+        },
+        {
+          "id": "E",
+          "text": "ambiência de mistério das relações entre familiares."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q13",
+      "questionNumber": 13,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "C",
+      "supportTitle": "Girassol da madrugada",
+      "supportText": "Teu dedo curioso me segue lento no rosto\nOs sulcos, as sombras machucadas por onde a\n[vida passou.\nQue silêncio, prenda minha... Que desvio triunfal\n[da verdade,\nQue círculos vagarosos na lagoa em que uma asa\n[gratuita roçou...\nTive quatro amores eternos...\nO primeiro era moça donzela,\nO segundo... eclipse, boi que fala, cataclisma,\nO terceiro era a rica senhora,\nO quarto és tu... E eu afinal me repousei dos\n[meus cuidados",
+      "sourceCitation": "ANDRADE, M. Poesias completas. Rio de Janeiro: Nova Fronteira, 2013 (fragmento).",
+      "prompt": "Perante o outro, o eu lírico revela, na força das memórias evocadas, a",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "vergonha das marcas provocadas pela passagem do tempo."
+        },
+        {
+          "id": "B",
+          "text": "indecisão em face das possibilidades afetivas do presente."
+        },
+        {
+          "id": "C",
+          "text": "serenidade sedimentada pela entrega pacífica ao desejo."
+        },
+        {
+          "id": "D",
+          "text": "frustração causada pela vontade de retorno ao passado."
+        },
+        {
+          "id": "E",
+          "text": "disponibilidade para a exploração do prazer efêmero."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q14",
+      "questionNumber": 14,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "D",
+      "supportTitle": "Dão Lalalão",
+      "supportText": "Do povoado do Ão, ou dos sítios perto, alguém\nprecisava urgente de querer vir por escutar a novela do\nrádio. Ouvia-a, aprendia-a, guardava na ideia, e, retornado\nao Ão, no dia seguinte, a repetia a outros.\nAssim estavam jantando, vinham os do povoado\nreceber a nova parte da novela do rádio. Ouvir já\ntinham ouvido tudo, de uma vez, fugia da regra: falhara\nali no Ão, na véspera, o caminhão de um comprador\nde galinhas e ovos, seo Abrãozinho Buristém, que\ncarregava um rádio pequeno, de pilhas, armara um fio\nno arame da cerca... Mas queriam escutar outra vez,\npor confirmação. — “A estória é estável de boa, mal\nque acompridada: taca e não rende...” — explicava o\nZuz ao Dalberto.\nSoropita começou a recontar o capítulo da novela.\nSem trabalho, se recordava das palavras, até com\nclareza — disso se admirava. Contava com prazer de\ndemorar, encher a sala com o poder de outros altos\npersonagens. Tomar a atenção de todos, pudesse contar\naquilo noite adiante. Era preciso trazer luz, nem uns\nenxergavam mais os outros; quando alguém ria, ria de\nmuito longe. O capítulo da novela estava terminando.",
+      "sourceCitation": "ROSA, J. G. Noites do sertão (Corpo de baile). São Paulo: Global, 2021.",
+      "prompt": "Nesse trecho do conto, o gosto dos moradores do povoado por ouvir a novela de rádio recontada por Soropita deve-se ao(à)",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "qualidade do som do rádio."
+        },
+        {
+          "id": "B",
+          "text": "estabilidade do enredo contado."
+        },
+        {
+          "id": "C",
+          "text": "ineditismo do capítulo da novela."
+        },
+        {
+          "id": "D",
+          "text": "jeito singular de falar aos ouvintes."
+        },
+        {
+          "id": "E",
+          "text": "dificuldade de compreensão da história."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q15",
+      "questionNumber": 15,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "B",
+      "supportTitle": "As cinzas do Museu Nacional, no Rio de Janeiro,",
+      "supportText": "consumido pelas chamas no mês de setembro de 2018,\nsão mais do que restos de fósseis, cerâmicas e espécimes\nraros. O museu abrigava, entre mais de 20 milhões de\npeças, os esqueletos com as respostas para perguntas\nque ainda não haviam sido respondidas — ou sequer\nfeitas — por pesquisadores brasileiros. E o incêndio\npode ter calado para sempre palavras e cantos indígenas\nancestrais, de línguas que não existem mais no mundo.\nO acervo do local continha gravações de conversas,\ncantos e rituais de dezenas de sociedades indígenas,\nmuitas feitas durante a década de 1960 com antigos\ngravadores de rolo e que ainda não haviam sido\ndigitalizadas. Alguns dos registros abordavam línguas já\nextintas, sem falantes originais ainda vivos. “A esperança\né que outras instituições tenham registros dessas línguas”,\ndiz a linguista Marilia Facó Soares. A pesquisadora, que\ntrabalha com os índios Tikuna, o maior grupo da Amazônia\nbrasileira, crê ter perdido parte de seu material. “Terei\nque fazer novas viagens de campo para recompor meus\narquivos. Mas obviamente não dá para recuperar a fala de\nnativos já falecidos, geralmente os mais idosos”, lamenta.",
+      "sourceCitation": "Disponível em: https://brasil.elpais.com. Acesso em: 10 dez. 2018 (adaptado).",
+      "prompt": "A perda dos registros linguísticos no incêndio do Museu Nacional tem impacto potencializado, uma vez que",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "exige a retomada das pesquisas por especialistas de diferentes áreas."
+        },
+        {
+          "id": "B",
+          "text": "representa danos irreparáveis à memória e à identidade nacionais."
+        },
+        {
+          "id": "C",
+          "text": "impossibilita o surgimento de novas pesquisas na área."
+        },
+        {
+          "id": "D",
+          "text": "resulta na extinção da cultura de povos originários."
+        },
+        {
+          "id": "E",
+          "text": "inviabiliza o estudo da língua do povo Tikuna."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q16",
+      "questionNumber": 16,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "A",
+      "supportTitle": "Mandioca, macaxeira, aipim e castelinha são nomes",
+      "supportText": "diferentes da mesma planta. Semáforo, sinaleiro e farol\ntambém significam a mesma coisa. O que muda é só o\nhábito cultural de cada região. A mesma coisa acontece\ncom a Língua Brasileira de Sinais (Libras). Embora ela\nseja a comunicação oficial da comunidade surda no Brasil,\nexistem sinais que variam em relação à região, à idade e até\nao gênero de quem se comunica. A cor verde, por exemplo,\npossui sinais diferentes no Rio de Janeiro, Paraná e São\nPaulo. São os regionalismos na língua de sinais.\nEssas variações são um dos temas da disciplina\nLinguística na língua de sinais, oferecida pela Universidade\nEstadual Paulista (Unesp) ao longo do segundo semestre.\n“Muitas pessoas pensam que a língua de sinais é universal,\no que não é verdade”, explica a professora e chefe do\nDepartamento de Linguística, Literatura e Letras Clássicas\nda Unesp. “Mesmo dentro de um mesmo país, ela sofre\nvariação em relação à localização geográfica, à faixa etária\ne até ao gênero dos usuários”, completa a especialista.\nOs surdos podem criar sinais diferentes para identificar\nlugares, objetos e conceitos. Em São Paulo, o sinal de\n“cerveja” é feito com um giro do punho como uma meia-volta.\nEm Minas, a bebida é citada quando os dedos indicador e\nmédio batem no lado do rosto. Também ocorrem mudanças\nhistóricas. Um sinal pode sofrer alterações decorrentes dos\ncostumes da geração que o utiliza.",
+      "sourceCitation": "Disponível em: www.educacao.sp.gov.br. Acesso em: 1 nov. 2021 (adaptado).",
+      "prompt": "Nesse texto, a Língua Brasileira de Sinais (Libras)",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "passa por fenômenos de variação linguística como qualquer outra língua."
+        },
+        {
+          "id": "B",
+          "text": "apresenta variações regionais, assumindo novo sentido para algumas palavras."
+        },
+        {
+          "id": "C",
+          "text": "sofre mudança estrutural motivada pelo uso de sinais diferentes para algumas palavras."
+        },
+        {
+          "id": "D",
+          "text": "diferencia-se em todo o Brasil, desenvolvendo cada região a sua própria língua de sinais."
+        },
+        {
+          "id": "E",
+          "text": "é ininteligível para parte dos usuários em razão das mudanças de sinais motivadas geograficamente."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q17",
+      "questionNumber": 17,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "D",
+      "supportTitle": "Cultura por meio de uma publicação com outro visual,",
+      "supportText": "conteúdo de qualidade e interesses ampliados! ]cultura[,\neste nome simples, e eu diria mesmo familiar, nasce entre\ndois colchetes voltados para fora. E não é por acaso:\nsão sinais abertos, receptivos, propícios à circulação de\nideias. O DNA da publicação se mantém o mesmo, afinal,\npor longos anos montamos nossas edições com assuntos\nsaídos das estantes de uma grande livraria — e assim\ncontinuará sendo. Literatura, sociologia, filosofia, artes...\nnunca será difícil montar a pauta da revista porque os\nlivros nos ensinam que monotonia é só para quem não lê.",
+      "sourceCitation": "Como é bom reencontrar os leitores da Revista da HERZ, P. ]cultura[, n. 1, jun. 2018 (adaptado).",
+      "prompt": "O uso não padrão dos colchetes para nomear a revista atribui-lhes uma nova função e está correlacionado ao(à)",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "perfil de público-alvo, constituído por leitores exigentes e especializados em leitura acadêmica."
+        },
+        {
+          "id": "B",
+          "text": "propósito do editor, chamando a atenção para o rigor normativo nos textos da revista."
+        },
+        {
+          "id": "C",
+          "text": "exclusividade na seleção temática, direcionada para a área das ciências humanas."
+        },
+        {
+          "id": "D",
+          "text": "identidade da revista, voltada para a recepção e a promoção de ideias circulantes em livros."
+        },
+        {
+          "id": "E",
+          "text": "padrão editorial dos artigos, organizados em torno de uma proposta de design inovador."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q18",
+      "questionNumber": 18,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "B",
+      "supportText": "TEXTO I\nAlegria, alegria\nO sol nas bancas de revista\nMe enche de alegria e preguiça\nQuem lê tanta notícia\nEu vou\nPor entre fotos e nomes\nOs olhos cheios de cores\nO peito cheio de amores vãos\nEu vou\nPor que não, por que não?\nTEXTO II\nAnjos tronchos\nUns anjos tronchos do Vale do Silício\nDesses que vivem no escuro em plena luz\nDisseram vai ser virtuoso no vício\nDas telas dos azuis mais do que azuis\nAgora a minha história é um denso algoritmo\nQue vende venda a vendedores reais\nNeurônios meus ganharam novo outro ritmo\nE mais, e mais, e mais, e mais, e mais",
+      "sourceCitation": "VELOSO, C. Alegria, alegria. Rio de Janeiro: Polygram, 1990 (fragmento). VELOSO, C. Meu coco. Rio de Janeiro: Sony, 2021 (fragmento).",
+      "prompt": "Embora oriundas de momentos históricos diferentes, essas letras de canção têm em comum a",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "referência às cores como elemento de crítica a hábitos contemporâneos."
+        },
+        {
+          "id": "B",
+          "text": "percepção da profusão de informações gerada pela tecnologia."
+        },
+        {
+          "id": "C",
+          "text": "contraposição entre os vícios e as virtudes da vida moderna."
+        },
+        {
+          "id": "D",
+          "text": "busca constante pela liberdade de expressão individual."
+        },
+        {
+          "id": "E",
+          "text": "crítica à finalidade comercial das notícias."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q19",
+      "questionNumber": 19,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "D",
+      "supportTitle": "“São tantas formas de matar um preto",
+      "supportText": "Que para alguns sua morte é justificada\nDevia tá fazendo coisa errada\nSe não era bandido, um dia ia ser\nPor ser PRETO sua morte é defendida\nO PRETO sempre merece morrer”.\nA estrofe acima é do poeta e educador social Baticum\nProletário, que atua na periferia de Fortaleza, no Ceará,\npreparando jovens — em quase sua totalidade negros\n— para enfrentar as dificuldades impostas pelo racismo\nestrutural no país.\nÉ a partir da arte que Baticum consegue envolver\na juventude em um projeto de fortalecimento dessa\npopulação ao promover batalhas de rimas, slams e saraus\ncom temáticas que discutem os problemas sociais. Não por\nacaso, o tema mais explorado nas rimas, versos e prosas\né a violência. De acordo com o mais recente Atlas da\nviolência, em 2019, os negros representaram 77% das\nvítimas de homicídios, quase 30 assassinatos por 100 mil\nhabitantes, a maioria deles jovens.\nO Atlas revela ainda que um negro tem quase 2,7\nvezes mais chance de ser morto do que um branco, o que\njustifica o movimento de resistência crescente no Brasil.",
+      "sourceCitation": "MENDONÇA, F. Disponível em: www.cartacapital.com.br.",
+      "prompt": "Acesso em: 22 nov. 2021 (adaptado). O uso de citação e de dados estatísticos nesse texto tem o objetivo de",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "ressaltar a importância da poesia para denunciar a morte de negros, que cresce a cada dia."
+        },
+        {
+          "id": "B",
+          "text": "destacar o crescimento exponencial da temática do preconceito na produção literária no Brasil."
+        },
+        {
+          "id": "C",
+          "text": "demonstrar o incremento no quantitativo de expressões artísticas na discussão de problemas sociais."
+        },
+        {
+          "id": "D",
+          "text": "evidenciar argumentos que reforçam a ideia de que os negros são vítimas em potencial da violência."
+        },
+        {
+          "id": "E",
+          "text": "salientar o aumento da participação de jovens nos movimentos de resistência na área da cultura."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q20",
+      "questionNumber": 20,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "E",
+      "supportTitle": "No princípio era o verbo. A frase que abre o primeiro",
+      "supportText": "capítulo do Evangelho de João e remete à criação do\nmundo, assim como também faz o Gênesis, é a mais\nfamosa da Bíblia. A ideia de que o mundo é criado pela\npalavra, porém, é tão estruturante que está presente\nem outras religiões, para muito além das fundadas no\ncristianismo. Como humanos, a linguagem é o mundo que\nhabitamos. Basta tentar imaginar um mundo em que não\npodemos usar palavras para dizer de nós e dos outros\npara compreender o que isso significa. Ou um mundo\nem que aquilo que você diz não é entendido pelo outro,\ne o que o outro diz não é entendido por você.\nO que acontece então quando a palavra é destruída\ne, com ela, a linguagem?\nDurante séculos, em diferentes sociedades e\nlínguas, é importante lembrar, a linguagem serviu\n— e ainda serve — para manter privilégios de grupos de\npoder e deixar todos os outros de fora. Quem entende\nlinguagem de advogados, juízes e promotores, linguagem\nde médicos, linguagem de burocratas, linguagem de\ncientistas? A maior parte da população foi submetida à\nviolência de propositalmente ser impedida de compreender\na linguagem daqueles que determinam seus destinos.\nSe o princípio é o verbo, o fim pode ser o silenciamento.\nMesmo que ele seja cheio de gritos entre aqueles que já não\ntêm linguagem comum para compreender uns aos outros.",
+      "sourceCitation": "BRUM, E. Disponível em: https://brasil.elpais.com. Acesso em: 5 nov. 2021.",
+      "prompt": "Nesse texto, a estratégia usada para convencer o leitor de que uma grande parcela da população não compreende a linguagem daqueles que detêm o poder foi",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "revelar a origem religiosa da linguagem."
+        },
+        {
+          "id": "B",
+          "text": "questionar o temor sobre o futuro da linguagem."
+        },
+        {
+          "id": "C",
+          "text": "descrever a relação entre sociedade e linguagem."
+        },
+        {
+          "id": "D",
+          "text": "apresentar as consequências do esfacelamento da linguagem."
+        },
+        {
+          "id": "E",
+          "text": "criticar o obstáculo promovido pelos usos especializados da linguagem."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q21",
+      "questionNumber": 21,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "D",
+      "supportTitle": "Um grupo de pesquisadores da Universidade Federal",
+      "supportText": "do Ceará desenvolveu um dicionário para traduzir sintomas\nde doenças da linguagem popular para os termos médicos.\nDefruço, chanha e piloura, por exemplo, podem ser termos\nconhecidos para muitos, mas, durante uma consulta médica,\no desconhecimento pode significar um diagnóstico errado.\n“Isso é um registro histórico e pode ser muito útil para\nestudos dessas comunidades, na abordagem médica delas.\nÉ de certa forma pioneiro no Brasil e, sem dúvida, um instrumento\nde trabalho importante, porque a comunicação é fundamental\nna relação médico-paciente”, avalia o reitor da instituição.",
+      "sourceCitation": "Disponível em: https://g1.globo.com. Acesso em: 1 nov. 2021 (adaptado).",
+      "prompt": "Ao registrarem usos regionais de termos da área médica, pesquisadores",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "apontaram erros motivados pelo desconhecimento da variedade linguística local."
+        },
+        {
+          "id": "B",
+          "text": "explicaram problemas provocados pela incapacidade de comunicação."
+        },
+        {
+          "id": "C",
+          "text": "descobriram novos sintomas de doenças existentes na comunidade."
+        },
+        {
+          "id": "D",
+          "text": "propiciaram melhor compreensão dos sintomas dos pacientes."
+        },
+        {
+          "id": "E",
+          "text": "divulgaram um novo rol de doenças características da localidade."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q22",
+      "questionNumber": 22,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "C",
+      "supportTitle": "Alguém muito recentemente cortara o mato, que na",
+      "supportText": "época das chuvas crescia e rodeava a casa da mãe de\nPonciá Vicêncio e de Luandi. Havia também vestígios\nde que a terra fora revolvida, como se ali fosse plantar uma\npequena roça. Luandi sorriu. A mãe devia estar bastante\nforte, pois ainda labutava a terra. Cantou alto uma cantiga\nque aprendera com o pai, quando eles trabalhavam na terra\ndos brancos. Era uma canção que os negros mais velhos\nensinavam aos mais novos. Eles diziam ser uma cantiga\nde voltar, que os homens, lá na África, entoavam sempre,\nquando estavam regressando da pesca, da caça ou de\nalgum lugar. O pai de Luandi, no dia em que queria agradar\nà mulher, costumava entoar aquela cantiga ao se aproximar\nde casa. Luandi não entendia as palavras do canto; sabia,\nporém, que era uma língua que alguns negros falavam\nainda, principalmente os velhos. Era uma cantiga alegre.\nLuandi, além de cantar, acompanhava o ritmo batendo com\nas palmas das mãos em um atabaque imaginário. Estava\nde regresso à terra. Voltava em casa. Chegava cantando,\ndançando a doce e vitoriosa cantiga de regressar.",
+      "sourceCitation": "EVARISTO, C. Ponciá Vicêncio. Rio de Janeiro: Pallas, 2018.",
+      "prompt": "A leitura do texto permite reconhecer a “cantiga de voltar” como patrimônio linguístico que",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "representa a memória de uma língua africana extinta."
+        },
+        {
+          "id": "B",
+          "text": "exalta a rotina executada por jovens afrodescendentes."
+        },
+        {
+          "id": "C",
+          "text": "preserva a ancestralidade africana por meio da tradição oral."
+        },
+        {
+          "id": "D",
+          "text": "resgata a musicalidade africana por meio de palavras inteligíveis."
+        },
+        {
+          "id": "E",
+          "text": "remonta à tristeza dos negros mais velhos com saudade da África."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q23",
+      "questionNumber": 23,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "C",
+      "supportText": "TEXTO I\nZapeei os canais, como há dezenas de anos faço, e pá:\nparei num que exibia um episódio daquela velha família do\nfuturo, Os Jetsons.\nNesse episódio em particular, a Jane Jetson, esposa\ndo George, tratava de dirigir aquele veículo voador\ndeles. Meu queixo foi caindo à medida que as piadinhas\nmachistas sobre mulheres dirigirem foram se acumulando.\nImpressionante! Que futuro careta aqueles roteiristas\nimaginavam! Seriam incapazes de projetar algo melhor, e não\napenas em termos de tecnologias, robôs e carros voadores?\nSerá que nossa máxima visão de futuro só atinge as coisas,\ne jamais as pessoas? Como a Jane, uma mulher de 33 anos\nno desenho, poderia ser o que foram as minhas bisavós?\nO futuro, naquele desenho, se esqueceu de ser melhor\nnas relações entre as pessoas. Aliás... tão parecido com a vida.\nFiquei de cara, como dizemos aqui, ou como dizíamos\nna minha adolescência, pobre adolescência, aprendendo,\nsem querer e sem muita defesa, um futuro tão besta quanto\no passado.\nTEXTO II\nMasculino e feminino são campos escorregadios que\nsó se definem por oposição, sempre incompleta, um do\noutro. São formações imaginárias que buscam produzir\numa diferença radical e complementar onde só existem,\nde fato, mínimas diferenças. O resto é questão de estilo.\nAté pelo menos a segunda metade do século 19, o divisor\nde águas era claro: os homens ocupavam o espaço público.\nAs mulheres tratavam da vida privada. Privada de quê?\nDe visibilidade, diria Hannah Arendt. De visibilidade pública.\nDo que as mulheres estiveram privadas até o século 20\nfoi de presença pública manifesta não em imagem, mas\nem palavra. A palavra feminina, reservada ao espaço\ndoméstico, não produzia diferença na vida social.",
+      "sourceCitation": "RIBEIRO, A. E. Disponível em: www.rascunho.com br. Acesso em: 21 out. 2021 (adaptado). KHEL, M. R. Disponível em: https://alias.estadao.com.br.",
+      "prompt": "Acesso em: 19 out. 2021 (adaptado). A representação da mulher apresentada no Texto I pode ser explicada pelo Texto II no que diz respeito à(às)",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "censura a formas de expressão femininas."
+        },
+        {
+          "id": "B",
+          "text": "ausência da figura feminina na vida pública."
+        },
+        {
+          "id": "C",
+          "text": "construções imaginárias cristalizadas na sociedade."
+        },
+        {
+          "id": "D",
+          "text": "limitações inerentes às figuras femininas e masculinas."
+        },
+        {
+          "id": "E",
+          "text": "dificuldade na atribuição de papéis masculinos e femininos."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q25",
+      "questionNumber": 25,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "B",
+      "supportTitle": "Passado muito tempo, resolvi tentar falar, porque",
+      "supportText": "estava sozinha me embrenhando na mesma vereda que\nDonana costumava entrar. Ainda recordo da palavra que\nescolhi: arado. Me deleitava vendo meu pai conduzindo\no arado velho da fazenda carregado pelo boi, rasgando\na terra para depois lançar grãos de arroz em torrões\nmarrons e vermelhos revolvidos. Gostava do som redondo,\nfácil e ruidoso que tinha ao ser enunciado. “Vou trabalhar no\narado.” “Vou arar a terra.” “Seria bom ter um arado novo,\nesse arado tá troncho e velho.” O som que deixou minha\nboca era uma aberração, uma desordem, como se no\nlugar do pedaço perdido da língua tivesse um ovo quente.\nEra um arado torto, deformado, que penetrava a terra de\ntal forma a deixá-la infértil, destruída, dilacerada.",
+      "sourceCitation": "VIEIRA JR., I. Torto arado. São Paulo: Todavia, 2019.",
+      "prompt": "Com a perda de parte da língua na infância, a narradora tenta voltar a falar. Essa tentativa revela uma experiência que",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "reflete o olhar do pai sobre as etapas do plantio."
+        },
+        {
+          "id": "B",
+          "text": "metaforiza a linguagem como ferramenta de lavoura."
+        },
+        {
+          "id": "C",
+          "text": "explicita, na busca pela palavra, o medo da solidão."
+        },
+        {
+          "id": "D",
+          "text": "confirma a frustração da narradora com relação à terra."
+        },
+        {
+          "id": "E",
+          "text": "sugere, na ausência da linguagem, a estagnação do tempo."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q26",
+      "questionNumber": 26,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "C",
+      "supportTitle": "A escravidão",
+      "supportText": "Esses meninos que aí andam jogando peteca não\nviram nunca um escravo... Quando crescerem, saberão\nque já houve no Brasil uma raça triste, votada à escravidão\ne ao desespero; e verão nos museus a coleção hedionda\ndos troncos, dos vira-mundos e dos bacalhaus; e terão\nnotícias dos trágicos horrores de uma época maldita: filhos\narrancados ao seio das mães, virgens violadas em pranto,\nhomens assados lentamente em fornos de cal, mulheres\nnuas recebendo na sua mísera nudez desvalida o duplo\nultraje das chicotadas e dos olhares do feitor bestial. [...]\nMas a sua indignação nunca poderá ser tão grande como\na daqueles que nasceram e cresceram em pleno horror,\nno meio desse horrível drama de sangue e lodo, sentindo\ndentro do ouvido e da alma, numa arrastada e contínua\nmelopeia, o longo gemer da raça mártir — orquestração\nsatânica de todos os soluços, de todas as impressões, de\ntodos os lamentos que a tortura e a injustiça podem arrancar\na gargantas humanas.",
+      "sourceCitation": "BILAC, O. Disponível em: www.escritas.org. Acesso em: 29 out. 2021.",
+      "prompt": "Publicado em 1902, o texto de Olavo Bilac enfatiza as mazelas da escravidão no Brasil ao",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "descrever de modo impessoal as consequências da exploração racial sobre as gerações futuras."
+        },
+        {
+          "id": "B",
+          "text": "contrapor a infância privilegiada das crianças da época à infância violentada das crianças escravizadas."
+        },
+        {
+          "id": "C",
+          "text": "antecipar o futuro apagamento das marcas da escravidão no contexto social."
+        },
+        {
+          "id": "D",
+          "text": "criticar a atenuação da violência contra os povos escravizados nas memórias retratadas pelos museus."
+        },
+        {
+          "id": "E",
+          "text": "imaginar a reação de indiferença de seus contemporâneos com os escravizados libertos."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q27",
+      "questionNumber": 27,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "A",
+      "supportTitle": "E assim as coisas continuaram acontecendo entre os",
+      "supportText": "dois, em quase sustos, um grande por acaso com cacoetes\nde gestos definitivos. Com o Nunca Mais se oferecendo\no tempo todo, bastaria dizer foi um prazer ter te conhecido,\nbastaria não trocar telefones nem e-mails e enterrar\na casualidade com a cal da sabedoria — nada poderia\nser definitivo, os encontros duravam duas horas ou duas\ndécadas ou duas vezes isso, mas em algum momento\nnecessariamente seria o fim. De todos os grandes amores.\nDe todos os pequenos. De todas as juras, das promessas,\nde todos os na-alegria-e-na-tristeza. De todos os não\namores, os desamores, os casamentos para sempre,\nos rancores para sempre, de todas as paralelas que só\nse viabilizam na abstração da geometria, de todas as\npequenas paixões e de todas as grandes paixões, de tudo\nque para na antessala da paixão, de todos os vínculos não\nexperimentados, de todos.",
+      "sourceCitation": "LISBOA, A. Rakushisha. Rio de Janeiro: Objetiva, 2014.",
+      "prompt": "O recurso que promove a progressão textual, contribuindo para a construção da ideia de que as relações amorosas têm um enredo comum, é a",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "repetição do pronome indefinido “todos”."
+        },
+        {
+          "id": "B",
+          "text": "utilização do travessão na marcação do aposto."
+        },
+        {
+          "id": "C",
+          "text": "retomada do antecedente pelo pronome “isso”."
+        },
+        {
+          "id": "D",
+          "text": "contraposição de ideias marcada pela conjunção “mas”."
+        },
+        {
+          "id": "E",
+          "text": "substantivação de expressões pela anteposição do artigo."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q28",
+      "questionNumber": 28,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "C",
+      "supportTitle": "A garganta é a gruta que guarda o som",
+      "supportText": "A garganta está entre a mente e o coração\nVem coisa de cima, vem coisa de baixo e de\n[repente um nó (e o que eu quero dizer?)\nÀs vezes, acontece um negócio esquisito\nQuando eu quero falar eu grito, quando eu quero\n[gritar eu falo, o resultado\nCalo.",
+      "sourceCitation": "ESTRELA D’ALVA, R. Disponível em: https://claudia.abril.com.br.",
+      "prompt": "Acesso em: 23 nov. 2021 (fragmento). A função emotiva presente no poema cumpre o propósito do eu lírico de",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "revelar as desilusões amorosas."
+        },
+        {
+          "id": "B",
+          "text": "refletir sobre a censura à sua voz."
+        },
+        {
+          "id": "C",
+          "text": "expressar a dificuldade de comunicação."
+        },
+        {
+          "id": "D",
+          "text": "ressaltar a existência de pressões externas."
+        },
+        {
+          "id": "E",
+          "text": "manifestar as dores do processo de criação."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q29",
+      "questionNumber": 29,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "E",
+      "supportTitle": "Era um gato preto, como convinha a um cultor das boas",
+      "supportText": "letras, que já lera Poe traduzido por Baudelaire. Preto e\ngordo. E lerdo. Tão gordo e lerdo que a certa altura observei\nque ia perdendo inteiramente as qualidades características\nda raça, que são em suma o ódio de morte aos ratos. Já nem\nos afugentava! Os ratos de Ouro Preto são também dignos\ne solenes — não ria — tradicionalistas... descendentes de\noutros ratos que naqueles mesmos casarões presenciaram\nacontecimentos importantes da nossa história... No sobrado\ndo desembargador Tomás Antônio Gonzaga, imagine o\nsenhor uma reunião dos sonhadores inconfidentes, com\nos antepassados daqueles ratos a passearem pelo sótão\nou mesmo pelo assoalho por entre as pernas dos homens\nabsortos na esperança da independência nacional! E\ndepois, os ancestres daqueles roedores que eu via agora\ndeslizar sutilmente no meu quarto podiam ter subido\npelo poste da ignomínia colonial, onde estava exposta a\ncabeça do Tiradentes! E quando as órbitas se descarnaram\nignominiosamente, podiam até ter penetrado no recesso\ndaquele crânio onde verdadeiramente ardera a literatura,\ncom a simplicidade do heroísmo, a febre nacionalista...",
+      "sourceCitation": "ALPHONSUS, J. Contos e novelas. Rio de Janeiro: Imago; Brasília: INL, 1976.",
+      "prompt": "Descrevendo seu gato, o narrador remete ao contexto e a protagonistas da Inconfidência para criar um efeito desconcertante centrado no",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "desenho imaginativo do casario colonial de Ouro Preto."
+        },
+        {
+          "id": "B",
+          "text": "efeito de apagamento de limites entre ficção e realidade."
+        },
+        {
+          "id": "C",
+          "text": "vínculo estabelecido entre animais urbanos e literatura."
+        },
+        {
+          "id": "D",
+          "text": "questionamento sutil quanto à sanidade dos inconfidentes."
+        },
+        {
+          "id": "E",
+          "text": "contraste entre austeridade pomposa e imagem repugnante."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q30",
+      "questionNumber": 30,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "A",
+      "supportTitle": "Enquanto estivemos entretidos com os urubus outras",
+      "supportText": "coisas andaram acontecendo na cidade. A Companhia\nbaixou novas proibições, umas inteiramente bobocas, só\npelo prazer de proibir (ninguém podia cuspir pra cima, nem\ncarregar água em jacá, nem tapar o sol com peneira, como\nse todo mundo estivesse abusando dessas esquisitices);\nmas outras bem irritantes, como a de pular muro pra cortar\ncaminho, tática que quase todo mundo que não sofria de\nreumatismo vinha adotando ultimamente, principalmente\nos meninos. E não confiando na proibição só, nem na força\ndos castigos, que eram rigorosos, a Companhia ainda\nmandou fincar cacos de garrafa nos muros. Achei isso um\nexagero, e comentei o assunto com mamãe. Meu pai ouviu\nlá do quarto e veio explicar. Disse que em épocas normais\nbastava uma coisa ou outra; mas agora a Companhia\nnão podia admitir nenhuma brecha em suas ordens; se\nalguém desobedecesse à proibição podia se cortar nos\ncacos; se alguém conseguisse pular um muro quebrando\no corte de alguns cacos, ou jogando um couro por cima,\nera apanhado pela proibição, nhoc — e fez o gesto de\nquem torce o pescoço de um frango.",
+      "sourceCitation": "VEIGA, J. J. Sombras de reis barbudos. Rio de Janeiro: Civilização Brasileira, 1978.",
+      "prompt": "Sob a perspectiva do menino que narra, os fatos ficcionais oferecem um esboço do momento político vigente na década de 1970, aqui representado pelo",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "culto ao medo, infiltrado em situações do cotidiano."
+        },
+        {
+          "id": "B",
+          "text": "sentimento de dúvida quanto à veracidade das informações."
+        },
+        {
+          "id": "C",
+          "text": "ambiente de sonho, delineado por imagens perturbadoras."
+        },
+        {
+          "id": "D",
+          "text": "incentivo ao desenvolvimento econômico com a iniciativa privada."
+        },
+        {
+          "id": "E",
+          "text": "espaço urbano marcado por uma política de isolamento das crianças."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q31",
+      "questionNumber": 31,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "C",
+      "supportTitle": "Migalhas",
+      "supportText": "Entre a toalha branca e um bule de café\nseria inapropriado dizer\neu não te amo mais.\nEra necessário algo mais solene,\num jardim japonês\npara as perdas pensadas,\num noturno de tempestade\npara arrebentar de dor,\numa praia de pedras para chorar\nem silêncio, uma cama alta\npara o incenso da despedida,\numa janela\ndando para o abismo.\nNo entanto você abaixa os olhos\ne recolhe lentamente as migalhas de pão\nsobre a mesa posta para dois.",
+      "sourceCitation": "MARQUES, A. M. A vida submarina. São Paulo: Cia. das Letras, 2021.",
+      "prompt": "Nesse poema, a representação do sentimento amoroso recupera a tradição lírica, mas se ajusta à visão contemporânea ao",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "invocar o interlocutor para uma tomada de posição."
+        },
+        {
+          "id": "B",
+          "text": "questionar a validade do envolvimento romântico."
+        },
+        {
+          "id": "C",
+          "text": "diluir em banalidade a comoção de um amor frustrado."
+        },
+        {
+          "id": "D",
+          "text": "transformar em paz as emoções conflituosas do casal."
+        },
+        {
+          "id": "E",
+          "text": "condicionar a existência da paixão a espaços idealizados."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q32",
+      "questionNumber": 32,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "A",
+      "supportTitle": "O sol começa a descer por trás da vegetação da Ilha",
+      "supportText": "da Restinga, na outra margem do rio Paraíba, colorindo\no céu de amarelo, laranja e lilás. Então se ouvem as\nprimeiras notas do Bolero, do compositor francês Maurice\nRavel, executadas pelo saxofonista Jurandy. É assim o\npôr do sol da praia do Jacaré, em Cabedelo (Grande João\nPessoa). Depois do Bolero, Jurandy toca Asa branca,\nde Luiz Gonzaga, e Meu sublime torrão, de Genival\nMacedo, espécie de hino não oficial da Paraíba.",
+      "sourceCitation": "PINHEIRO, A. Sol se põe embalado pelo Bolero de Ravel. Disponível em:",
+      "prompt": "http://tools.folha.com.br. Acesso em: 16 set. 2012 (adaptado). A interpretação musical de Jurandy do Sax, codinome de José Jurandy Félix, apresenta um repertório caracterizado pela",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "inter-relação de referenciais estéticos aparentemente distanciados."
+        },
+        {
+          "id": "B",
+          "text": "valorização de músicas que revelam mensagens de serenidade."
+        },
+        {
+          "id": "C",
+          "text": "consagração do repertório erudito como cultura dominante."
+        },
+        {
+          "id": "D",
+          "text": "iniciativa de estímulo à vocação turística da cidade."
+        },
+        {
+          "id": "E",
+          "text": "divisão hierárquica entre gêneros e estilos musicais."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q35",
+      "questionNumber": 35,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "A",
+      "supportTitle": "A indústria do esporte eletrônico é um mercado que",
+      "supportText": "está crescendo em um ritmo mais rápido do que a economia\nmundial. Sua popularidade cresceu muito e no Brasil não é\ndiferente. De acordo com os dados de uma pesquisa, mais de\n64% dos brasileiros que jogam videogame já ouviram falar de\nesporte eletrônico. No entanto, o que chama a atenção é o\ncrescimento superior a 10% do público praticante comparado\nao ano anterior, que subiu de 44,7% para 55,4%. Trata-se\nde um percentual expressivo, já que o Brasil está no top 3\ndentre os países que têm maior número de espectadores de\nesporte eletrônico do mundo. Comparado ao ano anterior,\nem 2020, o Brasil teve um marco de crescimento de 20%\nna audiência. Mundo afora, a árdua dedicação de grandes\ngamers contribuiu para o reconhecimento do Comitê Olímpico\nInternacional, aliado a outras cinco federações esportivas\ne suas desenvolvedoras de jogos, que direcionaram um\nolhar mais atento ao assunto, permitindo dar o primeiro\npasso para concretizar, pela primeira vez na história dos\njogos eletrônicos, um evento olímpico oficial.",
+      "sourceCitation": "Disponível em: https://chicoterra.com. Acesso em: 19 nov. 2021 (adaptado).",
+      "prompt": "O contexto em que o esporte eletrônico é apresentado no texto demonstra o(a)",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "condição favorável à expansão dessa modalidade."
+        },
+        {
+          "id": "B",
+          "text": "promoção dessa prática por jogadores profissionais."
+        },
+        {
+          "id": "C",
+          "text": "impulsionamento de um processo de marketing."
+        },
+        {
+          "id": "D",
+          "text": "favorecimento de fabricantes dos jogos."
+        },
+        {
+          "id": "E",
+          "text": "modificação da audiência televisiva."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q36",
+      "questionNumber": 36,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "A",
+      "supportTitle": "O Marabaixo é uma expressão artístico-cultural",
+      "supportText": "formada nas tradições e na identificação cultural entre as\ncomunidades negras do Amapá. O nome remonta às mortes\nde escravizados em navios negreiros que eram jogados na\nágua. Em sua homenagem, hinos de lamento eram cantados\nmar abaixo, mar acima. Posteriormente, o Marabaixo se\nintegrou à vivência das comunidades negras em um ciclo\nde danças, cantorias com tambores e festas religiosas,\nrecebendo, em 2018, o título de Patrimônio Cultural do Brasil.",
+      "sourceCitation": "Disponível em: http://portal.iphan.gov.br. Acesso em: 15 nov. 2021 (adaptado).",
+      "prompt": "A manifestação do Marabaixo se constituiu em expressão de arte e cultura, exercendo função de",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "ressignificar episódios dramáticos em novas práticas culturais."
+        },
+        {
+          "id": "B",
+          "text": "adaptar coreografias como imitação dos movimentos do mar."
+        },
+        {
+          "id": "C",
+          "text": "lembrar dos mortos no passado escravista como forma de lamento."
+        },
+        {
+          "id": "D",
+          "text": "perpetuar uma narrativa de apagamento dos fatos históricos traumáticos."
+        },
+        {
+          "id": "E",
+          "text": "ritualizar a passagem de atos fúnebres nas produções coletivas com espírito festivo."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q37",
+      "questionNumber": 37,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "C",
+      "supportTitle": "O uso das redes sociais como forma de ampliar",
+      "supportText": "universos foi uma descoberta recente para o artista Wolney\nFernandes, que começou a criar quando o ambiente em\nGoiás era mais árido em relação às artes visuais. “Hoje, ser\ndiferente é uma potência e quem sabe o que quer com\na própria arte encontra espaço”, diz. As colagens artísticas\ndo goiano aparecem em capas de obras literárias pelo\nBrasil e exterior.",
+      "sourceCitation": "Disponível em: https://opopular.com.br. Acesso em: 15 nov. 2021 (adaptado).",
+      "prompt": "O artista goiano Wolney Fernandes busca expor seu trabalho por meio de plataformas virtuais com o objetivo de",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "dar suporte à técnica de colagem em Artes Visuais, contornando dificuldades práticas."
+        },
+        {
+          "id": "B",
+          "text": "aproximar-se da estética visual própria da editoração de obras artísticas, como capas de livros."
+        },
+        {
+          "id": "C",
+          "text": "oferecer uma vitrine internacional para sua produção artística, a fim de dar mais visibilidade a suas obras."
+        },
+        {
+          "id": "D",
+          "text": "enfatizar o caráter original e inovador de suas criações artísticas, diferenciando-se das artes tradicionais."
+        },
+        {
+          "id": "E",
+          "text": "trazer um sentido tecnológico às suas colagens, uma vez que as imagens artísticas são recorrentes nas redes sociais."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q38",
+      "questionNumber": 38,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "A",
+      "supportTitle": "O mais antigo grupo de rap indígena do país, Brô MCs,",
+      "supportText": "surgiu em 2009, na aldeia Jaguapiru, em Dourados, Mato\nGrosso do Sul. Os integrantes conheceram o rap pelo rádio,\nouvindo um programa que apresentava cantores e grupos\nbrasileiros desse gênero musical. O Brô MCs conseguiu\ninfluenciar outros a fazerem rap e a lutarem pelas causas\nindígenas. Um dos nomes do movimento, Kunumí MC,\né um jovem de 16 anos, da aldeia Krukutu, em São Paulo.\nO adolescente enxerga o rap como uma cultura da defesa\ne começou a fazer rimas quando percebeu que a poesia,\npela qual sempre se interessou, podia virar música.\nNas letras que cria, inspiradas tanto pelo rap quanto pelos\nritmos indígenas, tenta incluir sempre assuntos aos quais\nacha importante dar voz, principalmente, a questão da\ndemarcação de terras.",
+      "sourceCitation": "Disponível em: www.correiobraziliense.com.br. Acesso em: 13 nov. 2021 (adaptado).",
+      "prompt": "O movimento rap dos povos originários do Brasil revela o(a)",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "fusão \tde \tmanifestações \tar tísticas \turbanas contemporâneas com a cultura indígena."
+        },
+        {
+          "id": "B",
+          "text": "contraposição das temáticas socioambientais indígenas às questões urbanas."
+        },
+        {
+          "id": "C",
+          "text": "rejeição da indústria radiofônica às músicas indígenas."
+        },
+        {
+          "id": "D",
+          "text": "distanciamento da realidade social indígena."
+        },
+        {
+          "id": "E",
+          "text": "estímulo ao estudo da poesia indígena."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q39",
+      "questionNumber": 39,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "C",
+      "supportTitle": "A petição on-line criada por um cidadão paulista",
+      "supportText": "surtiu efeito: casado há três anos com seu companheiro,\nele pedia a alteração da definição de “casamento” no\ntradicional dicionário Michaelis em português. Na definição\nanterior, casamento aparecia como “união legítima entre\nhomem e mulher” e “união legal entre homem e mulher,\npara constituir família”.\nO novo verbete não traz em nenhum momento as\npalavras homem ou mulher — agora a definição de\ncasamento se refere a “pessoas”.\nPara o diretor de comunicação do site onde a petição foi\npublicada, a iniciativa mostra a “eficiência da mobilização”.\n“Em dois dias, mudou-se uma definição que permanecia\na mesma há décadas”, afirma. E conclui: “A plataforma\nserve para todos os tipos de causas, para as mudanças\nque importam para as pessoas.”.",
+      "sourceCitation": "SENRA, R. Disponível em: www.bbc.com. Acesso em: 29 out. 2015.",
+      "prompt": "A notícia trata da mudança ocorrida em um dicionário da língua portuguesa. Segundo o texto, essa mudança foi impulsionada pela",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "inclusão de informações no verbete."
+        },
+        {
+          "id": "B",
+          "text": "relevância social da instituição casamento."
+        },
+        {
+          "id": "C",
+          "text": "utilização pública da petição pelos cidadãos."
+        },
+        {
+          "id": "D",
+          "text": "rapidez na disseminação digital do verbete."
+        },
+        {
+          "id": "E",
+          "text": "divulgação de plataformas para a criação de petição."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q40",
+      "questionNumber": 40,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "B",
+      "supportTitle": "A neozelandesa Laurel Hubbard fez história nos Jogos",
+      "supportText": "Olímpicos. Apesar de ter ficado de fora da disputa por\nmedalhas, a levantadora de peso deixou sua marca na\nedição de Tóquio por ser a primeira mulher abertamente\ntransgênero a participar de uma competição olímpica.\nNo início da carreira, na década de 1990, a neozelandesa\npar ticipava de disputas na categoria masculina.\nEm 2001, aos 23 anos, ela se afastou da atividade.\n“A pressão de tentar me encaixar em um mundo que talvez\nnão tenha sido feito para pessoas como eu se tornou um\nfardo muito grande para suportar.” Em 2012, Laurel começou\nsua transição de gênero por meio de terapias hormonais e,\nem 2013, declarou abertamente ser uma mulher trans. Para\no Comitê Olímpico Internacional, a participação de mulheres\ntrans nos Jogos é permitida caso o nível de testosterona,\nhormônio que aumenta a massa muscular, esteja abaixo de\n10 nanomols por litro por pelo menos 12 meses.",
+      "sourceCitation": "Disponível em: https://revistagalileu.globo.com. Acesso em: 18 nov. 2021 (adaptado).",
+      "prompt": "No texto, os limites do potencial inclusivo do esporte são dados pela",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "dificuldade de conseguir bons resultados esportivos."
+        },
+        {
+          "id": "B",
+          "text": "dependência de características biológicas padronizadas."
+        },
+        {
+          "id": "C",
+          "text": "inexistência de uma categoria para pessoas transgênero."
+        },
+        {
+          "id": "D",
+          "text": "necessidade de afastamento temporário das competições."
+        },
+        {
+          "id": "E",
+          "text": "impossibilidade de uso controlado de substâncias exógenas."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q41",
+      "questionNumber": 41,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "B",
+      "supportTitle": "“Ganhei 25 medalhas em mundiais, sete em Jogos",
+      "supportText": "Olímpicos, e sou uma sobrevivente de abuso sexual.”\nFoi assim que Simone Biles se apresentou ao comitê do\nSenado norte-americano que investiga as supostas falhas\ndo FBI no caso Larry Nassar. Biles e outras três atletas,\nvítimas dos abusos do ex-médico da equipe de ginástica\nfeminina dos EUA, exigiram que os agentes da investigação\nsejam processados por falta de ação prévia contra Nassar,\nagora preso. Biles esclareceu que culpa Larry Nassar\ne “todo o sistema que o permitiu e o perpetrou”, acusando\na Federação de Ginástica e o Comitê Olímpico dos Estados\nUnidos de saberem “muito antes” que ela havia sofrido\nabusos. A melhor ginasta do mundo é um ícone. Nos Jogos\nOlímpicos de Tóquio, uma lesão psicológica a impediu de\ncompetir como previa. No entanto, ela chegou ao topo como\numa líder no trabalho de acabar com o preconceito com\nos problemas de saúde mental. “Não quero que nenhum\noutro atleta olímpico sofra o horror que eu e outras centenas\nsuportamos e continuamos suportando até hoje”, afirmou.",
+      "sourceCitation": "Disponível em: https://brasil.elpais.com. Acesso em: 31 out. 2021 (adaptado).",
+      "prompt": "O fato relatado na notícia chama a atenção acerca da necessidade de reflexão sobre a relação entre o esporte e",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "o desempenho atlético internacional."
+        },
+        {
+          "id": "B",
+          "text": "a dimensão emocional dos atletas."
+        },
+        {
+          "id": "C",
+          "text": "os comitês olímpicos nacionais."
+        },
+        {
+          "id": "D",
+          "text": "as instituições de inteligência."
+        },
+        {
+          "id": "E",
+          "text": "as federações esportivas."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q42",
+      "questionNumber": 42,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "E",
+      "supportTitle": "O acesso às Práticas Corporais/Atividades Físicas",
+      "supportText": "(PC/AF) é desigual no Brasil, à semelhança de outros\nindicadores sociais e de saúde. Em geral, PC/AF prazerosas,\ndiversificadas, mais afeitas ao período de lazer estão\nconcentradas nas populações mais abastadas. As atividades\nfísicas de deslocamento, trajetos a pé ou de bicicleta para\nestudar ou trabalhar, por exemplo, são mais frequentes\nna classe social menos favorecida. Aqui, há uma relação\ninversa e perversa entre variáveis socioeconômicas de acesso\nàs PC/AF. As maiores prevalências de inatividade física foram\nem mulheres, pessoas com 60 anos ou mais, negros, pessoas\ncom autoavaliação de saúde ruim ou muito ruim, com renda\nfamiliar de até quatro salários mínimos por pessoa, pessoas\nque desconhecem programas públicos de PC/AF e residentes\nem áreas sem locais públicos para a prática.",
+      "sourceCitation": "KNUTH, A. G.; ANTUNES, P. C. Saúde e Sociedade, n. 2, 2021 (adaptado).",
+      "prompt": "O fator central que impacta a realização de práticas corporais/atividades físicas no tempo de lazer no Brasil é a",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "diferença entre homens e mulheres."
+        },
+        {
+          "id": "B",
+          "text": "inexistência de políticas públicas."
+        },
+        {
+          "id": "C",
+          "text": "diversidade de faixa etária."
+        },
+        {
+          "id": "D",
+          "text": "variação de condição étnica."
+        },
+        {
+          "id": "E",
+          "text": "desigualdade entre classes sociais."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q43",
+      "questionNumber": 43,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "A",
+      "supportText": "Mestre e companheiro, disse eu que nos íamos despedir.\nMas disse mal. A morte não extingue: transforma; não aniquila:\nrenova; não divorcia: aproxima. Um dia supuseste “morta e\nseparada” a consorte dos teus sonhos e das tuas agonias,\nque te soubera “pôr um mundo inteiro no recanto” do teu\nninho; e, todavia, nunca ela te esteve mais presente, no íntimo\nde ti mesmo e na expressão do teu canto, no fundo do teu ser\ne na face de tuas ações. Esses catorze versos inimitáveis, em\nque o enlevo dos teus discípulos resume o valor de toda uma\nliteratura, eram a aliança de ouro do teu segundo noivado, um\nanel de outras núpcias, para a vida nova do teu renascimento\ne da tua glorificação, com a sócia sem nódoa dos teus anos\nde mocidade e madureza, da florescência e frutificação de\ntua alma. Para os eleitos do mundo das ideias a miséria\nestá na decadência, e não na morte. A nobreza de uma nos\npreserva das ruínas da outra. Quando eles atravessavam essa\npassagem do invisível, que os conduz à região da verdade\nsem mescla, então é que entramos a sentir o começo do seu\nreino, o reino dos mortos sobre os vivos.",
+      "sourceCitation": "BARBOSA, R. O adeus da Academia a Machado de Assis. Rio de Janeiro: Agir, 1962.",
+      "prompt": "Esse é um trecho do discurso de Rui Barbosa na Academia Brasileira de Letras em homenagem a Machado de Assis por ocasião de sua morte. Uma das características desse discurso de homenagem é a presença de",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "metáforas relacionadas à trajetória pessoal e criadora do homenageado."
+        },
+        {
+          "id": "B",
+          "text": "recursos fonológicos empregados para a valorização do ritmo do texto."
+        },
+        {
+          "id": "C",
+          "text": "frases curtas e diretas no relato da vida e da morte do homenageado."
+        },
+        {
+          "id": "D",
+          "text": "contraposição de ideias presentes na obra do homenageado."
+        },
+        {
+          "id": "E",
+          "text": "seleção vocabular representativa do sentimento de nostalgia."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q45",
+      "questionNumber": 45,
+      "languageTrack": null,
+      "area": "languages",
+      "answerKey": "E",
+      "supportTitle": "Carta aberta à população brasileira",
+      "supportText": "Prezados Cidadãos e Cidadãs,\nO envelhecimento populacional é um fenômeno\nmundial. Infelizmente, nosso país ainda não está preparado\npara atender às demandas dessa população.\nEste é o retrato da saúde pública no Brasil, que,\napesar dos indiscutíveis avanços, apresenta um cenário\nde deficiências e falta de integração em todos os níveis de\natenção à saúde: primária (atendimento deficiente nas\nunidades de saúde da atenção básica), secundária\n(carência de centros de referência com atendimento por\nespecialistas) e terciária (atendimento hospitalar com\nabordagem ao idoso centrada na doença), ou seja, não\nhá, na prática, uma rede de atenção à saúde do idoso.\nDiante desse cenário, a Sociedade Brasileira de\nGeriatria e Gerontologia (SBGG) vem a público manifestar\nsuas preocupações com o presente e o futuro dos idosos\nno Brasil. É preciso garantir a saúde como direito universal.\nEsperamos que tanto nossos atuais quanto os futuros\ngovernantes e legisladores reflitam sobre a necessidade\nde investir na saúde e na qualidade de vida associada ao\nenvelhecimento.\nDignidade à saúde do idoso!\nRio de Janeiro, 15 de setembro de 2014.",
+      "sourceCitation": "Disponível em: www.sbgg.org.br. Acesso em: 20 out. 2021 (adaptado).",
+      "prompt": "O objetivo desse texto é",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "sensibilizar o idoso a respeito dos cuidados com a saúde."
+        },
+        {
+          "id": "B",
+          "text": "alertar os governantes sobre os cuidados requeridos pelo idoso."
+        },
+        {
+          "id": "C",
+          "text": "divulgar o trabalho da Sociedade Brasileira de Geriatria e Gerontologia."
+        },
+        {
+          "id": "D",
+          "text": "informar o setor público sobre o retrocesso da legislação destinada à população idosa."
+        },
+        {
+          "id": "E",
+          "text": "chamar a atenção da população sobre a qualidade dos serviços de saúde pública para o idoso."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q47",
+      "questionNumber": 47,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "D",
+      "supportTitle": "Felizes tempos eram esses! As moças iam à missa de",
+      "supportText": "madrugada. De dia ninguém as via e se alguma, em dia\nde festa, queria passear com a avó ou a tia, havia de ir de\ncadeirinhas. Bem razão têm os nossos velhos de chorar\npor esses tempos, em que as filhas não sabiam escrever,\ne por isso não mandavam nem recebiam bilhetinhos.\nmeados do século XIX: um estudo das revistas femininas editadas",
+      "sourceCitation": "Novo Correio de Modas, 1853, apud DONEGÁ, A. L. Publicar ficção em pelos irmãos Laemmert. Campinas: Unicamp, 2013 (adaptado).",
+      "prompt": "Na perspectiva do autor, as tradições e os costumes sociofamiliares sofreram alterações, no século XIX, decorrentes de quais fatores?",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hábitos de leitura e mobilidade regional."
+        },
+        {
+          "id": "B",
+          "text": "Circulação de impressos e trânsito religioso."
+        },
+        {
+          "id": "C",
+          "text": "Valorização da língua e imigração estrangeira."
+        },
+        {
+          "id": "D",
+          "text": "Práticas de letramento e transformação cultural."
+        },
+        {
+          "id": "E",
+          "text": "Flexibilização do ensino e reformismo pedagógico."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q48",
+      "questionNumber": 48,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "A",
+      "supportTitle": "No Cerrado, o conhecimento local está sendo cada",
+      "supportText": "vez mais subordinado à lógica do agronegócio. De um\nlado, o capital impõe os conhecimentos biotecnológicos,\ncomo mecanismo de universalização de práticas agrícolas\ne de novas tecnologias, e de outro, o modelo capitalista\nsubordina homens e mulheres à lógica do mercado. Assim,\nas águas, as sementes, os minerais, as terras (bens\ncomuns) tornam-se propriedade privada. Além do mais,\nhá outros fatores negativos, como a mecanização pesada,\na “pragatização” dos seres humanos e não humanos, a\nviolência simbólica, a superexploração, as chuvas de\nveneno e a violência contra a pessoa.",
+      "sourceCitation": "CALAÇA, M.; SILVA, E. B.; JESUS, J. N. Territorialização do agronegócio e subordinação do campesinato no Cerrado. Élisée, Rev. Geo. UEG, n. 1, jan.-jun. 2021 (adaptado).",
+      "prompt": "Os elementos descritos no texto, a respeito da territorialização da produção, demonstram que há um",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "cerco aos camponeses, inviabilizando a manutenção das condições para a vida."
+        },
+        {
+          "id": "B",
+          "text": "descaso aos latifundiários, impactando a plantação de alimentos para a exportação."
+        },
+        {
+          "id": "C",
+          "text": "desprezo ao assalariado, afetando o engajamento dos sindicatos para o trabalhador."
+        },
+        {
+          "id": "D",
+          "text": "desrespeito aos governantes, comprometendo a criação de empregos para o lavrador."
+        },
+        {
+          "id": "E",
+          "text": "assédio ao empresariado, dificultando o investimento de maquinários para a produção."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q49",
+      "questionNumber": 49,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "E",
+      "supportText": "TEXTO I\nCom uma população de 25 milhões de habitantes\n(cerca de 60% de minorias muçulmanas, principalmente\nda etnia Uigur), Xinjiang é uma região estratégica para a\nChina. Faz fronteira com oito países, é uma artéria crucial\ndo megaprojeto de infraestrutura chinês Cinturão e Rota e\ntem as maiores reservas nacionais de carvão e gás natural.\nTEXTO II\nDentre as províncias da Região Oeste, Xinjiang se\ndestaca ao receber mais de 1,7 milhão de migrantes entre\n2000 e 2010. O principal motivo desse fluxo migratório\né que o governo fornece subsídios à população visando\naumentar a proporção de chineses da etnia Han em\nrelação à população local de etnias turca e muçulmana.\ninterpretação de eventos contemporâneos segundo os clássicos do desenvolvimento.",
+      "sourceCitation": "NINIO, M. Disponível em: https://oglobo.globo.com. Acesso em: 5 out. 2021 (adaptado). ALVES, F.; TOYOSHIMA, S. Disparidade socioeconômica e fluxo migratório chinês: Revista de Economia Contemporânea, n. 1, jan.-abr. 2017 (adaptado).",
+      "prompt": "A política demográfica para a província mencionada nos textos é parte da seguinte ação estratégica do governo chinês:",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "Promover a ocupação rural."
+        },
+        {
+          "id": "B",
+          "text": "Favorecer a liberdade religiosa."
+        },
+        {
+          "id": "C",
+          "text": "Descentralizar a gestão pública."
+        },
+        {
+          "id": "D",
+          "text": "Incentivar a pluralidade cultural."
+        },
+        {
+          "id": "E",
+          "text": "Assegurar a integridade territorial."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q50",
+      "questionNumber": 50,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "E",
+      "supportTitle": "Superar a história da escravidão como principal marca",
+      "supportText": "da trajetória do negro no país tem sido uma tônica daqueles\nque se dedicam a pesquisar as heranças de origem afro\nà cultura brasileira. A esse esforço de reconstrução\nda própria história do país, alia-se agora a criação da\nplataforma digital Ancestralidades. “A história do negro\nno Brasil vai continuar sendo contada, e cada passo que\na gente dá para trás é um passo que a gente avança”, diz\nMárcio Black, idealizador da plataforma, sobre o estudo\nde figuras ainda encobertas pela perspectiva histórica\nimposta pelos colonizadores da América.\nFIORATI, G. Projeto joga luz sobre negros e revê perspectiva histórica.",
+      "sourceCitation": "Disponível em: www1.folha.uol.com.br. Acesso em: 10 nov. 2021 (adaptado).",
+      "prompt": "Em relação ao conhecimento sobre a formação cultural brasileira, iniciativas como a descrita no texto favorecem o(a)",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "recuperação do tradicionalismo."
+        },
+        {
+          "id": "B",
+          "text": "estímulo ao antropocentrismo."
+        },
+        {
+          "id": "C",
+          "text": "reforço do etnocentrismo."
+        },
+        {
+          "id": "D",
+          "text": "resgate do teocentrismo."
+        },
+        {
+          "id": "E",
+          "text": "crítica ao eurocentrismo."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q51",
+      "questionNumber": 51,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "C",
+      "supportTitle": "Escrito durante a Primeira Guerra Mundial, o seguinte",
+      "supportText": "trecho faz parte da carta enviada pelo secretário do exterior\nbritânico, Sir Arthur James Balfour, ao banqueiro Lord\nRotschild, presidente da Liga Sionista, em 2 de novembro\nde 1917, a carta ficou conhecida como Declaração Balfour:\n“O governo de Sua Majestade vê com aprovação o\nestabelecimento na Palestina de um lar nacional para\no povo judeu, e fará todos os esforços para facilitar tal\nobjetivo. Nada será feito que possa prejudicar os direitos\ncivis e religiosos das comunidades não judaicas na\nPalestina.”",
+      "sourceCitation": "GATTAZ, A. A Guerra da Palestina. São Paulo: Usina do Livro, 2002 (adaptado).",
+      "prompt": "A análise do resultado do processo em questão revela que o governo inglês foi incapaz de garantir seu objetivo de",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "promover o bem-estar social."
+        },
+        {
+          "id": "B",
+          "text": "negociar o apoio muçulmano."
+        },
+        {
+          "id": "C",
+          "text": "mediar os conflitos territoriais."
+        },
+        {
+          "id": "D",
+          "text": "estimular a cooperação regional."
+        },
+        {
+          "id": "E",
+          "text": "combater os governos autocráticos."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q52",
+      "questionNumber": 52,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "A",
+      "supportText": "TEXTO I\nComo presença consciente no mundo não posso\nescapar à responsabilidade ética no meu mover-me no\nmundo. Se sou puro produto da determinação genética ou\ncultural ou de classe, sou irresponsável pelo que faço no\nmeu mover-me no mundo e, se careço de responsabilidade,\nnão posso falar em ética.\nFREIRE, P. Pedagogia da autonomia: saberes necessários\nTEXTO II\nPaulo Freire construiu uma pedagogia da esperança.\nNa sua concepção, a história não é algo pronto e acabado.\nAs estruturas de opressão e as desigualdades, apesar\nde serem naturalizadas, são sócio e historicamente\nconstruídas. Daí a importância de os educandos tomarem\nconsciência da sua realidade para, assim, transformá-la.",
+      "sourceCitation": "à prática educativa. São Paulo: Paz e Terra, 1996. DEMARCHI, J. L. Paulo Freire. Disponível em: https://diplomatique.org.br.",
+      "prompt": "Acesso em: 6 out. 2021 (adaptado). Com base no conceito de ética pedagógica presente nos textos, os educandos tornam-se responsáveis pela",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "participação sociopolítica."
+        },
+        {
+          "id": "B",
+          "text": "definição estético-cultural."
+        },
+        {
+          "id": "C",
+          "text": "competição econômica local."
+        },
+        {
+          "id": "D",
+          "text": "manutenção do sistema escolar."
+        },
+        {
+          "id": "E",
+          "text": "capacitação de mobilidade individual."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q53",
+      "questionNumber": 53,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "B",
+      "supportTitle": "A Cordilheira do Himalaia tem mais de 50 milhões de",
+      "supportText": "anos, sendo classificada como a maior cordilheira do planeta.\nOriginário da língua sânscrito, comum na região, seu nome\nquer dizer “morada da neve”. É possível encontrar nessa\ncordilheira as quinze maiores montanhas do mundo. Ao todo,\nexistem mais de cem picos, que contam com altitudes bem\nmaiores que 7 000 m. O Everest, considerado o ponto mais\nalto da Terra, tem nada menos que 8 848 m de altitude, e\ncontinua crescendo, aproximadamente, 0,8 mm a cada ano.",
+      "sourceCitation": "Disponível em: https://meioambiente.culturamix.com. Acesso em: 12 nov. 2021 (adaptado).",
+      "prompt": "Qual dinâmica natural é responsável pelo fenômeno apresentado?",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "Derrame de lava vulcânica."
+        },
+        {
+          "id": "B",
+          "text": "Encontro de placas tectônicas."
+        },
+        {
+          "id": "C",
+          "text": "Ação do intemperismo químico."
+        },
+        {
+          "id": "D",
+          "text": "Sedimentação de erosão eólica."
+        },
+        {
+          "id": "E",
+          "text": "Derretimento de geleiras glaciais."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q54",
+      "questionNumber": 54,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "A",
+      "supportTitle": "Eu poderia concluir que a raiva é um pensamento, que",
+      "supportText": "estar com raiva é pensar que alguém é detestável, e que\nesse pensamento, como todos os outros — assim como\nDescartes o mostrou —, não poderia residir em nenhum\nfragmento de matéria. A raiva seria, portanto, espírito.\nPorém, quando me volto para minha própria experiência\nda raiva, devo confessar que ela não estava fora do meu\ncorpo, mas inexplicavelmente nele.\nMERLEAU-PONTY, M. Quinta conversa: o homem visto de fora.",
+      "sourceCitation": "São Paulo: Martins Fontes, 1948 (adaptado).",
+      "prompt": "No que se refere ao problema do corpo, a filosofia cartesiana apresenta-se como contraponto ao entendimento expresso no texto por",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "apresentar uma visão dualista."
+        },
+        {
+          "id": "B",
+          "text": "confirmar uma tese naturalista."
+        },
+        {
+          "id": "C",
+          "text": "demonstrar uma premissa realista."
+        },
+        {
+          "id": "D",
+          "text": "sustentar um argumento idealista."
+        },
+        {
+          "id": "E",
+          "text": "defender uma posição intencionalista."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q55",
+      "questionNumber": 55,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "A",
+      "supportText": "A diversão é o prolongamento do trabalho sob o capitalismo tardio. Ela é procurada por quem quer escapar\nao processo de trabalho mecanizado para se pôr de novo em condições de enfrentá-lo. Mas, ao mesmo tempo,\na mecanização atingiu um tal poderio sobre a pessoa em seu lazer e sobre a sua felicidade, ela determina tão\nprofundamente a fabricação das mercadorias destinadas à diversão que essa pessoa não pode mais perceber outra\ncoisa senão as cópias que reproduzem o próprio processo de trabalho.",
+      "sourceCitation": "ADORNO, T.; HORKHEIMER, M. Dialética do esclarecimento. Rio de Janeiro: Zahar, 1997.",
+      "prompt": "No texto, o tempo livre é concebido como",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "consumo de produtos culturais elaborados no mesmo sistema produtivo do capitalismo."
+        },
+        {
+          "id": "B",
+          "text": "forma de realizar as diversas potencialidades da natureza humana."
+        },
+        {
+          "id": "C",
+          "text": "alternativa para equilibrar tensões psicológicas do dia a dia."
+        },
+        {
+          "id": "D",
+          "text": "promoção da satisfação de necessidades artificiais."
+        },
+        {
+          "id": "E",
+          "text": "mecanismo de organização do ócio e do prazer."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q57",
+      "questionNumber": 57,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "E",
+      "supportText": "Quem se mete pelo caminho do pedido de perdão deve estar pronto a escutar uma palavra de recusa. Entrar na\natmosfera do perdão é aceitar medir-se com a possibilidade sempre aberta do imperdoável. Perdão pedido não é\nperdão a que se tem direito [devido]. É com o preço destas reservas que a grandeza do perdão se manifesta.",
+      "sourceCitation": "RICOEUR, P. O perdão pode curar. Disponível em: www.lusosofia.net. Acesso em: 14 out. 2019.",
+      "prompt": "A reflexão sobre o perdão apresentada no texto encontra fundamento na(s)",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "rejeição particular amparada pelo desejo de poder."
+        },
+        {
+          "id": "B",
+          "text": "decisão subjetiva determinada pela vontade divina."
+        },
+        {
+          "id": "C",
+          "text": "liberdade mitigada pela predestinação do espírito."
+        },
+        {
+          "id": "D",
+          "text": "escolhas humanas definidas pelo conhecimento empírico."
+        },
+        {
+          "id": "E",
+          "text": "relações interpessoais mediadas pela autonomia dos indivíduos."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q58",
+      "questionNumber": 58,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "A",
+      "supportTitle": "A Cavalgada de Sant’Ana é uma expressão da devoção",
+      "supportText": "dos vaqueiros à padroeira de Caicó (RN). Nas décadas de\n1950 a 1970, esse evento, então denominado Cavalaria,\nera celebrado pelas pessoas que residiam na zona rural\ndo município de Caicó. Essas pessoas usavam os animais\n(jegues, mulas e cavalos) como único meio de transporte,\nsobretudo para se dirigirem à cidade nos dias de feiras,\ntrazendo seus produtos para comercializarem. Estando em\nCaicó no período da Festa de Sant’Ana, esses agricultores\nse organizavam em cavalgada até o pátio da Catedral de\nSant’Ana para louvar a santa e receber bênção para seus\nanimais. Por volta da década de 1970, com a chegada do\nautomóvel à zona rural do município, essa expressão cultural\nfoi extinta. O meio de transporte utilizando os animais passou\na ser substituído por carros, sobretudo caminhonetes e\ncaminhões, que transportavam os camponeses para a\ncidade em dias de feiras e festas. Desde 2002, um grupo de\ncaicoenses retomou essa expressão cultural e, em conjunto\ncom a associação dos vaqueiros, realiza no primeiro\ndomingo da Festa a Cavalgada de Sant’Ana. O evento, além\nde contar com a participação dos cavaleiros que residem\nnas zonas rurais, atrai também pessoas que residem em\nCaicó, cidades vizinhas e amantes das vaquejadas.",
+      "sourceCitation": "FESTA DE SANT’ANA. Disponível em: http://portal.iphan.gov.br.",
+      "prompt": "Acesso em: 12 out. 2021 (adaptado). As mudanças culturais mencionadas no texto caracterizam-se pela presença de",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "elementos tradicionais e modernos em torno de uma crença religiosa."
+        },
+        {
+          "id": "B",
+          "text": "argumentos teológicos e históricos em consequência de uma ordem papal."
+        },
+        {
+          "id": "C",
+          "text": "fundamentos estéticos e etnográficos em função de uma cerimônia clerical."
+        },
+        {
+          "id": "D",
+          "text": "práticas corporais e esportivas em decorrência de uma imposição eclesiástica."
+        },
+        {
+          "id": "E",
+          "text": "discursos filosóficos e antropológicos em resultado de uma determinação paroquial."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q59",
+      "questionNumber": 59,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "A",
+      "supportTitle": "Do século XVI em diante, pelo menos nas classes",
+      "supportText": "mais altas, o garfo passou a ser usado como utensílio\npara comer, chegando através da Itália primeiramente à\nFrança e, em seguida, à Inglaterra e à Alemanha, depois\nde ter servido, durante algum tempo, apenas para retirar\nalimentos sólidos da travessa. Henrique III introduziu-o\nna França, trazendo-o provavelmente de Veneza. Seus\ncortesãos não foram pouco ridicularizados por essa\nmaneira “afetada” de comer e, no princípio, não eram\nmuito hábeis no uso do utensílio: pelo menos se dizia\nque metade da comida caía do garfo no caminho do prato\nà boca. Em data tão recente como o século XVII, o garfo\nera ainda basicamente artigo de luxo, geralmente feito de\nprata ou ouro.\nELIAS, N. O processo civilizador: uma história dos costumes.",
+      "sourceCitation": "Rio de Janeiro: Zahar, 1994.",
+      "prompt": "O processo social relatado indica a formação de uma etiqueta que tem como princípio a",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "distinção das classes sociais."
+        },
+        {
+          "id": "B",
+          "text": "valorização de hábitos de higiene."
+        },
+        {
+          "id": "C",
+          "text": "exaltação da cultura mediterrânea."
+        },
+        {
+          "id": "D",
+          "text": "consagração de tradições medievais."
+        },
+        {
+          "id": "E",
+          "text": "disseminação de produtos manufaturados."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q60",
+      "questionNumber": 60,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "D",
+      "supportTitle": "Negar o pedido por dinheiro indispensável para",
+      "supportText": "necessidades pessoais ou comprar bens usando o nome\nda pessoa sem o consentimento dela. Ameaçar o corte\nde recursos dependendo de atitudes pessoais, esconder\ndocumentos ou trocar senhas do banco sem avisar.\nOu, ainda, proibir a pessoa de trabalhar ou destruir seus\npertences. As histórias são comuns, mas às vezes não são\nreconhecidas como abuso. Mas é uma das cinco formas de\nconduta contra a mulher previstas na Lei Maria da Penha.",
+      "sourceCitation": "LEWGOY, J. Conduta quase invisível destrói a vida de mulheres. Disponível em:",
+      "prompt": "https://valorinveste.globo.com. Acesso em: 23 out. 2021 (adaptado). O texto apresenta tipos de conduta sujeitos a punição, conforme previsto na Lei Maria da Penha, porque consistem em formas de",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "ação difamatória."
+        },
+        {
+          "id": "B",
+          "text": "desvio comportamental."
+        },
+        {
+          "id": "C",
+          "text": "expressão preconceituosa."
+        },
+        {
+          "id": "D",
+          "text": "violência patrimonial."
+        },
+        {
+          "id": "E",
+          "text": "desentendimento matrimonial."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q61",
+      "questionNumber": 61,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "E",
+      "supportTitle": "Por trás da “mágica” do Google Assistant de sua",
+      "supportText": "capacidade de interpretar 26 idiomas está uma enorme\nequipe de linguistas distribuídos globalmente, trabalhando\ncomo subcontratados, que devem rotular tediosamente os\ndados de treinamento para que funcione. Eles ganham\nbaixos salários e são rotineiramente forçados a trabalhar\nhoras extras não remuneradas. A inteligência artificial não\nfunciona com um pozinho mágico. Ela funciona por meio\nde trabalhadores que treinam algoritmos incansavelmente\naté que eles automatizem seus próprios trabalhos.\nA Inteligência Artificial (IA) da economia freelancer está vindo atrás de você.",
+      "sourceCitation": "Disponível em: https://mittechreview.com.br. Acesso em: 6 out. 2021 (adaptado).",
+      "prompt": "O texto critica a mudança tecnológica em razão da seguinte consequência:",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "Diversificação da função."
+        },
+        {
+          "id": "B",
+          "text": "Mobilidade da população."
+        },
+        {
+          "id": "C",
+          "text": "Autonomia do empregado."
+        },
+        {
+          "id": "D",
+          "text": "Concentração da produção."
+        },
+        {
+          "id": "E",
+          "text": "Invisibilidade do profissional."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q62",
+      "questionNumber": 62,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "C",
+      "supportTitle": "Enormes alto-falantes sul-coreanos instalados na",
+      "supportText": "fronteira com o Norte costumavam transmitir desde\ncanções em estilo K-pop (como é chamado o pop\nsul-coreano) até boletins climáticos e noticiário crítico ao\nvizinho comunista. O Norte costuma praticar atividade\nsemelhante, transmitindo por seus alto-falantes discursos\ncríticos a Seul e aliados. Durante os anos 1980, o governo\nsul-coreano construiu um mastro de 97 metros de altura\npara hastear sua bandeira no povoado de Daesong-dong,\nna fronteira com o Norte. O Norte respondeu com a\nconstrução de um mastro ainda mais alto (160 m) na\ncidade fronteiriça de Gijung-dong. “Essas demonstrações\nsão uma válvula de escape competitiva e importante entre\nos dois lados, fora de um possível conflito militar”, diz o\nanalista Ankit Panda.\nTAN, Y. Disputa de mastros e alto-falantes com K-pop: as pequenas picuinhas do conflito",
+      "sourceCitation": "entre as Coreias. Disponível em: www.bbc.com. Acesso em: 7 nov. 2021 (adaptado).",
+      "prompt": "Os atos de competição citados têm suas origens históricas vinculadas a um contexto de",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "domínio cultural-identitário de atores sociais."
+        },
+        {
+          "id": "B",
+          "text": "disputas étnico-raciais de povos tradicionais."
+        },
+        {
+          "id": "C",
+          "text": "divergências político-ideológicas de agentes estatais."
+        },
+        {
+          "id": "D",
+          "text": "imposição econômico-financeira de empresas privadas."
+        },
+        {
+          "id": "E",
+          "text": "protestos ecológico-sustentáveis de entidades ambientais."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q63",
+      "questionNumber": 63,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "B",
+      "supportTitle": "Seda, madeiras aromáticas e têxteis, obras de arte,",
+      "supportText": "lã, cristais e muitas, muitas peças de porcelana chegaram\nao Brasil ao longo dos séculos XVII e XVIII. A opulência\nproporcionada pelo ouro fez com que esses itens fossem\nainda mais presentes em cidades mineiras como Ouro Preto,\nMariana e Sabará. Esses objetos inspiraram a criação das\nchinesices, termo que designa um tipo de arte que evoca\nmotivos chineses, presentes em várias igrejas barrocas de\nMinas Gerais. No Brasil, é bem provável que a inspiração\npara as pinturas nas igrejas barrocas com pássaros,\nelefantes, tigres, mandarins e pagodes tenha sido tirada de\ngravuras, tecidos, móveis e, principalmente, das porcelanas\nchinesas que circulavam livremente em uma sociedade\nenriquecida pelo comércio do ouro e pedras preciosas.\nMARIUZZO, P. Estudos interdisciplinares ampliam conhecimento sobre",
+      "sourceCitation": "chinesice no barroco mineiro. Disponível em: http://cienciaecultura.bvs.br.",
+      "prompt": "Acesso em: 23 nov. 2021 (adaptado). O desenvolvimento do processo artístico descrito no texto foi possível pelo(a)",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "representação arquitetônica."
+        },
+        {
+          "id": "B",
+          "text": "intercâmbio transcontinental."
+        },
+        {
+          "id": "C",
+          "text": "dependência econômica."
+        },
+        {
+          "id": "D",
+          "text": "intervenção estatal."
+        },
+        {
+          "id": "E",
+          "text": "padrão estético."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q64",
+      "questionNumber": 64,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "D",
+      "supportTitle": "Txai Suruí, liderança da Juventude Indígena,",
+      "supportText": "profere seu discurso na abertura da COP-26\n“O clima está esquentando, os animais estão\ndesaparecendo, os rios estão morrendo e nossas\nplantações não florescem como no passado. A Terra está\nfalando: ela nos diz que não temos mais tempo.”\nVICK, M. Quais são as conquistas do movimento indígena na COP-26.",
+      "sourceCitation": "Disponível em: www.nexojornal.com.br. Acesso em: 10 nov. 2021 (adaptado).",
+      "prompt": "O discurso da líder indígena explicita um problema global relacionado ao(à)",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "manejo tradicional."
+        },
+        {
+          "id": "B",
+          "text": "reciclagem residual."
+        },
+        {
+          "id": "C",
+          "text": "consumo consciente."
+        },
+        {
+          "id": "D",
+          "text": "exploração predatória."
+        },
+        {
+          "id": "E",
+          "text": "reaproveitamento energético."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q65",
+      "questionNumber": 65,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "A",
+      "supportTitle": "Nas reportagens publicadas sobre a inauguração do",
+      "supportText": "Museu de Arte de São Paulo, em 1947, quando ele ainda\nocupava um edifício na rua Sete de Abril, Lina Bo Bardi não foi\nmencionada nenhuma vez. A arquiteta era responsável pelo\nprojeto do museu que mudaria para sempre a posição de São\nPaulo no circuito mundial das artes. Mas não houve nenhum\nregistro disso. O louvor se concentrou em seu marido e\nparceiro profissional, o respeitado crítico de arte Pietro Maria\nBardi. Passados 75 anos, a mulher então ignorada recebeu\num Leão de Ouro póstumo, a maior homenagem da Bienal\nde Arquitetura de Veneza, e tem agora sua história contada\nem duas biografias de peso, que procuram destrinchar uma\ncarreira marcada pela ousadia e pela contradição.\nPORTO, W. Lina Bo Bardi tem sua arquitetura contraditória destrinchada em biografias.",
+      "sourceCitation": "Disponível em: www1.folha.uol.com.br. Acesso em: 10 nov. 2021 (adaptado).",
+      "prompt": "As transformações pelas quais passaram as sociedades ocidentais e que possibilitaram o reconhecimento recente do trabalho da arquiteta mencionada no texto foram resultado das mobilizações sociais pela",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "equidade de gênero."
+        },
+        {
+          "id": "B",
+          "text": "liberdade de expressão."
+        },
+        {
+          "id": "C",
+          "text": "admissibilidade de voto."
+        },
+        {
+          "id": "D",
+          "text": "igualdade de oportunidade."
+        },
+        {
+          "id": "E",
+          "text": "reciprocidade de tratamento."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q66",
+      "questionNumber": 66,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "A",
+      "supportText": "TEXTO I\nComo é horrivel ver um filho comer e perguntar: “Tem\nmais?” Esta palavra “tem mais” fica oscilando dentro do\ncerebro de uma mãe que olha as panela e não tem mais.\nTEXTO II\nA experiência de ver os filhos com fome na década\nde 1950, descrita por Carolina, é vivida no Brasil de 2021\npor uma moradora de Petrolândia, em Pernambuco. “Eu\ntrabalhava de ajudante de cabeleireira, mas a moça que\ntinha o salão fechou. Eu vinha me sustentando com o\nauxílio que tinha, mas agora eu não fui contemplada. Às\nvezes as pessoas me ajudam com alimentos para os meus\nfilhos. De vez em quando, eu acho algum bico para fazer,\nmas é muito raro. Tem dias que não tenho nem o leite da\nminha bebê.”\nCARRANÇA, T. “Até o feijão nos esqueceu”: o livro de 1960 que poderia ter sido escrito",
+      "sourceCitation": "JESUS, C. M. Quarto de despejo: diário de uma favelada. São Paulo: Ática, 2014. nas favelas de 2021. Disponível em: www.bbc.com. Acesso em: 6 out. 2021 (adaptado).",
+      "prompt": "Considerando a realidade brasileira, os textos se aproximam ao apresentarem uma reflexão sobre o(a)",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "recorrência da miséria."
+        },
+        {
+          "id": "B",
+          "text": "planejamento da saúde."
+        },
+        {
+          "id": "C",
+          "text": "superação da escassez."
+        },
+        {
+          "id": "D",
+          "text": "constância da economia."
+        },
+        {
+          "id": "E",
+          "text": "romantização da carência."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q67",
+      "questionNumber": 67,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "B",
+      "supportTitle": "No sul da Bahia, desde o século XVIII, tem-se",
+      "supportText": "registros de um tipo de sistema agroflorestal. Até hoje,\nesse sistema é característica marcante da paisagem\nda região, conhecido como cabruca, que consiste no\ncultivo do cacau à sombra do dossel da floresta nativa.\nEsse sistema de cultivo do cacau (graças à tolerância\nda espécie à sombra) é considerado amigável para a\nvida silvestre, pois apresenta superioridade em termos\nde conservação da biodiversidade quando comparado\ncom outras plantações tropicais (monoculturas de dendê,\nseringa ou café), agricultura ou pastagens.\nSOLLBERG, I.; SCHIAVETTI, A.; MORAES, M. E. B. Manejo agrícola no\nRefúgio de Vida Silvestre de Una: agroflorestas como uma perspectiva",
+      "sourceCitation": "de conservação. Revista Árvore, n. 2, 2014 (adaptado).",
+      "prompt": "A prática produtiva apresentada é um exemplo de",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "difusão comercial de lavouras temporárias."
+        },
+        {
+          "id": "B",
+          "text": "utilização sustentável dos recursos naturais."
+        },
+        {
+          "id": "C",
+          "text": "ampliação tecnológica da pecuária intensiva."
+        },
+        {
+          "id": "D",
+          "text": "padronização alimentar dos povos tradicionais."
+        },
+        {
+          "id": "E",
+          "text": "modernização logística de plantios convencionais."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q68",
+      "questionNumber": 68,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "C",
+      "supportTitle": "O masseiro, a mulher, e quatro filhos, dormindo numa",
+      "supportText": "tapera de quatro paredes de caixão, coberta de zinco.\nA água do mangue, na maré cheia, ia dentro de casa.\nOs maruins de noite encalombavam o corpo dos meninos.\nO mangue tinha ocasião que fedia, e os urubus faziam\nponto por ali atrás dos petiscos. Perto da rua lavavam\ncouro de boi, pele de bode para o curtume de um espanhol.\nMorria peixe envenenado, e quando a maré secava, os\nurubus enchiam o papo, ciscavam a lama, passeando\nbanzeiros pelas biqueiras dos mocambos no Recife.",
+      "sourceCitation": "RÊGO, J. L. O moleque Ricardo. Rio de Janeiro: J. Olympio, 1966 (adaptado).",
+      "prompt": "A aglomeração urbana representada no texto resulta em",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "conservação do meio rural."
+        },
+        {
+          "id": "B",
+          "text": "crescimento da vegetação ciliar."
+        },
+        {
+          "id": "C",
+          "text": "interferência do espaço geográfico."
+        },
+        {
+          "id": "D",
+          "text": "equilíbrio do ambiente das cidades."
+        },
+        {
+          "id": "E",
+          "text": "controle da proliferação dos animais."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q69",
+      "questionNumber": 69,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "D",
+      "supportTitle": "Elas foram as pioneiras dos direitos das mulheres",
+      "supportText": "no Afeganistão. Defensoras ferrenhas da lei, buscaram\njustiça para os mais marginalizados. Mas, agora, mais\nde 220 juízas afegãs estão escondidas por medo de\nretaliação sob o regime do Talibã. Uma delas condenou\ncentenas de homens por violência contra as mulheres,\nincluindo estupro, assassinato e tortura. Mas poucos dias\ndepois que o Talibã assumiu o controle de sua cidade\ne milhares de criminosos condenados foram libertados\nda prisão, as ameaças de morte começaram. O país\nsempre foi considerado um dos lugares mais difíceis e\nperigosos do mundo para as mulheres. De acordo com\nestudos de organizações não governamentais, cerca de\n87% das mulheres e meninas serão vítimas de abuso\ndurante a vida.",
+      "sourceCitation": "Disponível em: https://g1.globo.com. Acesso em: 12 out. 2021 (adaptado).",
+      "prompt": "O texto evidencia situação representativa de",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "afronta às estruturas sociais."
+        },
+        {
+          "id": "B",
+          "text": "desprezo aos valores religiosos."
+        },
+        {
+          "id": "C",
+          "text": "transgressão às normas morais."
+        },
+        {
+          "id": "D",
+          "text": "desrespeito à dignidade humana."
+        },
+        {
+          "id": "E",
+          "text": "oposição aos princípios hierárquicos."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q70",
+      "questionNumber": 70,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "C",
+      "supportTitle": "No cemitério, a sociedade religiosa encarregada do",
+      "supportText": "funeral, aterrorizada, apressou a cerimônia de tal forma que\na mãe de Herzog perdeu o momento em que o caixão do\nfilho começou a ser coberto pela terra. Quatro jornalistas\nque estavam presos no DOI chegaram para assistir ao\nsepultamento. Um se afastara, chorando. Dizia: Eles matam,\neles matam! Não pergunte nada. Não podemos dizer\nnada. Eles matam mesmo. Falava-se baixo. Ouviram-se\ndois curtos discursos. O primeiro, da atriz Ruth Escobar:\nAté quando vamos suportar tanta violência? Até quando\nvamos continuar enterrando nossos mortos em silêncio?\nNo segundo, Audálio Dantas recitou o Navio negreiro, de\nCastro Alves: Senhor Deus dos desgraçados / Dizei-me\nVós, Senhor Deus / Se é mentira, se é verdade, / Tanto\nhorror perante os céus.",
+      "sourceCitation": "GASPARI, E. A ditadura encurralada. São Paulo: Cia. das Letras, 2004.",
+      "prompt": "O acontecimento descrito no texto, ocorrido em meados dos anos 1970, atesta a seguinte característica do regime político-institucional vigente:",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "Incorporação da estética popular para justificar o ideal de integração nacional."
+        },
+        {
+          "id": "B",
+          "text": "Afirmação da estratégia psicossocial para favorecer o objetivo de propaganda cívica."
+        },
+        {
+          "id": "C",
+          "text": "Institucionalização de mecanismos repressivos para eliminar os focos de resistência."
+        },
+        {
+          "id": "D",
+          "text": "Adoção de cerimoniais públicos para controlar as manifestações de grupos opositores."
+        },
+        {
+          "id": "E",
+          "text": "Estatização de meios de comunicação para selecionar a divulgação de atos governamentais."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q71",
+      "questionNumber": 71,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "A",
+      "supportTitle": "Alternativas logísticas estão servindo de instrumentos",
+      "supportText": "que ativam os mercados especuladores de terras\nnas diferentes regiões da Amazônia e constituem em\nindicadores utilizados por diferentes atores para defender\nou denunciar o avanço da cultura da soja na região e,\ncom ela, a retomada do desmatamento. É evidente que\no crescimento do desmatamento tem a ver também com\na expansão da soja, porém atribuir a ela o fator principal\nparece não totalmente correto. Parto da compreensão\ncentral de que a lógica que gera o desmatamento está\narticulada pelo tripé grileiros, madeireiros e pecuaristas.\nOLIVEIRA, A. U. A Amazônia e a nova geografia da produção da soja.",
+      "sourceCitation": "Terra Livre, n. 26, jan.-jun. 2006 (adaptado).",
+      "prompt": "Na visão do autor, o problema central da situação descrita é desencadeado pela",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "apropriação de áreas devolutas."
+        },
+        {
+          "id": "B",
+          "text": "sonegação de impostos federais."
+        },
+        {
+          "id": "C",
+          "text": "incorporação de exportação ilegal."
+        },
+        {
+          "id": "D",
+          "text": "desoneração de setores produtivos."
+        },
+        {
+          "id": "E",
+          "text": "flexibilização de legislação ambiental."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q73",
+      "questionNumber": 73,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "A",
+      "supportTitle": "Os séculos XV e XVI, quando se vão desmoronando",
+      "supportText": "as estruturas socioeconômicas da Idade Média perante\nos novos imperativos da Época moderna, constituem um\nmomento-chave na história florestal de toda a Europa\nOcidental. Abre-se, genericamente, um longo período\nde “crise florestal”, que se manifesta com acuidade nos\npaíses onde mais se desenvolvem as atividades industriais\ne comerciais. As necessidades em produtos lenhosos\naumentam drasticamente com o crescimento do consumo\nnos mercados urbanos e nas regiões onde progridem a\nmetalurgia e a construção naval, além da sua utilização\nna vida quotidiana de toda a população.\nDEVY-VARETA, N. Para uma geografia histórica da floresta portuguesa.",
+      "sourceCitation": "Revista da Faculdade de Letras — Geografia, n. 1, 1986 (adaptado).",
+      "prompt": "Qual acontecimento do período contribuiu diretamente para o agravamento da situação descrita?",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "O processo de expansão marítima."
+        },
+        {
+          "id": "B",
+          "text": "A eclosão do renascimento cultural."
+        },
+        {
+          "id": "C",
+          "text": "A concretização da centralização política."
+        },
+        {
+          "id": "D",
+          "text": "O movimento de reformas religiosas."
+        },
+        {
+          "id": "E",
+          "text": "A manutenção do sistema feudal."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q74",
+      "questionNumber": 74,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "D",
+      "supportTitle": "Tahuantinsuyu — nome do Império Inca em quéchua —",
+      "supportText": "era dividido em quatro partes ou suyus: Chinchaysuyu\n(noroeste do Peru e Equador), Antisuyu (parte amazônica\ndo império), Collasuyu (atual Bolívia) e Condesuyu (costa\ndo Oceano Pacífico) e tinha Cuzco, no atual Peru,\ncomo sua capital imperial. Oficialmente, todas as etnias\ndominadas pelos incas deveriam adotar a língua quéchua,\nadorar o Sapa Inca e o Sol e pagar taxas em forma de\nhoras de trabalhos periódicos. No entanto, pode-se dizer\nque o Império Inca era como um mosaico cultural em que\nvários e diferentes grupos étnicos adoravam o Sapa Inca\ne o Sol mas, simultaneamente, continuavam a adorar seus\ndeuses locais e também a falar em suas línguas nativas.",
+      "sourceCitation": "MARTINS, C. Os incas e os tahuantinsuyu: apresentação. Disponível em:",
+      "prompt": "http://antigo.anphlac.org. Acesso em: 6 out. 2021 (adaptado). Ao comparar, no texto, a vertente da dominação territorial com os aspectos culturais, os incas tinham uma postura",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "aceitável no que alude aos direitos humanos."
+        },
+        {
+          "id": "B",
+          "text": "admissível no que remete às crenças coloniais."
+        },
+        {
+          "id": "C",
+          "text": "tolerável no que se refere aos regimes tributários."
+        },
+        {
+          "id": "D",
+          "text": "flexível no que diz respeito aos costumes religiosos."
+        },
+        {
+          "id": "E",
+          "text": "compreensível no que concerne às normas laborais."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q75",
+      "questionNumber": 75,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "C",
+      "supportTitle": "A torcida do Fluminense inicia um movimento para",
+      "supportText": "mudar a letra de uma das músicas mais populares das\narquibancadas tricolores. Grupos pedem a remoção do\ntermo “mulambo imundo”, em uma provocação direta ao\nFlamengo. Mulambo é um termo que surgiu em Angola,\nna época da escravatura, e eles eram chamados de\nmulambos pelos senhores de engenho, os patrões\ndas fazendas.",
+      "sourceCitation": "Disponível em: https://oglobo.globo.com. Acesso em: 23 nov. 2021.",
+      "prompt": "Qual mudança no comportamento social a proposta reportada no texto reflete?",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "Rejeição de costumes elitistas."
+        },
+        {
+          "id": "B",
+          "text": "Repulsão de condutas misóginas."
+        },
+        {
+          "id": "C",
+          "text": "Condenação do preconceito racial."
+        },
+        {
+          "id": "D",
+          "text": "Criminalização de práticas homofóbicas."
+        },
+        {
+          "id": "E",
+          "text": "Contestação do comportamento machista."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q77",
+      "questionNumber": 77,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "E",
+      "supportTitle": "Havia já muito tempo que a Europa desfrutava os",
+      "supportText": "benefícios da vacina e arrancava à morte milhares de\ninocentes, condenados a serem vítimas do terrível flagelo\ndas bexigas, e o governo de Portugal nunca se lembrara de\ntransmitir ao Brasil a mais útil das descobertas humanas,\nquando aliás nenhum país mais do que ele carecia deste\nsalutar invento ou se atendesse às vantagens da população\nou ao perdimento de imensas somas na mortandade\ncontínua de escravos, que este flagelo devorava. O certo\né que mais ocupado de seu ouro que de seus habitantes,\nPortugal, como em outros muitos casos, esperou que o\nBrasil por seu próprio impulso remediasse a este mal.\nPEREIRA, J. C. 12 jan. 1828 apud LOPES, M. B.; POLITO, R. Para uma história\nda vacina no Brasil: um manuscrito inédito de Norberto e Macedo. História,",
+      "sourceCitation": "Ciências, Saúde — Manguinhos, n. 2, abr.-jun. 2007 (adaptado).",
+      "prompt": "Escrito em 1828, o texto expressa a seguinte ideia de origem iluminista:",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "As leis observáveis regem o mundo material."
+        },
+        {
+          "id": "B",
+          "text": "O monarca racional promove a sociedade justa."
+        },
+        {
+          "id": "C",
+          "text": "O direito natural justifica a liberdade dos homens."
+        },
+        {
+          "id": "D",
+          "text": "A produção da terra garante a riqueza das nações."
+        },
+        {
+          "id": "E",
+          "text": "A responsabilidade dos governantes assegura a saúde dos povos."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q78",
+      "questionNumber": 78,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "A",
+      "supportTitle": "Os movimentos da agricultura urbana no Rio de",
+      "supportText": "Janeiro vêm crescendo nos últimos vinte anos, tanto\npor meio de reproduções de modelos de vida antigos,\nvinculados ao resgate dos próprios costumes, como — e\ncada vez mais — são revelados hábitos inventivos nos\nquais moradores urbanos de diferentes classes sociais,\nsem nenhuma referência anterior com o campo, passam a\nse dedicar a essas atividades. Ao possibilitar o acesso ao\nplantio e, consequentemente, à alimentação, permite-se\numa nova relação com o que se come, reduzindo o\npercurso da cadeia produtiva e aproximando produtores\nde consumidores, pois ambos se confundem nas\nexperiências de agricultura urbana.\nPORTILHO, M.; RODRIGUES, C. G. O.; FERNANDEZ, A. C. F. Cultivando relações no\narranjo local da Penha: a mobilização de mulheres a partir das práticas de agricultura",
+      "sourceCitation": "urbana na favela. Cidades, Comunidades e Territórios, n. 42, jun. 2021.",
+      "prompt": "A prática agrícola destacada no texto apresenta como vantagem no espaço urbano a",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "ocupação de lugares ociosos."
+        },
+        {
+          "id": "B",
+          "text": "densificação da área central."
+        },
+        {
+          "id": "C",
+          "text": "valorização do mercado externo."
+        },
+        {
+          "id": "D",
+          "text": "priorização de insumos químicos."
+        },
+        {
+          "id": "E",
+          "text": "mecanização de técnicas de cultivo."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q79",
+      "questionNumber": 79,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "B",
+      "supportText": "TEXTO I\nGerineldo dorme porque já está conformado com o\nseu mundo. Porque já sabe tudo o que lhe pode acontecer\napós haver submetido todos os objetos que o rodeiam a um\nminucioso inventário de possibilidades. Seu apartamento,\nmais que um apartamento, é uma teoria de sorte e de azar.\nMelhor que ninguém, Gerineldo conhece o coeficiente\nda dilatação de suas janelas e mantém marcado no\ntermômetro, com uma linha vermelha, o ponto em que\nse quebrarão os vidros, despedaçados em estilhaços\nde morte. Sabe que os arquitetos e os engenheiros já\npreviram tudo, menos o que nunca já aconteceu.\nTEXTO II\nA situação é o sujeito inteiro (ele não é nada a não ser\na sua situação) e é também a coisa inteira (nunca há mais\nnada senão as coisas). É o sujeito a elucidar as coisas\npela sua própria superação, se assim quisermos; ou são\nas coisas a reenviar ao sujeito a imagem dele. É a total\nfacticidade, a contingência absoluta do mundo, do meu\nnascimento, do meu lugar, do meu passado, dos meus\nredores — e é a minha liberdade sem limites que faz com\nque haja para mim uma facticidade.\nSARTRE, J.-P. O ser e o nada: ensaio de ontologia fenomenológica.",
+      "sourceCitation": "MÁRQUEZ, G. G. O pessimista. In: Textos do Caribe. Rio de Janeiro: Record, 1981. Petrópolis: Vozes, 1997 (adaptado).",
+      "prompt": "A postura determinista adotada pelo personagem Gerineldo contrasta com a ideia existencialista contida no pensamento filosófico de Sartre porque",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "evidencia a manifestação do inconsciente."
+        },
+        {
+          "id": "B",
+          "text": "nega a possibilidade de transcendência."
+        },
+        {
+          "id": "C",
+          "text": "contraria o conhecimento difuso."
+        },
+        {
+          "id": "D",
+          "text": "sustenta a fugacidade da vida."
+        },
+        {
+          "id": "E",
+          "text": "refuta a evolução biológica."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q80",
+      "questionNumber": 80,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "A",
+      "supportTitle": "O Golpe Militar de 1964 foi implacável no combate",
+      "supportText": "ao que restava das Ligas Camponesas, generalizadas na\ndécada anterior. No entanto, em relação aos sindicatos,\nsua atitude foi ambígua. Por meio de acordos com os\nEstados Unidos, foram concebidos centros sindicais e\ncursos de liderança com base em princípios conservadores\ne ministrados por membros da Igreja Católica.\nDEL PRIORE, M.; VENÂNCIO, R. Uma história da vida rural no Brasil.",
+      "sourceCitation": "Rio de Janeiro: Ediouro, 2006 (adaptado).",
+      "prompt": "Os sindicatos rurais foram tratados da forma descrita no texto porque o governo pretendia utilizá-los para",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "controlar as tensões políticas."
+        },
+        {
+          "id": "B",
+          "text": "limitar a legislação trabalhista."
+        },
+        {
+          "id": "C",
+          "text": "divulgar o programa populista."
+        },
+        {
+          "id": "D",
+          "text": "regularizar a propriedade da terra."
+        },
+        {
+          "id": "E",
+          "text": "estimular a oferta de mão de obra."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q81",
+      "questionNumber": 81,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "A",
+      "supportTitle": "A economia das ilegalidades se reestruturou com o",
+      "supportText": "desenvolvimento da sociedade capitalista. A ilegalidade dos\nbens foi separada da ilegalidade dos direitos. Divisão que\ncorresponde a uma oposição de classes, pois, de um lado, a\nilegalidade mais acessível às classes populares será a dos\nbens — transferência violenta das propriedades; de outro,\nà burguesia, então, se reservará a ilegalidade dos direitos:\na possibilidade de desviar seus próprios regulamentos\ne suas próprias leis; e essa grande redistribuição das\nilegalidades se traduzirá até por uma especialização dos\ncircuitos judiciários; para as ilegalidades de bens — para\no roubo — os tribunais ordinários e os castigos; para\nas ilegalidades de direitos — fraudes, evasões fiscais,\noperações comerciais irregulares — jurisdições especiais\ncom transações, acomodações, multas atenuadas etc.",
+      "sourceCitation": "FOUCAULT, M. Vigiar e punir: nascimento da prisão. Petrópolis: Vozes, 1987.",
+      "prompt": "O texto apresenta uma relação de cálculo político-econômico que caracteriza o poder punitivo por meio da",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "gestão das ilicitudes pelo sistema judicial."
+        },
+        {
+          "id": "B",
+          "text": "aplicação das sanções pelo modelo equânime."
+        },
+        {
+          "id": "C",
+          "text": "supressão dos crimes pela penalização severa."
+        },
+        {
+          "id": "D",
+          "text": "regulamentação dos privilégios pela justiça social."
+        },
+        {
+          "id": "E",
+          "text": "repartição de vantagens pela hierarquização cultural."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q82",
+      "questionNumber": 82,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "B",
+      "supportTitle": "Os vapores cruzavam os mares transportando",
+      "supportText": "pessoas, mercadorias e ideias, e ainda carregavam a mala\npostal, repleta de mensagens. Múltiplas histórias escritas\natravessavam o oceano buscando por notícias de filhos e\npais, irmãos, maridos e esposas, noivos e noivas. As missivas\ntraziam boas e más novas, comunicavam alegremente\nnascimentos e casamentos, também doenças e mortes;\nenviavam declarações de amor e fidelidade, fotos de família;\nencaminhavam conselhos de velhos, pedidos de ajuda e de\ndinheiro; expediam cartas bancárias e de chamada. Essa\nliteratura epistolar possibilitava a transmissão e reconstrução\ndas tradições. Os deslocamentos tornaram-se um dos mais\npotentes produtores de escritura ao longo da história.\nTRUZZI, O.; MATOS, I. Saudades: sensibilidades no epistolário de e/imigrantes",
+      "sourceCitation": "portugueses (Portugal-Brasil 1890-1930). Rev. Bras. Hist., n. 70, jul.-dez. 2015.",
+      "prompt": "Conforme o texto, as correspondências trocadas entre imigrantes no Brasil com os seus países de procedência constituíam um dispositivo tecnológico que possibilitava o(a)",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "disputa ideológica entre a comunidade de estrangeiros e a de nativos."
+        },
+        {
+          "id": "B",
+          "text": "circularidade cultural entre a sociedade de partida e a de acolhimento."
+        },
+        {
+          "id": "C",
+          "text": "controle doutrinário das narrativas do cotidiano de origem e de destino."
+        },
+        {
+          "id": "D",
+          "text": "fiscalização política dos fluxos de populações do Novo e do Velho Mundo."
+        },
+        {
+          "id": "E",
+          "text": "monitoramento social dos grupos de trabalhadores da cidade e do campo."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q83",
+      "questionNumber": 83,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "C",
+      "supportTitle": "Diversos são os fatores causadores da degradação",
+      "supportText": "do solo, atuando de forma direta ou indireta, mas quase\nsempre a grande maioria das terras degradadas inicia esse\nprocesso com o desmatamento, que pode ser seguido\npor diversas formas de ocupação desordenada, como:\ncorte de taludes para a construção de casas, rodovias e\nferrovias, agricultura, com uso da queimada, vários tipos de\nmineração, irrigação excessiva, crescimento desordenado\ndas cidades, superpastoreio, uso do solo para diversos\ntipos de despejos industriais e domésticos, sem tratamento\nda área que recebe esses despejos; enfim, de uma forma\nou de outra, os solos tornam-se degradados, sendo muitas\nvezes difícil, ou quase impossível, a sua recuperação.\nGUERRA, A. T. Degradação dos solos: conceitos e temas. In: GUERRA, A. T.;\nJORGE, M. C. O. (Org.). Degradação dos solos no Brasil.",
+      "sourceCitation": "Rio de Janeiro: Difel, 2018.",
+      "prompt": "A partir da ocupação desordenada exposta no texto, o que impede a recuperação do recurso natural destacado é a",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "elevação da biomassa."
+        },
+        {
+          "id": "B",
+          "text": "redução da salinização."
+        },
+        {
+          "id": "C",
+          "text": "diminuição da fertilidade."
+        },
+        {
+          "id": "D",
+          "text": "ampliação da microfauna."
+        },
+        {
+          "id": "E",
+          "text": "decomposição do substrato."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q84",
+      "questionNumber": 84,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "D",
+      "supportTitle": "A partir da década de 1930, começam a ser discutidos",
+      "supportText": "no Brasil os princípios de racionalização do trabalho.\nAs preocupações com a cozinha e o trabalho doméstico\nforam introduzidas com a medicina sanitária e a oferta\nde gás e eletricidade para uso doméstico no início do\nséculo XX. A organização da cozinha visava atingir\numa simplificação das tarefas, com a economia de\nmovimentos, e o barateamento dos equipamentos, a\npartir da produção em grande escala. A padronização e\nracionalização da habitação e seus componentes visava\numa radical transformação da casa, em especial da\ncozinha, e apoiava-se tanto no desenvolvimento de novos\nequipamentos quanto nos estudos de racionalização\ndo trabalho doméstico. A principal preocupação era\no desenvolvimento de um novo tipo de habitação, que\ndeveria induzir um novo comportamento social.\nSILVA, J. L. M. Transformações no espaço doméstico: o fogão a gás e a cozinha",
+      "sourceCitation": "paulistana, 1870-1930. Anais do Museu Paulista, n. 2, jul.-dez. 2007 (adaptado).",
+      "prompt": "No contexto descrito, as mudanças mencionadas proporcionavam às mulheres o(a)",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "controle do orçamento familiar."
+        },
+        {
+          "id": "B",
+          "text": "libertação das tradições religiosas."
+        },
+        {
+          "id": "C",
+          "text": "exercício da representatividade política."
+        },
+        {
+          "id": "D",
+          "text": "ampliação dos momentos de socialização."
+        },
+        {
+          "id": "E",
+          "text": "afastamento das atividades especializadas."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q85",
+      "questionNumber": 85,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "D",
+      "supportTitle": "Produtores rurais europeus são antigos opositores",
+      "supportText": "de um grande acordo com o Mercosul. Na visão deles,\nexiste um nítido risco de concorrência desleal, pois, na\nEuropa, é preciso seguir regras mais rígidas de produção,\no que encarece o processo. Assim, eles não conseguiriam\ncompetir com os preços, por exemplo, da carne brasileira\ne teriam seus negócios ameaçados. Por outro lado, o setor\nindustrial europeu se mobiliza a favor do acordo, uma\nvez que as reduções de tarifas no comércio internacional\ndariam maior acesso ao mercado sul-americano. Um\nexemplo é o setor automotivo europeu, que prevê maior\nparticipação e concorrência nos países do Mercosul caso\no acordo siga em frente.\nROUBICEK, M. Como o risco ambiental afeta o acordo entre Mercosul e União Europeia.",
+      "sourceCitation": "Disponível em: www.nexojornal.com.br. Acesso em: 25 out. 2021.",
+      "prompt": "No contexto do acordo citado, os dois grupos econômicos europeus defendem, respectivamente, a",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "restrição dos fluxos migratórios e a maior atuação de sindicatos."
+        },
+        {
+          "id": "B",
+          "text": "ampliação das leis trabalhistas e a plena importação de manufaturados."
+        },
+        {
+          "id": "C",
+          "text": "proteção das florestas nacionais e a ampla transferência de tecnologias."
+        },
+        {
+          "id": "D",
+          "text": "manutenção das barreiras fitossanitárias e a livre circulação de mercadorias."
+        },
+        {
+          "id": "E",
+          "text": "remoção dos entraves alfandegários e a melhor remuneração de empregados."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q86",
+      "questionNumber": 86,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "E",
+      "supportTitle": "Durante a Revolução Francesa, um certo padre Niollant",
+      "supportText": "escondeu-se no pequeno castelo de L’Escarbas. Pagou\namplamente a hospitalidade do velho fidalgo ocupando-se\nda educação de sua filha, Anaïs. A presença da mãe em\nnada modificou essa educação masculina dada a uma\njovem criatura já muito inclinada à independência em\nvirtude da vida no campo. O padre transmitiu à aluna sua\nintrepidez de opiniões e sua facilidade de julgamento,\nsem pensar que essas qualidades, tão necessárias num\nhomem, se tornam defeitos numa mulher destinada aos\nhumildes afazeres de mãe de família. Embora o padre\nrecomendasse continuamente à aluna ser tanto mais\ngraciosa e modesta quanto seu saber era mais extenso,\na senhorita de Nègrepelisse ficou com excelente opinião\nde si mesma.",
+      "sourceCitation": "BALZAC, H. Ilusões perdidas. São Paulo: Penguin Classics; Cia. das Letras, 2011 (adaptado).",
+      "prompt": "O comportamento desenvolvido pela personagem evidencia uma postura de",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "abandono de laços afetivos."
+        },
+        {
+          "id": "B",
+          "text": "negação da ideia de subjetividade."
+        },
+        {
+          "id": "C",
+          "text": "aceitação da hierarquia de gênero."
+        },
+        {
+          "id": "D",
+          "text": "consolidação da estratificação social."
+        },
+        {
+          "id": "E",
+          "text": "ruptura de valores institucionalizados."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q87",
+      "questionNumber": 87,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "B",
+      "supportText": "TEXTO I\nOriunda da Romênia, Genny Gleizer aportou no Brasil\nem 1932. Assim como milhares de judeus do Leste Europeu,\nsua vinda para o Brasil ocorreu em um momento de ascensão\ndo antissemitismo na Europa que tornava precárias suas\nvidas. O Brasil se colocava como uma possibilidade na\nbusca por condições de sobrevivência e desenvolvimento.\nANTÃO, A. C. C. B. Gênero, imigração e política: o caso da judia comunista Genny Gleizer\nTEXTO II\nA presença judaica no Brasil foi criando aos poucos\ncertas desconfianças que se refletiram em órgãos da\nimprensa e em círculos intelectuais e políticos. Em parte,\nessa imagem negativa adviria da onda nacionalista surgida\nno final dos anos 1910, que concebia imigrantes como\nconcorrentes dos trabalhadores brasileiros, ou como\nseres improdutivos, exploradores da mão de obra e da\nriqueza autóctone. Além disso, as elites políticas da época\nacreditavam que os estrangeiros eram portadores das\ndoutrinas anarquista e comunista, estranhas à “índole\ndo povo brasileiro”. Esses “indesejáveis” seriam um mal\nexterno que corromperia a nação.\nno Brasil. In: GRINBERG, K. (Org.). Os judeus no Brasil.",
+      "sourceCitation": "no Governo Vargas (1932-1935). Rio de Janeiro: Casa de Oswaldo Cruz, 2017 (adaptado). MAIO, M. C.; CALAÇA, C. E. Um balanço da bibliografia sobre o antissemitismo Rio de Janeiro: Civilização Brasileira, 2005 (adaptado).",
+      "prompt": "Conforme descrito nos textos, o tratamento dispensado aos grupos mencionados se fundamentava em",
+      "contentFormat": "verse",
+      "options": [
+        {
+          "id": "A",
+          "text": "preceitos teológicos e religiosos."
+        },
+        {
+          "id": "B",
+          "text": "aspectos socioeconômicos e ideológicos."
+        },
+        {
+          "id": "C",
+          "text": "regulamentações territoriais e alfandegárias."
+        },
+        {
+          "id": "D",
+          "text": "orientações constitucionais e estatutárias."
+        },
+        {
+          "id": "E",
+          "text": "decretos legislativos e internacionais."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q88",
+      "questionNumber": 88,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "A",
+      "supportText": "Concorrer e competir não são a mesma coisa.\nA concorrência pode até ser saudável sempre que a batalha\nentre agentes, para melhor empreender uma tarefa e obter\nmelhores resultados finais, exige o respeito a certas regras de\nconvivência preestabelecidas ou não. Já a competitividade\nse funda na invenção de novas armas de luta, num exercício\nem que a única regra é a conquista da melhor posição.\nA competitividade é uma espécie de guerra em que tudo\nvale e, desse modo, sua prática provoca um afrouxamento\ndos valores morais e um convite ao exercício da violência.\nSANTOS, M. Por uma outra globalização: do pensamento único",
+      "sourceCitation": "à consciência universal. Rio de Janeiro: Record, 2006.",
+      "prompt": "De acordo com a diferenciação feita pelo autor, que prática econômica é considerada moralmente condenável?",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "Adoção do dumping comercial."
+        },
+        {
+          "id": "B",
+          "text": "Fusão da função administrativa."
+        },
+        {
+          "id": "C",
+          "text": "Criação de holding empresarial."
+        },
+        {
+          "id": "D",
+          "text": "Limitação do mercado monopolista."
+        },
+        {
+          "id": "E",
+          "text": "Modernização da produção industrial."
+        }
+      ],
+      "parseIssues": []
+    },
+    {
+      "externalId": "ENEM-2023-D1-C1-Q90",
+      "questionNumber": 90,
+      "languageTrack": null,
+      "area": "human_sciences",
+      "answerKey": "B",
+      "supportText": "Não tinha outra filosofia. Nem eu. Não digo que a Universidade me não tivesse ensinado alguma; mas eu decorei-lhe\nsó as fórmulas, o vocabulário, o esqueleto. Tratei-a como tratei o latim; embolsei três versos de Virgílio, dois de\nHorácio, uma dúzia de locuções morais e políticas, para as despesas da conversação. Tratei-os como tratei a história\ne a jurisprudência. Colhi de todas as cousas a fraseologia, a casca, a ornamentação.",
+      "sourceCitation": "ASSIS, M. Memórias póstumas de Brás Cubas. Belo Horizonte: Autêntica, 1999.",
+      "prompt": "A descrição crítica do personagem de Machado de Assis assemelha-se às características dos sofistas, contestados pelos filósofos gregos da Antiguidade, porque se mostra alinhada à",
+      "contentFormat": "prose",
+      "options": [
+        {
+          "id": "A",
+          "text": "elaboração conceitual de entendimentos."
+        },
+        {
+          "id": "B",
+          "text": "utilização persuasiva do discurso."
+        },
+        {
+          "id": "C",
+          "text": "narração alegórica dos rapsodos."
+        },
+        {
+          "id": "D",
+          "text": "investigação empírica da physis."
+        },
+        {
+          "id": "E",
+          "text": "expressão pictográfica da pólis."
+        }
+      ],
+      "parseIssues": []
+    }
+  ]
+}

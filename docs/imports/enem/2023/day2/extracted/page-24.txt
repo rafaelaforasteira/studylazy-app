@@ -1,0 +1,97 @@
+24	MT • 2º DIA • CADERNO 5 • AMARELO
+QUESTÃO 158
+Em um colégio público, a admissão no primeiro ano se
+dá por sorteio. Neste ano há 55 candidatos, cujas inscrições
+são numeradas de 01 a 55. O sorteio de cada número de
+inscrição será realizado em etapas, utilizando-se duas
+urnas. Da primeira urna será sorteada uma bola, dentre
+bolas numeradas de 0 a 9, que representará o algarismo
+das unidades do número de inscrição a ser sorteado e, em
+seguida, da segunda urna, será sorteada uma bola para
+representar o algarismo das dezenas desse número. Depois
+do primeiro sorteio, e antes de se sortear o algarismo das
+dezenas, as bolas que estarão presentes na segunda
+urna serão apenas aquelas cujos números formam, com o
+algarismo já sorteado, um número de 01 a 55.
+As probabilidades de os candidatos de inscrição número
+50 e 02 serem sorteados são, respectivamente,
+A	A 1
+50
+1
+60
+e
+B	B 1
+50
+1
+50
+e
+C	C 1
+50
+1
+10
+e
+D	D 1
+55
+1
+54
+e
+E	E 1
+100
+1
+100
+e
+QUESTÃO 159
+O esquema mostra como a intensidade luminosa
+decresce com o aumento da profundidade em um rio,
+sendo L0 a intensidade na sua superfície.
+0 m 	L0
+1 m
+3
+2 L0
+2 m
+9
+4 L0
+3 m 27
+8 L0
+Intensidade luminosa	Profundidade
+Considere que a intensidade luminosa diminui, a cada
+metro acrescido na profundidade, segundo o mesmo
+padrão do esquema.
+A intensidade luminosa correspondente à profundidade
+de 6 m é igual a
+A	A 1
+9 L 0
+B	B 16
+27 L 0
+C	C 32
+243 L 0
+D	D 64
+729 L 0
+E	E 128
+2 187 0	L
+QUESTÃO 160
+Analisando as vendas de uma empresa, o gerente
+concluiu que o montante diário arrecadado, em milhar de real,
+poderia ser calculado pela expressão V x x x	   	 	
+2
+4 10 	105,
+em que os valores de x representam os dias do mês,
+variando de 1 a 30.
+Um dos fatores para avaliar o desempenho mensal
+da empresa é verificar qual é o menor montante diário V0
+arrecadado ao longo do mês e classificar o desempenho
+conforme as categorias apresentadas a seguir, em que as
+quantidades estão expressas em milhar de real.
+• Ótimo: V0 ≥ 24
+• Bom: 20 ≤ V0 < 24
+• Normal: 10 ≤ V0 < 20
+• Ruim: 4 ≤ V0 < 10
+• Péssimo: V0 < 4
+No 	caso 	analisado, 	qual 	seria 	a 	classificação 	do
+desempenho da empresa?
+A	A Ótimo.
+B	B Bom.
+C	C Normal.
+D	D Ruim.
+E	E Péssimo.
+*020125AM24*

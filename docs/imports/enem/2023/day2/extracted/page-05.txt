@@ -1,0 +1,87 @@
+5	CN • 2º DIA • CADERNO 5 • AMARELO
+QUESTÃO 99
+A tecnologia de vacinas de RNA mensageiro (RNAm)
+é investigada há anos. Avanços científicos em genética
+molecular permitiram desenvolver uma vacina para
+controle da pandemia da covid-19 causada pelo vírus de
+RNA SARS-CoV-2. A vacina de RNAm tem sequências
+de genes do vírus. Entretanto, por ser muito instável, o
+RNAm deve ser recoberto por uma capa de lipídios que
+evita sua degradação e favorece sua ação. Dessa forma,
+o RNAm desempenhará sua função específica atuando
+no mesmo compartimento celular de sempre.
+Disponível em: https://sbim.org.br. Acesso em: 29 nov. 2021 (adaptado).
+A imunização produzida por esse tipo de vacina é
+alcançada por meio da
+A	A estimulação de leucócitos induzida pela capa lipídica
+contendo RNAm.
+B	B atuação do RNAm como sequestrador do vírus para
+o meio extracelular.
+C	C tradução do RNAm em proteína viral, desencadeando
+a resposta antigênica.
+D	D competição entre o RNAm vacinal e o RNA viral pelos
+sítios dos ribossomos.
+E	E incorporação do RNAm viral ao genoma do hospedeiro,
+gerando novo fenótipo.
+QUESTÃO 100
+Na fertilização in vitro, espermatozoides são adicionados
+aos gametas femininos retirados de uma mulher. Após o
+período de incubação, a fecundação é favorecida pela ação
+de enzimas. Em um procedimento realizado, observou-se
+que nenhum dos gametas femininos foi fertilizado e,
+posteriormente, verificou-se que havia sido adicionado,
+equivocadamente, um coquetel de inibidores das enzimas do
+acrossomo, no lugar de um dos nutrientes constituintes do
+meio de cultura.
+O coquetel de inibidores impediu o(a)
+A	A formação do pronúcleo masculino.
+B	B início da divisão mitótica do zigoto.
+C	C término da segunda divisão meiótica do ovócito.
+D	D passagem do espermatozoide pela corona radiata e
+zona pelúcida.
+E	E fusão das membranas plasmáticas do ovócito e do
+espermatozoide.
+QUESTÃO 101
+O fogão por indução funciona a partir do surgimento
+de uma corrente elétrica induzida no fundo da panela,
+com consequente transformação de energia elétrica
+em calor por efeito Joule. A principal vantagem desses
+fogões é a eficiência energética, que é substancialmente
+maior que a dos fogões convencionais.
+A corrente elétrica mencionada é induzida por
+A	A radiação.
+B	B condução.
+C	C campo elétrico variável.
+D	D campo magnético variável.
+E	E ressonância eletromagnética.
+QUESTÃO 102
+Uma academia decide trocar gradualmente seus
+aparelhos de musculação. Agora, os frequentadores
+que utilizam os aparelhos do tipo 1 podem também
+utilizar os aparelhos do tipo 2, representados na figura,
+para elevar cargas correspondentes às massas M1 e M 2,
+com velocidade constante. A fim de que o exercício seja
+realizado com a mesma força F , os usuários devem ser
+orientados a respeito da relação entre as cargas nos dois
+tipos de aparelhos, já que as polias fixas apenas mudam a
+direção das forças, enquanto a polia móvel divide as forças.
+Em ambos os aparelhos, considere as cordas
+inextensíveis, as massas das polias e das cordas desprezíveis
+e que não há dissipação de energia.
+F 	F
+M 1 	M 2
+Aparelho do tipo 2	Aparelho do tipo 1
+Para essa academia, qual deve ser a razão M
+M
+2
+1
+informada
+aos usuários?
+A	A 1
+4
+B	B 1
+2
+C	C 1
+D	D 2
+E	E 4
+*020125AM5*

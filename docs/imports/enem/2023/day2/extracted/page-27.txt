@@ -1,0 +1,76 @@
+27	MT • 2º DIA • CADERNO 5 • AMARELO
+QUESTÃO 167
+Estudantes trabalhando com robótica criaram uma
+“torneira inteligente” que automatiza sua abertura e seu
+fechamento durante a limpeza das mãos. A tecnologia
+funciona da seguinte forma: ao se colocarem as mãos
+sob a torneira, ela libera água durante 3 segundos para
+que a pessoa possa molhá-las. Em seguida, interrompe o
+fornecimento de água por 5 segundos, enquanto a pessoa
+ensaboa suas mãos, e finaliza o ciclo liberando água para
+o enxágue por mais 3 segundos. Considere o tempo ( t ),
+em segundo, contado a partir do instante em que se inicia
+o ciclo. A vazão de água nessa torneira é constante.
+Um esboço de gráfico que descreve o volume de água
+acumulado, em litro, liberado por essa torneira durante um
+ciclo de lavagem das mãos, em função do tempo ( t ), em
+segundo, é
+A	A
+0 1 	2 3 4 	5 6 7 	8 	9 10 11 12
+t (s)
+Volume de água (L)
+B	B
+0 1 	2 3 4 	5 6 7 	8 	9 10 11 12
+Volume de água (L)
+t (s)
+C	C
+0 1 	2 3 4 	5 6 7 	8 	9 10 11 12
+Volume de água (L)
+t (s)
+D	D
+0 1 	2 3 4 	5 6 7 	8 	9 10 11 12
+Volume de água (L)
+t (s)
+E	E
+0 	1 	2 3 4 	5 6 7 	8 	9 10 11 12
+t (s)
+Volume de água (L)
+QUESTÃO 168
+As características culturais variam de povo para povo.
+Há notícias de um povo que possuía formas de contar
+diferentes das nossas, como indicado no quadrinho a seguir.
+Segundo o padrão de contagem indicado na figura, as
+representações dos numerais cinco e sete, nessa cultura,
+devem ser, respectivamente,
+A	A okosa urapum urapum urapum e okosa okosa urapum
+urapum urapum.
+B	B okosa okosa urapum e okosa okosa okosa okosa urapum.
+C	C okosa okosa urapum e okosa okosa okosa urapum.
+D	D okosa urapum urapum e okosa urapum okosa urapum
+urapum.
+E	E okosa okosa urapum e okosa okosa okosa okosa.
+QUESTÃO 169
+Um tipo de semente necessita de bastante água nos
+dois primeiros meses após o plantio. Um produtor pretende
+estabelecer o melhor momento para o plantio desse tipo de
+semente, nos meses de outubro a março. Após consultar
+a previsão do índice mensal de precipitação de chuva
+(ImPC) da região onde ocorrerá o plantio, para o período
+chuvoso de 2020 - 2021, ele obteve os seguintes dados:
+• outubro/2020: ImPC = 250 mm;
+• novembro/2020: ImPC = 150 mm;
+• dezembro/2020: ImPC = 200 mm;
+• janeiro/2021: ImPC = 450 mm;
+• fevereiro/2021: ImPC = 100 mm;
+• março/2021: ImPC = 200 mm.
+Com base nessas previsões, ele precisa escolher
+dois meses consecutivos em que a média mensal de
+precipitação seja a maior possível.
+No início de qual desses meses o produtor deverá plantar
+esse tipo de semente?
+A	A Outubro.
+B	B Novembro.
+C	C Dezembro.
+D	D Janeiro.
+E	E Fevereiro.
+*020125AM27*

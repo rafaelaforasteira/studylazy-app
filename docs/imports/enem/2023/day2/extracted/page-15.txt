@@ -1,0 +1,62 @@
+15	CN • 2º DIA • CADERNO 5 • AMARELO
+QUESTÃO 134
+Entre os medicamentos mais comuns consumidos para o alívio da dor está o ibuprofeno, um composto quiral
+com ação anti-inflamatória e efeito analgésico, que é comercializado como fármaco opticamente puro, ou seja, sem
+a mistura com outro isômero óptico. A fórmula estrutural plana do ibuprofeno é:
+O
+OH
+Ibuprofeno
+Além do ibuprofeno, destacam-se também os princípios ativos a seguir, presentes em outros medicamentos para
+o alívio da dor:
+N
+H
+O
+Fenacetina
+O
+O−
+Diclofenaco sódico
+NH
+Cl
+Cl
+Na +
+Dipirona sódica
+O−Na +
+O
+O
+SN
+O
+N
+N
+Paracetamol
+HO
+O
+O
+OH
+OH
+N +Br −
+Butilbrometo de escopolamina
+N
+H
+O	O
+O princípio ativo que apresenta o mesmo tipo de isomeria espacial que o ibuprofeno é o(a)
+A	A fenacetina.
+B	B paracetamol.
+C	C dipirona sódica.
+D	D diclofenaco sódico.
+E	E butilbrometo de escopolamina.
+QUESTÃO 135
+Uma concessionária é responsável por um trecho de 480 quilômetros de uma rodovia. Nesse trecho, foram
+construídas 10 praças de pedágio, onde funcionários recebem os pagamentos nas cabines de cobrança. Também
+existe o serviço automático, em que os veículos providos de um dispositivo passam por uma cancela, que se abre
+automaticamente, evitando filas e diminuindo o tempo de viagem. Segundo a concessionária, o tempo médio para
+efetuar a passagem em uma cabine é de 3 minutos, e as velocidades máximas permitidas na rodovia são 100 km/h,
+para veículos leves, e 80 km/h, para veículos de grande porte.
+Considere um carro e um caminhão viajando, ambos com velocidades constantes e iguais às máximas permitidas,
+e que somente o caminhão tenha o serviço automático de cobrança.
+Comparado ao caminhão, quantos minutos a menos o carro leva para percorrer toda a rodovia?
+A	A 30
+B	B 42
+C	C 72
+D	D 288
+E	E 360
+*020125AM15*

@@ -1,0 +1,68 @@
+28	MT • 2º DIA • CADERNO 5 • AMARELO
+QUESTÃO 170
+Uma loja vende seus produtos de duas formas:
+à vista ou financiado em três parcelas mensais iguais.
+Para definir o valor dessas parcelas nas vendas
+financiadas, a loja aumenta em 20% o valor do produto
+à vista e divide esse novo valor por 3. A primeira parcela
+deve ser paga no ato da compra, e as duas últimas,
+em 30 e 60 dias após a compra.
+Um cliente da loja decidiu comprar, de forma financiada,
+um produto cujo valor à vista é R$ 1 500,00.
+Utilize 5,29 como aproximação para 	28 .
+A taxa mensal de juros compostos praticada nesse
+financiamento é de
+A	A 6,7%
+B	B 10%
+C	C 20%
+D	D 21,5%
+E	E 23,3%
+QUESTÃO 171
+Para concretar a laje de sua residência, uma pessoa
+contratou uma construtora. Tal empresa informa que o
+preço y do concreto bombeado é composto de duas
+partes: uma fixa, chamada de taxa de bombeamento,
+e uma variável, que depende do volume x de concreto
+utilizado. Sabe-se que a taxa de bombeamento custa
+R$ 500,00 e que o metro cúbico do concreto bombeado
+é de R$ 250,00.
+A expressão que representa o preço y em função do
+volume x, em metro cúbico, é
+A	A y = 250x
+B	B y = 500x
+C	C y = 750x
+D	D y = 250x + 500
+E	E y = 500x + 250
+QUESTÃO 172
+Uma empresa de segurança domiciliar oferece o serviço
+de patrulha noturna, no qual vigilantes em motocicletas
+fazem o monitoramento periódico de residências.
+A empresa conta com uma base, de onde acompanha
+o trajeto realizado pelos vigilantes durante as patrulhas
+e orienta o deslocamento de equipes de reforço quando
+necessário. Numa patrulha rotineira, sem ocorrências,
+um vigilante conduziu sua motocicleta a uma velocidade
+constante durante todo o itinerário estabelecido, levando
+30 minutos para conclusão. De acordo com os registros
+do GPS alocado na motocicleta, a distância da posição
+do vigilante à base, ao longo do tempo de realização do
+trajeto, é descrita pelo gráfico.
+Distância do vigilante em relação
+à base em função do tempo
+Tempo (min)
+0 	10 	20 	30
+1
+2
+3
+4
+Distância do vigilante
+à base (km)
+A vista superior da trajetória realizada pelo vigilante
+durante a patrulha registrada no gráfico é descrita pela
+representação
+A	A
+B	B
+C	C
+D	D
+E	E
+*020125AM28*

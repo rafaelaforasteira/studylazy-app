@@ -1,0 +1,50 @@
+22	MT • 2º DIA • CADERNO 5 • AMARELO
+O gráfico que melhor representa a variação dessa altura,
+em função do tempo, contado a partir do instante em que
+a cadeira da pessoa P se encontra na posição mais alta
+da roda-gigante, é
+A	A
+Altura em
+relação ao solo
+Tempo	0
+B	B
+Altura em
+relação ao solo
+Tempo	0
+C	C
+Altura em
+relação ao solo
+Tempo	0
+D	D
+Altura em
+relação ao solo
+Tempo	0
+E	E
+Altura em
+relação ao solo
+Tempo	0
+QUESTÃO 152
+Os números figurados pentagonais provavelmente
+foram introduzidos pelos pitagóricos por volta do
+século V a.C. As figuras ilustram como obter os seis
+primeiros deles, sendo os demais obtidos seguindo o
+mesmo padrão geométrico.
+22	12	5	1
+35 	51
+O oitavo número pentagonal é
+A	A 59.
+B	B 83.
+C	C 86.
+D	D 89.
+E	E 92.
+QUESTÃO 153
+A figura ilustra uma roda-gigante no exato instante em
+que a cadeira onde se encontra a pessoa P está no ponto
+mais alto dessa roda-gigante.
+P
+Solo
+Com o passar do tempo, à medida que a roda-gigante
+gira, com velocidade angular constante e no sentido
+horário, a altura da cadeira onde se encontra a pessoa P,
+em relação ao solo, vai se alterando.
+*020125AM22*

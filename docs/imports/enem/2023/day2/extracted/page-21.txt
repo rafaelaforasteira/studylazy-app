@@ -1,0 +1,51 @@
+21	MT • 2º DIA • CADERNO 5 • AMARELO
+QUESTÃO 149
+No alojamento de uma universidade, há alguns quartos com o padrão superior ao dos demais. Um desses quartos
+ficou disponível, e muitos estudantes se candidataram para morar no local. Para escolher quem ficará com o quarto,
+um sorteio será realizado. Para esse sorteio, cartões individuais com os nomes de todos os estudantes inscritos serão
+depositados em uma urna, sendo que, para cada estudante de primeiro ano, será depositado um único cartão com
+seu nome; para cada estudante de segundo ano, dois cartões com seu nome; e, para cada estudante de terceiro ano,
+três cartões com seu nome. Foram inscritos 200 estudantes de primeiro ano, 150 de segundo ano e 100 de terceiro
+ano. Todos os cartões têm a mesma probabilidade de serem sorteados.
+Qual a probabilidade de o vencedor do sorteio ser um estudante de terceiro ano?
+A	A 1
+2
+B	B 1
+3
+C	C 1
+8
+D	D 2
+9
+E	E 3
+8
+QUESTÃO 150
+A água utilizada pelos 75 moradores de um vilarejo provém de um reservatório de formato cilíndrico circular reto
+cujo raio da base mede 5 metros, sempre abastecido no primeiro dia de cada mês por caminhões-pipa. Cada morador
+desse vilarejo consome, em média, 200 litros de água por dia.
+No mês de junho de um determinado ano, o vilarejo festejou o dia do seu padroeiro e houve um gasto extra de água
+nos primeiros 20 dias. Passado esse período, as pessoas verificaram a quantidade de água presente no reservatório
+e constataram que o nível da coluna de água estava em 1,5 metro. Decidiram, então, fazer um racionamento de água
+durante os 10 dias seguintes. Considere 3 como aproximação para π.
+Qual é a quantidade mínima de água, em litro, que cada morador, em média, deverá economizar por dia, de modo
+que o reservatório não fique sem água nos próximos 10 dias?
+A	A 50
+B	B 60
+C	C 80
+D	D 140
+E	E 150
+QUESTÃO 151
+Em janeiro do ano passado, a direção de uma fábrica abriu uma creche para os filhos de seus funcionários, com
+10 salas, cada uma com capacidade para atender 10 crianças a cada ano. As vagas são sorteadas entre os filhos
+dos funcionários inscritos, enquanto os não contemplados pelo sorteio formam uma lista de espera. No ano passado,
+a lista de espera teve 400 nomes e, neste ano, esse número cresceu 10%.
+A direção da fábrica realizou uma pesquisa e constatou que a lista de espera para o próximo ano terá a mesma
+quantidade de nomes da lista de espera deste ano. Decidiu, então, construir, ao longo desse ano, novas salas para
+a creche, também com capacidade de atendimento para 10 crianças cada, de modo que o número de nomes na lista
+de espera no próximo ano seja 25% menor que o deste ano.
+O número mínimo de salas que deverão ser construídas é
+A	A 10.
+B	B 11.
+C	C 13.
+D	D 30.
+E	E 33.
+*020125AM21*

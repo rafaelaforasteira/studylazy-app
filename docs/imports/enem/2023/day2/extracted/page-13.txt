@@ -1,0 +1,86 @@
+13	CN • 2º DIA • CADERNO 5 • AMARELO
+QUESTÃO 129
+Um assistente de laboratório precisou descartar sete frascos contendo solução de nitrato de mercúrio(I) que não
+foram utilizados em uma aula prática. Cada frasco continha 5,25 g de Hg 2 (NO 3
+) 2 dissolvidos em água. Temendo a
+toxidez do mercúrio e sabendo que o Hg 2 Cl 2 tem solubilidade muito baixa, o assistente optou por retirar o mercúrio da
+solução por precipitação com cloreto de sódio (NaCl), conforme a equação química:
+Hg 2 (NO 3 ) 2 (aq) + 2 NaCl (aq) 	Hg 2 Cl 2 (s) + 2 NaNO 3 (aq)
+Na dúvida sobre a massa de NaCl a ser utilizada, o assistente aumentou gradativamente a quantidade adicionada
+em cada frasco, como apresentado no quadro.
+Frasco 	I 	II 	III 	IV 	V 	VI 	VII
+Massa de NaCl
+em grama (g) 0,2 	0,4 	0,6 	0,8 	1,0 	1,2 	1,4
+O produto obtido em cada experimento foi filtrado, secado e teve sua massa aferida. O assistente organizou os
+resultados na forma de um gráfico que correlaciona a massa de NaCl adicionada com a massa de Hg2 Cl 2 obtida em
+cada frasco. A massa molar do Hg 2 (NO 3
+) 2 é 525 g mol –1
+, a do NaCl é 58 g mol –1 e a do Hg 2 Cl 2 é 472 g mol –1
+.
+Qual foi o gráfico obtido pelo assistente de laboratório?
+A	A
+5
+6
+7
+4
+3
+2
+1
+0
+0,0 	0,2 	0,4 	0,6 	0,8 	1,0 	1,2 	1,4
+	Massa de Hg
+ 2 Cl 2 (g)
+Massa de NaCI (g)
+B	B
+5
+6
+7
+4
+3
+2
+1
+0
+0,0 	0,2 	0,4 	0,6 	0,8 	1,0 	1,2 	1,4
+	Massa de Hg
+ 2 Cl 2 (g)
+Massa de NaCI (g)
+C	C
+5
+6
+7
+4
+3
+2
+1
+0
+0,0 	0,2 	0,4 	0,6 	0,8 	1,0 	1,2 	1,4
+	Massa de Hg
+ 2 Cl 2 (g)
+Massa de NaCI (g)
+D	D
+5
+6
+7
+4
+3
+2
+1
+0
+0,0 	0,2 	0,4 	0,6 	0,8 	1,0 	1,2 	1,4
+	Massa de Hg
+ 2 Cl 2 (g)
+Massa de NaCI (g)
+E	E
+5
+6
+7
+4
+3
+2
+1
+0
+0,0 	0,2 	0,4 	0,6 	0,8 	1,0 	1,2 	1,4
+	Massa de Hg
+ 2 Cl 2 (g)
+Massa de NaCI (g)
+*020125AM13*

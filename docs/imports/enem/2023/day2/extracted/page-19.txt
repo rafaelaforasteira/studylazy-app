@@ -1,0 +1,50 @@
+19	MT • 2º DIA • CADERNO 5 • AMARELO
+QUESTÃO 144
+O gerente de uma fábrica pretende comparar a evolução das vendas de dois produtos similares (I e II). Para isso,
+passou a verificar o número de unidades vendidas de cada um desses produtos em cada mês. Os resultados dessa
+verificação, para os meses de abril a junho, são apresentados na tabela.
+Produto
+Vendas
+em abril
+(unidade)
+Vendas
+em maio
+(unidade)
+Vendas
+em junho
+(unidade)
+l 	80 	90 	100
+ll 	190 	170 	150
+O gerente estava decidido a cessar a produção do produto II no mês seguinte àquele em que as vendas do
+produto I superassem as do produto II.
+Suponha que a variação na quantidade de unidades vendidas dos produtos I e II se manteve, mês a mês, como
+no período representado na tabela.
+Em qual mês o produto II parou de ser produzido?
+A	A Junho.
+B	B Julho.
+C	C Agosto.
+D	D Setembro.
+E	E Outubro.
+QUESTÃO 145
+Uma empresa de transporte faz regularmente um levantamento do número de viagens realizadas durante o dia
+por todos os 160 motoristas cadastrados em seu aplicativo. Em um certo dia, foi gerado um relatório, por meio de um
+gráfico de barras, no qual se relacionaram a quantidade de motoristas com a quantidade de viagens realizadas até
+aquele instante do dia.
+Quantidade de viagens realizadas
+	Quantidade de motoristas
+0 	5 	10 	15 	20 	25 	30 	35 	40 	45 	50 	55
+7
+6
+4
+3
+2
+1
+5
+Comparando os valores da média, da mediana e da moda da distribuição das quantidades de viagens realizadas
+pelos motoristas cadastrados nessa empresa, obtém-se
+A	A mediana = média < moda.
+B	B mediana = moda < média.
+C	C mediana < média < moda.
+D	D moda < média < mediana.
+E	E moda < mediana < média.
+*020125AM19*

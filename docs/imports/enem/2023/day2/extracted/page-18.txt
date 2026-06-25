@@ -1,0 +1,89 @@
+18	MT • 2º DIA • CADERNO 5 • AMARELO
+QUESTÃO 141
+O calendário maia apresenta duas contagens
+simultâneas de anos, o chamado ano Tzolkim, composto
+por 260 dias e que determinava o calendário religioso,
+e o ano Haab, composto por 365 dias e que determinava o
+calendário agrícola. Um historiador encontrou evidências
+de que gerações de uma mesma família governaram certa
+comunidade maia pelo período de 20 ciclos, sendo cada
+ciclo formado por 52 anos Haab.
+Disponível em: www.suapesquisa.com. Acesso em: 20 ago. 2014.
+De acordo com as informações fornecidas, durante
+quantos anos Tzolkim aquela comunidade maia foi
+governada por tal família?
+A	A 741
+B	B 1 040
+C	C 1 460
+D	D 2 100
+E	E 5 200
+QUESTÃO 142
+Sejam a, b e c as medidas dos lados de um triângulo
+retângulo, tendo a como medida da hipotenusa. Esses
+valores a, b e c são, respectivamente, os diâmetros dos
+círculos C1
+, C2 e C3, como apresentados na figura.
+Círculo C1
+Círculo C2
+Círculo C3
+c a
+b
+Observe que essa construção assegura, pelo teorema
+de Pitágoras, que área (C1
+) = área (C2
+) + área (C3
+).
+Um professor de matemática era conhecedor dessa
+construção e, confraternizando com dois amigos em uma
+pizzaria onde são vendidas pizzas somente em formato
+de círculo, lançou um desafio: mesmo sem usar um
+instrumento de medição, poderia afirmar com certeza se
+a área do círculo correspondente à pizza que ele pedisse
+era maior, igual ou menor do que a soma das áreas das
+pizzas dos dois amigos. Assim, foram pedidas três pizzas.
+O professor as dividiu ao meio e formou um triângulo com
+os diâmetros das pizzas, conforme indicado na figura.
+Meia pizza do amigo 2
+Meia pizza do
+amigo 1
+Meia pizza do professor
+de matemática
+α
+A partir da medida do ângulo a, o professor afirmou
+que a área de sua pizza é maior do que a soma das áreas
+das outras duas pizzas.
+A área da pizza do professor de matemática é maior do
+que a soma das áreas das outras duas pizzas, pois
+A	A 0° < a < 90°
+B	B a = 90°
+C	C 90° < a < 180°
+D	D a = 180°
+E	E 180° < a < 360°
+QUESTÃO 143
+Entre maratonistas, um parâmetro utilizado é o de
+economia de corrida (EC). O valor desse parâmetro é
+calculado pela razão entre o consumo de oxigênio, em
+mililitro (mL) por minuto (min), e a massa, em quilograma (kg),
+do atleta correndo a uma velocidade constante.
+Disponível em: www.treinamentoonline.com.br. Acesso em: 23 out. 2019 (adaptado).
+Um maratonista, visando melhorar sua performance,
+auxiliado por um médico, mensura o seu consumo de
+oxigênio por minuto a velocidade constante. Com base
+nesse consumo e na massa do atleta, o médico calcula
+o EC do atleta.
+A 	unidade 	de 	medida 	da 	grandeza 	descrita 	pelo
+parâmetro EC é
+A	A min
+mL kg	⋅
+B	B mL
+min kg	⋅
+C	C min mL
+kg
+⋅
+D	D min kg
+mL
+⋅
+E	E mL kg
+min
+⋅
+*020125AM18*

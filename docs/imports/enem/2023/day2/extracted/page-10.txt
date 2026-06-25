@@ -1,0 +1,37 @@
+10	CN • 2º DIA • CADERNO 5 • AMARELO
+QUESTÃO 119
+O manual de um automóvel alerta sobre os cuidados em relação à pressão do ar no interior dos pneus.
+Recomenda-se que a pressão seja verificada com os pneus frios (à temperatura ambiente). Um motorista,
+desatento a essa informação, realizou uma viagem longa sobre o asfalto quente e, em seguida, verificou que a
+pressão P0 no interior dos pneus não era a recomendada pelo fabricante. Na ocasião, a temperatura dos pneus
+era T0. Após um longo período em repouso, os pneus do carro atingiram a temperatura ambiente T. Durante o
+resfriamento, não há alteração no volume dos pneus e na quantidade de ar no seu interior. Considere o ar dos
+pneus um gás perfeito (também denominado gás ideal).
+Durante o processo de resfriamento, os valores de pressão em relação à temperatura (P × T) são representados
+pelo gráfico:
+A	A
+P (Pa)
+P0
+T0 	T (K)	T
+B	B
+P0
+T0	
+T
+P (Pa)
+T (K)
+C	C
+P0
+T0	
+T 	T (K)
+P (Pa)
+D	D
+T0	
+T 	T (K)
+P (Pa)
+P0
+E	E
+P0
+T0	
+T 	T (K)
+P (Pa)
+*020125AM10*

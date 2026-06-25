@@ -1,0 +1,105 @@
+23	MT • 2º DIA • CADERNO 5 • AMARELO
+QUESTÃO 154
+Um professor, para promover a aprendizagem dos
+estudantes em estatística, propôs uma atividade. O objetivo
+era verificar o percentual de estudantes com massa corporal
+abaixo da média e altura acima da média de um grupo de
+estudantes. Para isso, usando uma balança e uma fita
+métrica, avaliou uma amostra de dez estudantes, anotando as
+medidas observadas. O gráfico apresenta a massa corporal,
+em quilograma, e a altura, em metro, obtidas na atividade.
+Massa corporal e altura de estudantes
+Altura (m)
+Massa corporal (kg)
+0
+1,8
+1,75
+1,7
+1,65
+1,6
+1,55
+1,5
+1,45
+20 	40 	60 	80 	100 	120 	140
+Após a coleta dos dados, os estudantes calcularam a
+média dos valores obtidos, referentes à massa corporal
+e à altura, obtendo, respectivamente, 80 kg e 1,65 m.
+Qual é o percentual de estudantes dessa amostra com
+massa corporal abaixo da média e altura acima da média?
+A	A 10
+B	B 20
+C	C 30
+D	D 50
+E	E 70
+QUESTÃO 155
+Um pescador tem um custo fixo diário de R$ 900,00
+com combustível, iscas, manutenção de seu barco e outras
+pequenas despesas. Ele vende cada quilograma de peixe por
+R$ 5,00. Sua meta é obter um lucro mínimo de R$ 800,00
+por dia. Sozinho, ele consegue, ao final de um dia de trabalho,
+pescar 180 kg de peixe, o que é suficiente apenas para cobrir o
+custo fixo diário. Portanto, precisa contratar ajudantes, pagando
+para cada um R$ 250,00 por dia de trabalho. Além desse valor,
+4% da receita obtida pela venda de peixe é repartida igualmente
+entre os ajudantes. Considerando o tamanho de seu barco, ele
+pode contratar até 5 ajudantes. Ele sabe que com um ajudante
+a pesca diária é de 300 kg e que, a partir do segundo
+ajudante contratado, aumenta-se em 100 kg a quantidade de
+peixe pescada por ajudante em um dia de trabalho.
+A quantidade mínima de ajudantes que esse pescador
+precisa contratar para conseguir o lucro diário pretendido é
+A	A 1.
+B	B 2.
+C	C 3.
+D	D 4.
+E	E 5.
+QUESTÃO 156
+Um agricultor é informado sobre um método de proteção
+para sua lavoura que consiste em inserir larvas específicas,
+de rápida reprodução. A reprodução dessas larvas faz com
+que sua população multiplique-se por 10 a cada 3 dias e,
+para evitar eventuais desequilíbrios, é possível cessar essa
+reprodução aplicando-se um produto X. O agricultor decide
+iniciar esse método com 100 larvas e dispõe de 5 litros do
+produto X, cuja aplicação recomendada é de exatamente
+1 litro para cada população de 200 000 larvas. A quantidade
+total do produto X de que ele dispõe deverá ser aplicada
+de uma única vez.
+Quantos dias após iniciado esse método o agricultor
+deverá aplicar o produto X?
+A	A 2
+B	B 4
+C	C 6
+D	D 12
+E	E 18
+QUESTÃO 157
+Ao realizar o cadastro em um aplicativo de investimentos,
+foi solicitado ao usuário que criasse uma senha, sendo
+permitido o uso somente dos seguintes caracteres:
+• algarismos de 0 a 9;
+• 26 letras minúsculas do alfabeto;
+• 26 letras maiúsculas do alfabeto;
+• 6 caracteres especiais !, @, #, $, 	, &.
+Três tipos de estruturas para senha foram apresentadas
+ao usuário:
+• tipo I: formada por quaisquer quatro caracteres
+distintos, escolhidos dentre os permitidos;
+• tipo II: formada por cinco caracteres distintos,
+iniciando por três letras, seguidas por um algarismo
+e, ao final, um caractere especial;
+• tipo III: formada por seis caracteres distintos, iniciando
+por duas letras, seguidas por dois algarismos e, ao
+final, dois caracteres especiais.
+Considere p1 , p2 e p3 as probabilidades de se
+descobrirem ao acaso, na primeira tentativa, as senhas
+dos tipos I, II e III, respectivamente.
+Nessas condições, o tipo de senha que apresenta a
+menor probabilidade de ser descoberta ao acaso, na
+primeira tentativa, é o
+A	A tipo I, pois p1 < p2 < p3 .
+B	B tipo I, pois tem menor quantidade de caracteres.
+C	C tipo II, pois tem maior quantidade de letras.
+D	D tipo III, pois p3 < p2 < p1
+.
+E	E tipo III, pois tem maior quantidade de caracteres.
+*020125AM23*

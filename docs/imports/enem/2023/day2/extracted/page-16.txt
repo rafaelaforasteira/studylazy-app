@@ -1,0 +1,83 @@
+16	MT • 2º DIA • CADERNO 5 • AMARELO
+MATEMÁTICA E SUAS TECNOLOGIAS
+Questões de 136 a 180
+QUESTÃO 136
+Alguns estudos comprovam que os carboidratos
+fornecem energia ao corpo, preservam as proteínas
+estruturais dos músculos durante a prática de atividade
+física e ainda dão força para o cérebro coordenar os
+movimentos, o que de fato tem impacto positivo no
+desenvolvimento do praticante. O ideal é consumir 1 grama
+de carboidrato para cada minuto de caminhada.
+CIRINO, C. Boa pergunta: consumir carboidratos antes dos exercícios melhora o
+desempenho do atleta? Revista Saúde! É Vital, n. 330, nov. 2010 (adaptado).
+Um casal realizará diariamente 30 minutos de caminhada,
+ingerindo, antes dessa atividade, a quantidade ideal de
+carboidratos recomendada. Para ter o consumo ideal apenas
+por meio do consumo de pão de fôrma integral, o casal planeja
+garantir o suprimento de pães para um período de 30 dias
+ininterruptos. Sabe-se que cada pacote desse pão vem com 18
+fatias, e que cada uma delas tem 15 gramas de carboidratos.
+A quantidade mínima de pacotes de pão de fôrma
+necessários para prover o suprimento a esse casal é
+A	A 1.
+B	B 4.
+C	C 6.
+D	D 7.
+E	E 8.
+QUESTÃO 137
+O 	mast r o 	de 	uma 	ban de ir a 	fo i 	inst alad o
+perpendicularmente ao solo em uma região plana.
+Devido aos fortes ventos, três cabos de aço, de mesmo
+comprimento, serão instalados para dar sustentação ao
+mastro. Cada cabo de aço ficará perfeitamente esticado,
+com uma extremidade num ponto P do mastro, a uma
+altura h do solo, e a outra extremidade, num ponto no
+chão, como mostra a figura.
+h
+P
+α
+α
+α
+Os cabos de aço formam um ângulo a com o plano
+do chão.
+Por medida de segurança, há apenas três opções de
+instalação:
+• opção I: h = 11 m e a = 30°
+• opção II: h = 12 m e a = 45°
+• opção III: h = 18 m e a = 60°
+A opção a ser escolhida é aquela em que a medida
+dos cabos seja a menor possível.
+Qual será a medida, em metro, de cada um dos cabos a
+serem instalados?
+A	A 22 3
+3
+B	B 	11 2
+C	C 	12 2
+D	D 	12 3
+E	E 22
+QUESTÃO 138
+Um controlador de voo dispõe de um instrumento que
+descreve a altitude de uma aeronave em voo, em função
+da distância em solo. Essa distância em solo é a medida na
+horizontal entre o ponto de origem do voo até o ponto que
+representa a projeção ortogonal da posição da aeronave,
+em voo, no solo. Essas duas grandezas são dadas numa
+mesma unidade de medida.
+A tela do instrumento representa proporcionalmente
+as dimensões reais das distâncias associadas ao voo.
+A figura apresenta a tela do instrumento depois de
+concluída a viagem de um avião, sendo a medida do lado
+de cada quadradinho da malha igual a 1 cm.
+Altitude
+Origem
+do voo Destino 	Distância
+Essa tela apresenta os dados de um voo cuja maior
+altitude alcançada foi de 5 km.
+A escala em que essa tela representa as medidas reais é
+A	A 1 : 5.
+B	B 1 : 11.
+C	C 1 : 55.
+D	D 1 : 5 000.
+E	E 1 : 500 000.
+*020125AM16*

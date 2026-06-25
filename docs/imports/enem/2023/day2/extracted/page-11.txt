@@ -1,0 +1,74 @@
+11	CN • 2º DIA • CADERNO 5 • AMARELO
+QUESTÃO 120
+Pais com síndrome de Down
+A síndrome de Down é uma alteração genética associada à trissomia do cromossomo 21, ou seja, o indivíduo possui
+três cromossomos 21 e não um par, como é normal. Isso ocorre pela união de um gameta contendo um cromossomo 21
+com um gameta possuidor de dois cromossomos 21. Embora, normalmente, as mulheres com a síndrome sejam
+estéreis, em 2008, no interior de São Paulo, uma delas deu à luz uma menina sem a síndrome de Down.
+MORENO, T. Três anos após dar à luz, mãe portadora de síndrome de Down revela detalhes de seu dia a dia. Disponível em: www.band.uol.com.br. Acesso em: 31 out. 2013 (adaptado).
+Sabendo disso, um jovem casal, ambos com essa síndrome, procura um médico especialista para aconselhamento
+genético porque querem ter um bebê.
+O médico informa ao casal que, com relação ao cromossomo 21, os zigotos formados serão
+A	A todos normais.
+B	B todos tetrassômicos.
+C	C apenas normais ou tetrassômicos.
+D	D apenas trissômicos ou tetrassômicos.
+E	E normais, trissômicos ou tetrassômicos.
+QUESTÃO 121
+Para que uma molécula dê origem a um medicamento de administração oral, além de apresentar atividade
+farmacológica, deve ser capaz de atingir o local de ação. Para tanto, essa molécula não deve se degradar no estômago
+(onde o meio é fortemente ácido e há várias enzimas que reagem mediante catálise ácida), deve ser capaz de atravessar
+as membranas celulares e ser solúvel no plasma sanguíneo (sistema aquoso). Para os fármacos cujas estruturas são
+formadas por cadeias carbônicas longas contendo pelo menos um grupamento amino, um recurso tecnológico empregado
+é sua conversão no cloridrato correspondente. Essa conversão é representada, de forma genérica, pela equação química:
+R3 N + HCl 	(R3 NH) + Cl –
+O aumento da eficiência de circulação do fármaco no sangue, promovido por essa conversão, deve-se ao incremento
+de seu(sua)
+A	A basicidade.
+B	B lipofilicidade.
+C	C caráter iônico.
+D	D cadeia carbônica.
+E	E estado de oxidação.
+QUESTÃO 122
+Toxicidade do cianeto
+A produção de ATP depende do gradiente de prótons gerado pela cadeia respiratória. Nessas reações, os elétrons
+provenientes da oxidação do NADH em NAD+ percorrem a cadeia até chegarem à citocromo c oxidase reduzindo o
+Fe 3+ a Fe2+. O oxigênio atua como aceptor final desses elétrons formando água. O cianeto é uma espécie química
+altamente tóxica que tem grande afinidade pelo Fe3+. Quando células são expostas ao cianeto, ele se liga ao sítio de
+Fe 3+ da citocromo c oxidase, impedindo a sua conversão em Fe2+ e bloqueando a cadeia respiratória.
+Substrato
+proveniente
+do nutriente
+Forma
+oxidada
+Forma
+oxidada
+Forma
+oxidada
+Forma
+reduzida
+Forma
+reduzida
+Transportador
+1
+Transportador
+2
+Transportador
+3
+Citocromo c
+oxidase
+Forma
+reduzida
+Fe2+
+Fe3+ 	H 2 O
+1
+2 O2	CO2 	NADH
+NAD+
+ALBERTS, B. et al. Biologia molecular da célula. Porto Alegre: Artmed, 2010 (adaptado).
+Esse bloqueio aumenta a concentração celular de
+A	A ATP.
+B	B água.
+C	C NADH.
+D	D dióxido de carbono.
+E	E citocromo c oxidase.
+*020125AM11*

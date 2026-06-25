@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -47,9 +47,19 @@ export default function ReviewMistakesScreen() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const [correctedCount, setCorrectedCount] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+  const scrollRef = useRef<ScrollView>(null);
 
   const currentMistake: MistakeItem | undefined =
     reviewQueue[currentIndex];
+
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      scrollRef.current?.scrollTo({
+        y: 0,
+        animated: false,
+      });
+    });
+  }, [currentIndex, currentMistake?.id]);
 
   const pendingCount = mistakes.length;
 
@@ -216,6 +226,7 @@ export default function ReviewMistakesScreen() {
     <AppScreen scroll={false}>
       <View style={styles.container}>
         <ScrollView
+          ref={scrollRef}
           style={styles.scroll}
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
@@ -418,9 +429,9 @@ const styles = StyleSheet.create({
 
   optionText: {
     color: colors.text.primary,
-    fontSize: 16,
-    fontWeight: '600',
-    lineHeight: 24,
+    fontSize: 15,
+    fontWeight: '500',
+    lineHeight: 23,
   },
 
   optionTextSelected: {

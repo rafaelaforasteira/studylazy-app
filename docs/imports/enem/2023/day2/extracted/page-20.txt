@@ -1,0 +1,73 @@
+20	MT • 2º DIA • CADERNO 5 • AMARELO
+A
+B
+Q1
+Q2
+Q3
+Q4 Q5
+Q6
+α
+Qual é o jogador que receberá a bola?
+A	A Q2
+B	B Q3
+C	C Q4
+D	D Q5
+E	E Q6
+QUESTÃO 148
+O triângulo da figura é denominado triângulo mágico.
+Nos círculos, escrevem-se os números de 1 a 6, sem
+repetição, com um número em cada círculo. O objetivo é
+distribuir os números de forma que as somas dos números
+em cada lado do triângulo sejam iguais.
+Considere que os números colocados nos vértices
+do triângulo estejam em progressão aritmética de razão
+igual a 2.
+Nas condições propostas, quais as possíveis soluções
+para as somas dos números que formam os lados do
+triângulo?
+A	A Há somente uma solução possível, e as somas em
+cada lado do triângulo são iguais a 7.
+B	B Há somente uma solução possível, e as somas em
+cada lado do triângulo são iguais a 9.
+C	C Há somente duas soluções possíveis, uma em que
+as somas em cada lado do triângulo são iguais a 7 e
+outra em que as somas são iguais a 9.
+D	D Há somente duas soluções possíveis, uma em que
+as somas em cada lado do triângulo são iguais a 9 e
+outra em que as somas são iguais a 12.
+E	E Há somente duas soluções possíveis, uma em que
+as somas em cada lado do triângulo são iguais a 10 e
+outra em que as somas são iguais a 11.
+QUESTÃO 146
+A foto mostra a construção de uma cisterna destinada
+ao armazenamento de água. Uma cisterna como essa, na
+forma de cilindro circular reto com 3 m² de área da base,
+foi abastecida por um curso-d’água com vazão constante.
+O seu proprietário registrou a altura do nível da água no
+interior da cisterna durante o abastecimento em diferentes
+momentos de um mesmo dia, conforme o quadro.
+Horário (h) 	Nível da água (m)
+6:00 	0,5
+8:00 	1,1
+12:00 	2,3
+15:00 	3,2
+Disponível em: www.paraibamix.com. Acesso em: 3 dez. 2012.
+Qual foi a vazão, em metro cúbico por hora, do
+curso-d’água que abasteceu a cisterna?
+A	A 0,3
+B	B 0,5
+C	C 0,9
+D	D 1,8
+E	E 2,7
+QUESTÃO 147
+Num certo momento de um jogo digital, a tela
+apresenta a imagem representada na figura. O ponto Q1
+representa a posição de um jogador que está com a bola,
+os pontos Q 2 , Q3 , Q4 , Q5 e Q6 também indicam posições
+de jogadores da mesma equipe, e os pontos A e B indicam
+os dois pés da trave mais próxima deles. No momento da
+partida retratado, o jogador Q1 tem a posse da bola, que
+será passada para um dos outros jogadores das posições
+Q n, n ∈ {2, 3, 4, 5, 6}, cujo ângulo AQ B	n 	tenha a mesma
+medida do ângulo 	AQ B	1 .
+*020125AM20*

@@ -1,0 +1,75 @@
+4	CN • 2º DIA • CADERNO 5 • AMARELO
+QUESTÃO 96
+A gasolina é uma mistura de hidrocarbonetos de
+cadeias saturadas contendo de 8 a 12 átomos de carbono.
+Além disso, a gasolina de alto desempenho deve conter
+elevados teores de hidrocarbonetos de cadeias ramificadas,
+de forma a resistir à compressão e entrar em ignição apenas
+quando a vela aciona uma centelha elétrica no motor.
+No quadro, estão apresentados compostos que podem
+ser utilizados como combustíveis.
+Composto 	Nomenclatura
+I 	n-decano
+II 	n-heptano
+III 	2,2,4-trimetilpentano
+IV 	3-etil-4-metilex-1-eno
+V 	3-etil-2-metilpentan-1-ol
+Entre esses compostos, aquele que conferirá maior
+desempenho como combustível é o
+A	A I.
+B	B II.
+C	C III.
+D	D IV.
+E	E V.
+QUESTÃO 97
+De acordo com a Constituição Federal, é competência
+dos municípios o gerenciamento dos serviços de limpeza e
+coleta dos resíduos urbanos (lixo). No entanto, há relatos
+de que parte desse lixo acaba sendo incinerado, liberando
+substâncias tóxicas para o ambiente e causando acidentes
+por explosões, principalmente quando ocorre a incineração
+de frascos de aerossóis (por exemplo: desodorantes,
+inseticidas e repelentes). A temperatura elevada provoca
+a vaporização de todo o conteúdo dentro desse tipo de
+frasco, aumentando a pressão em seu interior até culminar
+na explosão da embalagem.
+ZVEIBIL, V. Z. et al. Cartilha de limpeza urbana. Disponível em:
+www.ibam.org.br. Acesso em: 6 jul. 2015 (adaptado).
+Suponha um frasco metálico de um aerossol de
+capacidade igual a 100 mL, contendo 0,1 mol de produtos
+gasosos à temperatura de 650 °C, no momento da explosão.
+Considere: R = 0,082 L atm
+mol K
+⋅
+⋅
+A pressão, em atm, dentro do frasco, no momento da
+explosão, é mais próxima de
+A	A 756.
+B	B 533.
+C	C 76.
+D	D 53.
+E	E 13.
+QUESTÃO 98
+O circuito com três lâmpadas incandescentes idênticas,
+representado na figura, consiste em uma associação mista
+de resistores. Cada lâmpada (L 1, L 2 e L 3) é associada,
+em paralelo, a um resistor de resistência R, formando um
+conjunto. Esses conjuntos são associados em série, tendo
+todas as lâmpadas o mesmo brilho quando ligadas à fonte
+de energia. Após vários dias em uso, apenas a lâmpada L 2
+queima, enquanto as demais permanecem acesas.
+Fonte de
+energia 	R
+L ³
+R
+R 	L ²
+L ¹
+Em relação à situação em que todas as lâmpadas
+funcionam, após a queima de L 2, os brilhos das
+lâmpadas serão
+A	A os mesmos.
+B	B mais intensos.
+C	C menos intensos.
+D	D menos intenso para L 1 e o mesmo para L 3.
+E	E mais intenso para L 1 e menos intenso para L 3.
+*020125AM4*

@@ -1,0 +1,92 @@
+14	CN • 2º DIA • CADERNO 5 • AMARELO
+QUESTÃO 130
+Uma equipe de segurança do transporte de uma empresa
+avalia o comportamento das tensões que aparecem em duas
+cordas, 1 e 2, usadas para prender uma carga de massa
+M = 200 kg na carroceria, conforme a ilustração. Quando o
+caminhão parte do repouso, sua aceleração é constante
+e igual a 3 m/s2 e, quando ele é freado bruscamente, sua
+frenagem é constante e igual a 5 m/s 2 . Em ambas as
+situações, a carga encontra-se na iminência de movimento,
+e o sentido do movimento do caminhão está indicado na
+figura. O coeficiente de atrito estático entre a caixa e o
+assoalho da carroceria é igual a 0,2. Considere a aceleração
+da gravidade igual a 10 m/s2 , as tensões iniciais nas cordas
+iguais a zero e as duas cordas ideais.
+1 	2
+M 	V
+Nas situações de aceleração e frenagem do caminhão,
+as tensões nas cordas 1 e 2, em newton, serão
+A	A aceleração: T1 = 0 e T2 = 200; frenagem: T1 = 600 e
+T2 = 0.
+B	B aceleração: T1 = 0 e T2 = 200; frenagem: T1 = 1 400 e
+T2 = 0.
+C	C aceleração: T1 = 0 e T2 = 600; frenagem: T1 = 600 e
+T2 = 0.
+D	D aceleração: T1 = 560 e T2 = 0; frenagem: T1 = 0 e
+T2 = 960.
+E	E aceleração: T1 = 640 e T2 = 0; frenagem: T1 = 0 e
+T2 = 1 040.
+QUESTÃO 131
+A biorremediação designa tratamentos que usam
+organismos para reduzir a quantidade de substâncias
+tóxicas no ambiente ou degradá-las em substâncias
+não tóxicas ou de menor toxicidade. Uma planta aquática,
+o aguapé, tem sido utilizada para a biorremediação de
+ambientes contaminados por metais tóxicos. Sabe-se
+que esses poluentes serão captados para dentro do
+corpo do vegetal.
+Dentro do corpo do vegetal, esses contaminantes serão
+A	A digeridos por enzimas.
+B	B acumulados nos tecidos.
+C	C eliminados pelos estômatos.
+D	D metabolizados por glândulas.
+E	E utilizados como fonte energética.
+QUESTÃO 132
+O ciclo do nitrogênio é composto por várias etapas,
+conforme a figura, sendo cada uma desempenhada por
+um grupo específico de microrganismos.
+Gás nitrogênio
+Amônia 	Detritos
+Nitrito
+Nitrato
+1 2
+3
+4
+5
+Se o grupo dos microrganismos decompositores fosse
+exterminado, qual etapa não ocorreria?
+A	A 1
+B	B 2
+C	C 3
+D	D 4
+E	E 5
+QUESTÃO 133
+Os raios cósmicos são fontes de radiação ionizante
+potencialmente perigosas para o organismo humano.
+Para quantificar a dose de radiação recebida, utiliza-se
+o sievert (Sv), definido como a unidade de energia
+recebida por unidade de massa. A exposição à radiação
+proveniente de raios cósmicos aumenta com a altitude,
+o que pode representar um problema para as tripulações
+de aeronaves. Recentemente, foram realizadas medições
+acuradas das doses de radiação ionizante para voos entre
+Rio de Janeiro e Roma. Os resultados têm indicado que a
+dose média de radiação recebida na fase de cruzeiro (que
+geralmente representa 80% do tempo total de voo) desse
+trecho intercontinental é 2 μSv/h. As normas internacionais
+da aviação civil limitam em 1 000 horas por ano o tempo
+de trabalho para as tripulações que atuem em voos
+intercontinentais. Considere que a dose de radiação ionizante
+para uma radiografia torácica é estimada em 0,2 mSv.
+RUAS, A. C. O tripulante de aeronaves e a radiação ionizante.
+São Paulo: Edição do Autor, 2019 (adaptado).
+A quantas radiografias torácicas corresponde a dose de
+radiação ionizante à qual um tripulante que atue no trecho
+Rio de Janeiro−Roma é exposto ao longo de um ano?
+A	A 8
+B	B 10
+C	C 80
+D	D 100
+E	E 1 000
+*020125AM14*
