@@ -41,3 +41,6 @@ example
 # generated native folders
 /ios
 /android
+docs/sources/**/*.pdf
+docs/imports/enem/**/extracted/
+docs/imports/enem/**/parsed-questions.json

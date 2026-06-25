@@ -1,0 +1,20 @@
+export const enem2023Day2AnnulledRegistry = [
+  {
+    externalId: 'ENEM-2023-D2-C5-Q177',
+    questionNumber: 177,
+    area: 'mathematics',
+    subject: 'Matemática',
+    source: 'ENEM 2023',
+    year: 2023,
+    examDay: 2,
+    booklet: 'Caderno 5 — Amarelo',
+    officialStatus: 'annulled',
+    eligibleForScoredSessions: false,
+    answerKey: null,
+    verified: false,
+    sourceVerified: true,
+    requiresMedia: true,
+    mediaType: 'bar_chart',
+    note: 'Questão anulada no gabarito oficial. Registro histórico apenas; não integrar sessões pontuadas.',
+  },
+] as const;

@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Modal,
   Pressable,
@@ -83,8 +83,18 @@ export default function StudySessionScreen() {
   const [showExitModal, setShowExitModal] = useState(false);
 
   const hasSavedProgress = useRef(false);
+  const scrollRef = useRef<ScrollView>(null);
 
   const currentQuestion = questions[currentQuestionIndex];
+
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      scrollRef.current?.scrollTo({
+        y: 0,
+        animated: false,
+      });
+    });
+  }, [currentQuestionIndex, currentQuestion?.externalId]);
 
   const progress =
     questions.length > 0
@@ -299,6 +309,7 @@ export default function StudySessionScreen() {
         </View>
 
         <ScrollView
+          ref={scrollRef}
           style={styles.scroll}
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
@@ -409,12 +420,6 @@ export default function StudySessionScreen() {
               onPress={handleNextQuestion}
             />
           )}
-
-          <PrimaryButton
-            label="Sair da lição"
-            variant="secondary"
-            onPress={handleExitLesson}
-          />
         </View>
 
         <Modal
@@ -556,9 +561,9 @@ const styles = StyleSheet.create({
 
   optionText: {
     color: colors.text.primary,
-    fontSize: 16,
-    fontWeight: '600',
-    lineHeight: 24,
+    fontSize: 15,
+    fontWeight: '500',
+    lineHeight: 23,
   },
 
   optionTextSelected: {
