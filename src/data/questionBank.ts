@@ -1,5 +1,9 @@
 import { allEnem2024Questions } from './enem2024Questions';
-import { composeOfficialLessonQuestions } from './questionSelection';
+import {
+  selectSmartQuestions,
+  type QuestionPerformanceLike,
+  type SmartSelectionDiagnostics,
+} from './questionSelection';
 import { enem2023Day1TextQuestions } from './questions/enem/2023/day1';
 import { enem2023Day2TextQuestions } from './questions/enem/2023/day2';
 import {
@@ -22,19 +26,29 @@ export {
 } from './questions/enem/2023/day2';
 export {
   composeOfficialLessonQuestions,
+  selectSmartQuestions,
+  selectReviewMistakes,
   shuffleQuestions,
+  SELECTION_WEIGHTS,
 } from './questionSelection';
 export {
   getQuestionKey,
   getQuestionPrompt,
+  getStableQuestionId,
   isOfficialVerifiedQuestion,
 } from './questionTypes';
 
 type GetQuestionsForLessonParams = {
   subject: string;
   amount: number;
+  /** @deprecated use recentQuestionIds */
   seenQuestionIds?: string[];
   shuffleSeed?: number;
+  topic?: string;
+  performanceByQuestion?: Record<string, QuestionPerformanceLike>;
+  recentQuestionIds?: string[];
+  random?: () => number;
+  now?: number;
 };
 
 const allOfficialSourceQuestions: Question[] = [
@@ -134,19 +148,36 @@ export function getQuestionBankStats() {
   };
 }
 
-export function getQuestionsForLesson({
+export function getLessonSelection({
   subject,
   amount,
   seenQuestionIds,
   shuffleSeed,
-}: GetQuestionsForLessonParams) {
+  topic,
+  performanceByQuestion,
+  recentQuestionIds,
+  random,
+  now,
+}: GetQuestionsForLessonParams): {
+  questions: Question[];
+  diagnostics: SmartSelectionDiagnostics;
+} {
   const eligibleQuestions = getOfficialQuestionsForSubject(subject);
 
-  return composeOfficialLessonQuestions(eligibleQuestions, {
-    amount,
-    seenQuestionIds,
+  return selectSmartQuestions({
+    questions: eligibleQuestions,
+    requestedCount: amount,
+    topic,
+    performanceByQuestion,
+    recentQuestionIds: recentQuestionIds ?? seenQuestionIds,
     shuffleSeed,
+    random,
+    now,
   });
+}
+
+export function getQuestionsForLesson(params: GetQuestionsForLessonParams) {
+  return getLessonSelection(params).questions;
 }
 
 function assertOfficialQuestionBankIntegration() {

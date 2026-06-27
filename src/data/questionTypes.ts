@@ -55,8 +55,24 @@ export type Question = {
   explanationVerified?: boolean;
 };
 
+/**
+ * Identificador estável e único de uma questão.
+ *
+ * Prioriza `externalId` (estável entre builds) e usa o `id` interno apenas
+ * como fallback legado. Nunca depende do texto do enunciado.
+ */
+export function getStableQuestionId(question: Pick<Question, 'externalId' | 'id'>) {
+  const externalId = question.externalId;
+
+  if (typeof externalId === 'string' && externalId.trim().length > 0) {
+    return externalId;
+  }
+
+  return String(question.id);
+}
+
 export function getQuestionKey(question: Question) {
-  return String(question.externalId ?? question.id);
+  return getStableQuestionId(question);
 }
 
 export function isOfficialVerifiedQuestion(question: Question) {
