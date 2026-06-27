@@ -25,7 +25,10 @@ import {
   MistakeItem,
   useMistakeStore,
 } from '../store/mistakeStore';
-import { findQuestionReference } from '../data/questionBank';
+import {
+  findQuestionReference,
+  selectReviewMistakes,
+} from '../data/questionBank';
 import { toReportableFromMistake } from '../utils/questionReports';
 import { mistakeToQuestion } from '../utils/questionMistake';
 
@@ -37,9 +40,11 @@ export default function ReviewMistakesScreen() {
     (state) => state.removeMistake
   );
 
-  const [reviewQueue] = useState<MistakeItem[]>(() => [
-    ...useMistakeStore.getState().mistakes,
-  ]);
+  const [reviewQueue] = useState<MistakeItem[]>(() =>
+    selectReviewMistakes({
+      mistakes: useMistakeStore.getState().mistakes,
+    })
+  );
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] =

@@ -30,7 +30,7 @@ import {
 
 import { ROUTES } from '../constants/routes';
 
-import { getQuestionsForLesson } from '../data/questionBank';
+import { getQuestionsForLesson, getStableQuestionId } from '../data/questionBank';
 import { toReportableQuestion } from '../utils/questionReports';
 import { questionToLessonMistake } from '../utils/questionMistake';
 
@@ -47,6 +47,9 @@ export default function StudySessionScreen() {
   const completeLesson = useStudyProgressStore(
     (state) => state.completeLesson
   );
+  const recordQuestionResult = useStudyProgressStore(
+    (state) => state.recordQuestionResult
+  );
   const addLessonMistakes = useMistakeStore(
     (state) => state.addLessonMistakes
   );
@@ -58,13 +61,26 @@ export default function StudySessionScreen() {
     ? Number(startedAt) % 2147483647
     : undefined;
 
+  // Snapshot do histórico capturado no início da sessão, para que a seleção
+  // permaneça estável enquanto o usuário responde (sem re-selecionar a cada
+  // resposta registrada).
+  const [selectionHistory] = useState(() => {
+    const state = useStudyProgressStore.getState();
+    return {
+      performanceByQuestion: state.questionPerformance,
+      recentQuestionIds: state.recentQuestionIds,
+    };
+  });
+
   const questions = useMemo(() => {
     return getQuestionsForLesson({
       subject: lessonSubject,
       amount: lessonDuration,
       shuffleSeed: sessionShuffleSeed,
+      performanceByQuestion: selectionHistory.performanceByQuestion,
+      recentQuestionIds: selectionHistory.recentQuestionIds,
     });
-  }, [lessonSubject, lessonDuration, sessionShuffleSeed]);
+  }, [lessonSubject, lessonDuration, sessionShuffleSeed, selectionHistory]);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] =
     useState(0);
@@ -127,6 +143,13 @@ export default function StudySessionScreen() {
         questionToLessonMistake(currentQuestion, selectedOption),
       ]);
     }
+
+    recordQuestionResult({
+      stableQuestionId: getStableQuestionId(currentQuestion),
+      isCorrect,
+      topic: currentQuestion.topic,
+      subject: lessonSubject,
+    });
 
     setHasAnswered(true);
   }
