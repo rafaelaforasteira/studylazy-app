@@ -38,6 +38,8 @@ type SyncState = {
   completeInitialSync: () => void;
   /** Limpa apenas estado transitório no logout (preserva deviceId/owner/revision). */
   resetTransient: () => void;
+  /** Reset completo ao excluir a conta (mantém apenas o deviceId do aparelho). */
+  resetForAccountDeletion: () => void;
 };
 
 export type SyncStatusDescription = {
@@ -131,6 +133,18 @@ export const useSyncStore = create<SyncState>()(
           conflictKind: 'none',
           error: null,
           lastAttemptAt: null,
+        }),
+      resetForAccountDeletion: () =>
+        set({
+          status: 'idle',
+          conflictKind: 'none',
+          error: null,
+          localOwnerUserId: null,
+          lastKnownRevision: null,
+          lastSyncedAt: null,
+          lastAttemptAt: null,
+          isDirty: false,
+          hasCompletedInitialSync: false,
         }),
     }),
     {

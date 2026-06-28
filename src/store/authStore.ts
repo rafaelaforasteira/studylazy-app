@@ -1,11 +1,15 @@
 import type { Session, User } from '@supabase/supabase-js';
 import { create } from 'zustand';
 
+import {
+  performScopedSignOut,
+  requestAccountDeletion,
+  type SignOutScope,
+} from '../lib/accountSecurity';
 import { logAuthErrorDev } from '../lib/authErrors';
 import {
   createInitController,
   performSignIn,
-  performSignOut,
   performSignUp,
   type SignUpResult,
 } from '../lib/authFlow';
@@ -26,7 +30,10 @@ type AuthState = {
     password: string,
     confirmPassword: string
   ) => Promise<SignUpResult>;
-  signOut: () => Promise<void>;
+  /** Logout com escopo: `local` (este aparelho) ou `global` (todos). */
+  signOut: (scope?: SignOutScope) => Promise<void>;
+  /** Exclusão segura via Edge Function; limpa a sessão local ao concluir. */
+  deleteAccount: () => Promise<boolean>;
   clearAuthError: () => void;
 };
 
@@ -150,17 +157,40 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     return result;
   },
 
-  signOut: async () => {
+  signOut: async (scope: SignOutScope = 'local') => {
     set({ isSubmitting: true });
     // Logout limpa APENAS a sessão de autenticação. XP, histórico, erros e
     // preferências locais permanecem intactos (outros stores não são tocados).
-    await performSignOut(supabase?.auth);
+    await performScopedSignOut(supabase?.auth, scope);
     set({
       session: null,
       user: null,
       isSubmitting: false,
       error: null,
     });
+  },
+
+  deleteAccount: async () => {
+    if (get().isSubmitting) {
+      return false;
+    }
+    set({ isSubmitting: true, error: null });
+
+    const client = supabase;
+    const invoker = client
+      ? () => client.functions.invoke('delete-account')
+      : null;
+    const result = await requestAccountDeletion(invoker);
+
+    if (result.status === 'error') {
+      set({ isSubmitting: false, error: result.error });
+      return false;
+    }
+
+    // Conta removida no servidor → encerra a sessão local imediatamente.
+    await performScopedSignOut(supabase?.auth, 'local');
+    set({ session: null, user: null, isSubmitting: false, error: null });
+    return true;
   },
 
   clearAuthError: () => set({ error: null }),

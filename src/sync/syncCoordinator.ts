@@ -338,6 +338,22 @@ export function handleLogout(): void {
   useSyncStore.getState().resetTransient();
 }
 
+/**
+ * Exclusão de conta: cancela timers/uploads e zera o vínculo de propriedade,
+ * tratando o aparelho como convidado novamente (mantém apenas o deviceId).
+ */
+export function handleAccountDeleted(): void {
+  loggedOut = true;
+  syncActive = false;
+  activeUserId = null;
+  pendingUpload = false;
+  if (uploadTimer) {
+    clearTimeout(uploadTimer);
+    uploadTimer = null;
+  }
+  useSyncStore.getState().resetForAccountDeletion();
+}
+
 /** Sincronização manual a partir da interface. */
 export async function syncNow(): Promise<void> {
   const userId = getActiveUserId();

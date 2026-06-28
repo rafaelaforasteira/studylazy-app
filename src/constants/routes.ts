@@ -19,4 +19,7 @@ export const ROUTES = {
   authLogin: '/auth/login' as Href,
   authRegister: '/auth/register' as Href,
   authCheckEmail: '/auth/check-email' as Href,
+  authForgotPassword: '/auth/forgot-password' as Href,
+  authResetPassword: '/auth/reset-password' as Href,
+  changePassword: '/change-password' as Href,
 };

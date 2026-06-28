@@ -5,12 +5,15 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "studylazyapp",
+    "scheme": "studylazy",
     "userInterfaceStyle": "dark",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.studylazy.app"
     },
     "android": {
+      "package": "com.studylazy.app",
+      "versionCode": 1,
       "adaptiveIcon": {
         "backgroundColor": "#07080D",
         "foregroundImage": "./assets/images/android-icon-foreground.png",

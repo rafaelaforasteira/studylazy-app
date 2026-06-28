@@ -124,6 +124,16 @@ export default function LoginScreen() {
           disabled={isSubmitting}
           onPress={handleSubmit}
         />
+
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Esqueci minha senha"
+          onPress={() => router.push(ROUTES.authForgotPassword)}
+          hitSlop={8}
+          style={styles.forgotButton}
+        >
+          <Text style={styles.forgotText}>Esqueci minha senha</Text>
+        </Pressable>
       </View>
 
       <View style={styles.footer}>
@@ -176,6 +186,16 @@ const styles = StyleSheet.create({
   errorBanner: {
     color: colors.error.main,
     ...typography.bodySmall,
+  },
+
+  forgotButton: {
+    alignSelf: 'center',
+  },
+
+  forgotText: {
+    color: colors.primarySoft,
+    ...typography.body,
+    fontWeight: '600',
   },
 
   footer: {
