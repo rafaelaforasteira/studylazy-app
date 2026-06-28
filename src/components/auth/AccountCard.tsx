@@ -8,6 +8,8 @@ import { spacing } from '../../constants/spacing';
 import { typography } from '../../constants/typography';
 import { deriveDisplayName } from '../../lib/authFlow';
 import { useAuthStore } from '../../store/authStore';
+import { describeSyncStatus, useSyncStore } from '../../store/syncStore';
+import { syncNow } from '../../sync/syncCoordinator';
 import PrimaryButton from '../ui/PrimaryButton';
 
 type AccountCardProps = {
@@ -22,6 +24,10 @@ export default function AccountCard({ framed = false }: AccountCardProps) {
   const user = useAuthStore((state) => state.user);
   const isSubmitting = useAuthStore((state) => state.isSubmitting);
   const signOut = useAuthStore((state) => state.signOut);
+
+  const syncStatus = useSyncStore((state) => state.status);
+  const conflictKind = useSyncStore((state) => state.conflictKind);
+  const isDirty = useSyncStore((state) => state.isDirty);
 
   function confirmSignOut() {
     Alert.alert(
@@ -44,6 +50,9 @@ export default function AccountCard({ framed = false }: AccountCardProps) {
 
   if (session && user) {
     const displayName = deriveDisplayName(user, user.email);
+    const isOwnershipConflict =
+      syncStatus === 'conflict' && conflictKind === 'ownership';
+    const sync = describeSyncStatus(syncStatus, conflictKind, isDirty);
 
     return (
       <View style={containerStyle}>
@@ -53,14 +62,45 @@ export default function AccountCard({ framed = false }: AccountCardProps) {
         <View style={styles.statusPill}>
           <Text style={styles.statusText}>Conta ativa</Text>
         </View>
-        <PrimaryButton
-          label="Sair da conta"
-          variant="secondary"
-          loading={isSubmitting}
-          disabled={isSubmitting}
-          onPress={confirmSignOut}
-          style={styles.action}
-        />
+
+        <Text style={styles.syncStatus}>{sync.label}</Text>
+
+        {isOwnershipConflict ? (
+          <>
+            <Text style={styles.conflictText}>
+              Este progresso pertence a outra conta. Para usar esta conta neste
+              aparelho, saia e entre novamente.
+            </Text>
+            <PrimaryButton
+              label="Sair desta conta"
+              variant="danger"
+              loading={isSubmitting}
+              disabled={isSubmitting}
+              onPress={confirmSignOut}
+              style={styles.action}
+            />
+          </>
+        ) : (
+          <>
+            <PrimaryButton
+              label="Sincronizar agora"
+              variant="secondary"
+              disabled={syncStatus === 'syncing'}
+              onPress={() => {
+                void syncNow();
+              }}
+              style={styles.action}
+            />
+            <PrimaryButton
+              label="Sair da conta"
+              variant="secondary"
+              loading={isSubmitting}
+              disabled={isSubmitting}
+              onPress={confirmSignOut}
+              style={styles.action}
+            />
+          </>
+        )}
       </View>
     );
   }
@@ -145,6 +185,18 @@ const styles = StyleSheet.create({
   statusText: {
     color: colors.successTone.main,
     ...typography.label,
+  },
+
+  syncStatus: {
+    color: colors.text.secondary,
+    ...typography.bodySmall,
+    marginTop: spacing.xs,
+  },
+
+  conflictText: {
+    color: colors.warning,
+    ...typography.bodySmall,
+    marginTop: spacing.xs,
   },
 
   guestActions: {

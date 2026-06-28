@@ -16,6 +16,11 @@ type ProfileStore = {
    * (inclusive usuários antigos migrados). Nunca escolhemos por eles.
    */
   foreignLanguage: ForeignLanguagePreference | null;
+  /**
+   * Carimbo ISO da última alteração da língua. Metadado confiável usado pelo
+   * merge de sincronização para resolver conflitos entre dispositivos.
+   */
+  foreignLanguageUpdatedAt: string | null;
   setName: (name: string) => void;
   setForeignLanguage: (language: ForeignLanguagePreference) => void;
   resetProfile: () => void;
@@ -26,6 +31,7 @@ export const useProfileStore = create<ProfileStore>()(
     (set) => ({
       name: 'Estudante',
       foreignLanguage: null,
+      foreignLanguageUpdatedAt: null,
 
       setName: (name) =>
         set({
@@ -35,18 +41,20 @@ export const useProfileStore = create<ProfileStore>()(
       setForeignLanguage: (language) =>
         set({
           foreignLanguage: normalizeForeignLanguagePreference(language),
+          foreignLanguageUpdatedAt: new Date().toISOString(),
         }),
 
       resetProfile: () =>
         set({
           name: 'Estudante',
           foreignLanguage: null,
+          foreignLanguageUpdatedAt: null,
         }),
     }),
     {
       name: 'studylazy-profile',
       storage: createJSONStorage(() => AsyncStorage),
-      version: 1,
+      version: 2,
       migrate: (persistedState, version) => {
         const state = (persistedState ?? {}) as Partial<ProfileStore>;
 
@@ -58,6 +66,14 @@ export const useProfileStore = create<ProfileStore>()(
             foreignLanguage: normalizeForeignLanguagePreference(
               state.foreignLanguage
             ),
+            foreignLanguageUpdatedAt: state.foreignLanguageUpdatedAt ?? null,
+          };
+        }
+
+        if (version < 2) {
+          return {
+            ...state,
+            foreignLanguageUpdatedAt: state.foreignLanguageUpdatedAt ?? null,
           };
         }
 
@@ -73,6 +89,10 @@ export const useProfileStore = create<ProfileStore>()(
           foreignLanguage: normalizeForeignLanguagePreference(
             persisted.foreignLanguage
           ),
+          foreignLanguageUpdatedAt:
+            typeof persisted.foreignLanguageUpdatedAt === 'string'
+              ? persisted.foreignLanguageUpdatedAt
+              : null,
         };
       },
     }
