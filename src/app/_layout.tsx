@@ -5,6 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import LoadingScreen from '../components/LoadingScreen';
 import { useAppHydration } from '../hooks/use-app-hydration';
+import { useProgressSync } from '../hooks/use-progress-sync';
 import { useAuthStore } from '../store/authStore';
 
 function RootNavigator() {
@@ -15,6 +16,9 @@ function RootNavigator() {
     // chamadas repetidas são ignoradas pelo controlador de inicialização.
     void useAuthStore.getState().initializeAuth();
   }, []);
+
+  // Liga a sincronização de progresso offline-first (não bloqueia a UI).
+  useProgressSync();
 
   if (!hydrated) {
     return <LoadingScreen />;

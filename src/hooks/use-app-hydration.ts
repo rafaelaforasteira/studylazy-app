@@ -6,6 +6,7 @@ import { useOnboardingStore } from '../store/onboardingStore';
 import { useProfileStore } from '../store/profileStore';
 import { useQuestionReportStore } from '../store/questionReportStore';
 import { useStudyProgressStore } from '../store/studyProgressStore';
+import { useSyncStore } from '../store/syncStore';
 
 const persistedStores = [
   useOnboardingStore,
@@ -14,6 +15,7 @@ const persistedStores = [
   useMistakeStore,
   useQuestionReportStore,
   useAuthPreferenceStore,
+  useSyncStore,
 ] as const;
 
 function areStoresHydrated() {
