@@ -3,7 +3,7 @@ import QuestionScreen from '../components/QuestionScreen';
 export default function OnboardingFiveScreen() {
   return (
     <QuestionScreen
-      progress={55}
+      progress={50}
       title="Como você conheceu o StudyLazy?"
       subtitle="Queremos saber como você chegou até aqui"
       storeKey="acquisitionChannel"

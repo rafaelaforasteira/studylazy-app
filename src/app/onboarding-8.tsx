@@ -3,11 +3,11 @@ import QuestionScreen from '../components/QuestionScreen';
 export default function OnboardingEightScreen() {
   return (
     <QuestionScreen
-      progress={88}
+      progress={80}
       title="Posso te lembrar de estudar?"
       subtitle="Notificações ajudam a manter a constância"
       storeKey="notifications"
-      nextRoute="/onboarding-9"
+      nextRoute="/onboarding-language"
       options={[
         {
           label: 'Permitir',

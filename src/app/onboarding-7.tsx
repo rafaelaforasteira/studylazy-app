@@ -7,7 +7,7 @@ export default function OnboardingSevenScreen() {
 
   return (
     <OnboardingLayout
-      progress={77}
+      progress={70}
       title="Em breve você vai conquistar a aprovação que tanto sonha"
       subtitle="Estamos aqui para te ajudar nessa jornada 💪"
       onContinue={() => router.push('/onboarding-8')}

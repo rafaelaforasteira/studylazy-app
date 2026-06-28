@@ -3,7 +3,7 @@ import QuestionScreen from '../components/QuestionScreen';
 export default function OnboardingFourScreen() {
   return (
     <QuestionScreen
-      progress={44}
+      progress={40}
       title="Hoje, você se sente:"
       subtitle="Seja honesto, isso ajuda a calibrar seu plano"
       storeKey="preparationLevel"
