@@ -1,12 +1,20 @@
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import LoadingScreen from '../components/LoadingScreen';
 import { useAppHydration } from '../hooks/use-app-hydration';
+import { useAuthStore } from '../store/authStore';
 
 function RootNavigator() {
   const hydrated = useAppHydration();
+
+  useEffect(() => {
+    // Restaura/inicializa a sessão Supabase ao abrir o app. Idempotente:
+    // chamadas repetidas são ignoradas pelo controlador de inicialização.
+    void useAuthStore.getState().initializeAuth();
+  }, []);
 
   if (!hydrated) {
     return <LoadingScreen />;

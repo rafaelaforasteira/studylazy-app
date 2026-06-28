@@ -2,6 +2,7 @@ import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SymbolView } from 'expo-symbols';
 import { useRouter } from 'expo-router';
 
+import AccountCard from '../components/auth/AccountCard';
 import AppScreen from '../components/ui/AppScreen';
 import PrimaryButton from '../components/ui/PrimaryButton';
 
@@ -119,6 +120,8 @@ export default function SettingsScreen() {
           aplicativo.
         </Text>
       </View>
+
+      <AccountCard framed />
 
       <View style={styles.card}>
         <SymbolView

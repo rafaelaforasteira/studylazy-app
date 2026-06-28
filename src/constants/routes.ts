@@ -15,4 +15,8 @@ export const ROUTES = {
   questionReports: '/question-reports' as Href,
   onboardingStart: '/onboarding-1' as Href,
   dashboard: '/dashboard' as Href,
+  authWelcome: '/auth/welcome' as Href,
+  authLogin: '/auth/login' as Href,
+  authRegister: '/auth/register' as Href,
+  authCheckEmail: '/auth/check-email' as Href,
 };

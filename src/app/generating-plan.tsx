@@ -18,7 +18,9 @@ export default function GeneratingPlanScreen() {
   useEffect(() => {
     const timer = setTimeout(() => {
       completeOnboarding();
-      router.replace(ROUTES.tabsAtividade);
+      // Novos usuários: onboarding → tela de autenticação (com opção de
+      // continuar sem conta) → tabs.
+      router.replace(ROUTES.authWelcome);
     }, 4000);
 
     return () => clearTimeout(timer);

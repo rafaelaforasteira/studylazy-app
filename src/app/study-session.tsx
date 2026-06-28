@@ -99,6 +99,9 @@ export default function StudySessionScreen() {
   const [showExitModal, setShowExitModal] = useState(false);
 
   const hasSavedProgress = useRef(false);
+  // Trava de reentrância: bloqueia toque duplo em "Responder"/"Continuar",
+  // evitando registrar resposta/XP duas vezes ou pular questões.
+  const answerLockRef = useRef(false);
   const scrollRef = useRef<ScrollView>(null);
 
   const currentQuestion = questions[currentQuestionIndex];
@@ -131,6 +134,8 @@ export default function StudySessionScreen() {
 
   function handleConfirmAnswer() {
     if (!selectedOption || !currentQuestion) return;
+    if (hasAnswered || answerLockRef.current) return;
+    answerLockRef.current = true;
 
     const isCorrect =
       selectedOption === currentQuestion.correctAnswer;
@@ -171,6 +176,11 @@ export default function StudySessionScreen() {
   }
 
   function handleNextQuestion() {
+    // Só avança se houve resposta confirmada; consome a trava para impedir
+    // que toques rápidos pulem questões ou concluam a sessão duas vezes.
+    if (!answerLockRef.current) return;
+    answerLockRef.current = false;
+
     const isLastQuestion =
       currentQuestionIndex === questions.length - 1;
 

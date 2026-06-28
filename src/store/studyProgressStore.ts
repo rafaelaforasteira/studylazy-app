@@ -2,7 +2,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-import { getLocalDateKey, getYesterdayDateKey } from '../utils/date';
+import { getLocalDateKey } from '../utils/date';
+import {
+  computeLessonResult,
+  defaultCompleteLessonContext,
+  type LessonHistoryItem,
+} from './progressLogic';
+
+export type { LessonHistoryItem } from './progressLogic';
 
 /**
  * Histórico de desempenho por questão usado pelo motor de seleção inteligente.
@@ -33,17 +40,6 @@ type CompleteLessonParams = {
   totalQuestions: number;
   correctAnswers: number;
   subject: string;
-};
-
-export type LessonHistoryItem = {
-  id: string;
-  subject: string;
-  minutes: number;
-  totalQuestions: number;
-  correctAnswers: number;
-  earnedXp: number;
-  date: string;
-  isRepeat?: boolean;
 };
 
 type CompleteLessonResult = {
@@ -94,131 +90,24 @@ const initialProgress = {
   recentQuestionIds: [] as string[],
 };
 
-function calculateStreak(
-  lastStudyDate: string | null,
-  currentStreak: number
-) {
-  const today = getLocalDateKey();
-  const yesterday = getYesterdayDateKey();
-
-  if (lastStudyDate === today) {
-    return currentStreak;
-  }
-
-  if (lastStudyDate === yesterday) {
-    return currentStreak + 1;
-  }
-
-  return 1;
-}
-
-function calculateXp(
-  totalQuestions: number,
-  correctAnswers: number
-) {
-  const xpPerQuestion = 5;
-  const bonusPerCorrectAnswer = 5;
-
-  return (
-    totalQuestions * xpPerQuestion +
-    correctAnswers * bonusPerCorrectAnswer
-  );
-}
-
 export const useStudyProgressStore =
   create<StudyProgressStore>()(
     persist(
       (set, get) => ({
         ...initialProgress,
 
-        completeLesson: ({
-          minutes,
-          totalQuestions,
-          correctAnswers,
-          subject,
-        }) => {
-          const today = getLocalDateKey();
+        completeLesson: (params) => {
           const state = get();
 
-          const isNewDailyCycle =
-            state.dailyProgressDate !== today;
-
-          const baseStudiedMinutesToday = isNewDailyCycle
-            ? 0
-            : state.studiedMinutesToday;
-
-          const baseAnsweredQuestionsToday = isNewDailyCycle
-            ? 0
-            : state.answeredQuestionsToday;
-
-          const baseCorrectAnswersToday = isNewDailyCycle
-            ? 0
-            : state.correctAnswersToday;
-
-          const baseCompletedTasksToday = isNewDailyCycle
-            ? []
-            : state.completedTasksToday || [];
-
-          const taskWasAlreadyCompleted =
-            baseCompletedTasksToday.includes(subject);
-
-          const earnedXp = taskWasAlreadyCompleted
-            ? 0
-            : calculateXp(totalQuestions, correctAnswers);
-
-          const newStreak = calculateStreak(
-            state.lastStudyDate,
-            state.streak
+          const { patch, result } = computeLessonResult(
+            state,
+            params,
+            defaultCompleteLessonContext()
           );
 
-          const updatedCompletedTasks = taskWasAlreadyCompleted
-            ? baseCompletedTasksToday
-            : [...baseCompletedTasksToday, subject];
+          set(patch);
 
-          const newHistoryItem: LessonHistoryItem = {
-            id: `${subject}-${Date.now()}`,
-            subject,
-            minutes,
-            totalQuestions,
-            correctAnswers,
-            earnedXp,
-            date: today,
-            isRepeat: taskWasAlreadyCompleted,
-          };
-
-          set({
-            studiedMinutesToday:
-              baseStudiedMinutesToday + minutes,
-
-            answeredQuestionsToday:
-              baseAnsweredQuestionsToday + totalQuestions,
-
-            correctAnswersToday:
-              baseCorrectAnswersToday + correctAnswers,
-
-            completedTasksToday: updatedCompletedTasks,
-
-            xp: state.xp + earnedXp,
-
-            sessionsCompleted:
-              state.sessionsCompleted + 1,
-
-            streak: newStreak,
-
-            lastStudyDate: today,
-
-            dailyProgressDate: today,
-
-            lessonHistory: [
-              newHistoryItem,
-              ...(state.lessonHistory || []),
-            ],
-          });
-
-          return {
-            earnedXp,
-            isRepeat: taskWasAlreadyCompleted,
-          };
+          return result;
         },
 
         recordQuestionResult: ({
