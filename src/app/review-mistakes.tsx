@@ -52,6 +52,8 @@ export default function ReviewMistakesScreen() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const [correctedCount, setCorrectedCount] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+  // Trava de reentrância contra toque duplo em "Responder"/"Continuar".
+  const answerLockRef = useRef(false);
   const scrollRef = useRef<ScrollView>(null);
 
   const currentMistake: MistakeItem | undefined =
@@ -109,6 +111,8 @@ export default function ReviewMistakesScreen() {
 
   function handleConfirmAnswer() {
     if (!selectedOption || !currentMistake) return;
+    if (hasAnswered || answerLockRef.current) return;
+    answerLockRef.current = true;
 
     const isCorrect =
       selectedOption === currentMistake.correctAnswer;
@@ -122,6 +126,9 @@ export default function ReviewMistakesScreen() {
   }
 
   function handleNextQuestion() {
+    if (!answerLockRef.current) return;
+    answerLockRef.current = false;
+
     const isLastQuestion =
       currentIndex === reviewQueue.length - 1;
 

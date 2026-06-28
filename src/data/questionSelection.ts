@@ -151,6 +151,11 @@ function buildEligiblePool(params: {
 
     const stableId = getStableQuestionId(question);
 
+    // Ignora IDs vazios/inválidos e duplicatas por identificador estável.
+    if (!stableId || stableId.trim().length === 0) {
+      return;
+    }
+
     if (seen.has(stableId)) {
       return;
     }
@@ -281,9 +286,27 @@ export function selectSmartQuestions(
   } = params;
 
   const random = createRandom(providedRandom, shuffleSeed);
-  const safeCount = Math.max(0, Math.floor(requestedCount));
 
-  const pool = buildEligiblePool({ questions, subject, topic });
+  // Proteções de entrada: quantidade não numérica/negativa, histórico ausente
+  // ou malformado, IDs recentes inválidos. Nada disso deve quebrar a seleção.
+  const safeCount = Number.isFinite(requestedCount)
+    ? Math.max(0, Math.floor(requestedCount))
+    : 0;
+
+  const safePerformance =
+    performanceByQuestion && typeof performanceByQuestion === 'object'
+      ? performanceByQuestion
+      : {};
+
+  const safeRecent = Array.isArray(recentQuestionIds)
+    ? recentQuestionIds.filter(
+        (id): id is string => typeof id === 'string' && id.length > 0
+      )
+    : [];
+
+  const safeQuestions = Array.isArray(questions) ? questions : [];
+
+  const pool = buildEligiblePool({ questions: safeQuestions, subject, topic });
 
   const emptyDiagnostics: SmartSelectionDiagnostics = {
     eligibleCount: pool.length,
@@ -299,13 +322,13 @@ export function selectSmartQuestions(
   }
 
   const recentIndexById = new Map<string, number>();
-  recentQuestionIds.forEach((id, index) => {
+  safeRecent.forEach((id, index) => {
     if (!recentIndexById.has(id)) {
       recentIndexById.set(id, index);
     }
   });
 
-  const lowTopicAccuracy = computeTopicAccuracy(pool, performanceByQuestion);
+  const lowTopicAccuracy = computeTopicAccuracy(pool, safePerformance);
 
   const scored = pool.map((question) => {
     const stableId = getStableQuestionId(question);
@@ -314,7 +337,7 @@ export function selectSmartQuestions(
 
     return scoreQuestion({
       question,
-      performance: performanceByQuestion[stableId],
+      performance: safePerformance[stableId],
       recentIndex: recentIndexById.get(stableId) ?? -1,
       lowTopicPerformance:
         accuracy !== undefined && accuracy < LOW_TOPIC_ACCURACY_THRESHOLD,

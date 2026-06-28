@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 import { useRouter } from 'expo-router';
 
 import type { StudyTask } from '../utils/studyPlanGenerator';
@@ -9,14 +9,27 @@ type StartStudyParams = {
   type: string;
 };
 
+/**
+ * Janela mínima (ms) entre aberturas de sessão. Evita que toques rápidos
+ * duplos abram duas sessões de estudo empilhadas.
+ */
+const START_DEBOUNCE_MS = 1000;
+
 export function useStartStudy() {
   const router = useRouter();
+  const lastStartRef = useRef(0);
 
   const startStudy = useCallback(
     ({ subject, duration, type }: StartStudyParams) => {
-      if (!subject || duration <= 0) {
+      if (!subject || !Number.isFinite(duration) || duration <= 0) {
         return;
       }
+
+      const now = Date.now();
+      if (now - lastStartRef.current < START_DEBOUNCE_MS) {
+        return;
+      }
+      lastStartRef.current = now;
 
       router.push({
         pathname: '/study-session',
@@ -24,7 +37,7 @@ export function useStartStudy() {
           subject,
           duration: String(duration),
           type: type || 'Teoria',
-          startedAt: String(Date.now()),
+          startedAt: String(now),
         },
       });
     },
