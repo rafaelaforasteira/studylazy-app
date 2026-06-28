@@ -3,7 +3,7 @@ import QuestionScreen from '../components/QuestionScreen';
 export default function OnboardingThreeScreen() {
   return (
     <QuestionScreen
-      progress={33}
+      progress={30}
       title="Quanto tempo você pode estudar por dia?"
       subtitle="Isso nos ajuda a montar seu plano ideal"
       storeKey="studyTime"

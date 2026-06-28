@@ -1,4 +1,4 @@
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SymbolView } from 'expo-symbols';
 import { useRouter } from 'expo-router';
 
@@ -15,6 +15,18 @@ import { useOnboardingStore } from '../store/onboardingStore';
 import { useStudyProgressStore } from '../store/studyProgressStore';
 import { useProfileStore } from '../store/profileStore';
 import { useMistakeStore } from '../store/mistakeStore';
+import {
+  getForeignLanguageLabel,
+  type ForeignLanguagePreference,
+} from '../data/questionTypes';
+
+const FOREIGN_LANGUAGE_OPTIONS: {
+  value: ForeignLanguagePreference;
+  label: string;
+}[] = [
+  { value: 'english', label: 'Inglês' },
+  { value: 'spanish', label: 'Espanhol' },
+];
 
 export default function SettingsScreen() {
   const router = useRouter();
@@ -32,8 +44,30 @@ export default function SettingsScreen() {
     (state) => state.clearMistakes
   );
 
+  const foreignLanguage = useProfileStore(
+    (state) => state.foreignLanguage
+  );
+  const setForeignLanguage = useProfileStore(
+    (state) => state.setForeignLanguage
+  );
+
   function handleOpenProfile() {
     router.push(ROUTES.profile);
+  }
+
+  function handleSelectLanguage(language: ForeignLanguagePreference) {
+    if (language === foreignLanguage) {
+      return;
+    }
+
+    setForeignLanguage(language);
+
+    Alert.alert(
+      'Idioma atualizado',
+      `Suas próximas sessões de língua estrangeira usarão ${getForeignLanguageLabel(
+        language
+      )}. Seu histórico, XP e sequência foram mantidos.`
+    );
   }
 
   function confirmResetProgress() {
@@ -103,6 +137,49 @@ export default function SettingsScreen() {
           label="Abrir perfil"
           onPress={handleOpenProfile}
         />
+      </View>
+
+      <View style={styles.card}>
+        <SymbolView
+          name={{ ios: 'globe', android: 'language', web: 'language' }}
+          tintColor={colors.primary}
+          size={28}
+        />
+
+        <Text style={styles.cardTitle}>Língua estrangeira</Text>
+        <Text style={styles.cardDescription}>
+          {foreignLanguage
+            ? `Atual: ${getForeignLanguageLabel(foreignLanguage)}. Trocar não apaga histórico, erros, XP ou sequência.`
+            : 'Escolha entre Inglês e Espanhol para as sessões de língua estrangeira.'}
+        </Text>
+
+        <View style={styles.languageRow}>
+          {FOREIGN_LANGUAGE_OPTIONS.map((option) => {
+            const isActive = option.value === foreignLanguage;
+
+            return (
+              <Pressable
+                key={option.value}
+                accessibilityRole="button"
+                accessibilityLabel={`Escolher ${option.label}`}
+                onPress={() => handleSelectLanguage(option.value)}
+                style={[
+                  styles.languageChip,
+                  isActive && styles.languageChipActive,
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.languageChipText,
+                    isActive && styles.languageChipTextActive,
+                  ]}
+                >
+                  {option.label}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </View>
       </View>
 
       <View style={styles.card}>
@@ -198,5 +275,35 @@ const styles = StyleSheet.create({
 
   backButton: {
     marginTop: spacing.sm,
+  },
+
+  languageRow: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+  },
+
+  languageChip: {
+    flex: 1,
+    alignItems: 'center',
+    paddingVertical: spacing.md,
+    borderRadius: radii.md,
+    borderWidth: 2,
+    borderColor: colors.border.default,
+    backgroundColor: colors.card.elevated,
+  },
+
+  languageChipActive: {
+    borderColor: colors.primary,
+    backgroundColor: colors.card.selected,
+  },
+
+  languageChipText: {
+    color: colors.text.primary,
+    ...typography.body,
+    fontWeight: '700',
+  },
+
+  languageChipTextActive: {
+    color: colors.primary,
   },
 });

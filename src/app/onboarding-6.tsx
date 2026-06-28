@@ -3,7 +3,7 @@ import QuestionScreen from '../components/QuestionScreen';
 export default function OnboardingSixScreen() {
   return (
     <QuestionScreen
-      progress={66}
+      progress={60}
       title="Qual será sua meta diária?"
       subtitle="Poucos minutos por dia vencem horas sem constância"
       storeKey="dailyGoal"

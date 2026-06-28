@@ -4,6 +4,61 @@ export type QuestionContentFormat = 'prose' | 'verse';
 
 export type QuestionLanguageTrack = 'english' | 'spanish' | null;
 
+/**
+ * Preferência de língua estrangeira do usuário.
+ *
+ * Aceita `null` para usuários que ainda não escolheram (inclusive antigos),
+ * de modo que nunca selecionamos um idioma silenciosamente por eles.
+ */
+export type ForeignLanguagePreference = 'english' | 'spanish';
+
+/** Matérias oficiais que representam línguas estrangeiras. */
+export const FOREIGN_LANGUAGE_SUBJECTS = ['Inglês', 'Espanhol'] as const;
+
+const FOREIGN_LANGUAGE_SUBJECT_BY_PREFERENCE: Record<
+  ForeignLanguagePreference,
+  (typeof FOREIGN_LANGUAGE_SUBJECTS)[number]
+> = {
+  english: 'Inglês',
+  spanish: 'Espanhol',
+};
+
+/** Converte a preferência no nome de matéria usado pelo banco oficial. */
+export function getForeignLanguageSubject(
+  preference: ForeignLanguagePreference
+) {
+  return FOREIGN_LANGUAGE_SUBJECT_BY_PREFERENCE[preference];
+}
+
+/** Rótulo legível (igual ao nome de matéria) para a preferência. */
+export function getForeignLanguageLabel(
+  preference: ForeignLanguagePreference
+) {
+  return FOREIGN_LANGUAGE_SUBJECT_BY_PREFERENCE[preference];
+}
+
+/** Indica se uma matéria é de língua estrangeira (Inglês ou Espanhol). */
+export function isForeignLanguageSubject(subject?: string) {
+  return (
+    subject === 'Inglês' ||
+    subject === 'Espanhol'
+  );
+}
+
+/**
+ * Normaliza valores persistidos/legados para uma preferência válida ou `null`.
+ * Garante migração segura: qualquer valor inesperado vira `null`.
+ */
+export function normalizeForeignLanguagePreference(
+  value: unknown
+): ForeignLanguagePreference | null {
+  if (value === 'english' || value === 'spanish') {
+    return value;
+  }
+
+  return null;
+}
+
 export type ExplanationOrigin = 'editorial' | 'official';
 
 export type OfficialStatus = 'valid' | 'annulled';

@@ -26,7 +26,7 @@ export default function OnboardingOneScreen() {
 
   return (
     <OnboardingLayout
-      progress={11}
+      progress={10}
       title="Eu quero estudar para..."
       subtitle="Isso nos ajuda a entender sua jornada"
       onContinue={handleContinue}
