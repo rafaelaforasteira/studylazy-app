@@ -7,9 +7,17 @@ import { ROUTES } from '../../constants/routes';
 import { spacing } from '../../constants/spacing';
 import { typography } from '../../constants/typography';
 import { deriveDisplayName } from '../../lib/authFlow';
+import type { SignOutScope } from '../../lib/accountSecurity';
 import { useAuthStore } from '../../store/authStore';
+import { useMistakeStore } from '../../store/mistakeStore';
+import { useProfileStore } from '../../store/profileStore';
+import { useStudyProgressStore } from '../../store/studyProgressStore';
 import { describeSyncStatus, useSyncStore } from '../../store/syncStore';
-import { syncNow } from '../../sync/syncCoordinator';
+import {
+  handleAccountDeleted,
+  handleLogout,
+  syncNow,
+} from '../../sync/syncCoordinator';
 import PrimaryButton from '../ui/PrimaryButton';
 
 type AccountCardProps = {
@@ -24,26 +32,78 @@ export default function AccountCard({ framed = false }: AccountCardProps) {
   const user = useAuthStore((state) => state.user);
   const isSubmitting = useAuthStore((state) => state.isSubmitting);
   const signOut = useAuthStore((state) => state.signOut);
+  const deleteAccount = useAuthStore((state) => state.deleteAccount);
 
   const syncStatus = useSyncStore((state) => state.status);
   const conflictKind = useSyncStore((state) => state.conflictKind);
   const isDirty = useSyncStore((state) => state.isDirty);
 
-  function confirmSignOut() {
+  function runSignOut(scope: SignOutScope) {
+    // Cancela uploads pendentes ANTES de encerrar a sessão.
+    handleLogout();
+    void signOut(scope);
+  }
+
+  function confirmSignOut(scope: SignOutScope = 'local') {
+    const title =
+      scope === 'global'
+        ? 'Sair de todos os dispositivos?'
+        : 'Sair neste aparelho?';
+    const message =
+      scope === 'global'
+        ? 'Sua sessão será encerrada em todos os aparelhos. Seu progresso local (XP, sequência e erros) continua salvo neste dispositivo.'
+        : 'Você voltará ao modo convidado neste aparelho. Seu progresso, XP, sequência e erros continuam salvos localmente.';
+    Alert.alert(title, message, [
+      { text: 'Cancelar', style: 'cancel' },
+      {
+        text: 'Sair',
+        style: 'destructive',
+        onPress: () => runSignOut(scope),
+      },
+    ]);
+  }
+
+  function confirmDeleteAccount() {
     Alert.alert(
-      'Sair da conta?',
-      'Você voltará ao modo convidado. Seu progresso, XP, sequência e erros continuam salvos neste dispositivo.',
+      'Excluir conta?',
+      'Esta ação é permanente. Sua conta e os dados sincronizados na nuvem serão removidos. O progresso deste aparelho também será apagado.',
       [
         { text: 'Cancelar', style: 'cancel' },
         {
-          text: 'Sair',
+          text: 'Excluir',
           style: 'destructive',
           onPress: () => {
-            void signOut();
+            // Confirmação dupla para ação irreversível.
+            Alert.alert(
+              'Tem certeza?',
+              'Não é possível desfazer a exclusão da conta.',
+              [
+                { text: 'Cancelar', style: 'cancel' },
+                {
+                  text: 'Excluir definitivamente',
+                  style: 'destructive',
+                  onPress: () => void performDeleteAccount(),
+                },
+              ]
+            );
           },
         },
       ]
     );
+  }
+
+  async function performDeleteAccount() {
+    // Encerra a sincronização e desfaz o vínculo de propriedade.
+    handleAccountDeleted();
+    const ok = await deleteAccount();
+    if (!ok) {
+      return;
+    }
+    // Limpa o progresso local atrelado à conta excluída.
+    useStudyProgressStore.getState().resetProgress();
+    useMistakeStore.getState().clearMistakes();
+    useProfileStore.getState().resetProfile();
+    router.replace(ROUTES.authWelcome);
   }
 
   const containerStyle = [styles.container, framed && styles.framed];
@@ -76,7 +136,7 @@ export default function AccountCard({ framed = false }: AccountCardProps) {
               variant="danger"
               loading={isSubmitting}
               disabled={isSubmitting}
-              onPress={confirmSignOut}
+              onPress={() => confirmSignOut('local')}
               style={styles.action}
             />
           </>
@@ -92,11 +152,32 @@ export default function AccountCard({ framed = false }: AccountCardProps) {
               style={styles.action}
             />
             <PrimaryButton
-              label="Sair da conta"
+              label="Alterar senha"
+              variant="secondary"
+              disabled={isSubmitting}
+              onPress={() => router.push(ROUTES.changePassword)}
+              style={styles.action}
+            />
+            <PrimaryButton
+              label="Sair deste aparelho"
               variant="secondary"
               loading={isSubmitting}
               disabled={isSubmitting}
-              onPress={confirmSignOut}
+              onPress={() => confirmSignOut('local')}
+              style={styles.action}
+            />
+            <PrimaryButton
+              label="Sair de todos os dispositivos"
+              variant="secondary"
+              disabled={isSubmitting}
+              onPress={() => confirmSignOut('global')}
+              style={styles.action}
+            />
+            <PrimaryButton
+              label="Excluir conta"
+              variant="danger"
+              disabled={isSubmitting}
+              onPress={confirmDeleteAccount}
               style={styles.action}
             />
           </>

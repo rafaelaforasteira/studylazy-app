@@ -57,7 +57,10 @@ function createSupabaseClient(): SupabaseClient | null {
         storage: Platform.OS === 'web' ? undefined : AsyncStorage,
         autoRefreshToken: true,
         persistSession: true,
+        // O deep link de recuperação é processado manualmente em /auth/reset-password.
         detectSessionInUrl: false,
+        // PKCE: necessário para o fluxo seguro de redefinição de senha por e-mail.
+        flowType: 'pkce',
         lock: processLock,
       },
     });
