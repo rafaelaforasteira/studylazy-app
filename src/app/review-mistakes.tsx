@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
+  BackHandler,
   ScrollView,
   StyleSheet,
   Text,
@@ -31,6 +32,11 @@ import {
 } from '../data/questionBank';
 import { toReportableFromMistake } from '../utils/questionReports';
 import { mistakeToQuestion } from '../utils/questionMistake';
+import {
+  resolveEntitlementState,
+  sliceReviewQueue,
+} from '../entitlements/entitlementLogic';
+import { useEntitlementStore } from '../entitlements/entitlementStore';
 
 export default function ReviewMistakesScreen() {
   const router = useRouter();
@@ -40,11 +46,15 @@ export default function ReviewMistakesScreen() {
     (state) => state.removeMistake
   );
 
-  const [reviewQueue] = useState<MistakeItem[]>(() =>
-    selectReviewMistakes({
-      mistakes: useMistakeStore.getState().mistakes,
-    })
-  );
+  const [reviewQueue] = useState<MistakeItem[]>(() => {
+    const resolved = resolveEntitlementState(useEntitlementStore.getState());
+    return sliceReviewQueue(
+      selectReviewMistakes({
+        mistakes: useMistakeStore.getState().mistakes,
+      }),
+      resolved
+    );
+  });
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] =
@@ -67,6 +77,20 @@ export default function ReviewMistakesScreen() {
       });
     });
   }, [currentIndex, currentMistake?.id]);
+
+  useEffect(() => {
+    const subscription = BackHandler.addEventListener(
+      'hardwareBackPress',
+      () => {
+        if (!isFinished) {
+          router.replace(ROUTES.tabsRevisar);
+          return true;
+        }
+        return false;
+      }
+    );
+    return () => subscription.remove();
+  }, [isFinished, router]);
 
   const pendingCount = mistakes.length;
 
@@ -166,7 +190,7 @@ export default function ReviewMistakesScreen() {
           </Text>
 
           <PrimaryButton
-            label="Voltar ao dashboard"
+            label="Voltar para Revisar"
             onPress={handleFinish}
             style={styles.finishButton}
           />
@@ -218,7 +242,7 @@ export default function ReviewMistakesScreen() {
           </Text>
 
           <PrimaryButton
-            label="Voltar ao dashboard"
+            label="Voltar para Revisar"
             onPress={handleFinish}
             style={styles.finishButton}
           />
@@ -348,7 +372,7 @@ export default function ReviewMistakesScreen() {
           )}
 
           <PrimaryButton
-            label="Voltar ao dashboard"
+            label="Voltar para Revisar"
             variant="secondary"
             onPress={handleFinish}
             style={styles.secondaryAction}

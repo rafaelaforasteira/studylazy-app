@@ -14,6 +14,7 @@
     "android": {
       "package": "com.studylazy.app",
       "versionCode": 1,
+      "softwareKeyboardLayoutMode": "resize",
       "adaptiveIcon": {
         "backgroundColor": "#07080D",
         "foregroundImage": "./assets/images/android-icon-foreground.png",

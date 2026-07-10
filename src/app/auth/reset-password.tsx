@@ -37,6 +37,7 @@ export default function ResetPasswordScreen() {
 
   const exchangedRef = useRef(false);
   const submitLockRef = useRef(false);
+  const waitTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (exchangedRef.current) {
@@ -47,9 +48,26 @@ export default function ResetPasswordScreen() {
     const fromUrl = parseRecoveryParamsFromUrl(incomingUrl);
     const code = fromParam ?? fromUrl.code;
 
-    // Sem código e sem erro: ainda aguardando o deep link (cold start).
+    // Sem código e sem erro: aguarda o deep link (cold start) com timeout.
     if (!code && !fromUrl.error) {
+      if (!waitTimeoutRef.current) {
+        waitTimeoutRef.current = setTimeout(() => {
+          if (exchangedRef.current) {
+            return;
+          }
+          exchangedRef.current = true;
+          setInvalidReason(
+            'Não recebemos um link válido. Abra o link no mesmo aparelho em que solicitou a recuperação ou peça um novo e-mail.'
+          );
+          setPhase('invalid');
+        }, 8000);
+      }
       return;
+    }
+
+    if (waitTimeoutRef.current) {
+      clearTimeout(waitTimeoutRef.current);
+      waitTimeoutRef.current = null;
     }
 
     exchangedRef.current = true;
@@ -73,6 +91,14 @@ export default function ResetPasswordScreen() {
       setPhase('ready');
     })();
   }, [params.code, incomingUrl]);
+
+  useEffect(() => {
+    return () => {
+      if (waitTimeoutRef.current) {
+        clearTimeout(waitTimeoutRef.current);
+      }
+    };
+  }, []);
 
   async function handleSubmit() {
     if (isSubmitting || submitLockRef.current) {

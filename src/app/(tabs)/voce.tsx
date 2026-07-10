@@ -3,8 +3,8 @@ import { SymbolView } from 'expo-symbols';
 import { useRouter } from 'expo-router';
 
 import AccountCard from '../../components/auth/AccountCard';
+import UpgradeCard from '../../components/entitlements/UpgradeCard';
 import AppScreen from '../../components/ui/AppScreen';
-import PrimaryButton from '../../components/ui/PrimaryButton';
 
 import { colors } from '../../constants/colors';
 import { ROUTES } from '../../constants/routes';
@@ -178,19 +178,7 @@ export default function VoceScreen() {
       </View>
 
       <SectionTitle title="Planos e upgrade" />
-      <View style={styles.proCard}>
-        <Text style={styles.proEyebrow}>StudyLazy Pro</Text>
-        <Text style={styles.proTitle}>Evolua com recursos avançados</Text>
-        <Text style={styles.proDescription}>
-          Estatísticas avançadas, plano adaptativo, sincronização em nuvem e
-          muito mais — em desenvolvimento.
-        </Text>
-        <PrimaryButton
-          label="Conhecer planos"
-          onPress={() => router.push(ROUTES.plans)}
-          style={styles.proButton}
-        />
-      </View>
+      <UpgradeCard />
     </AppScreen>
   );
 }
@@ -332,40 +320,5 @@ const styles = StyleSheet.create({
   menuArrow: {
     color: colors.text.secondary,
     fontSize: 20,
-  },
-
-  proCard: {
-    backgroundColor: colors.surface,
-    borderWidth: 1,
-    borderColor: colors.border.default,
-    borderRadius: radii.xl,
-    padding: spacing.lg,
-    marginBottom: spacing.md,
-  },
-
-  proEyebrow: {
-    color: colors.primarySoft,
-    fontSize: 12,
-    fontWeight: '800',
-    letterSpacing: 0.8,
-    textTransform: 'uppercase',
-    marginBottom: spacing.xs,
-  },
-
-  proTitle: {
-    color: colors.text.primary,
-    fontSize: 20,
-    fontWeight: '900',
-    marginBottom: spacing.sm,
-  },
-
-  proDescription: {
-    color: colors.text.secondary,
-    ...typography.body,
-    marginBottom: spacing.lg,
-  },
-
-  proButton: {
-    alignSelf: 'flex-start',
   },
 });

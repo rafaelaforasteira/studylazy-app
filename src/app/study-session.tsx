@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
+  BackHandler,
   Modal,
   Pressable,
   ScrollView,
@@ -10,6 +11,7 @@ import {
 } from 'react-native';
 import { SymbolView } from 'expo-symbols';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import AppScreen from '../components/ui/AppScreen';
 import PrimaryButton from '../components/ui/PrimaryButton';
@@ -36,6 +38,7 @@ import { questionToLessonMistake } from '../utils/questionMistake';
 
 export default function StudySessionScreen() {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
 
   const { subject, duration, type, startedAt } = useLocalSearchParams<{
     subject: string;
@@ -114,6 +117,24 @@ export default function StudySessionScreen() {
       });
     });
   }, [currentQuestionIndex, currentQuestion?.externalId]);
+
+  useEffect(() => {
+    const subscription = BackHandler.addEventListener(
+      'hardwareBackPress',
+      () => {
+        if (showExitModal) {
+          setShowExitModal(false);
+          return true;
+        }
+        if (!isFinished) {
+          setShowExitModal(true);
+          return true;
+        }
+        return false;
+      }
+    );
+    return () => subscription.remove();
+  }, [showExitModal, isFinished]);
 
   const progress =
     questions.length > 0
@@ -306,7 +327,7 @@ export default function StudySessionScreen() {
         </View>
 
         <PrimaryButton
-          label="Voltar para o dashboard"
+          label="Voltar para Atividade"
           onPress={handleFinishLesson}
         />
 
@@ -461,7 +482,15 @@ export default function StudySessionScreen() {
           animationType="fade"
           onRequestClose={handleDismissExit}
         >
-          <View style={styles.modalOverlay}>
+          <View
+            style={[
+              styles.modalOverlay,
+              {
+                paddingTop: Math.max(insets.top, spacing.lg),
+                paddingBottom: Math.max(insets.bottom, spacing.lg),
+              },
+            ]}
+          >
             <View style={styles.modalCard}>
               <Text style={styles.modalTitle}>Sair da lição?</Text>
               <Text style={styles.modalMessage}>

@@ -6,7 +6,20 @@ import { colors } from '../constants/colors';
 import { spacing } from '../constants/spacing';
 
 export default function DebugScreen() {
-  // Pegamos todas as respostas da store
+  if (!__DEV__) {
+    return (
+      <View style={styles.blocked}>
+        <Text style={styles.blockedText}>
+          Tela disponível apenas em desenvolvimento.
+        </Text>
+      </View>
+    );
+  }
+
+  return <DebugContent />;
+}
+
+function DebugContent() {
   const answers = useOnboardingStore((state) => state.answers);
 
   return (
@@ -14,7 +27,7 @@ export default function DebugScreen() {
       style={styles.container}
       contentContainerStyle={styles.content}
     >
-      <Text style={styles.title}>Debug Store 🚀</Text>
+      <Text style={styles.title}>Debug Store</Text>
 
       <View style={styles.card}>
         <Text style={styles.label}>Journey</Text>
@@ -28,41 +41,8 @@ export default function DebugScreen() {
 
       <View style={styles.card}>
         <Text style={styles.label}>Study Time</Text>
-        <Text style={styles.value}>{answers.studyTime ?? 'Não respondido'}</Text>
-      </View>
-
-      <View style={styles.card}>
-        <Text style={styles.label}>Preparation Level</Text>
         <Text style={styles.value}>
-          {answers.preparationLevel ?? 'Não respondido'}
-        </Text>
-      </View>
-
-      <View style={styles.card}>
-        <Text style={styles.label}>Acquisition Channel</Text>
-        <Text style={styles.value}>
-          {answers.acquisitionChannel ?? 'Não respondido'}
-        </Text>
-      </View>
-
-      <View style={styles.card}>
-        <Text style={styles.label}>Daily Goal</Text>
-        <Text style={styles.value}>
-          {answers.dailyGoal ?? 'Não respondido'}
-        </Text>
-      </View>
-
-      <View style={styles.card}>
-        <Text style={styles.label}>Notifications</Text>
-        <Text style={styles.value}>
-          {answers.notifications ?? 'Não respondido'}
-        </Text>
-      </View>
-
-      <View style={styles.card}>
-        <Text style={styles.label}>Start Preference</Text>
-        <Text style={styles.value}>
-          {answers.startPreference ?? 'Não respondido'}
+          {answers.studyTime ?? 'Não respondido'}
         </Text>
       </View>
     </ScrollView>
@@ -70,38 +50,45 @@ export default function DebugScreen() {
 }
 
 const styles = StyleSheet.create({
+  blocked: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.background,
+    padding: spacing.lg,
+  },
+  blockedText: {
+    color: colors.text.secondary,
+    textAlign: 'center',
+  },
   container: {
     flex: 1,
     backgroundColor: colors.background,
   },
-
   content: {
     padding: spacing.lg,
+    gap: spacing.md,
   },
-
   title: {
     color: colors.text.primary,
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: spacing.lg,
-  },
-
-  card: {
-    backgroundColor: colors.card.background,
-    padding: spacing.md,
-    borderRadius: 16,
+    fontSize: 22,
+    fontWeight: '800',
     marginBottom: spacing.md,
   },
-
+  card: {
+    backgroundColor: colors.surface,
+    borderRadius: 12,
+    padding: spacing.md,
+    borderWidth: 1,
+    borderColor: colors.border.default,
+  },
   label: {
-    color: colors.text.secondary,
-    fontSize: 14,
+    color: colors.text.muted,
+    fontSize: 12,
     marginBottom: 4,
   },
-
   value: {
     color: colors.text.primary,
     fontSize: 16,
-    fontWeight: '600',
   },
 });
