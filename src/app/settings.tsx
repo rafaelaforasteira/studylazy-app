@@ -2,7 +2,9 @@ import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SymbolView } from 'expo-symbols';
 import { useRouter } from 'expo-router';
 
+import { AppAccessGate } from '../components/AppAccessGate';
 import AccountCard from '../components/auth/AccountCard';
+import UpgradeCard from '../components/entitlements/UpgradeCard';
 import AppScreen from '../components/ui/AppScreen';
 import PrimaryButton from '../components/ui/PrimaryButton';
 
@@ -11,6 +13,7 @@ import { ROUTES } from '../constants/routes';
 import { radii } from '../constants/radii';
 import { spacing } from '../constants/spacing';
 import { typography } from '../constants/typography';
+import { safeGoBack } from '../lib/navigationHelpers';
 
 import { useOnboardingStore } from '../store/onboardingStore';
 import { useStudyProgressStore } from '../store/studyProgressStore';
@@ -30,6 +33,14 @@ const FOREIGN_LANGUAGE_OPTIONS: {
 ];
 
 export default function SettingsScreen() {
+  return (
+    <AppAccessGate>
+      <SettingsContent />
+    </AppAccessGate>
+  );
+}
+
+function SettingsContent() {
   const router = useRouter();
 
   const resetAnswers = useOnboardingStore(
@@ -113,6 +124,16 @@ export default function SettingsScreen() {
 
   return (
     <AppScreen>
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel="Voltar"
+        onPress={() => safeGoBack(router, ROUTES.tabsVoce)}
+        hitSlop={8}
+        style={styles.backButton}
+      >
+        <Text style={styles.backText}>‹ Voltar</Text>
+      </Pressable>
+
       <View style={styles.header}>
         <Text style={styles.title}>Configurações</Text>
         <Text style={styles.subtitle}>
@@ -122,6 +143,8 @@ export default function SettingsScreen() {
       </View>
 
       <AccountCard framed />
+
+      <UpgradeCard compact />
 
       <View style={styles.card}>
         <SymbolView
@@ -228,16 +251,27 @@ export default function SettingsScreen() {
       </View>
 
       <PrimaryButton
-        label="Voltar ao dashboard"
+        label="Voltar"
         variant="secondary"
-        onPress={() => router.back()}
-        style={styles.backButton}
+        onPress={() => safeGoBack(router, ROUTES.tabsVoce)}
+        style={styles.backButtonBottom}
       />
     </AppScreen>
   );
 }
 
 const styles = StyleSheet.create({
+  backButton: {
+    alignSelf: 'flex-start',
+    marginBottom: spacing.md,
+  },
+
+  backText: {
+    color: colors.text.secondary,
+    ...typography.body,
+    fontWeight: '600',
+  },
+
   header: {
     marginBottom: spacing.xl,
   },
@@ -276,7 +310,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing.sm,
   },
 
-  backButton: {
+  backButtonBottom: {
     marginTop: spacing.sm,
   },
 

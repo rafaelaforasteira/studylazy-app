@@ -1,6 +1,14 @@
 import { useCallback, useRef } from 'react';
+import { Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 
+import { ROUTES } from '../constants/routes';
+import {
+  checkSessionStart,
+  resolveEntitlementState,
+} from '../entitlements/entitlementLogic';
+import { useEntitlementStore } from '../entitlements/entitlementStore';
+import { useStudyProgressStore } from '../store/studyProgressStore';
 import type { StudyTask } from '../utils/studyPlanGenerator';
 
 type StartStudyParams = {
@@ -9,15 +17,28 @@ type StartStudyParams = {
   type: string;
 };
 
-/**
- * Janela mínima (ms) entre aberturas de sessão. Evita que toques rápidos
- * duplos abram duas sessões de estudo empilhadas.
- */
+/** Janela mínima entre aberturas de sessão (evita toque duplo). */
 const START_DEBOUNCE_MS = 1000;
 
 export function useStartStudy() {
   const router = useRouter();
   const lastStartRef = useRef(0);
+
+  const navigateToSession = useCallback(
+    ({ subject, duration, type }: StartStudyParams) => {
+      const now = Date.now();
+      router.push({
+        pathname: '/study-session',
+        params: {
+          subject,
+          duration: String(duration),
+          type: type || 'Teoria',
+          startedAt: String(now),
+        },
+      });
+    },
+    [router]
+  );
 
   const startStudy = useCallback(
     ({ subject, duration, type }: StartStudyParams) => {
@@ -31,17 +52,50 @@ export function useStartStudy() {
       }
       lastStartRef.current = now;
 
-      router.push({
-        pathname: '/study-session',
-        params: {
-          subject,
-          duration: String(duration),
-          type: type || 'Teoria',
-          startedAt: String(now),
+      const progress = useStudyProgressStore.getState();
+      const entitlement = resolveEntitlementState(
+        useEntitlementStore.getState()
+      );
+      const decision = checkSessionStart({
+        entitlement,
+        progress: {
+          lessonHistory: progress.lessonHistory,
+          answeredQuestionsToday: progress.answeredQuestionsToday,
+          dailyProgressDate: progress.dailyProgressDate,
+          lastStudyDate: progress.lastStudyDate,
         },
+        questionCount: duration,
       });
+
+      if (!decision.allowed && decision.message) {
+        if (decision.softOverride) {
+          Alert.alert('Limite do plano gratuito', decision.message, [
+            { text: 'Cancelar', style: 'cancel' },
+            {
+              text: 'Conhecer o Pro',
+              onPress: () => router.push(ROUTES.pro),
+            },
+            {
+              text: 'Continuar mesmo assim',
+              onPress: () => navigateToSession({ subject, duration, type }),
+            },
+          ]);
+          return;
+        }
+
+        Alert.alert('Limite do plano gratuito', decision.message, [
+          { text: 'Ok', style: 'cancel' },
+          {
+            text: 'Conhecer o Pro',
+            onPress: () => router.push(ROUTES.pro),
+          },
+        ]);
+        return;
+      }
+
+      navigateToSession({ subject, duration, type });
     },
-    [router]
+    [navigateToSession, router]
   );
 
   const startNextTask = useCallback(

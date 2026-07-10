@@ -4,12 +4,15 @@ import { useRouter } from 'expo-router';
 import AppCard from '../../components/ui/AppCard';
 import AppScreen from '../../components/ui/AppScreen';
 import PrimaryButton from '../../components/ui/PrimaryButton';
+import UpgradeCard from '../../components/entitlements/UpgradeCard';
 
 import { colors } from '../../constants/colors';
 import { ROUTES } from '../../constants/routes';
 import { spacing } from '../../constants/spacing';
 import { typography } from '../../constants/typography';
 
+import { shouldShowReviewLimitHint } from '../../entitlements/entitlementLogic';
+import { useEntitlements } from '../../hooks/use-entitlements';
 import { useDashboardData } from '../../hooks/use-dashboard-data';
 import {
   getRecentMistakeDate,
@@ -19,8 +22,13 @@ import {
 export default function RevisarScreen() {
   const router = useRouter();
   const data = useDashboardData();
+  const entitlement = useEntitlements();
   const groupedMistakes = groupMistakesBySubject(data.mistakes);
   const recentMistakeDate = getRecentMistakeDate(data.mistakes);
+  const showLimitHint = shouldShowReviewLimitHint(
+    data.mistakeCount,
+    entitlement
+  );
 
   if (data.mistakeCount === 0) {
     return (
@@ -70,6 +78,13 @@ export default function RevisarScreen() {
         label="Começar revisão"
         onPress={() => router.push(ROUTES.reviewMistakes)}
       />
+
+      {showLimitHint ? (
+        <UpgradeCard
+          compact
+          description="No plano gratuito, a revisão diária é limitada. O Pro libera revisão completa dos seus erros."
+        />
+      ) : null}
     </AppScreen>
   );
 }
