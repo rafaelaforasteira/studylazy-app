@@ -124,6 +124,11 @@ function BetaChecklistContent() {
           onPress={() => router.push(ROUTES.pro)}
         />
         <PrimaryButton
+          label="Checklist de lançamento beta"
+          variant="secondary"
+          onPress={() => router.push('/dev/beta-launch-checklist')}
+        />
+        <PrimaryButton
           label="Segurança da conta"
           variant="secondary"
           onPress={() => router.push('/dev/account-security-health')}

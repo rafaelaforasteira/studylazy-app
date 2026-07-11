@@ -80,12 +80,6 @@ export default function ProScreen() {
         label="Entrar na lista de espera"
         onPress={handleWaitlist}
       />
-      <PrimaryButton
-        label="Em breve"
-        variant="secondary"
-        onPress={handleWaitlist}
-        style={styles.secondaryCta}
-      />
 
       <Text style={styles.disclaimer}>
         Não há valor de assinatura nem cobrança nesta versão beta. Seu progresso,
@@ -136,7 +130,6 @@ const styles = StyleSheet.create({
     ...typography.bodySmall,
     textAlign: 'center',
   },
-  secondaryCta: { marginTop: spacing.xs },
   disclaimer: {
     color: colors.text.muted,
     ...typography.bodySmall,
