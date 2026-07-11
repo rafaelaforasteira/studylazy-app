@@ -223,20 +223,21 @@ async function run() {
     assert.equal(countSessionsOnDate(makeHistory(1, '2026-07-09'), today), 0);
   });
 
-  await test('tela Pro existe', () => {
+  await test('tela Pro existe com ofertas ou fallback', () => {
     const root = join(__dirname, '..');
     assert.equal(existsSync(join(root, 'src/app/pro.tsx')), true);
     const pro = readFileSync(join(root, 'src/app/pro.tsx'), 'utf8');
-    assert.match(pro, /Em breve|lista de espera/i);
-    assert.doesNotMatch(pro, /R\$\s*\d|\/mês/i);
+    assert.match(pro, /Em breve|Assinar Pro|Restaurar compra/i);
+    assert.doesNotMatch(pro, /R\$\s*\d[\d,.]*/);
   });
 
-  await test('ausência de SDK de pagamento no package.json', () => {
+  await test('SDK RevenueCat oficial no package.json', () => {
     const pkg = JSON.parse(
       readFileSync(join(__dirname, '..', 'package.json'), 'utf8')
     ) as { dependencies?: Record<string, string> };
     const deps = Object.keys(pkg.dependencies ?? {}).join(' ');
-    assert.doesNotMatch(deps, /stripe|revenuecat|react-native-purchases|iap/i);
+    assert.match(deps, /react-native-purchases/);
+    assert.doesNotMatch(deps, /stripe|react-native-iap/i);
   });
 
   await test('compatível com convidado (plano default Free)', () => {

@@ -1,6 +1,10 @@
 export type UserPlan = 'free' | 'pro';
 
-export type EntitlementSource = 'default' | 'local_dev' | 'remote_future';
+export type EntitlementSource =
+  | 'default'
+  | 'local_dev'
+  | 'remote_future'
+  | 'revenuecat';
 
 export type EntitlementState = {
   plan: UserPlan;

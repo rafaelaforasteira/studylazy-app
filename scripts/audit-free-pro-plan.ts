@@ -67,11 +67,12 @@ check(
     FREE_LIMITS.dailyReviewMistakes > 0
 );
 
-// 4. Nenhuma dependência de pagamento
+// 4. Dependência de pagamento oficial (RevenueCat) sem duplicatas
 const pkg = readRel('package.json');
 check(
-  '4. Sem Stripe/RevenueCat/Billing no package.json',
-  !/stripe|revenuecat|react-native-purchases|google-play-billing|iap/i.test(pkg)
+  '4. RevenueCat via react-native-purchases (sem Stripe/IAP duplicado)',
+  /react-native-purchases/.test(pkg) &&
+    !/stripe|@stripe|google-play-billing|react-native-iap/i.test(pkg)
 );
 
 // 5. Nenhuma chave de pagamento
@@ -120,8 +121,8 @@ check('9b. app.json com package Android', /com\.studylazy\.app/.test(appJson));
 check('10. Tela /pro existe', existsSync(join(ROOT, 'src/app/pro.tsx')));
 const proScreen = readRel('src/app/pro.tsx');
 check(
-  '10b. Sem promessa de preço',
-  !/R\$\s*\d|\/mês|preço fixo/i.test(proScreen)
+  '10b. Sem preço fixo hardcoded na tela Pro',
+  !/R\$\s*\d[\d,.]*/.test(proScreen)
 );
 
 // 11. Cards de upgrade

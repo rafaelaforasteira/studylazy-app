@@ -15,6 +15,7 @@ export type EntitlementStoreSnapshot = {
   plan: UserPlan;
   devProEnabled: boolean;
   source: EntitlementSource;
+  entitlementCheckedAt?: string | null;
 };
 
 export type ProgressSnapshot = {

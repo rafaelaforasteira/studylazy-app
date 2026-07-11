@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SymbolView } from 'expo-symbols';
 import { useRouter } from 'expo-router';
@@ -14,6 +15,7 @@ import { radii } from '../constants/radii';
 import { spacing } from '../constants/spacing';
 import { typography } from '../constants/typography';
 import { safeGoBack } from '../lib/navigationHelpers';
+import { isRevenueCatAvailable, restorePurchases } from '../lib/revenueCat';
 
 import { useOnboardingStore } from '../store/onboardingStore';
 import { useStudyProgressStore } from '../store/studyProgressStore';
@@ -62,6 +64,18 @@ function SettingsContent() {
   const setForeignLanguage = useProfileStore(
     (state) => state.setForeignLanguage
   );
+
+  const [isRestoringPurchases, setIsRestoringPurchases] = useState(false);
+
+  async function handleRestorePurchases() {
+    if (isRestoringPurchases) {
+      return;
+    }
+    setIsRestoringPurchases(true);
+    const result = await restorePurchases();
+    setIsRestoringPurchases(false);
+    Alert.alert('Restaurar compra', result.message);
+  }
 
   function handleOpenProfile() {
     router.push(ROUTES.profile);
@@ -145,6 +159,23 @@ function SettingsContent() {
       <AccountCard framed />
 
       <UpgradeCard compact />
+
+      {isRevenueCatAvailable() ? (
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Assinatura Pro</Text>
+          <Text style={styles.cardDescription}>
+            Restaure uma compra feita neste dispositivo ou em outro aparelho
+            com a mesma conta da loja.
+          </Text>
+          <PrimaryButton
+            label="Restaurar compra"
+            variant="secondary"
+            loading={isRestoringPurchases}
+            disabled={isRestoringPurchases}
+            onPress={() => void handleRestorePurchases()}
+          />
+        </View>
+      ) : null}
 
       <View style={styles.card}>
         <SymbolView

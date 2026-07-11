@@ -6,6 +6,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import LoadingScreen from '../components/LoadingScreen';
 import { useAppHydration } from '../hooks/use-app-hydration';
 import { useProgressSync } from '../hooks/use-progress-sync';
+import { useRevenueCat } from '../hooks/use-revenuecat';
 import { useAuthStore } from '../store/authStore';
 
 function RootNavigator() {
@@ -19,6 +20,7 @@ function RootNavigator() {
 
   // Liga a sincronização de progresso offline-first (não bloqueia a UI).
   useProgressSync();
+  useRevenueCat();
 
   if (!hydrated) {
     return <LoadingScreen />;
