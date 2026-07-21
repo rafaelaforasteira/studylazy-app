@@ -51,6 +51,9 @@ Use este checklist **manual** antes de convidar usuários reais. Complementa a t
 - [ ] Sessões: Matemática, Português, Humanas, Natureza, Inglês/Espanhol
 - [ ] Revisão de erros
 - [ ] XP, streak e histórico
+- [ ] Sistema de vidas: começa com 5; perde 1 ao errar; bloqueia com 0
+- [ ] Regeneração de vida (~30 min) ou simulação em `/dev/lives-health`
+- [ ] Questão errada volta com prioridade na próxima sessão (badge “Revisão de erro”)
 - [ ] Sync com usuário logado
 - [ ] Offline após primeiro uso
 - [ ] Logout local e global

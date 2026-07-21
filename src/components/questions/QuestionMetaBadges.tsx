@@ -14,6 +14,8 @@ type QuestionMetaBadgesProps = {
   source?: string;
   year?: number;
   area?: string;
+  /** Questão voltou por erro anterior (fila de retry). */
+  isRetry?: boolean;
 };
 
 function getSourceBadgeLabel(source?: string, year?: number) {
@@ -39,6 +41,7 @@ export default function QuestionMetaBadges({
   source,
   year,
   area,
+  isRetry = false,
 }: QuestionMetaBadgesProps) {
   const resolvedSource = question?.source ?? source;
   const resolvedYear = question?.year ?? year;
@@ -47,19 +50,26 @@ export default function QuestionMetaBadges({
   const isOfficial =
     question?.originType === 'official_exam' && question?.verified === true;
 
-  if (!isOfficial && question?.originType) {
+  if (!isOfficial && question?.originType && !isRetry) {
     return null;
   }
 
   const sourceLabel = getSourceBadgeLabel(resolvedSource, resolvedYear);
   const areaLabel = resolvedArea?.trim();
 
-  if (!sourceLabel && !areaLabel) {
+  if (!sourceLabel && !areaLabel && !isRetry) {
     return null;
   }
 
   return (
     <View style={styles.row}>
+      {isRetry ? (
+        <View style={[styles.badge, styles.retryBadge]}>
+          <Text style={[styles.badgeText, styles.retryBadgeText]}>
+            Revisão de erro
+          </Text>
+        </View>
+      ) : null}
       {sourceLabel ? (
         <View style={styles.badge}>
           <Text style={styles.badgeText}>{sourceLabel}</Text>
@@ -98,6 +108,11 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(45, 212, 255, 0.2)',
   },
 
+  retryBadge: {
+    backgroundColor: 'rgba(255, 184, 77, 0.12)',
+    borderColor: 'rgba(255, 184, 77, 0.35)',
+  },
+
   badgeText: {
     color: colors.text.secondary,
     fontSize: 11,
@@ -107,5 +122,9 @@ const styles = StyleSheet.create({
 
   areaBadgeText: {
     color: colors.progress,
+  },
+
+  retryBadgeText: {
+    color: colors.warning,
   },
 });

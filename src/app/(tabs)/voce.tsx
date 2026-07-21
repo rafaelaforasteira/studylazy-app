@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 
 import AccountCard from '../../components/auth/AccountCard';
 import UpgradeCard from '../../components/entitlements/UpgradeCard';
+import LivesIndicator from '../../components/lives/LivesIndicator';
 import AppScreen from '../../components/ui/AppScreen';
 
 import { colors } from '../../constants/colors';
@@ -13,6 +14,8 @@ import { spacing } from '../../constants/spacing';
 import { typography } from '../../constants/typography';
 
 import { useDashboardData } from '../../hooks/use-dashboard-data';
+import { useMistakeStore } from '../../store/mistakeStore';
+import { useRetryQueueStore } from '../../store/retryQueueStore';
 import {
   getGoalLabel,
   getPreparationLabel,
@@ -55,6 +58,10 @@ function SectionTitle({ title }: { title: string }) {
 export default function VoceScreen() {
   const router = useRouter();
   const data = useDashboardData();
+  const mistakesCount = useMistakeStore((state) => state.mistakes.length);
+  const activeRetries = useRetryQueueStore((state) =>
+    state.items.filter((item) => item.active).length
+  );
 
   const avatarInitial = (
     data.studentName.trim().charAt(0) || 'E'
@@ -127,6 +134,24 @@ export default function VoceScreen() {
 
       <AccountCard />
 
+      <View style={styles.livesCard}>
+        <Text style={styles.livesCardTitle}>Vidas e revisão</Text>
+        <LivesIndicator showCount showRegenHint />
+        <Text style={styles.livesCardMeta}>
+          {activeRetries > 0
+            ? `${activeRetries} ${activeRetries === 1 ? 'questão' : 'questões'} com prioridade de revisão`
+            : 'Nenhuma questão prioritária na fila de retry'}
+        </Text>
+        <Text style={styles.livesCardMeta}>
+          {mistakesCount > 0
+            ? `${mistakesCount} ${mistakesCount === 1 ? 'erro salvo' : 'erros salvos'} para revisar`
+            : 'Nenhum erro pendente na revisão'}
+        </Text>
+        <Text style={styles.livesCardHint}>
+          No Pro futuro: vidas ilimitadas para estudar sem esperar.
+        </Text>
+      </View>
+
       <SectionTitle title="Minha conta" />
       <View style={styles.menuCard}>
         <MenuRow
@@ -186,6 +211,33 @@ export default function VoceScreen() {
 const styles = StyleSheet.create({
   content: {
     backgroundColor: colors.background,
+  },
+
+  livesCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radii.xl,
+    borderWidth: 1,
+    borderColor: colors.border.default,
+    padding: spacing.lg,
+    gap: spacing.sm,
+    marginBottom: spacing.md,
+  },
+
+  livesCardTitle: {
+    color: colors.text.primary,
+    ...typography.body,
+    fontWeight: '800',
+  },
+
+  livesCardMeta: {
+    color: colors.text.secondary,
+    ...typography.bodySmall,
+  },
+
+  livesCardHint: {
+    color: colors.primarySoft,
+    ...typography.bodySmall,
+    fontWeight: '600',
   },
 
   topBar: {

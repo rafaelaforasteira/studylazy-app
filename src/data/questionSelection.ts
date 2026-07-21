@@ -1,3 +1,5 @@
+import { mixRetryIntoSelection } from '../retry/retryQueueLogic';
+import { RETRY_SELECTION_BOOST } from '../retry/retryQueueTypes';
 import {
   getStableQuestionId,
   isOfficialVerifiedQuestion,
@@ -27,6 +29,8 @@ export const SELECTION_WEIGHTS = {
   recentPenalty: 800,
   /** Penalidade adicional por ter sido respondida corretamente há pouco. */
   recentlyCorrectPenalty: 400,
+  /** Questão ativa na fila de retry (errou recentemente). */
+  retryActive: RETRY_SELECTION_BOOST,
 } as const;
 
 /** Abaixo deste acerto médio, o tópico é considerado de baixo desempenho. */
@@ -54,6 +58,11 @@ export type SmartSelectionParams = {
   topic?: string;
   performanceByQuestion?: Record<string, QuestionPerformanceLike>;
   recentQuestionIds?: string[];
+  /**
+   * IDs estáveis ativos na fila de retry (erros recentes).
+   * Priorizados na mistura 40–60% da sessão quando disponíveis.
+   */
+  activeRetryIds?: Iterable<string>;
   /** Timestamp (ms) usado para cálculos de tempo; injetável para testes. */
   now?: number;
   /** Função de aleatoriedade injetável para reprodutibilidade. */
@@ -68,6 +77,7 @@ export type SmartSelectionDiagnostics = {
   incorrectCount: number;
   recentCountAvoided: number;
   repeatedIds: string[];
+  retryCount: number;
 };
 
 export type SmartSelectionResult = {
@@ -207,20 +217,33 @@ function scoreQuestion(params: {
   performance?: QuestionPerformanceLike;
   recentIndex: number;
   lowTopicPerformance: boolean;
+  isActiveRetry: boolean;
   now: number;
   random: () => number;
 }): ScoredQuestion {
-  const { question, performance, recentIndex, lowTopicPerformance, now, random } =
-    params;
+  const {
+    question,
+    performance,
+    recentIndex,
+    lowTopicPerformance,
+    isActiveRetry,
+    now,
+    random,
+  } = params;
 
   const stableId = getStableQuestionId(question);
   const topic = question.topic ?? '—';
 
   const attempts = performance?.attempts ?? 0;
   const isUnseen = !performance || attempts === 0;
-  const hasIncorrect = (performance?.incorrectAttempts ?? 0) > 0;
+  const hasIncorrect =
+    (performance?.incorrectAttempts ?? 0) > 0 || isActiveRetry;
 
   let score = 0;
+
+  if (isActiveRetry) {
+    score += SELECTION_WEIGHTS.retryActive;
+  }
 
   if (isUnseen) {
     score += SELECTION_WEIGHTS.unseen;
@@ -241,7 +264,7 @@ function scoreQuestion(params: {
       }
     }
 
-    if (performance?.lastResult === 'correct') {
+    if (performance?.lastResult === 'correct' && !isActiveRetry) {
       score -= SELECTION_WEIGHTS.recentlyCorrectPenalty;
     }
   }
@@ -280,6 +303,7 @@ export function selectSmartQuestions(
     topic,
     performanceByQuestion = {},
     recentQuestionIds = [],
+    activeRetryIds,
     now = Date.now(),
     random: providedRandom,
     shuffleSeed,
@@ -304,6 +328,15 @@ export function selectSmartQuestions(
       )
     : [];
 
+  const retryIdSet = new Set<string>();
+  if (activeRetryIds) {
+    for (const id of activeRetryIds) {
+      if (typeof id === 'string' && id.trim().length > 0) {
+        retryIdSet.add(id.trim());
+      }
+    }
+  }
+
   const safeQuestions = Array.isArray(questions) ? questions : [];
 
   const pool = buildEligiblePool({ questions: safeQuestions, subject, topic });
@@ -315,6 +348,7 @@ export function selectSmartQuestions(
     incorrectCount: 0,
     recentCountAvoided: 0,
     repeatedIds: [],
+    retryCount: 0,
   };
 
   if (safeCount === 0 || pool.length === 0) {
@@ -341,6 +375,7 @@ export function selectSmartQuestions(
       recentIndex: recentIndexById.get(stableId) ?? -1,
       lowTopicPerformance:
         accuracy !== undefined && accuracy < LOW_TOPIC_ACCURACY_THRESHOLD,
+      isActiveRetry: retryIdSet.has(stableId),
       now,
       random,
     });
@@ -354,7 +389,22 @@ export function selectSmartQuestions(
   });
 
   const targetCount = Math.min(safeCount, scored.length);
-  const selected = applyTopicBalance(scored, targetCount);
+
+  // Quando há retries ativos, mistura 40–60% deles com o restante pontuado.
+  // Depois aplica equilíbrio de tópico sem reintroduzir duplicatas.
+  const mixed =
+    retryIdSet.size > 0
+      ? mixRetryIntoSelection({
+          scored,
+          activeRetryIds: retryIdSet,
+          targetCount,
+        })
+      : scored.slice(0, targetCount);
+
+  const selected =
+    retryIdSet.size > 0
+      ? applyTopicBalancePreservingIds(mixed, scored, targetCount)
+      : applyTopicBalance(scored, targetCount);
 
   const selectedIds = selected.map((item) => item.stableId);
   const selectedIdSet = new Set(selectedIds);
@@ -383,12 +433,41 @@ export function selectSmartQuestions(
     incorrectCount: selected.filter((item) => item.hasIncorrect).length,
     recentCountAvoided,
     repeatedIds,
+    retryCount: selected.filter((item) => retryIdSet.has(item.stableId)).length,
   };
 
   return {
     questions: selected.map((item) => ({ ...item.question })),
     diagnostics,
   };
+}
+
+/**
+ * Equilíbrio de tópico a partir de uma seleção pré-misturada (retry),
+ * preenchendo buracos com o ranking completo sem duplicar IDs.
+ */
+function applyTopicBalancePreservingIds(
+  mixed: ScoredQuestion[],
+  fullScored: ScoredQuestion[],
+  targetCount: number
+) {
+  if (mixed.length >= targetCount) {
+    return applyTopicBalance(mixed, targetCount);
+  }
+
+  const used = new Set(mixed.map((item) => item.stableId));
+  const filled = [...mixed];
+  for (const item of fullScored) {
+    if (filled.length >= targetCount) {
+      break;
+    }
+    if (used.has(item.stableId)) {
+      continue;
+    }
+    used.add(item.stableId);
+    filled.push(item);
+  }
+  return applyTopicBalance(filled, targetCount);
 }
 
 /**
