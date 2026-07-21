@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
+  Alert,
   BackHandler,
   Modal,
   Pressable,
@@ -18,6 +19,7 @@ import PrimaryButton from '../components/ui/PrimaryButton';
 import QuestionMetaBadges from '../components/questions/QuestionMetaBadges';
 import QuestionContent from '../components/questions/QuestionContent';
 import ReportProblemButton from '../components/questions/ReportProblemButton';
+import LivesIndicator from '../components/lives/LivesIndicator';
 
 import { colors } from '../constants/colors';
 import { radii } from '../constants/radii';
@@ -29,6 +31,10 @@ import {
   LessonMistakeInput,
   useMistakeStore,
 } from '../store/mistakeStore';
+import { useLivesStore } from '../store/livesStore';
+import { useRetryQueueStore } from '../store/retryQueueStore';
+import { resolveEntitlementState } from '../entitlements/entitlementLogic';
+import { useEntitlementStore } from '../entitlements/entitlementStore';
 
 import { ROUTES } from '../constants/routes';
 
@@ -69,9 +75,22 @@ export default function StudySessionScreen() {
   // resposta registrada).
   const [selectionHistory] = useState(() => {
     const state = useStudyProgressStore.getState();
+    const entitlement = resolveEntitlementState(
+      useEntitlementStore.getState()
+    );
+    if (entitlement.isPro) {
+      useLivesStore.getState().setUnlimited(true);
+    } else {
+      useLivesStore.getState().setUnlimited(false);
+    }
+    useLivesStore.getState().hydrateRegeneration();
+
     return {
       performanceByQuestion: state.questionPerformance,
       recentQuestionIds: state.recentQuestionIds,
+      activeRetryIds: Array.from(
+        useRetryQueueStore.getState().getActiveIds(lessonSubject)
+      ),
     };
   });
 
@@ -82,8 +101,14 @@ export default function StudySessionScreen() {
       shuffleSeed: sessionShuffleSeed,
       performanceByQuestion: selectionHistory.performanceByQuestion,
       recentQuestionIds: selectionHistory.recentQuestionIds,
+      activeRetryIds: selectionHistory.activeRetryIds,
     });
   }, [lessonSubject, lessonDuration, sessionShuffleSeed, selectionHistory]);
+
+  const retryIdSet = useMemo(
+    () => new Set(selectionHistory.activeRetryIds),
+    [selectionHistory.activeRetryIds]
+  );
 
   const [currentQuestionIndex, setCurrentQuestionIndex] =
     useState(0);
@@ -100,12 +125,19 @@ export default function StudySessionScreen() {
     isRepeat: false,
   });
   const [showExitModal, setShowExitModal] = useState(false);
+  const [lifeLostFlash, setLifeLostFlash] = useState(false);
+  const [outOfLives, setOutOfLives] = useState(false);
 
   const hasSavedProgress = useRef(false);
   // Trava de reentrância: bloqueia toque duplo em "Responder"/"Continuar",
   // evitando registrar resposta/XP duas vezes ou pular questões.
   const answerLockRef = useRef(false);
   const scrollRef = useRef<ScrollView>(null);
+  /** Evita perder vida duas vezes na mesma questão (mesmo se reprocessada). */
+  const lostLifeKeysRef = useRef<Set<string>>(new Set());
+
+  const currentLives = useLivesStore((state) => state.currentLives);
+  const isUnlimitedLives = useLivesStore((state) => state.isUnlimited);
 
   const currentQuestion = questions[currentQuestionIndex];
 
@@ -158,20 +190,38 @@ export default function StudySessionScreen() {
     if (hasAnswered || answerLockRef.current) return;
     answerLockRef.current = true;
 
+    const stableId = getStableQuestionId(currentQuestion);
     const isCorrect =
       selectedOption === currentQuestion.correctAnswer;
 
     if (isCorrect) {
       setCorrectAnswers((current) => current + 1);
+      useRetryQueueStore.getState().recordCorrect(stableId, lessonSubject);
     } else {
       setLessonMistakes((currentMistakes) => [
         ...currentMistakes,
         questionToLessonMistake(currentQuestion, selectedOption),
       ]);
+      useRetryQueueStore.getState().recordMiss(stableId, lessonSubject);
+
+      // Perda de vida apenas na sessão de estudo (não na tela de revisão).
+      // Proteção: não perde se a mesma questão já consumiu vida nesta sessão.
+      if (!lostLifeKeysRef.current.has(stableId)) {
+        const applied = useLivesStore.getState().loseOneLife(stableId);
+        if (applied) {
+          lostLifeKeysRef.current.add(stableId);
+          setLifeLostFlash(true);
+          const livesAfter = useLivesStore.getState().currentLives;
+          const unlimited = useLivesStore.getState().isUnlimited;
+          if (!unlimited && livesAfter <= 0) {
+            setOutOfLives(true);
+          }
+        }
+      }
     }
 
     recordQuestionResult({
-      stableQuestionId: getStableQuestionId(currentQuestion),
+      stableQuestionId: stableId,
       isCorrect,
       topic: currentQuestion.topic,
       subject: lessonSubject,
@@ -196,11 +246,39 @@ export default function StudySessionScreen() {
     hasSavedProgress.current = true;
   }
 
+  function finishSessionEarly() {
+    saveLessonProgress();
+    setIsFinished(true);
+  }
+
   function handleNextQuestion() {
     // Só avança se houve resposta confirmada; consome a trava para impedir
     // que toques rápidos pulem questões ou concluam a sessão duas vezes.
     if (!answerLockRef.current) return;
     answerLockRef.current = false;
+    setLifeLostFlash(false);
+
+    if (outOfLives) {
+      Alert.alert(
+        'Suas vidas acabaram',
+        'Você recuperará 1 vida a cada 30 minutos. Seu progresso desta sessão foi salvo.',
+        [
+          {
+            text: 'Ver benefícios Pro',
+            onPress: () => {
+              finishSessionEarly();
+              router.replace(ROUTES.pro);
+            },
+          },
+          {
+            text: 'Encerrar sessão',
+            style: 'cancel',
+            onPress: finishSessionEarly,
+          },
+        ]
+      );
+      return;
+    }
 
     const isLastQuestion =
       currentQuestionIndex === questions.length - 1;
@@ -360,6 +438,7 @@ export default function StudySessionScreen() {
               size={20}
             />
           </Pressable>
+          <LivesIndicator compact showRegenHint={false} />
         </View>
 
         <ScrollView
@@ -391,8 +470,17 @@ export default function StudySessionScreen() {
           </View>
 
           <View style={styles.questionCard}>
-            <QuestionMetaBadges question={currentQuestion} />
+            <QuestionMetaBadges
+              question={currentQuestion}
+              isRetry={retryIdSet.has(getStableQuestionId(currentQuestion))}
+            />
             <QuestionContent question={currentQuestion} />
+
+            {lifeLostFlash && !isUnlimitedLives ? (
+              <Text style={styles.lifeLostHint}>
+                −1 vida · restam {currentLives}
+              </Text>
+            ) : null}
 
             {currentQuestion.options.map((option) => {
               const isSelected = selectedOption === option;
@@ -524,9 +612,11 @@ const styles = StyleSheet.create({
 
   header: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginBottom: spacing.sm,
     zIndex: 2,
+    gap: spacing.sm,
   },
 
   closeButton: {
@@ -538,6 +628,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surfaceSecondary,
     borderWidth: 1,
     borderColor: colors.border.default,
+  },
+
+  lifeLostHint: {
+    color: colors.danger,
+    ...typography.bodySmall,
+    fontWeight: '700',
+    marginBottom: spacing.sm,
   },
 
   scroll: {

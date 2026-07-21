@@ -47,6 +47,8 @@ type GetQuestionsForLessonParams = {
   topic?: string;
   performanceByQuestion?: Record<string, QuestionPerformanceLike>;
   recentQuestionIds?: string[];
+  /** IDs estáveis da fila de retry (erros recentes). */
+  activeRetryIds?: Iterable<string>;
   random?: () => number;
   now?: number;
 };
@@ -156,6 +158,7 @@ export function getLessonSelection({
   topic,
   performanceByQuestion,
   recentQuestionIds,
+  activeRetryIds,
   random,
   now,
 }: GetQuestionsForLessonParams): {
@@ -170,6 +173,7 @@ export function getLessonSelection({
     topic,
     performanceByQuestion,
     recentQuestionIds: recentQuestionIds ?? seenQuestionIds,
+    activeRetryIds,
     shuffleSeed,
     random,
     now,

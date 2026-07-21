@@ -5,6 +5,7 @@ import { useRouter } from 'expo-router';
 import AppCard from '../../components/ui/AppCard';
 import AppScreen from '../../components/ui/AppScreen';
 import PrimaryButton from '../../components/ui/PrimaryButton';
+import LivesIndicator from '../../components/lives/LivesIndicator';
 
 import { colors } from '../../constants/colors';
 import { radii } from '../../constants/radii';
@@ -80,10 +81,15 @@ export default function EstudarScreen() {
 
   return (
     <AppScreen hasTabBar contentStyle={styles.content}>
-      <Text style={styles.title}>Hub de estudos</Text>
-      <Text style={styles.subtitle}>
-        Escolha como continuar sua jornada de aprendizado.
-      </Text>
+      <View style={styles.titleRow}>
+        <View style={styles.titleBlock}>
+          <Text style={styles.title}>Hub de estudos</Text>
+          <Text style={styles.subtitle}>
+            Escolha como continuar sua jornada de aprendizado.
+          </Text>
+        </View>
+        <LivesIndicator compact />
+      </View>
 
       {hasPlan ? (
         <AppCard title="Próxima atividade recomendada">
@@ -230,16 +236,27 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
 
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    gap: spacing.md,
+    marginBottom: spacing.lg,
+  },
+
+  titleBlock: {
+    flex: 1,
+    gap: spacing.xs,
+  },
+
   title: {
     color: colors.text.primary,
     ...typography.title,
-    marginBottom: spacing.sm,
   },
 
   subtitle: {
     color: colors.text.secondary,
     ...typography.body,
-    marginBottom: spacing.lg,
   },
 
   taskTitle: {

@@ -11,6 +11,7 @@ import { typography } from '../constants/typography';
 import { useEntitlements } from '../hooks/use-entitlements';
 
 const PRO_BENEFITS = [
+  'Vidas ilimitadas para estudar sem esperar.',
   'Estudo ilimitado, sem limite diário de sessões ou questões',
   'Revisão completa de erros pendentes',
   'Estatísticas avançadas do seu desempenho',

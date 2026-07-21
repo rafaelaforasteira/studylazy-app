@@ -8,6 +8,8 @@ import {
   resolveEntitlementState,
 } from '../entitlements/entitlementLogic';
 import { useEntitlementStore } from '../entitlements/entitlementStore';
+import { formatMsUntilNextLife } from '../lives/livesLogic';
+import { useLivesStore } from '../store/livesStore';
 import { useStudyProgressStore } from '../store/studyProgressStore';
 import type { StudyTask } from '../utils/studyPlanGenerator';
 
@@ -52,10 +54,37 @@ export function useStartStudy() {
       }
       lastStartRef.current = now;
 
-      const progress = useStudyProgressStore.getState();
       const entitlement = resolveEntitlementState(
         useEntitlementStore.getState()
       );
+
+      // Pro futuro / simulação local: vidas ilimitadas.
+      if (entitlement.isPro) {
+        useLivesStore.getState().setUnlimited(true);
+      } else {
+        useLivesStore.getState().setUnlimited(false);
+      }
+
+      const livesCheck = useLivesStore.getState().canStudy();
+      if (!livesCheck.allowed && !livesCheck.isUnlimited) {
+        const waitLabel = formatMsUntilNextLife(livesCheck.msUntilNextLife);
+        Alert.alert(
+          'Sem vidas por agora',
+          `${livesCheck.message ?? 'Suas vidas acabaram por agora.'}${
+            waitLabel ? `\n\nPróxima vida em cerca de ${waitLabel}.` : ''
+          }`,
+          [
+            { text: 'Ok', style: 'cancel' },
+            {
+              text: 'Ver benefícios Pro',
+              onPress: () => router.push(ROUTES.pro),
+            },
+          ]
+        );
+        return;
+      }
+
+      const progress = useStudyProgressStore.getState();
       const decision = checkSessionStart({
         entitlement,
         progress: {
