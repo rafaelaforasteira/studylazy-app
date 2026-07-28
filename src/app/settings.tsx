@@ -147,6 +147,19 @@ function SettingsContent() {
       <UpgradeCard compact />
 
       <View style={styles.card}>
+        <Text style={styles.cardTitle}>Feedback do beta</Text>
+        <Text style={styles.cardDescription}>
+          Avalie o app, reporte bugs ou sugira melhorias — inclusive sobre
+          vidas e revisão.
+        </Text>
+        <PrimaryButton
+          label="Abrir feedback"
+          variant="secondary"
+          onPress={() => router.push(ROUTES.feedback)}
+        />
+      </View>
+
+      <View style={styles.card}>
         <SymbolView
           name={{ ios: 'person.fill', android: 'person', web: 'person' }}
           tintColor={colors.primary}

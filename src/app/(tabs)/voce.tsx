@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SymbolView } from 'expo-symbols';
 import { useRouter } from 'expo-router';
@@ -5,7 +6,9 @@ import { useRouter } from 'expo-router';
 import AccountCard from '../../components/auth/AccountCard';
 import UpgradeCard from '../../components/entitlements/UpgradeCard';
 import LivesIndicator from '../../components/lives/LivesIndicator';
+import NpsPrompt from '../../components/feedback/NpsPrompt';
 import AppScreen from '../../components/ui/AppScreen';
+import PrimaryButton from '../../components/ui/PrimaryButton';
 
 import { colors } from '../../constants/colors';
 import { ROUTES } from '../../constants/routes';
@@ -16,6 +19,8 @@ import { typography } from '../../constants/typography';
 import { useDashboardData } from '../../hooks/use-dashboard-data';
 import { useMistakeStore } from '../../store/mistakeStore';
 import { useRetryQueueStore } from '../../store/retryQueueStore';
+import { useStudyProgressStore } from '../../store/studyProgressStore';
+import { useFeedbackStore } from '../../store/feedbackStore';
 import {
   getGoalLabel,
   getPreparationLabel,
@@ -62,10 +67,21 @@ export default function VoceScreen() {
   const activeRetries = useRetryQueueStore((state) =>
     state.items.filter((item) => item.active).length
   );
+  const completedSessions = useStudyProgressStore(
+    (state) => state.lessonHistory.length
+  );
+  const canShowNps = useFeedbackStore((state) => state.canShowNps);
+  const [showNps, setShowNps] = useState(false);
 
   const avatarInitial = (
     data.studentName.trim().charAt(0) || 'E'
   ).toUpperCase();
+
+  function handleOpenNps() {
+    // Manual: sempre pode abrir o formulário.
+    canShowNps({ completedSessions, trigger: 'manual' });
+    setShowNps(true);
+  }
 
   function showComingSoon(feature: string) {
     Alert.alert(
@@ -152,6 +168,29 @@ export default function VoceScreen() {
         </Text>
       </View>
 
+      <View style={styles.livesCard}>
+        <Text style={styles.livesCardTitle}>Avaliar o StudyLazy</Text>
+        <Text style={styles.livesCardMeta}>
+          Conte como está sendo o beta — leva menos de um minuto.
+        </Text>
+        {showNps ? (
+          <NpsPrompt
+            screen="voce"
+            onSubmitted={() => setShowNps(false)}
+            onDismissed={() => setShowNps(false)}
+          />
+        ) : (
+          <>
+            <PrimaryButton label="Avaliar experiência" onPress={handleOpenNps} />
+            <PrimaryButton
+              label="Enviar feedback / bug"
+              variant="secondary"
+              onPress={() => router.push(ROUTES.feedback)}
+            />
+          </>
+        )}
+      </View>
+
       <SectionTitle title="Minha conta" />
       <View style={styles.menuCard}>
         <MenuRow
@@ -193,6 +232,11 @@ export default function VoceScreen() {
           label="Meus relatos de questões"
           accessibilityLabel="Ver meus relatos de questões"
           onPress={() => router.push(ROUTES.questionReports)}
+        />
+        <MenuRow
+          label="Feedback do beta"
+          accessibilityLabel="Abrir feedback do beta"
+          onPress={() => router.push(ROUTES.feedback)}
         />
         <MenuRow
           label="Ajuda"

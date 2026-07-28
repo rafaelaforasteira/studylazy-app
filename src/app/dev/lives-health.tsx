@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
 
 import PrimaryButton from '../../components/ui/PrimaryButton';
 import LivesIndicator from '../../components/lives/LivesIndicator';
 import { colors } from '../../constants/colors';
 import { radii } from '../../constants/radii';
+import { ROUTES } from '../../constants/routes';
 import { spacing } from '../../constants/spacing';
 import { typography } from '../../constants/typography';
 import { formatMsUntilNextLife } from '../../lives/livesLogic';
@@ -34,6 +36,7 @@ function Row({ label, value }: { label: string; value: string }) {
 }
 
 function LivesHealthContent() {
+  const router = useRouter();
   const [, tick] = useState(0);
   const currentLives = useLivesStore((state) => state.currentLives);
   const maxLives = useLivesStore((state) => state.maxLives);
@@ -141,6 +144,16 @@ function LivesHealthContent() {
           label="Limpar retry queue"
           variant="secondary"
           onPress={() => clearQueueDev()}
+        />
+        <PrimaryButton
+          label="Feedback / NPS"
+          variant="secondary"
+          onPress={() => router.push(ROUTES.feedback)}
+        />
+        <PrimaryButton
+          label="Feedback dashboard"
+          variant="secondary"
+          onPress={() => router.push('/dev/feedback-dashboard' as never)}
         />
       </View>
 

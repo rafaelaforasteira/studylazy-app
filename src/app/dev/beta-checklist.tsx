@@ -138,6 +138,16 @@ function BetaChecklistContent() {
           variant="secondary"
           onPress={() => router.push('/dev/android-beta-health')}
         />
+        <PrimaryButton
+          label="Feedback dashboard"
+          variant="secondary"
+          onPress={() => router.push('/dev/feedback-dashboard' as never)}
+        />
+        <PrimaryButton
+          label="Abrir feedback"
+          variant="secondary"
+          onPress={() => router.push(ROUTES.feedback)}
+        />
       </View>
 
       <Text style={styles.note}>

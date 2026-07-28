@@ -124,14 +124,18 @@ const onlyAllowedTables = fromCalls.every(
   (t) =>
     ['PROFILES_TABLE', 'SYNC_TABLE'].includes(t) ||
     t === "'profiles'" ||
-    t === "'user_sync_state'"
+    t === "'user_sync_state'" ||
+    // Canal separado de feedback/NPS (não mistura com progresso).
+    t === "'user_feedback'"
 );
 check('4b. Nenhuma tabela inesperada via .from()', onlyAllowedTables, fromCalls.join(', '));
 
-// 5. RLS não contornado: .from() de tabela só no repositório.
+// 5. RLS não contornado: .from() de progresso só no repositório de sync;
+// feedback tem repository próprio (src/feedback/feedbackRepository.ts).
 const fromOutsideRepo = srcContents.filter(
   ({ file, text }) =>
     !file.endsWith('src/sync/supabaseSyncRepository.ts') &&
+    !file.endsWith('src/feedback/feedbackRepository.ts') &&
     supabaseFromGlobal().test(text)
 );
 check(

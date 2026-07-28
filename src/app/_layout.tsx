@@ -5,6 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import LoadingScreen from '../components/LoadingScreen';
 import { useAppHydration } from '../hooks/use-app-hydration';
+import { useFeedbackSync } from '../hooks/use-feedback-sync';
 import { useProgressSync } from '../hooks/use-progress-sync';
 import { useAuthStore } from '../store/authStore';
 
@@ -19,6 +20,8 @@ function RootNavigator() {
 
   // Liga a sincronização de progresso offline-first (não bloqueia a UI).
   useProgressSync();
+  // Feedback/NPS em canal separado — nunca mistura com sync de progresso.
+  useFeedbackSync();
 
   if (!hydrated) {
     return <LoadingScreen />;

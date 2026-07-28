@@ -20,7 +20,7 @@ import QuestionMetaBadges from '../components/questions/QuestionMetaBadges';
 import QuestionContent from '../components/questions/QuestionContent';
 import ReportProblemButton from '../components/questions/ReportProblemButton';
 import LivesIndicator from '../components/lives/LivesIndicator';
-
+import NpsPrompt from '../components/feedback/NpsPrompt';
 import { colors } from '../constants/colors';
 import { radii } from '../constants/radii';
 import { spacing } from '../constants/spacing';
@@ -33,6 +33,7 @@ import {
 } from '../store/mistakeStore';
 import { useLivesStore } from '../store/livesStore';
 import { useRetryQueueStore } from '../store/retryQueueStore';
+import { useFeedbackStore } from '../store/feedbackStore';
 import { resolveEntitlementState } from '../entitlements/entitlementLogic';
 import { useEntitlementStore } from '../entitlements/entitlementStore';
 
@@ -338,6 +339,13 @@ export default function StudySessionScreen() {
   }
 
   if (isFinished) {
+    const completedSessions =
+      useStudyProgressStore.getState().lessonHistory.length;
+    const npsDecision = useFeedbackStore.getState().canShowNps({
+      completedSessions,
+      trigger: outOfLives ? 'out_of_lives' : 'session_end',
+    });
+
     return (
       <AppScreen>
         <View style={styles.finishedCard}>
@@ -403,6 +411,22 @@ export default function StudySessionScreen() {
             Seu progresso já foi salvo.
           </Text>
         </View>
+
+        {npsDecision.shouldShow ? (
+          <View style={styles.npsWrap}>
+            {outOfLives ? (
+              <Text style={styles.npsCareful}>
+                Sem pressão — se quiser, conte como o sistema de vidas está
+                impactando seus estudos.
+              </Text>
+            ) : null}
+            <NpsPrompt
+              screen={outOfLives ? 'session_out_of_lives' : 'session_end'}
+              trackShownOnMount
+              compact
+            />
+          </View>
+        ) : null}
 
         <PrimaryButton
           label="Voltar para Atividade"
@@ -873,6 +897,17 @@ const styles = StyleSheet.create({
 
   secondaryFinishButton: {
     marginTop: spacing.sm,
+  },
+
+  npsWrap: {
+    marginBottom: spacing.md,
+    gap: spacing.sm,
+  },
+
+  npsCareful: {
+    color: colors.text.secondary,
+    ...typography.bodySmall,
+    textAlign: 'center',
   },
 
   modalOverlay: {

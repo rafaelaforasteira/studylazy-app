@@ -23,4 +23,5 @@ export const ROUTES = {
   authForgotPassword: '/auth/forgot-password' as Href,
   authResetPassword: '/auth/reset-password' as Href,
   changePassword: '/change-password' as Href,
+  feedback: '/feedback' as Href,
 };
