@@ -44,6 +44,7 @@ import {
 } from '../data/questionTypes';
 import { useLivesStore } from '../store/livesStore';
 import LivesIndicator from '../components/lives/LivesIndicator';
+import { useMissionStore } from '../store/missionStore';
 
 const Q177_EXTERNAL_ID = 'ENEM-2023-D2-C5-Q177';
 
@@ -176,6 +177,9 @@ export default function ReviewMistakesScreen() {
       selectedOption === currentMistake.correctAnswer;
 
     setLifeRewardMessage(null);
+
+    // Missões: conta cada resposta na revisão (acerto ou erro), uma vez.
+    useMissionStore.getState().recordReviewAnswer();
 
     if (isCorrect) {
       removeMistake(currentMistake.id);
