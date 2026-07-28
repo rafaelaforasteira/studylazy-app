@@ -6,6 +6,7 @@ import { useRouter } from 'expo-router';
 import AccountCard from '../../components/auth/AccountCard';
 import UpgradeCard from '../../components/entitlements/UpgradeCard';
 import LivesIndicator from '../../components/lives/LivesIndicator';
+import DailyMissionsCard from '../../components/missions/DailyMissionsCard';
 import NpsPrompt from '../../components/feedback/NpsPrompt';
 import AppScreen from '../../components/ui/AppScreen';
 import PrimaryButton from '../../components/ui/PrimaryButton';
@@ -158,6 +159,8 @@ export default function VoceScreen() {
       </View>
 
       <AccountCard />
+
+      <DailyMissionsCard />
 
       <View style={styles.livesCard}>
         <Text style={styles.livesCardTitle}>Vidas e revisão</Text>

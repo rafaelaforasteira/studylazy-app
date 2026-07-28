@@ -6,6 +6,7 @@ import AppCard from '../../components/ui/AppCard';
 import AppScreen from '../../components/ui/AppScreen';
 import PrimaryButton from '../../components/ui/PrimaryButton';
 import LivesIndicator from '../../components/lives/LivesIndicator';
+import DailyMissionsCard from '../../components/missions/DailyMissionsCard';
 
 import { colors } from '../../constants/colors';
 import { radii } from '../../constants/radii';
@@ -90,6 +91,8 @@ export default function EstudarScreen() {
         </View>
         <LivesIndicator compact />
       </View>
+
+      <DailyMissionsCard />
 
       {hasPlan ? (
         <AppCard title="Próxima atividade recomendada">

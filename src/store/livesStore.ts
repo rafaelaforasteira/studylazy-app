@@ -42,6 +42,8 @@ type LivesStore = LivesSnapshot & {
     nowMs?: number;
   }) => ReviewRewardResult;
   addFragmentDev: (nowMs?: number) => void;
+  /** Alias semântico: concede 1 fragmento (missões / recompensas). */
+  grantLifeFragment: (nowMs?: number) => void;
   completeLifeFromReviewDev: (nowMs?: number) => void;
   clearReviewRewardsDev: () => void;
   resetLivesDev: () => void;
@@ -182,6 +184,10 @@ export const useLivesStore = create<LivesStore>()(
       },
 
       addFragmentDev: (nowMs = Date.now()) => {
+        set((state) => addReviewFragmentDev(state, nowMs));
+      },
+
+      grantLifeFragment: (nowMs = Date.now()) => {
         set((state) => addReviewFragmentDev(state, nowMs));
       },
 

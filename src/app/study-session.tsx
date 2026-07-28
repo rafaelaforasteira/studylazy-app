@@ -34,6 +34,7 @@ import {
 import { useLivesStore } from '../store/livesStore';
 import { useRetryQueueStore } from '../store/retryQueueStore';
 import { useFeedbackStore } from '../store/feedbackStore';
+import { useMissionStore } from '../store/missionStore';
 import { resolveEntitlementState } from '../entitlements/entitlementLogic';
 import { useEntitlementStore } from '../entitlements/entitlementStore';
 
@@ -133,6 +134,7 @@ export default function StudySessionScreen() {
   // Trava de reentrância: bloqueia toque duplo em "Responder"/"Continuar",
   // evitando registrar resposta/XP duas vezes ou pular questões.
   const answerLockRef = useRef(false);
+  const answeredInSessionRef = useRef(0);
   const scrollRef = useRef<ScrollView>(null);
   /** Evita perder vida duas vezes na mesma questão (mesmo se reprocessada). */
   const lostLifeKeysRef = useRef<Set<string>>(new Set());
@@ -228,11 +230,15 @@ export default function StudySessionScreen() {
       subject: lessonSubject,
     });
 
+    answeredInSessionRef.current += 1;
     setHasAnswered(true);
   }
 
   function saveLessonProgress() {
     if (hasSavedProgress.current) return;
+
+    const answeredQuestions = answeredInSessionRef.current;
+    const safeCorrect = Math.min(correctAnswers, answeredQuestions);
 
     const result = completeLesson({
       minutes: lessonDuration,
@@ -242,6 +248,12 @@ export default function StudySessionScreen() {
     });
 
     addLessonMistakes(lessonSubject, lessonMistakes);
+
+    // Missões: só conta sessão concluída (não abandono). Anti-duplo via hasSavedProgress.
+    useMissionStore.getState().recordLessonSession({
+      answeredQuestions,
+      correctAnswers: safeCorrect,
+    });
 
     setLessonResult(result);
     hasSavedProgress.current = true;

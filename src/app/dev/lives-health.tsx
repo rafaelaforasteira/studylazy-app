@@ -218,6 +218,11 @@ function LivesHealthContent() {
           variant="secondary"
           onPress={() => router.push('/dev/feedback-dashboard' as never)}
         />
+        <PrimaryButton
+          label="Missions health"
+          variant="secondary"
+          onPress={() => router.push('/dev/missions-health' as never)}
+        />
       </View>
 
       <Text style={styles.note}>

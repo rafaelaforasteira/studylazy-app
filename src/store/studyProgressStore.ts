@@ -67,6 +67,8 @@ type StudyProgressStore = {
 
   completeLesson: (params: CompleteLessonParams) => CompleteLessonResult;
   recordQuestionResult: (params: RecordQuestionResultParams) => void;
+  /** XP de bônus (missões) — não altera streak nem histórico de lição. */
+  addBonusXp: (amount: number) => number;
   ensureTodayProgress: () => void;
   resetProgress: () => void;
 };
@@ -108,6 +110,19 @@ export const useStudyProgressStore =
           set(patch);
 
           return result;
+        },
+
+        addBonusXp: (amount) => {
+          const safe = Number.isFinite(amount)
+            ? Math.max(0, Math.floor(amount))
+            : 0;
+          if (safe <= 0) {
+            return 0;
+          }
+          set((state) => ({
+            xp: Math.max(0, Math.floor(state.xp ?? 0)) + safe,
+          }));
+          return safe;
         },
 
         recordQuestionResult: ({

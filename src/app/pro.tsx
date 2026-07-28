@@ -12,6 +12,7 @@ import { useEntitlements } from '../hooks/use-entitlements';
 
 const PRO_BENEFITS = [
   'Vidas ilimitadas, sem precisar esperar recarga.',
+  'Missões extras e recompensas avançadas.',
   'Estudo ilimitado, sem limite diário de sessões ou questões',
   'Revisão completa de erros pendentes',
   'Estatísticas avançadas do seu desempenho',
