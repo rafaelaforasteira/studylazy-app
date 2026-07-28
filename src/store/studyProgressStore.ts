@@ -8,6 +8,7 @@ import {
   defaultCompleteLessonContext,
   type LessonHistoryItem,
 } from './progressLogic';
+import { useAchievementStore } from './achievementStore';
 
 export type { LessonHistoryItem } from './progressLogic';
 
@@ -109,6 +110,12 @@ export const useStudyProgressStore =
 
           set(patch);
 
+          const next = get();
+          const achievements = useAchievementStore.getState();
+          achievements.recordStudySessionCompleted(1);
+          achievements.recordXpChanged(next.xp);
+          achievements.recordStreakChanged(next.streak);
+
           return result;
         },
 
@@ -122,6 +129,7 @@ export const useStudyProgressStore =
           set((state) => ({
             xp: Math.max(0, Math.floor(state.xp ?? 0)) + safe,
           }));
+          useAchievementStore.getState().recordXpChanged(get().xp);
           return safe;
         },
 

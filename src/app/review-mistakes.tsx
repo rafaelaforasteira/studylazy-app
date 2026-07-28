@@ -45,6 +45,7 @@ import {
 import { useLivesStore } from '../store/livesStore';
 import LivesIndicator from '../components/lives/LivesIndicator';
 import { useMissionStore } from '../store/missionStore';
+import { useAchievementStore } from '../store/achievementStore';
 
 const Q177_EXTERNAL_ID = 'ENEM-2023-D2-C5-Q177';
 
@@ -180,6 +181,7 @@ export default function ReviewMistakesScreen() {
 
     // Missões: conta cada resposta na revisão (acerto ou erro), uma vez.
     useMissionStore.getState().recordReviewAnswer();
+    useAchievementStore.getState().recordReviewAnswered(1);
 
     if (isCorrect) {
       removeMistake(currentMistake.id);
@@ -202,6 +204,9 @@ export default function ReviewMistakesScreen() {
         });
         if (reward.applied && reward.message) {
           setLifeRewardMessage(reward.message);
+        }
+        if (reward.applied && reward.recoveredLife) {
+          useAchievementStore.getState().recordLifeRecoveredFromReview(1);
         }
       }
     }

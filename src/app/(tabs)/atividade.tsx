@@ -1,16 +1,16 @@
 import { useMemo, useState } from 'react';
 import {
   Pressable,
-  ScrollView,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
 
-import AchievementCard from '../../components/profile/AchievementCard';
 import EvolutionLineChart from '../../components/profile/EvolutionLineChart';
 import PerformanceRadarChart from '../../components/profile/PerformanceRadarChart';
 import ProfileStatCard from '../../components/profile/ProfileStatCard';
+import AchievementsCard from '../../components/achievements/AchievementsCard';
+import LevelProgressCard from '../../components/levels/LevelProgressCard';
 import AppScreen from '../../components/ui/AppScreen';
 
 import { colors } from '../../constants/colors';
@@ -24,7 +24,6 @@ import {
 } from '../../utils/onboardingFormatters';
 import {
   calculateAccuracy,
-  calculateAchievements,
   calculateAverageSessionMinutes,
   calculatePeriodComparison,
   calculateSubjectPerformance,
@@ -130,12 +129,6 @@ export default function AtividadeScreen() {
   );
   const strongest = getStrongestSubject(subjectPerformance);
   const weakest = getWeakestSubject(subjectPerformance);
-  const achievements = calculateAchievements({
-    history: data.lessonHistory,
-    sessionsCompleted: data.sessionsCompleted,
-    streak: data.displayStreak,
-    xp: data.xp,
-  });
 
   const growthLabel = formatGrowthLabel(
     comparison.hasComparison,
@@ -183,6 +176,8 @@ export default function AtividadeScreen() {
           </Text>
         </View>
       </View>
+
+      <LevelProgressCard xp={data.xp} />
 
       <View style={styles.statsGrid}>
         <ProfileStatCard icon="★" label="XP total" value={String(data.xp)} />
@@ -393,16 +388,7 @@ export default function AtividadeScreen() {
         )}
       </View>
 
-      <SectionHeader title="Conquistas" />
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.achievementsRow}
-      >
-        {achievements.map((achievement) => (
-          <AchievementCard key={achievement.id} achievement={achievement} />
-        ))}
-      </ScrollView>
+      <AchievementsCard />
 
       <SectionHeader title="Seu objetivo" />
       <View style={styles.card}>
