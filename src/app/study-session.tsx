@@ -35,6 +35,7 @@ import { useLivesStore } from '../store/livesStore';
 import { useRetryQueueStore } from '../store/retryQueueStore';
 import { useFeedbackStore } from '../store/feedbackStore';
 import { useMissionStore } from '../store/missionStore';
+import { useAchievementStore } from '../store/achievementStore';
 import { resolveEntitlementState } from '../entitlements/entitlementLogic';
 import { useEntitlementStore } from '../entitlements/entitlementStore';
 
@@ -254,6 +255,15 @@ export default function StudySessionScreen() {
       answeredQuestions,
       correctAnswers: safeCorrect,
     });
+
+    // Conquistas: questões/acertos reais da sessão (não o tamanho do quiz).
+    const achievements = useAchievementStore.getState();
+    if (answeredQuestions > 0) {
+      achievements.recordQuestionAnswered(answeredQuestions);
+    }
+    if (safeCorrect > 0) {
+      achievements.recordCorrectAnswer(safeCorrect);
+    }
 
     setLessonResult(result);
     hasSavedProgress.current = true;

@@ -57,6 +57,8 @@ Use este checklist **manual** antes de convidar usuários reais. Complementa a t
 - [ ] Fragmento de vida aparece no indicador (+1/2) e na tela Você
 - [ ] Missões diárias: 4 missões; reset no novo dia; +10 XP ao resgatar; bônus = +1 fragmento
 - [ ] Card de missões em Estudar e Você
+- [ ] Conquistas: desbloqueio único; card em Você/Atividade; toast “Nova conquista desbloqueada!”
+- [ ] Níveis por XP (1–10 com nomes); barra de progresso em Você/Atividade
 - [ ] Questão errada volta com prioridade na próxima sessão (badge “Revisão de erro”)
 - [ ] NPS/feedback: card em Você; não aparece na primeira abertura
 - [ ] Após ≥2 sessões, prompt NPS pode aparecer (ou abrir manualmente)

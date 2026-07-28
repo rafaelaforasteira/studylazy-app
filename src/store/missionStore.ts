@@ -20,6 +20,7 @@ import type {
 } from '../missions/missionTypes';
 import { useLivesStore } from './livesStore';
 import { useStudyProgressStore } from './studyProgressStore';
+import { useAchievementStore } from './achievementStore';
 
 type MissionStore = DailyMissionsSnapshot & {
   ensureToday: (nowMs?: number) => void;
@@ -46,7 +47,22 @@ type MissionStore = DailyMissionsSnapshot & {
 function applyXp(amount: number) {
   if (amount > 0) {
     useStudyProgressStore.getState().addBonusXp(amount);
+    const xp = useStudyProgressStore.getState().xp;
+    useAchievementStore.getState().recordXpChanged(xp);
   }
+}
+
+function notifyMissionAchievements(allCompleted: boolean) {
+  if (!allCompleted) {
+    return;
+  }
+  const achievements = useAchievementStore.getState();
+  if (
+    achievements.unlocked.some((item) => item.id === 'all_daily_missions')
+  ) {
+    return;
+  }
+  achievements.recordAllDailyMissionsCompleted();
 }
 
 function applyFragmentIfNeeded(shouldGrant: boolean) {
@@ -92,6 +108,9 @@ export const useMissionStore = create<MissionStore>()(
           }
           return next;
         });
+        if (areAllMissionsCompleted(get())) {
+          notifyMissionAchievements(true);
+        }
       },
 
       recordReviewAnswer: (nowMs = Date.now()) => {
@@ -102,6 +121,9 @@ export const useMissionStore = create<MissionStore>()(
             nowMs
           )
         );
+        if (areAllMissionsCompleted(get())) {
+          notifyMissionAchievements(true);
+        }
       },
 
       claimMission: (missionId, nowMs = Date.now()) => {
@@ -114,6 +136,8 @@ export const useMissionStore = create<MissionStore>()(
         set(snapshot);
         if (result.applied) {
           applyXp(result.xpAwarded);
+          useAchievementStore.getState().recordDailyMissionCompleted(nowMs);
+          notifyMissionAchievements(areAllMissionsCompleted(snapshot));
         }
         return result;
       },
@@ -124,6 +148,7 @@ export const useMissionStore = create<MissionStore>()(
         set(snapshot);
         if (result.applied && result.shouldGrantFragment) {
           applyFragmentIfNeeded(true);
+          notifyMissionAchievements(true);
         }
         return result;
       },

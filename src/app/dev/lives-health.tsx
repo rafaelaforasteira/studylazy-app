@@ -223,6 +223,11 @@ function LivesHealthContent() {
           variant="secondary"
           onPress={() => router.push('/dev/missions-health' as never)}
         />
+        <PrimaryButton
+          label="Achievements health"
+          variant="secondary"
+          onPress={() => router.push('/dev/achievements-health' as never)}
+        />
       </View>
 
       <Text style={styles.note}>

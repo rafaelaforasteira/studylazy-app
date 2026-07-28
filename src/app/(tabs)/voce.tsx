@@ -7,6 +7,8 @@ import AccountCard from '../../components/auth/AccountCard';
 import UpgradeCard from '../../components/entitlements/UpgradeCard';
 import LivesIndicator from '../../components/lives/LivesIndicator';
 import DailyMissionsCard from '../../components/missions/DailyMissionsCard';
+import AchievementsCard from '../../components/achievements/AchievementsCard';
+import LevelProgressCard from '../../components/levels/LevelProgressCard';
 import NpsPrompt from '../../components/feedback/NpsPrompt';
 import AppScreen from '../../components/ui/AppScreen';
 import PrimaryButton from '../../components/ui/PrimaryButton';
@@ -160,7 +162,11 @@ export default function VoceScreen() {
 
       <AccountCard />
 
+      <LevelProgressCard xp={data.xp} />
+
       <DailyMissionsCard />
+
+      <AchievementsCard />
 
       <View style={styles.livesCard}>
         <Text style={styles.livesCardTitle}>Vidas e revisão</Text>

@@ -11,7 +11,7 @@ import {
   WEEKDAY_CHART_LABELS,
   WEEKDAY_SHORT_LABELS,
 } from './date';
-import { getLevelInfo } from './gamification';
+import { getLevelInfo, getStudentLevelTitle } from './gamification';
 
 /** Product rule: default weekly study-day goal when user preference is unavailable. */
 export const DEFAULT_WEEKLY_STUDY_DAY_GOAL = 5;
@@ -334,11 +334,7 @@ export function getWeakestSubject(performance: SubjectPerformance[]) {
 }
 
 export function getLevelTitle(level: number) {
-  if (level <= 1) return 'Começando';
-  if (level === 2) return 'Em evolução';
-  if (level <= 4) return 'Consistente';
-  if (level <= 7) return 'Focada';
-  return 'Imparável';
+  return getStudentLevelTitle(level);
 }
 
 export function calculateAchievements(params: {
