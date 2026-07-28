@@ -21,6 +21,7 @@ import { useMistakeStore } from '../../store/mistakeStore';
 import { useRetryQueueStore } from '../../store/retryQueueStore';
 import { useStudyProgressStore } from '../../store/studyProgressStore';
 import { useFeedbackStore } from '../../store/feedbackStore';
+import { useLivesStore } from '../../store/livesStore';
 import {
   getGoalLabel,
   getPreparationLabel,
@@ -72,6 +73,14 @@ export default function VoceScreen() {
   );
   const canShowNps = useFeedbackStore((state) => state.canShowNps);
   const [showNps, setShowNps] = useState(false);
+  const currentLives = useLivesStore((state) => state.currentLives);
+  const maxLives = useLivesStore((state) => state.maxLives);
+  const lifeFragments = useLivesStore((state) => state.lifeFragments);
+  const isUnlimited = useLivesStore((state) => state.isUnlimited);
+  const getTimeUntilNextLabel = useLivesStore(
+    (state) => state.getTimeUntilNextLabel
+  );
+  const nextLifeLabel = getTimeUntilNextLabel();
 
   const avatarInitial = (
     data.studentName.trim().charAt(0) || 'E'
@@ -154,6 +163,23 @@ export default function VoceScreen() {
         <Text style={styles.livesCardTitle}>Vidas e revisão</Text>
         <LivesIndicator showCount showRegenHint />
         <Text style={styles.livesCardMeta}>
+          Vidas atuais: {isUnlimited ? 'ilimitadas' : `${currentLives}/${maxLives}`}
+        </Text>
+        <Text style={styles.livesCardMeta}>
+          {isUnlimited
+            ? 'Sem espera de recarga (Pro / unlimited).'
+            : currentLives >= maxLives
+              ? 'Vidas no máximo — próxima recarga pausada.'
+              : nextLifeLabel
+                ? `Tempo até próxima vida: ${nextLifeLabel}`
+                : 'Tempo até próxima vida: —'}
+        </Text>
+        {lifeFragments === 1 && !isUnlimited ? (
+          <Text style={styles.livesCardMeta}>
+            Fragmento de vida: +1/2 (acerte mais uma revisão para recuperar 1 vida)
+          </Text>
+        ) : null}
+        <Text style={styles.livesCardMeta}>
           {activeRetries > 0
             ? `${activeRetries} ${activeRetries === 1 ? 'questão' : 'questões'} com prioridade de revisão`
             : 'Nenhuma questão prioritária na fila de retry'}
@@ -164,7 +190,8 @@ export default function VoceScreen() {
             : 'Nenhum erro pendente na revisão'}
         </Text>
         <Text style={styles.livesCardHint}>
-          No Pro futuro: vidas ilimitadas para estudar sem esperar.
+          Dica: acerte revisões para recuperar vidas. No Pro futuro: vidas
+          ilimitadas, sem precisar esperar recarga.
         </Text>
       </View>
 

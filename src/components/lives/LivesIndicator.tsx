@@ -37,6 +37,7 @@ export default function LivesIndicator({
   const { isPro } = useEntitlements();
   const currentLives = useLivesStore((state) => state.currentLives);
   const maxLives = useLivesStore((state) => state.maxLives);
+  const lifeFragments = useLivesStore((state) => state.lifeFragments);
   const isUnlimited = useLivesStore((state) => state.isUnlimited) || isPro;
   const hydrateRegeneration = useLivesStore((state) => state.hydrateRegeneration);
   const getTimeUntilNextLabel = useLivesStore(
@@ -49,6 +50,7 @@ export default function LivesIndicator({
 
   const displayMax = maxLives > 0 ? maxLives : MAX_LIVES;
   const displayLives = isUnlimited ? displayMax : Math.min(currentLives, displayMax);
+  const showFragment = !isUnlimited && lifeFragments === 1;
   const regenLabel =
     !isUnlimited && displayLives < displayMax && showRegenHint
       ? getTimeUntilNextLabel()
@@ -57,8 +59,8 @@ export default function LivesIndicator({
   const accessibilityLabel = isUnlimited
     ? 'Vidas ilimitadas'
     : `Vidas: ${displayLives} de ${displayMax}${
-        regenLabel ? `. Próxima vida em ${regenLabel}` : ''
-      }`;
+        showFragment ? '. Meio fragmento de vida acumulado' : ''
+      }${regenLabel ? `. Próxima vida em ${regenLabel}` : ''}`;
 
   return (
     <View
@@ -77,6 +79,7 @@ export default function LivesIndicator({
           {isUnlimited ? '∞' : `${displayLives}/${displayMax}`}
         </Text>
       ) : null}
+      {showFragment ? <Text style={styles.fragmentHint}>+1/2</Text> : null}
       {regenLabel ? (
         <Text style={styles.regenHint}>+1 em {regenLabel}</Text>
       ) : null}
@@ -119,6 +122,11 @@ const styles = StyleSheet.create({
   count: {
     color: colors.text.primary,
     ...typography.bodySmall,
+    fontWeight: '800',
+  },
+  fragmentHint: {
+    color: colors.xp,
+    fontSize: 11,
     fontWeight: '800',
   },
   regenHint: {

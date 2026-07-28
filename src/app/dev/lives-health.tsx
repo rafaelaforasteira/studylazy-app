@@ -46,11 +46,28 @@ function LivesHealthContent() {
   const lastLifeRegeneratedAt = useLivesStore(
     (state) => state.lastLifeRegeneratedAt
   );
+  const lifeFragments = useLivesStore((state) => state.lifeFragments);
+  const totalLivesRecoveredFromReview = useLivesStore(
+    (state) => state.totalLivesRecoveredFromReview
+  );
+  const lastLifeRecoveredFromReviewAt = useLivesStore(
+    (state) => state.lastLifeRecoveredFromReviewAt
+  );
+  const reviewRewardHistory = useLivesStore(
+    (state) => state.reviewRewardHistory
+  );
   const hydrateRegeneration = useLivesStore((state) => state.hydrateRegeneration);
   const loseOneLife = useLivesStore((state) => state.loseOneLife);
   const restoreOne = useLivesStore((state) => state.restoreOne);
   const resetLivesDev = useLivesStore((state) => state.resetLivesDev);
   const setUnlimited = useLivesStore((state) => state.setUnlimited);
+  const addFragmentDev = useLivesStore((state) => state.addFragmentDev);
+  const completeLifeFromReviewDev = useLivesStore(
+    (state) => state.completeLifeFromReviewDev
+  );
+  const clearReviewRewardsDev = useLivesStore(
+    (state) => state.clearReviewRewardsDev
+  );
   const getMsUntilNextLife = useLivesStore((state) => state.getMsUntilNextLife);
 
   const retryItems = useRetryQueueStore((state) => state.items);
@@ -85,8 +102,21 @@ function LivesHealthContent() {
         <Text style={styles.cardTitle}>Estado</Text>
         <Row label="Vidas atuais" value={String(currentLives)} />
         <Row label="Máximo" value={String(maxLives)} />
+        <Row label="Fragmentos" value={String(lifeFragments)} />
         <Row label="Próxima vida" value={waitLabel} />
         <Row label="Total perdidas" value={String(totalLivesLost)} />
+        <Row
+          label="Recuperadas (revisão)"
+          value={String(totalLivesRecoveredFromReview)}
+        />
+        <Row
+          label="Último recover revisão"
+          value={
+            lastLifeRecoveredFromReviewAt
+              ? lastLifeRecoveredFromReviewAt.slice(11, 19)
+              : '—'
+          }
+        />
         <Row label="Unlimited" value={isUnlimited ? 'sim' : 'não'} />
         <Row
           label="Última perda"
@@ -98,6 +128,24 @@ function LivesHealthContent() {
             lastLifeRegeneratedAt ? lastLifeRegeneratedAt.slice(11, 19) : '—'
           }
         />
+      </View>
+
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>
+          Histórico de rewards ({reviewRewardHistory.length})
+        </Text>
+        {reviewRewardHistory.length === 0 ? (
+          <Text style={styles.empty}>Nenhuma recompensa ainda</Text>
+        ) : (
+          reviewRewardHistory.slice(0, 12).map((item) => (
+            <Text
+              key={`${item.stableQuestionId}-${item.rewardedAt}`}
+              style={styles.retryLine}
+            >
+              {item.stableQuestionId} · {item.rewardedAt.slice(11, 19)}
+            </Text>
+          ))
+        )}
       </View>
 
       <View style={styles.card}>
@@ -122,6 +170,21 @@ function LivesHealthContent() {
           label="Recuperar 1 vida"
           variant="secondary"
           onPress={() => restoreOne()}
+        />
+        <PrimaryButton
+          label="Adicionar fragmento"
+          variant="secondary"
+          onPress={() => addFragmentDev()}
+        />
+        <PrimaryButton
+          label="Completar 1 vida por revisão"
+          variant="secondary"
+          onPress={() => completeLifeFromReviewDev()}
+        />
+        <PrimaryButton
+          label="Limpar histórico de recompensa"
+          variant="secondary"
+          onPress={() => clearReviewRewardsDev()}
         />
         <PrimaryButton
           label="Resetar vidas"
@@ -159,7 +222,7 @@ function LivesHealthContent() {
 
       <Text style={styles.note}>
         Dev only — não exibe tokens, chaves ou enunciados de questões.
-        Revisão de erros (tela dedicada) não consome vidas.
+        Revisão de erros não consome vidas; acerto dá 1/2 vida (2 = +1).
       </Text>
     </ScrollView>
   );
