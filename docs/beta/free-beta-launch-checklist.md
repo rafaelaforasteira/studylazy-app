@@ -51,8 +51,10 @@ Use este checklist **manual** antes de convidar usuários reais. Complementa a t
 - [ ] Sessões: Matemática, Português, Humanas, Natureza, Inglês/Espanhol
 - [ ] Revisão de erros
 - [ ] XP, streak e histórico
-- [ ] Sistema de vidas: começa com 5; perde 1 ao errar; bloqueia com 0
+- [ ] Sistema de vidas: começa com 5; perde 1 ao errar na lição; bloqueia com 0
 - [ ] Regeneração de vida (~30 min) ou simulação em `/dev/lives-health`
+- [ ] Revisão de erros: não consome vidas; acerto dá 1/2 vida (2 acertos = +1)
+- [ ] Fragmento de vida aparece no indicador (+1/2) e na tela Você
 - [ ] Questão errada volta com prioridade na próxima sessão (badge “Revisão de erro”)
 - [ ] NPS/feedback: card em Você; não aparece na primeira abertura
 - [ ] Após ≥2 sessões, prompt NPS pode aparecer (ou abrir manualmente)

@@ -37,6 +37,33 @@ import {
   sliceReviewQueue,
 } from '../entitlements/entitlementLogic';
 import { useEntitlementStore } from '../entitlements/entitlementStore';
+import {
+  getStableQuestionId,
+  isOfficialVerifiedQuestion,
+  type Question,
+} from '../data/questionTypes';
+import { useLivesStore } from '../store/livesStore';
+import LivesIndicator from '../components/lives/LivesIndicator';
+
+const Q177_EXTERNAL_ID = 'ENEM-2023-D2-C5-Q177';
+
+function isEligibleForReviewLifeReward(
+  question: Question | null | undefined
+): boolean {
+  if (!question) {
+    return false;
+  }
+  if (question.externalId === Q177_EXTERNAL_ID) {
+    return false;
+  }
+  if (question.officialStatus === 'annulled') {
+    return false;
+  }
+  if (question.originType !== 'official_exam') {
+    return false;
+  }
+  return isOfficialVerifiedQuestion(question);
+}
 
 export default function ReviewMistakesScreen() {
   const router = useRouter();
@@ -44,6 +71,9 @@ export default function ReviewMistakesScreen() {
   const mistakes = useMistakeStore((state) => state.mistakes);
   const removeMistake = useMistakeStore(
     (state) => state.removeMistake
+  );
+  const rewardFromReviewCorrect = useLivesStore(
+    (state) => state.rewardFromReviewCorrect
   );
 
   const [reviewQueue] = useState<MistakeItem[]>(() => {
@@ -62,8 +92,12 @@ export default function ReviewMistakesScreen() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const [correctedCount, setCorrectedCount] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+  const [lifeRewardMessage, setLifeRewardMessage] = useState<string | null>(
+    null
+  );
   // Trava de reentrância contra toque duplo em "Responder"/"Continuar".
   const answerLockRef = useRef(false);
+  const rewardedKeysRef = useRef<Set<string>>(new Set());
   const scrollRef = useRef<ScrollView>(null);
 
   const currentMistake: MistakeItem | undefined =
@@ -141,9 +175,31 @@ export default function ReviewMistakesScreen() {
     const isCorrect =
       selectedOption === currentMistake.correctAnswer;
 
+    setLifeRewardMessage(null);
+
     if (isCorrect) {
       removeMistake(currentMistake.id);
       setCorrectedCount((value) => value + 1);
+
+      const eligible = isEligibleForReviewLifeReward(matchedQuestion);
+      const stableId = matchedQuestion
+        ? getStableQuestionId(matchedQuestion)
+        : currentMistake.externalId?.trim() || '';
+
+      if (
+        eligible &&
+        stableId &&
+        !rewardedKeysRef.current.has(stableId)
+      ) {
+        rewardedKeysRef.current.add(stableId);
+        const reward = rewardFromReviewCorrect({
+          stableQuestionId: stableId,
+          isEligibleOfficial: true,
+        });
+        if (reward.applied && reward.message) {
+          setLifeRewardMessage(reward.message);
+        }
+      }
     }
 
     setHasAnswered(true);
@@ -164,6 +220,7 @@ export default function ReviewMistakesScreen() {
     setCurrentIndex((value) => value + 1);
     setSelectedOption(null);
     setHasAnswered(false);
+    setLifeRewardMessage(null);
   }
 
   function handleFinish() {
@@ -276,6 +333,10 @@ export default function ReviewMistakesScreen() {
               {currentIndex + 1} de {reviewQueue.length}
             </Text>
 
+            <View style={styles.livesRow}>
+              <LivesIndicator showCount showRegenHint compact />
+            </View>
+
             <View style={styles.progressBackground}>
               <View
                 style={[
@@ -351,6 +412,9 @@ export default function ReviewMistakesScreen() {
                   ? 'Ótimo! Erro corrigido.'
                   : `Ainda pendente. Resposta correta: ${currentMistake.correctAnswer}`}
               </Text>
+              {lifeRewardMessage ? (
+                <Text style={styles.lifeRewardText}>{lifeRewardMessage}</Text>
+              ) : null}
             </View>
           )}
 
@@ -405,7 +469,12 @@ const styles = StyleSheet.create({
   description: {
     color: colors.text.secondary,
     ...typography.body,
+    marginBottom: spacing.md,
+  },
+
+  livesRow: {
     marginBottom: spacing.lg,
+    alignItems: 'flex-start',
   },
 
   progressBackground: {
@@ -506,6 +575,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     ...typography.body,
     fontWeight: '700',
+  },
+
+  lifeRewardText: {
+    color: colors.xp,
+    textAlign: 'center',
+    ...typography.bodySmall,
+    fontWeight: '700',
+    marginTop: spacing.sm,
   },
 
   secondaryAction: {
